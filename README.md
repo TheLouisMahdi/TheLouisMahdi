@@ -34,10 +34,33 @@ I'm **Mahdi Ghahremani**, an **Electrical Engineering student** focused on the i
 
 My programming journey started at **15**, when I learned **C#** as my first language. Since then, I have been building and exploring software tools, AI-based systems, image-processing workflows, and hardware/software ideas.
 
-I also work with different teams and companies on applied AI projects, especially around **computer vision**, **deep learning**, **sensor-based systems**, and intelligent engineering applications.
+I also work with different teams and companies on applied AI projects, especially around **computer vision**, **deep learning**, **sensor-based systems**, and intelligent engineering applications. Some of these projects cannot be published publicly because of technical, team, or company-related limitations.
 
 > **Engineering mindset + AI-driven creativity.**  
 > I enjoy turning technical ideas into practical intelligent systems.
+
+---
+
+## 🧭 Current Roles
+
+<table>
+<tr>
+<td width="50%">
+
+### 🏝️ Technical Lead
+
+Technical Lead of the **Three Islands Team**.
+
+</td>
+<td width="50%">
+
+### 👁️ Rast Eye
+
+Technical, Software, and AI Engineer at **Rast Eye**.
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -138,6 +161,16 @@ Sometimes a small tool built carefully is more valuable than a large unfinished 
 - 🌱 Interested in smart irrigation, sensor-based intelligence, and engineering AI
 - 🎥 Film enthusiast
 - 🧪 I like learning by making real projects
+
+---
+
+## 🧩 How I Think
+
+I usually start with ideas. When I see something, I naturally begin thinking about how it could be improved, rebuilt, or solved in a better way.
+
+I enjoy struggling with problems, experimenting, failing, trying again, and pushing forward until the work is finished.
+
+Because I am both a **starter** and a **finisher**.
 
 ---
 

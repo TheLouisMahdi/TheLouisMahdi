@@ -30,51 +30,18 @@
 
 ## 👨‍💻 About Me
 
-I'm **Mahdi Ghahremani**, an **Electrical Engineering student** interested in the point where **electronics**, **digital systems**, **hardware design**, **software development**, and **artificial intelligence** meet.
+I'm **Mahdi Ghahremani**, an **Electrical Engineering student** focused on the intersection of **AI**, **computer vision**, **electronics**, **digital systems**, and **hardware design**.
 
-My programming journey started when I was **15 years old**, when I learned **C#** as my first programming language. Since then, I have been exploring different parts of technology: from desktop applications and local tools to electronics, digital logic, AI-based systems, image processing, deep learning, and hardware/software mixed projects.
+My programming journey started at **15**, when I learned **C#** as my first language. Since then, I have been building and exploring software tools, AI-based systems, image-processing workflows, and hardware/software ideas.
 
-I also work on interesting **AI-oriented projects with different teams and companies**, especially in areas connected to **computer vision**, **deep learning**, **sensor-based systems**, and **intelligent engineering applications**.
+I also work with different teams and companies on applied AI projects, especially around **computer vision**, **deep learning**, **sensor-based systems**, and intelligent engineering applications.
 
 > **Engineering mindset + AI-driven creativity.**  
 > I enjoy turning technical ideas into practical intelligent systems.
 
 ---
 
-## 🚀 What I’m Interested In
-
-<table>
-<tr>
-<td width="50%">
-
-### ⚡ Engineering
-
-- Electronics and circuit design
-- Digital systems
-- Hardware design
-- Embedded systems concepts
-- FPGA and digital logic ideas
-- Hardware/software integration
-
-</td>
-<td width="50%">
-
-### 🧠 Software, AI & Creativity
-
-- Artificial intelligence
-- Computer vision
-- Deep learning
-- Programming and automation
-- Local/offline tools
-- Film and cinematic storytelling
-
-</td>
-</tr>
-</table>
-
----
-
-## 🤖 AI & Research Directions
+## 🚀 Focus Areas
 
 <table>
 <tr>
@@ -82,11 +49,10 @@ I also work on interesting **AI-oriented projects with different teams and compa
 
 ### 👁️ Computer Vision
 
-- Image processing pipelines
+- Image processing
 - Object detection and recognition
 - Visual monitoring systems
 - Feature extraction
-- Scene understanding
 - Camera-based intelligent systems
 
 </td>
@@ -97,8 +63,7 @@ I also work on interesting **AI-oriented projects with different teams and compa
 - Convolutional Neural Networks
 - Model training and evaluation
 - Pattern recognition
-- Classification systems
-- AI-based prediction models
+- Classification and prediction models
 - Applied neural network workflows
 
 </td>
@@ -106,25 +71,23 @@ I also work on interesting **AI-oriented projects with different teams and compa
 <tr>
 <td width="50%">
 
-### 🌱 Smart Systems & AgriTech AI
+### 🌱 Smart Engineering Systems
 
 - Smart irrigation intelligence
-- Environmental data analysis
-- Sensor data processing
-- Root-zone and water-balance logic
+- Environmental and sensor data analysis
 - Decision-support systems
-- AI for resource optimization
+- Resource optimization
+- Signal and time-series analysis
 
 </td>
 <td width="50%">
 
-### ⚙️ Edge & Engineering AI
+### ⚙️ Hardware + Digital Systems
 
-- Embedded AI concepts
-- Hardware-aware AI systems
-- Signal and time-series analysis
-- Anomaly detection
-- Human-state monitoring ideas
+- Electronics and circuit design
+- Digital logic and FPGA concepts
+- Embedded systems concepts
+- Hardware/software integration
 - Real-world engineering automation
 
 </td>
@@ -150,118 +113,30 @@ I also work on interesting **AI-oriented projects with different teams and compa
 
 ---
 
-## 📌 Professional Focus
-
-<table>
-<tr>
-<td width="50%">
-
-### 🤝 AI Collaboration
-
-Working with different teams and companies on applied AI ideas, focusing on practical systems rather than only theoretical models.
-
-</td>
-<td width="50%">
-
-### 👁️ Vision-Based Intelligence
-
-Designing and exploring image-processing and computer-vision workflows for real-world monitoring and analysis.
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 🌱 Intelligent Engineering Systems
-
-Combining engineering logic, sensor data, and AI models for smarter decision-making in physical systems.
-
-</td>
-<td width="50%">
-
-### ⚙️ Hardware + Software Thinking
-
-Connecting digital systems, electronics, and software to create tools that interact with real environments.
-
-</td>
-</tr>
-</table>
-
----
-
-## 🎯 My Project Style
+## 🎯 How I Build
 
 ```txt
 Practical AI        ██████████  100%
 Engineering         █████████░   90%
 Computer Vision     █████████░   90%
-Experimental        █████████░   90%
 Creative Systems    ████████░░   80%
 Hardware Thinking   ████████░░   80%
 ```
 
-I believe good projects do not always need to be huge.  
-Sometimes a small useful tool, built carefully, is more valuable than a complicated unfinished idea.
+I like projects that are **useful**, **clean**, **experimental**, and connected to real-world problems.  
+Sometimes a small tool built carefully is more valuable than a large unfinished idea.
 
 ---
 
-## 📊 Profile Snapshot
-
-<table>
-<tr>
-<td width="33%" align="center">
-
-### 🎓 Field
-Electrical Engineering
-
-</td>
-<td width="33%" align="center">
-
-### 🧠 Main Focus
-AI + Engineering Systems
-
-</td>
-<td width="33%" align="center">
-
-### 💻 Started Coding
-Age 15 with C#
-
-</td>
-</tr>
-<tr>
-<td width="33%" align="center">
-
-### 👁️ AI Area
-Computer Vision
-
-</td>
-<td width="33%" align="center">
-
-### 🌱 Applied Domain
-Smart Systems & AgriTech
-
-</td>
-<td width="33%" align="center">
-
-### 🛠️ Style
-Practical + Creative
-
-</td>
-</tr>
-</table>
-
----
-
-## 🌌 A Little More About Me
+## 🌌 More About Me
 
 - 🎓 Electrical Engineering student
 - 💻 Developer since age 15
 - 🧠 First programming language: **C#**
-- 🤖 Interested in artificial intelligence, computer vision, and deep learning
+- 🤖 Interested in AI, computer vision, and deep learning
 - ⚡ Interested in electronics, digital systems, and hardware design
 - 🌱 Interested in smart irrigation, sensor-based intelligence, and engineering AI
 - 🎥 Film enthusiast
-- 🛠️ I enjoy building local, practical, and creative technical tools
 - 🧪 I like learning by making real projects
 
 ---
@@ -283,5 +158,13 @@ Telegram ID: @thelouis_mahdi
 GitHub:      TheLouisMahdi
 Name:        Mahdi Ghahremani
 ```
+
+</div>
+
+---
+
+<div align="center">
+
+### The most enjoyable thing in the world for me is learning.
 
 </div>

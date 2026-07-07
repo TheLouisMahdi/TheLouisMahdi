@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=Mahdi%20Ghahremani&fontSize=48&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Electrical%20Engineering%20Student%20%7C%20Developer%20%7C%20Hardware%20%26%20Digital%20Systems&descAlignY=58&descSize=17" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=Mahdi%20Ghahremani&fontSize=48&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Electrical%20Engineering%20Student%20%7C%20AI%20%26%20Computer%20Vision%20%7C%20Hardware%20%26%20Digital%20Systems&descAlignY=58&descSize=17" width="100%" />
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=25&duration=3000&pause=900&color=00E5FF&center=true&vCenter=true&width=950&lines=Hi%2C+I'm+Mahdi+%F0%9F%91%8B;Also+known+as+TheLouisMahdi;Electrical+Engineering+Student;Electronics+%7C+Digital+Systems+%7C+Hardware+Design;Developer+since+15+%7C+First+language%3A+C%23" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=25&duration=3000&pause=900&color=00E5FF&center=true&vCenter=true&width=950&lines=Hi%2C+I'm+Mahdi+%F0%9F%91%8B;Also+known+as+TheLouisMahdi;Electrical+Engineering+Student;AI+%7C+Computer+Vision+%7C+Deep+Learning;Electronics+%7C+Digital+Systems+%7C+Hardware+Design;Developer+since+15+%7C+First+language%3A+C%23" alt="Typing SVG" />
 
 <br />
 
@@ -20,14 +20,16 @@
 
 ## 👨‍💻 About Me
 
-I'm **Mahdi Ghahremani**, an **Electrical Engineering student** interested in the point where **electronics**, **digital systems**, **hardware design**, and **software development** meet.
+I'm **Mahdi Ghahremani**, an **Electrical Engineering student** interested in the point where **electronics**, **digital systems**, **hardware design**, **software development**, and **artificial intelligence** meet.
 
-My programming journey started when I was **15 years old**, when I learned **C#** as my first programming language. Since then, I have been exploring different parts of technology: from desktop applications and local tools to electronics, digital logic, FPGA-related ideas, and hardware/software mixed projects.
+My programming journey started when I was **15 years old**, when I learned **C#** as my first programming language. Since then, I have been exploring different parts of technology: from desktop applications and local tools to electronics, digital logic, AI-based systems, image processing, deep learning, and hardware/software mixed projects.
+
+I also work on interesting **AI-oriented projects with different teams and companies**, especially in areas connected to **computer vision**, **deep learning**, **sensor-based systems**, and **intelligent engineering applications**.
 
 I like building things that are useful, clean, experimental, and sometimes a little unusual.
 
-> **Engineering mindset + creative execution.**  
-> I enjoy turning technical ideas into practical tools.
+> **Engineering mindset + AI-driven creativity.**  
+> I enjoy turning technical ideas into practical intelligent systems.
 
 ---
 
@@ -49,18 +51,81 @@ I like building things that are useful, clean, experimental, and sometimes a lit
 </td>
 <td width="50%">
 
-### 🧠 Software & Creativity
+### 🧠 Software, AI & Creativity
 
+- Artificial intelligence
+- Computer vision
+- Deep learning
 - Programming and automation
-- Desktop applications
 - Local/offline tools
-- Web-based utilities
-- Creative technical projects
 - Film and cinematic storytelling
 
 </td>
 </tr>
 </table>
+
+---
+
+## 🤖 AI & Research Directions
+
+<div align="center">
+
+<table>
+<tr>
+<td width="50%">
+
+### 👁️ Computer Vision
+
+- Image processing pipelines
+- Object detection and recognition
+- Visual monitoring systems
+- Feature extraction
+- Scene understanding
+- Camera-based intelligent systems
+
+</td>
+<td width="50%">
+
+### 🧬 Deep Learning
+
+- Convolutional Neural Networks
+- Model training and evaluation
+- Pattern recognition
+- Classification systems
+- AI-based prediction models
+- Applied neural network workflows
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🌱 Smart Systems & AgriTech AI
+
+- Smart irrigation intelligence
+- Environmental data analysis
+- Sensor data processing
+- Root-zone and water-balance logic
+- Decision-support systems
+- AI for resource optimization
+
+</td>
+<td width="50%">
+
+### ⚙️ Edge & Engineering AI
+
+- Embedded AI concepts
+- Hardware-aware AI systems
+- Signal and time-series analysis
+- Anomaly detection
+- Human-state monitoring ideas
+- Real-world engineering automation
+
+</td>
+</tr>
+</table>
+
+</div>
 
 ---
 
@@ -77,6 +142,9 @@ I like building things that are useful, clean, experimental, and sometimes a lit
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000000" />
+<img src="https://img.shields.io/badge/AI-8A2BE2?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Computer%20Vision-00E5FF?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Deep%20Learning-FF006E?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Digital%20Systems-00E5FF?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Hardware%20Design-FFB000?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Electronics-00C853?style=for-the-badge" />
@@ -85,7 +153,7 @@ I like building things that are useful, clean, experimental, and sometimes a lit
 
 ---
 
-## 📌 Featured Project Directions
+## 📌 Professional Focus
 
 <div align="center">
 
@@ -93,44 +161,32 @@ I like building things that are useful, clean, experimental, and sometimes a lit
 <tr>
 <td width="50%">
 
-### 🧩 NPVT Terminal Converter
-Offline/local converter tools with a terminal-inspired interface.
+### 🤝 AI Collaboration
 
-<a href="https://github.com/TheLouisMahdi/npvt-terminal-converter">
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=TheLouisMahdi&repo=npvt-terminal-converter&theme=tokyonight&hide_border=true" />
-</a>
+Working with different teams and companies on applied AI ideas, focusing on practical systems rather than only theoretical models.
 
 </td>
 <td width="50%">
 
-### 🦎 LizardSpace
-A small Windows desktop soundboard-style app with a playful interface.
+### 👁️ Vision-Based Intelligence
 
-<a href="https://github.com/TheLouisMahdi/LizardSpace">
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=TheLouisMahdi&repo=LizardSpace&theme=tokyonight&hide_border=true" />
-</a>
+Designing and exploring image-processing and computer-vision workflows for real-world monitoring and analysis.
 
 </td>
 </tr>
 <tr>
 <td width="50%">
 
-### 🎬 VideoX Compressor
-Simple video compression utility focused on practical use.
+### 🌱 Intelligent Engineering Systems
 
-<a href="https://github.com/TheLouisMahdi/VideoX_Compressor">
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=TheLouisMahdi&repo=VideoX_Compressor&theme=tokyonight&hide_border=true" />
-</a>
+Combining engineering logic, sensor data, and AI models for smarter decision-making in physical systems.
 
 </td>
 <td width="50%">
 
-### ⚙️ FPGA / Fatigue Monitoring
-Exploring FPGA and CNN-based ideas for monitoring systems.
+### ⚙️ Hardware + Software Thinking
 
-<a href="https://github.com/TheLouisMahdi/fpga-cnn-fatigue-monitoring">
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=TheLouisMahdi&repo=fpga-cnn-fatigue-monitoring&theme=tokyonight&hide_border=true" />
-</a>
+Connecting digital systems, electronics, and software to create tools that interact with real environments.
 
 </td>
 </tr>
@@ -143,11 +199,12 @@ Exploring FPGA and CNN-based ideas for monitoring systems.
 ## 🎯 My Project Style
 
 ```txt
-Practical       ██████████  100%
-Experimental    █████████░   90%
-Engineering     █████████░   90%
-Creative        ████████░░   80%
-Offline-first   ████████░░   80%
+Practical AI        ██████████  100%
+Engineering         █████████░   90%
+Computer Vision     █████████░   90%
+Experimental        █████████░   90%
+Creative Systems    ████████░░   80%
+Hardware Thinking   ████████░░   80%
 ```
 
 I believe good projects do not always need to be huge.  
@@ -175,7 +232,9 @@ Sometimes a small useful tool, built carefully, is more valuable than a complica
 - 🎓 Electrical Engineering student
 - 💻 Developer since age 15
 - 🧠 First programming language: **C#**
+- 🤖 Interested in artificial intelligence, computer vision, and deep learning
 - ⚡ Interested in electronics, digital systems, and hardware design
+- 🌱 Interested in smart irrigation, sensor-based intelligence, and engineering AI
 - 🎥 Film enthusiast
 - 🛠️ I enjoy building local, practical, and creative technical tools
 - 🧪 I like learning by making real projects

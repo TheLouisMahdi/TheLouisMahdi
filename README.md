@@ -1,5 +1,24 @@
 <div align="center">
 
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=2500&pause=900&color=00E5FF&center=true&vCenter=true&width=900&lines=poimu;eka;Eka+Francium" alt="Typing aliases" />
+
+<br />
+
+<p>
+  <strong>Online, you may know me as poimu, eka, or Eka Francium.</strong>
+</p>
+
+<p>
+  To me, <strong>Eka Francium</strong> means an element that does not fully belong to the known table yet — rare, experimental, slightly unstable, and still being defined.<br />
+  That is close to how I build things: quietly, logically, obsessively, and always one step beyond the obvious.
+</p>
+
+</div>
+
+---
+
+<div align="center">
+
 # Mahdi Ghahremani
 
 ### Electrical Engineering Student · AI & Computer Vision · Hardware & Digital Systems

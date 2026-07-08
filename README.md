@@ -9,7 +9,7 @@
 </p>
 
 <p>
-  To me, <strong>Eka Francium</strong> means an element that does not fully belong to the known table yet — rare, experimental, slightly unstable, and still being defined.<br />
+  To me, <strong>Eka Francium</strong> means an element that does not fully belong to the known table yet - rare, experimental, slightly unstable, and still being defined.<br />
   That is close to how I build things: quietly, logically, obsessively, and always one step beyond the obvious.
 </p>
 

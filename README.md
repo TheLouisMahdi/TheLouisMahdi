@@ -94,11 +94,11 @@
 <br />
 <br />
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:020704,35:39ff88,65:00e5ff,100:020704&height=36&section=header&text=LIVE%20DEVELOPER%20METRICS&fontColor=d8ffe9&fontSize=14&fontAlignY=55&animation=twinkling" alt="Live developer metrics divider" />
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:020704,35:39ff88,65:00e5ff,100:020704&height=36&section=header&text=ABOUT%20ME%20TERMINAL&fontColor=d8ffe9&fontSize=14&fontAlignY=55&animation=twinkling" alt="About me terminal divider" />
 
 <br />
 
-<img src="github-metrics.svg" alt="THELOUISMAHDI developer metrics panel" width="100%" />
+<img src="about-terminal.svg" alt="THELOUISMAHDI about me terminal panel" width="100%" />
 
 <br />
 <br />

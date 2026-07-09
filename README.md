@@ -49,14 +49,57 @@
 
 ## 👨‍💻 About Me
 
-I'm **Mahdi Ghahremani**, an **Electrical Engineering student** focused on the intersection of **AI**, **computer vision**, **electronics**, **digital systems**, and **hardware design**.
+<div align="center">
 
-My programming journey started at **15**, when I learned **C#** as my first language. Since then, I have been building and exploring software tools, AI-based systems, image-processing workflows, and hardware/software ideas.
+<img src="https://capsule-render.vercel.app/api?type=venom&color=0:020704,35:06281b,65:00d46a,100:39ff88&height=175&section=header&text=VR%20CYBER%20IDENTITY&fontColor=d8ffe9&fontSize=38&fontAlignY=36&desc=THELOUISMAHDI%20%7C%20Eka%20Francium%20%7C%20Terminal%20Builder&descAlignY=61&animation=fadeIn" alt="VR Cyber Identity Terminal Card" />
 
-I also work with different teams and companies on applied AI projects, especially around **computer vision**, **deep learning**, **sensor-based systems**, and intelligent engineering applications. Some of these projects cannot be published publicly because of technical, team, or company-related limitations.
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=800&size=20&duration=2350&pause=650&color=39FF88&center=true&vCenter=true&width=880&lines=%E2%97%89+Initializing+VR+identity+layer...;%E2%97%89+Scanning+terminal+signature...;%E2%97%89+Loading+THELOUISMAHDI.profile;%E2%97%89+Engineering+%7C+AI+%7C+Hardware+%7C+Offline+tools;%E2%97%89+Status%3A+Building+strange+useful+systems" alt="VR terminal typing animation" />
 
-> **Engineering mindset + AI-driven creativity.**  
-> I enjoy turning technical ideas into practical intelligent systems.
+<br />
+<br />
+
+<table>
+  <tr>
+    <td align="center" width="180">
+      <b>◈ USER</b><br />
+      <code>THELOUISMAHDI</code>
+    </td>
+    <td align="center" width="180">
+      <b>◈ ALIAS</b><br />
+      <code>Eka Francium</code>
+    </td>
+    <td align="center" width="180">
+      <b>◈ MODE</b><br />
+      <code>Student / Builder</code>
+    </td>
+    <td align="center" width="180">
+      <b>◈ INTERFACE</b><br />
+      <code>Cyber Terminal</code>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+<img src="https://img.shields.io/badge/VR_HUD-ONLINE-39ff88?style=for-the-badge&labelColor=020704" alt="VR HUD Online" />
+<img src="https://img.shields.io/badge/CYBER_ID-VERIFIED-00d46a?style=for-the-badge&labelColor=020704" alt="Cyber ID Verified" />
+<img src="https://img.shields.io/badge/TERMINAL_CORE-ACTIVE-b8ffd2?style=for-the-badge&labelColor=020704" alt="Terminal Core Active" />
+
+<br />
+<br />
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&duration=1800&pause=500&color=00D46A&center=true&vCenter=true&width=760&lines=%5B+NPVT+Terminal+Converter+%5D;%5B+Lights+Out+GF(2)+Solver+%5D;%5B+AI+%2F+Computer+Vision+%2F+Hardware+Systems+%5D;%5B+Designed+with+green+terminal+energy+%5D" alt="Project scan animation" />
+
+<br />
+<br />
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:020704,50:39ff88,100:020704&height=3&section=footer" alt="VR divider" />
+
+</div>
+
+I like building practical systems that turn messy ideas into usable tools, from AI workflows and engineering experiments to local-first utilities with cyber-terminal energy.
+
+Some applied projects stay private because of technical, team, or company-related limitations.
 
 ---
 

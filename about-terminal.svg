@@ -1,20 +1,29 @@
 <svg width="900" height="420" viewBox="0 0 900 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">THELOUISMAHDI About Me Terminal</title>
-  <desc id="desc">A cyber-terminal style summary of Mahdi Ghahremani's profile.</desc>
+  <title id="title">THELOUISMAHDI Embedded Hardware Terminal</title>
+  <desc id="desc">A cyber-terminal style summary of Mahdi Ghahremani's electrical engineering, embedded systems, FPGA, and AI vision profile.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="900" y2="420" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#020704"/>
-      <stop offset="0.48" stop-color="#071f18"/>
+      <stop offset="0.44" stop-color="#071f18"/>
+      <stop offset="0.72" stop-color="#061827"/>
       <stop offset="1" stop-color="#00131a"/>
     </linearGradient>
     <linearGradient id="accent" x1="40" y1="0" x2="860" y2="0" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#020704"/>
-      <stop offset="0.34" stop-color="#39ff88"/>
-      <stop offset="0.68" stop-color="#00e5ff"/>
+      <stop offset="0.28" stop-color="#39ff88"/>
+      <stop offset="0.55" stop-color="#00e5ff"/>
+      <stop offset="0.78" stop-color="#ffb000"/>
       <stop offset="1" stop-color="#020704"/>
     </linearGradient>
     <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -27,43 +36,91 @@
       .mono { font-family: JetBrains Mono, Consolas, Monaco, monospace; }
       .blink { animation: blink 1.1s steps(2, start) infinite; }
       .scan { animation: scan 4.5s linear infinite; }
+      .pulse { animation: pulse 2.6s ease-in-out infinite; }
       @keyframes blink { 50% { opacity: 0; } }
       @keyframes scan { 0% { transform: translateY(-50px); opacity: .05; } 45% { opacity: .22; } 100% { transform: translateY(430px); opacity: .04; } }
+      @keyframes pulse { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
     </style>
   </defs>
 
   <rect width="900" height="420" rx="22" fill="url(#bg)"/>
-  <rect x="1" y="1" width="898" height="418" rx="21" stroke="#39ff88" stroke-opacity="0.32"/>
+  <rect x="1" y="1" width="898" height="418" rx="21" stroke="#39ff88" stroke-opacity="0.34"/>
   <rect width="900" height="420" rx="22" fill="url(#grid)" opacity="0.45"/>
 
   <rect class="scan" x="24" y="0" width="852" height="38" rx="19" fill="#39ff88" opacity="0.08"/>
 
-  <rect x="0" y="0" width="900" height="50" rx="22" fill="#020704" opacity="0.9"/>
+  <rect x="0" y="0" width="900" height="50" rx="22" fill="#020704" opacity="0.92"/>
   <circle cx="34" cy="25" r="6" fill="#39ff88"/>
-  <circle cx="58" cy="25" r="6" fill="#00e5ff" opacity="0.85"/>
-  <circle cx="82" cy="25" r="6" fill="#b8ffd2" opacity="0.65"/>
-  <text x="116" y="31" class="mono" fill="#d8ffe9" font-size="16" font-weight="700">about-me.session</text>
-  <text x="700" y="31" class="mono" fill="#39ff88" font-size="14">status: active</text>
+  <circle cx="58" cy="25" r="6" fill="#00e5ff" opacity="0.88"/>
+  <circle cx="82" cy="25" r="6" fill="#ffb000" opacity="0.78"/>
+  <text x="116" y="31" class="mono" fill="#d8ffe9" font-size="16" font-weight="700">engineering-core.session</text>
+  <text x="686" y="31" class="mono" fill="#39ff88" font-size="14">status: building</text>
 
   <rect x="40" y="78" width="820" height="2" fill="url(#accent)" filter="url(#glow)"/>
 
   <text x="52" y="122" class="mono" fill="#39ff88" font-size="18" font-weight="700">&gt; whoami</text>
   <text x="52" y="154" class="mono" fill="#d8ffe9" font-size="26" font-weight="800">Mahdi Ghahremani</text>
-  <text x="52" y="184" class="mono" fill="#00e5ff" font-size="17" font-weight="700">THELOUISMAHDI · Eka Francium</text>
+  <text x="52" y="184" class="mono" fill="#00e5ff" font-size="17" font-weight="700">THELOUISMAHDI · Electrical Engineering · AI Vision</text>
 
-  <text x="52" y="230" class="mono" fill="#39ff88" font-size="18" font-weight="700">&gt; profile.summary</text>
-  <text x="52" y="262" class="mono" fill="#d8ffe9" font-size="17">Electrical Engineering student building practical systems across</text>
-  <text x="52" y="288" class="mono" fill="#d8ffe9" font-size="17">software, AI vision, electronics, and hardware logic.</text>
+  <text x="52" y="228" class="mono" fill="#39ff88" font-size="18" font-weight="700">&gt; hardware.stack</text>
+  <text x="52" y="258" class="mono" fill="#d8ffe9" font-size="16">Embedded C · STM32 · Arduino · ESP32 · Sensors</text>
+  <text x="52" y="283" class="mono" fill="#d8ffe9" font-size="16">Verilog RTL · FPGA logic · ModelSim verification</text>
+  <text x="52" y="308" class="mono" fill="#d8ffe9" font-size="16">Schematics · circuit simulation · hardware/software co-design</text>
 
-  <rect x="52" y="316" width="206" height="42" rx="10" fill="#061f17" stroke="#39ff88" stroke-opacity="0.42"/>
-  <text x="74" y="343" class="mono" fill="#39ff88" font-size="14" font-weight="800">AI + VISION</text>
+  <rect x="52" y="334" width="170" height="36" rx="10" fill="#061f17" stroke="#39ff88" stroke-opacity="0.5"/>
+  <text x="71" y="357" class="mono" fill="#39ff88" font-size="13" font-weight="800">EMBEDDED C</text>
 
-  <rect x="278" y="316" width="230" height="42" rx="10" fill="#061f17" stroke="#00e5ff" stroke-opacity="0.42"/>
-  <text x="300" y="343" class="mono" fill="#00e5ff" font-size="14" font-weight="800">ENGINEERING TOOLS</text>
+  <rect x="236" y="334" width="176" height="36" rx="10" fill="#061f17" stroke="#00e5ff" stroke-opacity="0.5"/>
+  <text x="255" y="357" class="mono" fill="#00e5ff" font-size="13" font-weight="800">FPGA + RTL</text>
 
-  <rect x="528" y="316" width="320" height="42" rx="10" fill="#061f17" stroke="#b8ffd2" stroke-opacity="0.42"/>
-  <text x="550" y="343" class="mono" fill="#b8ffd2" font-size="14" font-weight="800">HARDWARE + DIGITAL SYSTEMS</text>
+  <rect x="426" y="334" width="188" height="36" rx="10" fill="#061f17" stroke="#ffb000" stroke-opacity="0.5"/>
+  <text x="445" y="357" class="mono" fill="#ffb000" font-size="13" font-weight="800">CIRCUIT SIM</text>
 
-  <text x="52" y="390" class="mono" fill="#00d46a" font-size="14">&gt; mindset: precise · experimental · product-minded · learning by building</text>
-  <rect class="blink" x="800" y="379" width="12" height="18" rx="2" fill="#39ff88"/>
+  <rect x="628" y="334" width="220" height="36" rx="10" fill="#061f17" stroke="#b8ffd2" stroke-opacity="0.5"/>
+  <text x="647" y="357" class="mono" fill="#b8ffd2" font-size="13" font-weight="800">AI + HARDWARE</text>
+
+  <!-- FPGA / embedded board illustration -->
+  <g transform="translate(642 104)">
+    <rect x="0" y="0" width="188" height="190" rx="18" fill="#03150f" stroke="#39ff88" stroke-opacity="0.5"/>
+    <rect x="28" y="34" width="132" height="88" rx="10" fill="#051f18" stroke="#00e5ff" stroke-opacity="0.65" filter="url(#softGlow)"/>
+    <text x="50" y="69" class="mono" fill="#00e5ff" font-size="14" font-weight="800">FPGA</text>
+    <text x="47" y="93" class="mono" fill="#d8ffe9" font-size="11">Verilog RTL</text>
+    <text x="43" y="111" class="mono" fill="#39ff88" font-size="10">CNN FEATURES</text>
+
+    <g stroke="#39ff88" stroke-opacity="0.75" stroke-width="2">
+      <path d="M28 52 H10 V20"/>
+      <path d="M28 76 H8"/>
+      <path d="M28 100 H12 V142"/>
+      <path d="M160 52 H178 V22"/>
+      <path d="M160 76 H180"/>
+      <path d="M160 100 H176 V144"/>
+    </g>
+
+    <g fill="#39ff88" opacity="0.9">
+      <rect x="7" y="15" width="8" height="8" rx="2"/>
+      <rect x="4" y="72" width="8" height="8" rx="2"/>
+      <rect x="8" y="138" width="8" height="8" rx="2"/>
+      <rect x="174" y="18" width="8" height="8" rx="2"/>
+      <rect x="176" y="72" width="8" height="8" rx="2"/>
+      <rect x="172" y="140" width="8" height="8" rx="2"/>
+    </g>
+
+    <g fill="#ffb000" class="pulse">
+      <circle cx="46" cy="148" r="4"/>
+      <circle cx="70" cy="148" r="4"/>
+      <circle cx="94" cy="148" r="4"/>
+      <circle cx="118" cy="148" r="4"/>
+      <circle cx="142" cy="148" r="4"/>
+    </g>
+
+    <text x="24" y="176" class="mono" fill="#b8ffd2" font-size="10">STM32 / ESP32 / Arduino</text>
+  </g>
+
+  <!-- Small waveform / logic trace -->
+  <g transform="translate(648 302)" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.82">
+    <path d="M0 0 H24 V-14 H54 V0 H82 V-14 H116 V0 H150 V-14 H188"/>
+  </g>
+
+  <text x="52" y="397" class="mono" fill="#00d46a" font-size="14">&gt; build.mode: precise · experimental · circuit-aware · learning by building</text>
+  <rect class="blink" x="817" y="386" width="12" height="18" rx="2" fill="#39ff88"/>
 </svg>

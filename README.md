@@ -94,6 +94,15 @@
 <br />
 <br />
 
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:020704,35:39ff88,65:00e5ff,100:020704&height=36&section=header&text=LIVE%20DEVELOPER%20METRICS&fontColor=d8ffe9&fontSize=14&fontAlignY=55&animation=twinkling" alt="Live developer metrics divider" />
+
+<br />
+
+<img src="https://metrics.lecoq.io/TheLouisMahdi?template=terminal&base.header=0&base.activity=1&base.community=1&base.repositories=1&base.metadata=0&isocalendar=1&isocalendar.duration=half-year&languages=1&languages.limit=8&languages.colors=github&achievements=1&achievements.threshold=C&achievements.display=compact&config.timezone=Europe%2FBerlin&config.animations=true" alt="GitHub Metrics by lowlighter" width="100%" />
+
+<br />
+<br />
+
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:020704,35:39ff88,65:00e5ff,100:020704&height=2&section=footer" alt="Terminal divider" />
 
 </div>

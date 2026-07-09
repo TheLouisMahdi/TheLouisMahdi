@@ -7,7 +7,7 @@
 
 # Mahdi Ghahremani
 
-### Electrical Engineering Student · AI Vision · Hardware-Software Systems
+### Electrical Engineering Student · AI Vision · Embedded & Digital Hardware Systems
 
 <a href="https://github.com/TheLouisMahdi">
   <img src="https://img.shields.io/badge/GitHub-TheLouisMahdi-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
@@ -22,6 +22,8 @@
 
 <img src="https://img.shields.io/badge/AI%20%2B%20Computer%20Vision-00E5FF?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Electronics%20%2B%20Hardware-00C853?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Embedded%20Systems-39FF88?style=for-the-badge" />
+<img src="https://img.shields.io/badge/FPGA%20%2B%20Verilog-FFB000?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Local--First%20Tools-39FF88?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Digital%20Systems-FFB000?style=for-the-badge" />
 
@@ -119,6 +121,45 @@ Technical, Software, and AI Engineer working on applied computer vision and inte
 
 ---
 
+## ⚡ Electrical Engineering Core
+
+<table>
+<tr>
+<td width="33%">
+
+### 🔌 Embedded Hardware
+
+- STM32, Arduino, and ESP32 prototyping
+- Microcontroller-based control logic
+- Sensor interfacing and data acquisition
+- Embedded C for hardware-level systems
+
+</td>
+<td width="33%">
+
+### 🧠 Digital Logic + FPGA
+
+- Verilog RTL design
+- FPGA architecture concepts
+- Testbenches and simulation workflows
+- ModelSim-based verification
+
+</td>
+<td width="33%">
+
+### 🧪 Circuit + Simulation Work
+
+- Schematic design and circuit analysis
+- Hardware/software co-design
+- Simulation-driven debugging
+- Engineering documentation and validation
+
+</td>
+</tr>
+</table>
+
+---
+
 ## 🧩 Selected Projects
 
 <table>
@@ -138,6 +179,15 @@ An offline puzzle engine and solver built around linear algebra over GF(2), cust
 
 </td>
 </tr>
+<tr>
+<td colspan="2">
+
+### 🔶 <a href="https://github.com/TheLouisMahdi/fpga-cnn-fatigue-monitoring">FPGA CNN Fatigue Monitoring</a>
+
+A Python + FPGA co-processing prototype where Python handles the computer-vision pipeline and Verilog RTL accelerates CNN-style feature extraction from eye and mouth ROIs, with ModelSim-based accelerator verification.
+
+</td>
+</tr>
 </table>
 
 ---
@@ -148,6 +198,14 @@ An offline puzzle engine and solver built around linear algebra over GF(2), cust
 
 <img src="https://img.shields.io/badge/C%23-512BD4?style=for-the-badge&logo=csharp&logoColor=white" />
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+<img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" />
+<img src="https://img.shields.io/badge/Verilog-RTL%20Design-BD1E24?style=for-the-badge" />
+<img src="https://img.shields.io/badge/STM32-03234B?style=for-the-badge&logo=stmicroelectronics&logoColor=white" />
+<img src="https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white" />
+<img src="https://img.shields.io/badge/ESP32-E7352C?style=for-the-badge&logo=espressif&logoColor=white" />
+<img src="https://img.shields.io/badge/ModelSim-FPGA%20Simulation-6A1B9A?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Proteus-Circuit%20Simulation-1B5E20?style=for-the-badge" />
+<img src="https://img.shields.io/badge/MATLAB-Engineering%20Simulation-FF8C00?style=for-the-badge" />
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000000" />

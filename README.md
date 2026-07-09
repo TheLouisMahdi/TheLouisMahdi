@@ -51,53 +51,54 @@
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=venom&color=0:020704,35:06281b,65:00d46a,100:39ff88&height=175&section=header&text=VR%20CYBER%20IDENTITY&fontColor=d8ffe9&fontSize=38&fontAlignY=36&desc=THELOUISMAHDI%20%7C%20Eka%20Francium%20%7C%20Terminal%20Builder&descAlignY=61&animation=fadeIn" alt="VR Cyber Identity Terminal Card" />
+<img src="https://capsule-render.vercel.app/api?type=slice&color=0:020704,45:06281b,100:00E5FF&height=155&section=header&text=THELOUISMAHDI&fontColor=d8ffe9&fontSize=42&fontAlignY=42&desc=Engineering%20Systems%20%E2%80%A2%20AI%20Vision%20%E2%80%A2%20Hardware-Software%20Tools&descAlignY=64&animation=fadeIn" alt="THELOUISMAHDI identity header" />
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=800&size=20&duration=2350&pause=650&color=39FF88&center=true&vCenter=true&width=880&lines=%E2%97%89+Initializing+VR+identity+layer...;%E2%97%89+Scanning+terminal+signature...;%E2%97%89+Loading+THELOUISMAHDI.profile;%E2%97%89+Engineering+%7C+AI+%7C+Hardware+%7C+Offline+tools;%E2%97%89+Status%3A+Building+strange+useful+systems" alt="VR terminal typing animation" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=19&duration=2450&pause=700&color=39FF88&center=true&vCenter=true&width=900&lines=%3E+resolve+identity+--profile+THELOUISMAHDI;%3E+focus%3A+engineering+systems%2C+AI+vision%2C+hardware+logic;%3E+build%3A+local-first+tools%2C+clean+UI%2C+practical+automation;%3E+principle%3A+make+complex+systems+usable;%3E+signature%3A+precise%2C+experimental%2C+product-minded" alt="Animated identity terminal" />
 
 <br />
 <br />
 
 <table>
   <tr>
-    <td align="center" width="180">
-      <b>◈ USER</b><br />
+    <td align="center" width="190">
+      <b>IDENTITY</b><br />
+      <code>Mahdi Ghahremani</code>
+    </td>
+    <td align="center" width="190">
+      <b>SIGNATURE</b><br />
       <code>THELOUISMAHDI</code>
     </td>
-    <td align="center" width="180">
-      <b>◈ ALIAS</b><br />
+    <td align="center" width="190">
+      <b>ALIAS</b><br />
       <code>Eka Francium</code>
     </td>
-    <td align="center" width="180">
-      <b>◈ MODE</b><br />
-      <code>Student / Builder</code>
-    </td>
-    <td align="center" width="180">
-      <b>◈ INTERFACE</b><br />
-      <code>Cyber Terminal</code>
+    <td align="center" width="190">
+      <b>BUILD STYLE</b><br />
+      <code>Local-first systems</code>
     </td>
   </tr>
 </table>
 
 <br />
 
-<img src="https://img.shields.io/badge/VR_HUD-ONLINE-39ff88?style=for-the-badge&labelColor=020704" alt="VR HUD Online" />
-<img src="https://img.shields.io/badge/CYBER_ID-VERIFIED-00d46a?style=for-the-badge&labelColor=020704" alt="Cyber ID Verified" />
-<img src="https://img.shields.io/badge/TERMINAL_CORE-ACTIVE-b8ffd2?style=for-the-badge&labelColor=020704" alt="Terminal Core Active" />
+<img src="https://img.shields.io/badge/Engineering_Systems-111827?style=for-the-badge&labelColor=020704&color=39ff88" alt="Engineering Systems" />
+<img src="https://img.shields.io/badge/AI_%2B_Computer_Vision-111827?style=for-the-badge&labelColor=020704&color=00e5ff" alt="AI and Computer Vision" />
+<img src="https://img.shields.io/badge/Hardware_%2B_Digital_Logic-111827?style=for-the-badge&labelColor=020704&color=b8ffd2" alt="Hardware and Digital Logic" />
+<img src="https://img.shields.io/badge/Offline_Tools-111827?style=for-the-badge&labelColor=020704&color=39ff88" alt="Offline Tools" />
 
 <br />
 <br />
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&duration=1800&pause=500&color=00D46A&center=true&vCenter=true&width=760&lines=%5B+NPVT+Terminal+Converter+%5D;%5B+Lights+Out+GF(2)+Solver+%5D;%5B+AI+%2F+Computer+Vision+%2F+Hardware+Systems+%5D;%5B+Designed+with+green+terminal+energy+%5D" alt="Project scan animation" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=16&duration=1900&pause=550&color=00D46A&center=true&vCenter=true&width=780&lines=%5B+NPVT+Terminal+Converter+%5D;%5B+Lights+Out+GF(2)+Solver+%5D;%5B+Computer+Vision+%2F+Deep+Learning+Workflows+%5D;%5B+Sensor-based+Engineering+Systems+%5D" alt="Project terminal scan" />
 
 <br />
 <br />
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:020704,50:39ff88,100:020704&height=3&section=footer" alt="VR divider" />
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:020704,35:39ff88,65:00e5ff,100:020704&height=2&section=footer" alt="Terminal divider" />
 
 </div>
 
-I like building practical systems that turn messy ideas into usable tools, from AI workflows and engineering experiments to local-first utilities with cyber-terminal energy.
+I build practical systems at the intersection of engineering, software, AI, and hardware. My work usually starts from a technical problem and ends as a usable tool, prototype, or intelligent workflow.
 
 Some applied projects stay private because of technical, team, or company-related limitations.
 

@@ -5,9 +5,9 @@
 <br />
 <br />
 
-# Mahdi Ghahremani
+# Mahdi Ghahremani (TheLouisMahdi)
 
-### Electrical Engineering Student · AI Vision · Embedded & Digital Hardware Systems
+### Electrical Engineering Student at University of Zanjan · AI Vision · Embedded & Digital Hardware Systems
 
 <a href="https://github.com/TheLouisMahdi">
   <img src="https://img.shields.io/badge/GitHub-TheLouisMahdi-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
@@ -33,11 +33,11 @@
 
 ## 👨‍💻 About Me
 
-I'm **Mahdi Ghahremani**, also known online as **TheLouisMahdi**, **poimu**, **eka**, or **Eka Francium**.
+I'm **Mahdi Ghahremani**, known online as **TheLouisMahdi**. I am an **Electrical Engineering student at the University of Zanjan**, focused on practical work across **computer vision**, **FPGA and Verilog RTL**, **embedded systems**, **applied AI**, and **hardware–software co-design**.
 
 I build practical systems at the intersection of **engineering**, **software**, **AI**, and **hardware**. My work usually starts from a technical problem and ends as a usable tool, prototype, or intelligent workflow.
 
-The name **Eka Francium** represents how I like to build: experimental, slightly unstable in the creative sense, and always trying to move one step beyond the obvious.
+Other online names I have used include **poimu**, **eka**, and **Eka Francium**. The name **Eka Francium** represents how I like to build: experimental, slightly unstable in the creative sense, and always trying to move one step beyond the obvious.
 
 Some applied projects stay private because of technical, team, or company-related limitations.
 
@@ -166,16 +166,32 @@ Technical, Software, and AI Engineer working on applied computer vision and inte
 <tr>
 <td width="50%">
 
-### 🟢 NPVT Terminal Converter
+### 🟢 <a href="https://github.com/TheLouisMahdi/npvt-terminal-converter">NPVT Terminal Converter</a>
 
 A local-first browser tool for converting between NPVT containers, V2Ray-style links, and Xray/V2Ray JSON profiles.
 
 </td>
 <td width="50%">
 
-### 🧠 Lights Out GF(2) Solver
+### 🧠 <a href="https://github.com/TheLouisMahdi/lights-out-gf2-solver">Lights Out GF(2) Solver</a>
 
 An offline puzzle engine and solver built around linear algebra over GF(2), custom board generation, and automatic solving.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🎬 <a href="https://github.com/TheLouisMahdi/VideoX_Compressor">VideoX Compressor</a>
+
+A Windows video-compression tool using FFmpeg with NVIDIA, Intel, AMD, and CPU processing paths for classes, tutorials, and screen recordings.
+
+</td>
+<td width="50%">
+
+### 🦎 <a href="https://github.com/TheLouisMahdi/LizardSpace">Lizard Space</a>
+
+A small offline Windows sound application with global keyboard reactions, system-tray controls, and Windows startup support.
 
 </td>
 </tr>
@@ -185,6 +201,15 @@ An offline puzzle engine and solver built around linear algebra over GF(2), cust
 ### 🔶 <a href="https://github.com/TheLouisMahdi/fpga-cnn-fatigue-monitoring">FPGA CNN Fatigue Monitoring</a>
 
 A Python + FPGA co-processing prototype where Python handles the computer-vision pipeline and Verilog RTL accelerates CNN-style feature extraction from eye and mouth ROIs, with ModelSim-based accelerator verification.
+
+</td>
+</tr>
+<tr>
+<td colspan="2">
+
+### 🌐 <a href="https://github.com/TheLouisMahdi/proxy-speed-tester">Proxy Speed Tester</a>
+
+A Python HTTP CONNECT proxy validator that measures tunnel latency and HTTPS transfer speed for authorized upstream-proxy testing.
 
 </td>
 </tr>
@@ -256,6 +281,7 @@ I only use Telegram for social communication.
 Telegram ID: @thelouis_mahdi
 GitHub:      TheLouisMahdi
 Name:        Mahdi Ghahremani
+University:  University of Zanjan
 ```
 
 </div>

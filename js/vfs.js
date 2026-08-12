@@ -4,7 +4,9 @@ const STORAGE_KEY="eka.windows7.vfs.v2"
 const ROOTS={
   desktop:"C:\\Users\\Eka\\Desktop",
   documents:"C:\\Users\\Eka\\Documents",
-  downloads:"C:\\Users\\Eka\\Downloads"
+  downloads:"C:\\Users\\Eka\\Downloads",
+  github:"G:\\Workspace",
+  recycle:"C:\\$Recycle.Bin"
 }
 
 const DEFAULTS=[
@@ -125,14 +127,59 @@ export function readFile(path,cwd=ROOTS.desktop){
   return entry&&entry.kind!=="folder"?entry.content:null
 }
 
-export function writeFile(path,content,cwd=ROOTS.desktop){
+export function writeFile(path,content,cwd=ROOTS.desktop,metadata={}){
   const full=resolvePath(cwd,path)
   const key=keyOf(full)
   const old=entries[key]
   const now=Date.now()
-  entries[key]={path:full,kind:kindForName(full),content:String(content??""),created:old?.created||now,updated:now}
+  entries[key]={...old,...metadata,path:full,kind:kindForName(full),content:String(content??""),created:old?.created||now,updated:now}
   save()
   return entries[key]
+}
+
+export function trashPath(path,cwd=ROOTS.desktop){
+  const full=resolvePath(cwd,path)
+  const entry=entries[keyOf(full)]
+  if(!entry)return false
+  const destination=uniquePath(resolvePath(ROOTS.recycle,basename(full)))
+  const affected=entry.kind==="folder"?Object.values(entries).filter(item=>item.path.toLowerCase()===full.toLowerCase()||item.path.toLowerCase().startsWith(`${full.toLowerCase()}\\`)):[entry]
+  for(const item of affected)delete entries[keyOf(item.path)]
+  for(const item of affected){
+    const original=item.path
+    item.originalPath=original
+    item.deleted=Date.now()
+    item.path=`${destination}${original.slice(full.length)}`
+    entries[keyOf(item.path)]=item
+  }
+  save()
+  return true
+}
+
+export function restorePath(path){
+  const full=normalizePath(path)
+  const entry=entries[keyOf(full)]
+  if(!entry||!entry.originalPath)return false
+  const destination=uniquePath(entry.originalPath)
+  const affected=entry.kind==="folder"?Object.values(entries).filter(item=>item.path.toLowerCase()===full.toLowerCase()||item.path.toLowerCase().startsWith(`${full.toLowerCase()}\\`)):[entry]
+  for(const item of affected)delete entries[keyOf(item.path)]
+  for(const item of affected){
+    const suffix=item.path.slice(full.length)
+    delete item.deleted
+    delete item.originalPath
+    item.path=`${destination}${suffix}`
+    item.updated=Date.now()
+    entries[keyOf(item.path)]=item
+  }
+  save()
+  return true
+}
+
+export function emptyRecycleBin(){
+  const prefix=`${ROOTS.recycle.toLowerCase()}\\`
+  const keys=Object.keys(entries).filter(key=>key.startsWith(prefix))
+  keys.forEach(key=>delete entries[key])
+  if(keys.length)save()
+  return keys.length
 }
 
 export function makeFolder(path,cwd=ROOTS.desktop){

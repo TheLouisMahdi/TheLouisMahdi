@@ -1,3 +1,5 @@
+import{fileName,folderPath,getEntry,listVirtual,resolvePath,roots}from"./vfs.js"
+
 let menu=null
 let activeSurface=null
 const states=new WeakMap()
@@ -320,3 +322,104 @@ export function askConfirm(title,message){
     byId("winPromptCancel").onclick=()=>finish(false)
   })
 }
+
+const FILE_LOCATIONS={
+  desktop:{label:"Desktop",path:roots().desktop},
+  documents:{label:"Documents",path:roots().documents},
+  downloads:{label:"Downloads",path:roots().downloads},
+  github:{label:"GitHub (G:)",path:roots().github}
+}
+
+function ensureFileDialog(){
+  let dialog=byId("fileDialog")
+  if(dialog)return dialog
+  dialog=document.createElement("section")
+  dialog.id="fileDialog"
+  dialog.className="file-dialog hidden"
+  dialog.innerHTML=`<div class="file-dialog-title"><span id="fileDialogTitle">Save As</span><button id="fileDialogClose">×</button></div><div class="file-dialog-toolbar"><button id="fileDialogBack" aria-label="Back">←</button><div class="file-dialog-address" id="fileDialogAddress"></div></div><div class="file-dialog-main"><aside>${Object.entries(FILE_LOCATIONS).map(([key,value])=>`<button data-file-location="${key}"><b>${value.label}</b><small>${value.path}</small></button>`).join("")}</aside><div class="file-dialog-list" id="fileDialogList"></div></div><div class="file-dialog-fields"><label>File name:<input id="fileDialogName" autocomplete="off" spellcheck="false"></label><label>Save as type:<select id="fileDialogType"></select></label><label id="fileDialogEncodingLabel">Encoding:<select id="fileDialogEncoding"><option>ANSI</option><option>Unicode</option><option>Unicode big endian</option><option selected>UTF-8</option></select></label><div><button id="fileDialogOk">Save</button><button id="fileDialogCancel">Cancel</button></div></div>`
+  byId("desktop").appendChild(dialog)
+  return dialog
+}
+
+function appendExtension(name,type){
+  const clean=String(name||"").trim().replace(/^"|"$/g,"")
+  if(!clean)return ""
+  if(type==="text"&&!/\.[^\\.]+$/.test(clean))return `${clean}.txt`
+  return clean
+}
+
+function runFileDialog(mode,options={}){
+  const dialog=ensureFileDialog()
+  const title=mode==="open"?"Open":options.title||"Save As"
+  let location=options.location&&FILE_LOCATIONS[options.location]?options.location:"desktop"
+  let selected=null
+  const nameInput=byId("fileDialogName")
+  const typeSelect=byId("fileDialogType")
+  const encodingLabel=byId("fileDialogEncodingLabel")
+  const types=options.types||[{value:"text",label:"Text Documents (*.txt)"},{value:"all",label:"All Files (*.*)"}]
+  byId("fileDialogTitle").textContent=title
+  byId("fileDialogOk").textContent=mode==="open"?"Open":"Save"
+  typeSelect.innerHTML=types.map(type=>`<option value="${type.value}">${type.label}</option>`).join("")
+  typeSelect.value=options.type||types[0].value
+  byId("fileDialogEncoding").value=options.encoding||"UTF-8"
+  encodingLabel.classList.toggle("hidden",mode==="open")
+  nameInput.value=options.name||""
+
+  const render=()=>{
+    const current=FILE_LOCATIONS[location]
+    byId("fileDialogAddress").textContent=`Libraries > ${current.label}`
+    dialog.querySelectorAll("[data-file-location]").forEach(button=>button.classList.toggle("active",button.dataset.fileLocation===location))
+    const files=listVirtual(location).filter(item=>item.type!=="folder"||mode==="open")
+    byId("fileDialogList").innerHTML=files.length?files.map(item=>`<button data-file-path="${encodeURIComponent(item.virtualPath)}" data-file-kind="${item.type}"><span>${item.type==="folder"?"📁":item.type==="python"?"🐍":item.type==="html"?"🌐":"📄"}</span><b>${fileName(item.virtualPath)}</b><small>${item.type==="folder"?"File folder":item.type.toUpperCase()+" file"}</small></button>`).join(""):`<p>This folder is empty.</p>`
+    selected=null
+  }
+
+  render()
+  dialog.classList.remove("hidden")
+  setTimeout(()=>{nameInput.focus();nameInput.select()},0)
+
+  return new Promise(resolve=>{
+    const cleanup=result=>{
+      dialog.classList.add("hidden")
+      dialog.onclick=null
+      nameInput.onkeydown=null
+      byId("fileDialogOk").onclick=null
+      byId("fileDialogCancel").onclick=null
+      byId("fileDialogClose").onclick=null
+      resolve(result)
+    }
+    const accept=async()=>{
+      const name=appendExtension(nameInput.value,typeSelect.value)
+      if(!name)return
+      const path=resolvePath(FILE_LOCATIONS[location].path,name)
+      if(mode==="open"){
+        const entry=getEntry(path)
+        if(entry&&entry.kind!=="folder")cleanup(path)
+        return
+      }
+      if(getEntry(path)){
+        dialog.classList.add("hidden")
+        const overwrite=await askConfirm("Confirm Save As",`${fileName(path)} already exists. Do you want to replace it?`)
+        if(!overwrite){dialog.classList.remove("hidden");return}
+      }
+      cleanup({path,type:typeSelect.value,encoding:byId("fileDialogEncoding").value})
+    }
+    dialog.onclick=event=>{
+      const locationButton=event.target.closest("[data-file-location]")
+      if(locationButton){location=locationButton.dataset.fileLocation;render();return}
+      const fileButton=event.target.closest("[data-file-path]")
+      if(!fileButton)return
+      byId("fileDialogList").querySelectorAll("button").forEach(button=>button.classList.toggle("selected",button===fileButton))
+      selected=decodeURIComponent(fileButton.dataset.filePath)
+      nameInput.value=fileName(selected)
+      if(event.detail===2){if(fileButton.dataset.fileKind==="folder")return;accept()}
+    }
+    byId("fileDialogOk").onclick=()=>{if(mode==="open"&&selected)nameInput.value=fileName(selected);accept()}
+    byId("fileDialogCancel").onclick=()=>cleanup(null)
+    byId("fileDialogClose").onclick=()=>cleanup(null)
+    nameInput.onkeydown=event=>{if(event.key==="Enter")accept();if(event.key==="Escape")cleanup(null)}
+  })
+}
+
+export function askSaveAs(options={}){return runFileDialog("save",options)}
+export function askOpenFile(options={}){return runFileDialog("open",options)}

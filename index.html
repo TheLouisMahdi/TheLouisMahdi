@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#e9e7e2">
 <meta name="description" content="Mahdi Ghahremani, TheLouisMahdi, electrical engineering, embedded systems, FPGA, AI and computer vision.">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Eka @GitHub · TheLouisMahdi">
+<meta property="og:description" content="An interactive Windows 7 portfolio for Mahdi Ghahremani: FPGA, embedded systems, AI vision and engineering projects.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thelouismahdi.github.io/TheLouisMahdi/">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/284312505?v=4">
+<link rel="canonical" href="https://thelouismahdi.github.io/TheLouisMahdi/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111820'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' font-weight='700' fill='%237de3ff'%3EE%3C/text%3E%3C/svg%3E">
 <title>Eka @GitHub · TheLouisMahdi</title>
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/windows7.css">
@@ -22,6 +30,46 @@
     <div class="lid">
       <div class="screen" id="screen">
         <div class="desktop" id="desktop">
+          <section class="system-screen boot-screen" id="bootScreen" aria-live="polite">
+            <div class="bios-panel" id="biosPanel">
+              <strong>EKA</strong>
+              <span>EKA NOTEBOOK BIOS v7.1</span>
+              <pre>Intel-compatible virtual processor
+Memory Test: 4096 MB OK
+EKA SSD 128 GB · Data Disk 1 TB
+Initializing USB, keyboard and touch input...</pre>
+              <small>Press F2 for Setup · F12 for Boot Menu</small>
+            </div>
+            <div class="windows-boot hidden" id="windowsBoot">
+              <div class="boot-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <strong>Starting Windows</strong>
+              <span>Microsoft Windows 7 Ultimate</span>
+            </div>
+          </section>
+
+          <section class="system-screen welcome-screen hidden" id="welcomeScreen" aria-live="polite">
+            <div class="welcome-user"><span>M</span><strong>Mahdi Ghahremani</strong><small>Welcome</small></div>
+            <div class="welcome-brand">Windows 7 Ultimate · EKA-PC</div>
+          </section>
+
+          <section class="system-screen lock-screen hidden" id="lockScreen">
+            <div class="lock-time" id="lockTime"></div>
+            <button class="lock-user" id="unlockBtn"><span>M</span><strong>Mahdi Ghahremani</strong><small>Locked · click to unlock</small></button>
+            <button class="lock-power" id="lockPowerBtn" aria-label="Power options">⏻</button>
+            <div class="welcome-brand">Windows 7 Ultimate · EKA-PC</div>
+          </section>
+
+          <section class="system-screen shutdown-screen hidden" id="shutdownScreen" aria-live="polite">
+            <div class="shutdown-spinner"></div>
+            <strong id="shutdownText">Shutting down...</strong>
+            <span>Windows 7 Ultimate</span>
+          </section>
+
+          <section class="system-screen power-off-screen hidden" id="powerOffScreen">
+            <span>EKA</span>
+            <small>Press the laptop power button to start</small>
+          </section>
+
           <div class="desktop-icons" id="desktopIcons"></div>
 
           <section class="window explorer-window hidden" id="explorerWindow" data-app="explorer">
@@ -92,10 +140,22 @@
                 <button class="win-control close" data-window-action="close">×</button>
               </div>
             </div>
-            <div class="notepad-menu">
-              <button id="noteNew">File · New</button>
-              <button id="noteProfile">Open profile.txt</button>
-              <button id="noteSave">Save As...</button>
+            <div class="notepad-menu" role="menubar">
+              <button id="noteFileMenu" aria-haspopup="true">File</button>
+              <button id="noteEditMenu">Edit</button>
+              <button id="noteFormatMenu">Format</button>
+              <button id="noteViewMenu">View</button>
+              <button id="noteHelpMenu">Help</button>
+              <div class="notepad-dropdown hidden" id="noteFileDropdown">
+                <button id="noteNew">New <kbd>Ctrl+N</kbd></button>
+                <button id="noteOpen">Open... <kbd>Ctrl+O</kbd></button>
+                <button id="noteProfile">Open profile.txt</button>
+                <span></span>
+                <button id="noteSaveCurrent">Save <kbd>Ctrl+S</kbd></button>
+                <button id="noteSave">Save As...</button>
+                <span></span>
+                <button id="notePrint">Print...</button>
+              </div>
             </div>
             <textarea id="noteText" spellcheck="false"></textarea>
           </section>
@@ -162,8 +222,21 @@
               <button class="start-link" data-open="pictures">Pictures</button>
               <button class="start-link" data-open="computer">Computer</button>
               <button class="start-link" data-open="github">GitHub (G:)</button>
+              <button class="start-link" data-app-open="control">Control Panel</button>
+              <button class="start-link" data-app-open="devices">Devices and Printers</button>
               <button class="start-link" data-app-open="run">Run...</button>
               <a class="start-link external-link" href="https://github.com/TheLouisMahdi" target="_blank" rel="noreferrer">Eka @GitHub</a>
+              <div class="start-power">
+                <button id="shutdownBtn">Shut down</button><button id="shutdownMenuBtn" aria-label="More power options">▴</button>
+                <div class="power-menu hidden" id="powerMenu">
+                  <button data-power-action="switch">Switch user</button>
+                  <button data-power-action="logoff">Log off</button>
+                  <button data-power-action="lock">Lock</button>
+                  <button data-power-action="restart">Restart</button>
+                  <button data-power-action="sleep">Sleep</button>
+                  <button data-power-action="shutdown">Shut down</button>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -186,7 +259,7 @@
         </div>
       </div>
     </div>
-    <div class="laptop-base"><div class="trackpad"></div></div>
+    <div class="laptop-base"><span class="laptop-brand">EKA</span><div class="trackpad"></div><button class="laptop-power" id="laptopPower" aria-label="EKA laptop power button"><i></i></button></div>
   </section>
 
   <section class="printer-zone" id="printerZone">

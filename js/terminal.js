@@ -36,6 +36,7 @@ function setPsPrompt(){byId("psPrompt").textContent=`PS ${psPath}> `}
 
 function folderExists(path){
   const normalized=resolvePath(path,path)
+  if(Object.values(roots()).some(root=>root.toLowerCase()===normalized.toLowerCase()))return true
   if(normalized.toLowerCase()==="c:\\users\\eka")return true
   if(resolveFolderFromPath(normalized))return true
   return getEntry(normalized)?.kind==="folder"
@@ -90,7 +91,7 @@ function openTarget(value,cwd=cmdPath){
   const raw=String(value||"").trim().replace(/^"|"$/g,"")
   if(!raw||raw==="."){window.dispatchEvent(new CustomEvent("win7:explorer-path",{detail:cwd}));return true}
   const lower=raw.toLowerCase().replace(/\.exe$/i,"")
-  const apps={cmd:"cmd",powershell:"powershell",notepad:"notepad",calc:"calculator",calculator:"calculator",explorer:"explorer"}
+  const apps={cmd:"cmd",powershell:"powershell",notepad:"notepad",calc:"calculator",calculator:"calculator",explorer:"explorer",iexplore:"browser",mspaint:"paint",paint:"paint",write:"wordpad",wordpad:"wordpad",wmplayer:"media",taskmgr:"taskmanager",control:"control",osk:"keyboard",charmap:"charmap",snippingtool:"snipping",stikynot:"sticky",minesweeper:"minesweeper",msinfo32:"systeminfo"}
   if(apps[lower]){openApp(apps[lower]);return true}
   if(lower==="github"){window.open(PROFILE.github,"_blank","noopener,noreferrer");return true}
   if(lower==="telegram"){window.open(PROFILE.telegramUrl,"_blank","noopener,noreferrer");return true}
@@ -167,7 +168,7 @@ function systemInfo(){return `Host Name:                 EKA-PC\nOS Name:       
 function ipConfig(){return `Windows IP Configuration\n\nEthernet adapter Local Area Connection:\n\n   Connection-specific DNS Suffix  . : local\n   IPv4 Address. . . . . . . . . . . : 192.168.1.27\n   Subnet Mask . . . . . . . . . . . : 255.255.255.0\n   Default Gateway . . . . . . . . . : 192.168.1.1`}
 
 function whereOutput(name){
-  const table={cmd:"C:\\Windows\\System32\\cmd.exe",powershell:"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",notepad:"C:\\Windows\\System32\\notepad.exe",calc:"C:\\Windows\\System32\\calc.exe",explorer:"C:\\Windows\\explorer.exe",python:"C:\\Users\\Eka\\BrowserRuntime\\python.exe"}
+  const table={cmd:"C:\\Windows\\System32\\cmd.exe",powershell:"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",notepad:"C:\\Windows\\System32\\notepad.exe",calc:"C:\\Windows\\System32\\calc.exe",explorer:"C:\\Windows\\explorer.exe",mspaint:"C:\\Windows\\System32\\mspaint.exe",write:"C:\\Program Files\\Windows NT\\Accessories\\wordpad.exe",wmplayer:"C:\\Program Files\\Windows Media Player\\wmplayer.exe",iexplore:"C:\\Program Files\\Internet Explorer\\iexplore.exe",taskmgr:"C:\\Windows\\System32\\taskmgr.exe",control:"C:\\Windows\\System32\\control.exe",python:"C:\\Users\\Eka\\BrowserRuntime\\python.exe"}
   return table[name.toLowerCase().replace(/\.exe$/i,"")]||`INFO: Could not find files for the given pattern(s).`
 }
 
@@ -204,7 +205,7 @@ async function runCmd(line){
   if(customCommand(command,"cmdOutput"))return
   if(command==="help"){
     if(parts.length){append("cmdOutput",`${parts[0].toUpperCase()}\n${HELP[parts[0].toLowerCase()]||"No detailed help is available for this command."}`);return}
-    append("cmdOutput","ASSOC  ATTRIB  CD  CHDIR  CLS  COLOR  COPY  DATE  DEL  DIR  DRIVERQUERY  ECHO  ERASE  EXIT  EXPLORER  FINDSTR  GETMAC  HELP  HOSTNAME  IPCONFIG  MD  MKDIR  MORE  MOVE  NETSTAT  NOTEPAD  PATH  PAUSE  PING  POWERSHELL  PYTHON  RD  REN  RMDIR  SET  SORT  START  SYSTEMINFO  TASKLIST  TIME  TITLE  TREE  TYPE  VER  VOL  WHERE  WHOAMI  WMIC\n\nEka commands: EKA  GITHUB  PROJECTS  TELEGRAM  PROFILE  MATRIX  COFFEE  FORTUNE");return
+    append("cmdOutput","ASSOC  ATTRIB  CD  CHDIR  CLS  COLOR  CONTROL  COPY  DATE  DEL  DIR  DRIVERQUERY  ECHO  ERASE  EXIT  EXPLORER  FINDSTR  GETMAC  HELP  HOSTNAME  IPCONFIG  MD  MKDIR  MORE  MOVE  NETSTAT  NOTEPAD  PATH  PAUSE  PING  POWERSHELL  PYTHON  RD  REN  RMDIR  SET  SHUTDOWN  SORT  START  SYSTEMINFO  TASKLIST  TIME  TITLE  TREE  TYPE  VER  VOL  WHERE  WHOAMI  WMIC\n\nWindows apps: MSPAINT  WRITE  WMPLAYER  IEXPLORE  TASKMGR  OSK  CHARMAP  SNIPPINGTOOL  STIKYNOT  MSINFO32\nEka commands: EKA  GITHUB  PROJECTS  TELEGRAM  PROFILE  MATRIX  COFFEE  FORTUNE");return
   }
   if(command==="ver"){append("cmdOutput","Microsoft Windows [Version 6.1.7601]");return}
   if(command==="vol"){append("cmdOutput",` Volume in drive ${cmdPath[0]} is Windows\n Volume Serial Number is EKA7-2026`);return}
@@ -278,6 +279,22 @@ async function runCmd(line){
     return
   }
   if(command==="calc"){openApp("calculator");return}
+  if(command==="mspaint"||command==="paint"){openApp("paint");return}
+  if(command==="write"||command==="wordpad"){openApp("wordpad");return}
+  if(command==="wmplayer"){openApp("media");return}
+  if(command==="iexplore"){openApp("browser");return}
+  if(command==="taskmgr"){openApp("taskmanager");return}
+  if(command==="control"){openApp("control");return}
+  if(command==="osk"){openApp("keyboard");return}
+  if(command==="charmap"){openApp("charmap");return}
+  if(command==="snippingtool"){openApp("snipping");return}
+  if(command==="stikynot"){openApp("sticky");return}
+  if(command==="minesweeper"){openApp("minesweeper");return}
+  if(command==="msinfo32"){openApp("systeminfo");return}
+  if(command==="shutdown"){
+    const action=parts.some(part=>part.toLowerCase()==="/r")?"restart":parts.some(part=>part.toLowerCase()==="/l")?"logoff":"shutdown"
+    window.dispatchEvent(new CustomEvent("win7:power",{detail:action}));return
+  }
   if(command==="powershell"){openApp("powershell");return}
   if(command==="python"||command==="py"){await runPython(parts,"cmdOutput",cmdPath);return}
   if(command==="github"){window.open(PROFILE.github,"_blank","noopener,noreferrer");return}
@@ -369,6 +386,8 @@ async function runPs(line){
     return
   }
   if(lower==="start-process"){if(!openTarget(arg,psPath))append("psOutput",`Start-Process : This session cannot find '${arg}'.`);return}
+  if(lower==="stop-computer"){window.dispatchEvent(new CustomEvent("win7:power",{detail:"shutdown"}));return}
+  if(lower==="restart-computer"){window.dispatchEvent(new CustomEvent("win7:power",{detail:"restart"}));return}
   if(lower==="python"||lower==="py"){await runPython(parts,"psOutput",psPath);return}
   if(lower==="github"){window.open(PROFILE.github,"_blank","noopener,noreferrer");return}
   if(lower==="telegram"){window.open(PROFILE.telegramUrl,"_blank","noopener,noreferrer");return}

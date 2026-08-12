@@ -3,7 +3,7 @@ const states=new Map()
 
 function screenBounds(){return document.querySelector("#desktop").getBoundingClientRect()}
 
-function bringToFront(win){
+export function bringToFront(win){
   topZ+=1
   win.style.zIndex=topZ
   document.querySelectorAll(".task-button").forEach(button=>button.classList.toggle("active",button.dataset.task===win.dataset.app))
@@ -27,7 +27,7 @@ export function openWindow(id){
 export function closeWindow(win){win.classList.add("hidden");setTask(win.dataset.app,false)}
 export function minimizeWindow(win){win.classList.add("hidden");setTask(win.dataset.app,true)}
 
-function maximizeWindow(win){
+export function maximizeWindow(win){
   if(win.classList.contains("maximized")){
     const saved=states.get(win)
     win.classList.remove("maximized")
@@ -36,6 +36,31 @@ function maximizeWindow(win){
   }
   states.set(win,{left:win.style.left||`${win.offsetLeft}px`,top:win.style.top||`${win.offsetTop}px`,width:win.style.width||`${win.offsetWidth}px`,height:win.style.height||`${win.offsetHeight}px`})
   win.classList.add("maximized")
+}
+
+export function snapWindow(win,direction){
+  if(!win)return
+  if(direction==="up"){if(!win.classList.contains("maximized"))maximizeWindow(win);return}
+  if(direction==="down"){
+    if(win.classList.contains("maximized")){maximizeWindow(win);return}
+    minimizeWindow(win);return
+  }
+  const saved=states.get(win)||{left:win.style.left||`${win.offsetLeft}px`,top:win.style.top||`${win.offsetTop}px`,width:win.style.width||`${win.offsetWidth}px`,height:win.style.height||`${win.offsetHeight}px`}
+  states.set(win,saved)
+  win.classList.remove("maximized")
+  win.style.top="1px"
+  win.style.left=direction==="left"?"1px":"50%"
+  win.style.width="calc(50% - 1px)"
+  win.style.height="calc(100% - 40px)"
+  bringToFront(win)
+}
+
+export function minimizeOthers(active){
+  document.querySelectorAll(".window:not(.hidden)").forEach(win=>{if(win!==active)minimizeWindow(win)})
+}
+
+export function closeAllWindows(){
+  document.querySelectorAll(".window").forEach(win=>closeWindow(win))
 }
 
 function dragWindow(win,handle){

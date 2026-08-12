@@ -16,7 +16,21 @@ Enter                     Open the selected item
 Esc                       Close Start/context menus or clear selection
 Win + E                   Open Windows Explorer when the browser receives it
 Win + R                   Open Run when the browser receives it
+Win + L                   Lock the simulated computer
 Win + D / Win + M         Show desktop / minimize windows
+Win + Left / Right        Aero Snap active window to either side
+Win + Up / Down           Maximize / restore or minimize active window
+Win + Home                Minimize every window except the active one
+Win + F                   Open Explorer search
+Win + U                   Open the On-Screen Keyboard
+Win + Pause               Open System properties
+Win + P                   Show projector choices
+Win + X                   Show Windows Mobility Center choices
+Win + 1 through 9         Open the corresponding taskbar item
+Ctrl + Shift + Esc        Open Windows Task Manager
+Ctrl + Alt + Delete       Open the Windows Security screen when delivered
+Print Screen              Open the simulated Snipping Tool
+F1                        Open Windows Help and Support
 Alt + F4                  Close the active simulated window
 Alt + Tab                 Cycle visible simulated windows when delivered by browser
 Explorer Alt + Left/Right Back / Forward
@@ -68,6 +82,8 @@ set [NAME=value]         Show or set simulated environment variables
 path [value]             Show or set simulated PATH
 title <text>             Change Command Prompt title
 color <hex>              Windows console color pair such as 0A
+shutdown /s              Shut down the EKA laptop
+shutdown /r              Restart the EKA laptop
 driverquery              Simulated Windows 7 driver list
 wmic os get ...          Windows 7-style OS information
 assoc                    Show common file associations
@@ -109,6 +125,8 @@ Get-History
 Clear-Host                aliases: cls, clear
 Write-Output <text>       alias: echo
 Start-Process <app|file>
+Stop-Computer
+Restart-Computer
 python <file.py>
 profile / github / projects / telegram / eka
 
@@ -119,6 +137,18 @@ powershell
 notepad
 notepad <file>
 calc
+mspaint
+write
+wmplayer
+iexplore
+taskmgr
+control
+osk
+charmap
+snippingtool
+stikynot
+minesweeper
+msinfo32
 explorer
 explorer C:\\Users\\Eka\\Desktop
 python C:\\Users\\Eka\\Desktop\\hello.py
@@ -127,8 +157,9 @@ telegram
 
 NOTEPAD + FILES
 ---------------
-Use Save As... to save into the simulated Desktop or Documents folder.
+Use Save As... to choose Desktop, Documents, Downloads, or the local GitHub (G:) workspace; set the file name, Windows-style file type, and Notepad encoding.
 Files are stored in browser localStorage for this site.
+The GitHub (G:) workspace is a safe local simulation; it never writes to the real repository or asks for a token.
 .py files can be run with Python from CMD, PowerShell, Run, or the context menu.
 .html / .htm files open inside the simulated Internet Explorer preview window.
 Relative .css and .js files saved beside an HTML file are loaded into that preview too.

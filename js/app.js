@@ -1,25 +1,42 @@
 import{FILE_SYSTEM}from"./data.js"
 import{icon,paintIcons}from"./icons.js"
-import{closeWindow,initWindowManager,openWindow,showDesktop,toggleAppWindow}from"./window-manager.js"
+import{closeWindow,initWindowManager,minimizeOthers,openWindow,showDesktop,snapWindow,toggleAppWindow}from"./window-manager.js"
 import{initExplorer,navigate}from"./explorer.js"
 import{initTerminals}from"./terminal.js"
 import{initReceipt,printReceipt}from"./receipt.js"
 import{initApps,mountRuntimeWindows}from"./apps.js"
+import{initSystemApps,mountSystemApps}from"./system-apps.js"
+import{initSystem,lockSystem,showSecurityScreen,systemState}from"./system.js"
 import{bindSelectableSurface,initPointerCursor,mountInteractionUi,refreshSurface}from"./interaction.js"
 import{backgroundContextItems,deleteSelected,fileContextItems,openVirtual,renameSelected}from"./file-actions.js"
 import{listVirtual}from"./vfs.js"
 
 const byId=id=>document.getElementById(id)
-const appWindows={explorer:"explorerWindow",cmd:"cmdWindow",powershell:"psWindow",notepad:"notepadWindow",calculator:"calculatorWindow",run:"runWindow",image:"imageWindow",browser:"browserWindow"}
+const appWindows={explorer:"explorerWindow",cmd:"cmdWindow",powershell:"psWindow",notepad:"notepadWindow",calculator:"calculatorWindow",run:"runWindow",image:"imageWindow",browser:"browserWindow",paint:"paintWindow",wordpad:"wordpadWindow",sticky:"stickyWindow",snipping:"snippingWindow",media:"mediaWindow",control:"controlWindow",devices:"devicesWindow",taskmanager:"taskmanagerWindow",minesweeper:"minesweeperWindow",systeminfo:"systeminfoWindow",charmap:"charmapWindow",keyboard:"keyboardWindow",help:"helpWindow",accessory:"accessoryWindow"}
 let desktopItems=[]
 let mobileHintShown=false
 
 function openApp(app){
+  if(app==="printprofile"){printReceipt();document.getElementById("printerZone")?.scrollIntoView({behavior:"smooth",block:"center"});return}
   const id=appWindows[app]
   if(!id)return
   if(app==="explorer")navigate("computer")
   else openWindow(id)
   byId("startMenu").classList.add("hidden")
+  byId("allProgramsPanel")?.classList.add("hidden")
+}
+
+function mountTaskButtons(){
+  const iconNames={notepad:"notepad",calculator:"calculator",run:"run",image:"photo",paint:"paint",wordpad:"wordpad",sticky:"sticky",snipping:"snipping",media:"media",control:"control",devices:"devices",taskmanager:"taskmanager",minesweeper:"games",systeminfo:"system",charmap:"charmap",keyboard:"keyboard",help:"system"}
+  for(const [app,iconName] of Object.entries(iconNames)){
+    if(document.querySelector(`[data-task="${app}"]`))continue
+    const button=document.createElement("button")
+    button.className="task-button unpinned"
+    button.dataset.task=app
+    button.setAttribute("aria-label",app)
+    button.innerHTML=`<span>${icon(iconName)}</span>`
+    byId("taskApps").appendChild(button)
+  }
 }
 
 function itemKey(item){return item.virtualPath||`${item.name}|${item.target||item.external||item.app||""}`}
@@ -58,6 +75,7 @@ function initDesktopInteraction(){
 }
 
 function initStart(){
+  const closeStart=()=>{byId("startMenu").classList.add("hidden");byId("allProgramsPanel")?.classList.add("hidden")}
   byId("startBtn").innerHTML=icon("windows")
   byId("startBtn").addEventListener("click",event=>{
     event.stopPropagation()
@@ -65,8 +83,10 @@ function initStart(){
     if(!byId("startMenu").classList.contains("hidden"))byId("searchBox").focus()
   })
   byId("startMenu").addEventListener("click",event=>event.stopPropagation())
-  document.addEventListener("click",()=>byId("startMenu").classList.add("hidden"))
+  document.addEventListener("click",closeStart)
   document.querySelectorAll("[data-app-open]").forEach(node=>node.addEventListener("click",()=>openApp(node.dataset.appOpen)))
+  byId("allProgramsBtn")?.addEventListener("click",event=>{event.stopPropagation();byId("allProgramsPanel")?.classList.toggle("hidden")})
+  byId("allProgramsPanel")?.addEventListener("click",event=>event.stopPropagation())
   byId("searchBox").addEventListener("input",()=>{
     const q=byId("searchBox").value.trim().toLowerCase()
     byId("programList").querySelectorAll(".start-program").forEach(button=>button.hidden=q&&!button.textContent.toLowerCase().includes(q))
@@ -131,6 +151,8 @@ function cycleWindows(reverse=false){
 function initKeyboard(){
   document.addEventListener("keydown",event=>{
     const key=event.key.toLowerCase()
+    if(event.ctrlKey&&event.altKey&&event.key==="Delete"){event.preventDefault();showSecurityScreen();return}
+    if(systemState()!=="running")return
     if(event.key==="Escape")byId("startMenu").classList.add("hidden")
     if(event.key==="Meta"||event.key==="OS"){
       event.preventDefault()
@@ -146,6 +168,15 @@ function initKeyboard(){
     if(event.altKey&&event.key==="Tab"){
       event.preventDefault();cycleWindows(event.shiftKey);return
     }
+    if(event.ctrlKey&&event.shiftKey&&event.key==="Escape"){
+      event.preventDefault();openApp("taskmanager");return
+    }
+    if(event.key==="F1"){
+      event.preventDefault();openApp("help");return
+    }
+    if(event.key==="PrintScreen"){
+      event.preventDefault();openApp("snipping");return
+    }
     if(event.metaKey&&(key==="d"||key==="m")){
       event.preventDefault();showDesktop();return
     }
@@ -155,7 +186,39 @@ function initKeyboard(){
     if(event.metaKey&&key==="r"){
       event.preventDefault();openApp("run");return
     }
+    if(event.metaKey&&key==="l"){
+      event.preventDefault();lockSystem();return
+    }
+    if(event.metaKey&&key==="u"){
+      event.preventDefault();openApp("keyboard");return
+    }
+    if(event.metaKey&&key==="f"){
+      event.preventDefault();openApp("explorer");setTimeout(()=>byId("explorerSearch")?.focus(),0);return
+    }
+    if(event.metaKey&&event.key==="Pause"){
+      event.preventDefault();openApp("systeminfo");return
+    }
+    if(event.metaKey&&event.key==="Tab"){
+      event.preventDefault();cycleWindows(event.shiftKey);return
+    }
+    if(event.metaKey&&key==="home"){
+      event.preventDefault();minimizeOthers(activeWindow());return
+    }
+    if(event.metaKey&&["arrowleft","arrowright","arrowup","arrowdown"].includes(key)){
+      const win=activeWindow();if(win){event.preventDefault();snapWindow(win,key.replace("arrow",""))}return
+    }
+    if(event.metaKey&&key==="p"){
+      event.preventDefault();window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Projector: Computer only · Duplicate · Extend · Projector only"}));return
+    }
+    if(event.metaKey&&key==="x"){
+      event.preventDefault();window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Windows Mobility Center · Display · Volume · Battery · Wireless"}));return
+    }
+    if(event.metaKey&&/^[1-9]$/.test(key)){
+      event.preventDefault();document.querySelectorAll("[data-task]")[Number(key)-1]?.click();return
+    }
   })
+  document.addEventListener("keydown",event=>{if(systemState()==="running"&&event.metaKey&&event.code==="Space"){event.preventDefault();byId("desktop").classList.add("aero-peek")}})
+  document.addEventListener("keyup",event=>{if(event.code==="Space")byId("desktop").classList.remove("aero-peek")})
 }
 
 function loadRuntimeCss(){
@@ -171,12 +234,15 @@ function init(){
   loadRuntimeCss()
   mountInteractionUi()
   mountRuntimeWindows()
+  mountSystemApps()
+  mountTaskButtons()
   paintIcons()
   renderDesktop()
   initWindowManager()
   initExplorer()
   initTerminals()
   initApps()
+  initSystemApps()
   initReceipt()
   initDesktopInteraction()
   initStart()
@@ -186,7 +252,7 @@ function init(){
   initToast()
   initAppEvents()
   initKeyboard()
-  setTimeout(printReceipt,520)
+  initSystem()
 }
 
 init()

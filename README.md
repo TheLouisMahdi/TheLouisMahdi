@@ -33,6 +33,14 @@
 
 ---
 
+## 🖥️ Interactive EKA Windows 7 Portfolio
+
+The profile header is a browser-based Windows 7 simulation with an EKA BIOS and boot sequence, Explorer and persistent virtual files, Notepad Save As, CMD and PowerShell, Python execution through WebAssembly, Windows 7-style Paint and Control Panel, working taskbar flyouts and shortcuts, responsive touch controls, and a manually detachable thermal profile receipt.
+
+Try saving `Hello.py` on the virtual Desktop and running either `python Hello.py` or `py Hello.py` from Command Prompt.
+
+---
+
 ## 👨‍💻 About Me
 
 I'm **Mahdi Ghahremani**, known online as **TheLouisMahdi**. I am an **Electrical Engineering student at the University of Zanjan**, focused on practical work across **computer vision**, **FPGA and Verilog RTL**, **embedded systems**, **applied AI**, and **hardware–software co-design**.

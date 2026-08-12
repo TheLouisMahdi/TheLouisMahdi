@@ -7,7 +7,7 @@ import{initReceipt,printReceipt}from"./receipt.js"
 import{initApps,mountRuntimeWindows}from"./apps.js"
 import{initSystemApps,mountSystemApps}from"./system-apps.js"
 import{initSystem,lockSystem,showSecurityScreen,systemState}from"./system.js"
-import{bindSelectableSurface,initPointerCursor,mountInteractionUi,refreshSurface}from"./interaction.js"
+import{bindSelectableSurface,initPointerCursor,mountInteractionUi,refreshSurface,showContextMenu}from"./interaction.js"
 import{backgroundContextItems,deleteSelected,fileContextItems,openVirtual,renameSelected}from"./file-actions.js"
 import{listVirtual}from"./vfs.js"
 
@@ -84,7 +84,7 @@ function initStart(){
   })
   byId("startMenu").addEventListener("click",event=>event.stopPropagation())
   document.addEventListener("click",closeStart)
-  document.querySelectorAll("[data-app-open]").forEach(node=>node.addEventListener("click",()=>openApp(node.dataset.appOpen)))
+  byId("startMenu").querySelectorAll("[data-app-open]").forEach(node=>node.addEventListener("click",()=>openApp(node.dataset.appOpen)))
   byId("allProgramsBtn")?.addEventListener("click",event=>{event.stopPropagation();byId("allProgramsPanel")?.classList.toggle("hidden")})
   byId("allProgramsPanel")?.addEventListener("click",event=>event.stopPropagation())
   byId("searchBox").addEventListener("input",()=>{
@@ -103,6 +103,58 @@ function initTaskbar(){
       else toggleAppWindow(app,appWindows[app])
     })
   })
+  const closeFlyouts=except=>document.querySelectorAll(".tray-flyout").forEach(node=>{if(node!==except)node.classList.add("hidden")})
+  const toggleFlyout=id=>{
+    const flyout=byId(id)
+    if(!flyout)return
+    const open=flyout.classList.contains("hidden")
+    closeFlyouts(flyout)
+    flyout.classList.toggle("hidden",!open)
+  }
+  const trayMap={trayOverflowBtn:"trayOverflow",actionCenterBtn:"actionCenterFlyout",networkBtn:"networkFlyout",volumeBtn:"volumeFlyout",batteryBtn:"batteryFlyout",clock:"clockFlyout",desktopToolbarBtn:"desktopToolbarMenu"}
+  for(const [button,flyout]of Object.entries(trayMap))byId(button)?.addEventListener("click",event=>{event.stopPropagation();toggleFlyout(flyout)})
+  byId("volumeSlider")?.addEventListener("input",event=>{byId("volumeValue").textContent=`${event.target.value}%`;byId("volumeBtn").classList.toggle("muted",event.target.value==="0")})
+  byId("muteBtn")?.addEventListener("click",()=>{const slider=byId("volumeSlider");slider.value=slider.value==="0"?"70":"0";slider.dispatchEvent(new Event("input"))})
+  byId("networkConnect")?.addEventListener("click",()=>{byId("networkStatus").textContent="Connected · Internet access";byId("networkConnect").textContent="Disconnect"})
+  byId("actionCenterOpen")?.addEventListener("click",()=>{openApp("control");window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"action-center"}))})
+  byId("powerPlanLink")?.addEventListener("click",()=>{openApp("control");window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"power-options"}))})
+  byId("dateTimeLink")?.addEventListener("click",()=>{openApp("control");window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"date-time"}))})
+  byId("desktopToolbarMenu")?.addEventListener("click",event=>{
+    const button=event.target.closest("[data-toolbar-open],[data-toolbar-app],[data-toolbar-external]")
+    if(!button)return
+    if(button.dataset.toolbarOpen)navigate(button.dataset.toolbarOpen)
+    if(button.dataset.toolbarApp)openApp(button.dataset.toolbarApp)
+    if(button.dataset.toolbarExternal)window.open(button.dataset.toolbarExternal,"_blank","noopener,noreferrer")
+    closeFlyouts()
+  })
+  byId("taskbar").addEventListener("click",event=>{
+    const appLink=event.target.closest(".tray-flyout [data-app-open]")
+    if(appLink){event.preventDefault();openApp(appLink.dataset.appOpen);closeFlyouts()}
+  })
+  byId("customizeTray")?.addEventListener("click",event=>{event.preventDefault();openApp("control");window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"notification-area"}))})
+  document.addEventListener("click",()=>closeFlyouts())
+  byId("taskbar").addEventListener("contextmenu",event=>{
+    event.preventDefault()
+    const taskButton=event.target.closest("[data-task]")
+    if(taskButton){
+      const app=taskButton.dataset.task
+      const names={explorer:"Windows Explorer",cmd:"Command Prompt",powershell:"Windows PowerShell",notepad:"Notepad",browser:"Internet Explorer",paint:"Paint",control:"Control Panel"}
+      const recent=app==="explorer"?[{label:"Documents",action:()=>navigate("documents")},{label:"Pictures",action:()=>navigate("pictures")},{label:"GitHub (G:)",action:()=>navigate("github")},]:app==="notepad"?[{label:"Eka Command Deck.txt",action:()=>window.dispatchEvent(new CustomEvent("win7:open-file",{detail:{path:"C:\\Users\\Eka\\Desktop\\Eka Command Deck.txt",forceNotepad:true}}))}]:[]
+      showContextMenu([...recent,...(recent.length?[{separator:true}]:[]),{label:`Open ${names[app]||app}`,action:()=>openApp(app)},{label:"Pin this program to taskbar ✓",action:()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:`${names[app]||app} is pinned to the taskbar.`}))},{label:"Close window",action:()=>{const win=byId(appWindows[app]);if(win)closeWindow(win)}}],event.clientX,event.clientY)
+      return
+    }
+    showContextMenu([
+      {label:"Toolbars  ›  Desktop",action:()=>byId("desktopToolbarBtn").classList.toggle("hidden")},
+      {separator:true},
+      {label:"Cascade windows",action:()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Windows arranged in a cascade."}))},
+      {label:"Show windows side by side",action:()=>{const wins=visibleWindows().slice(-2);if(wins[0])snapWindow(wins[0],"left");if(wins[1])snapWindow(wins[1],"right")}},
+      {label:"Show the desktop",action:showDesktop},
+      {separator:true},
+      {label:"Start Task Manager",action:()=>openApp("taskmanager")},
+      {label:"Lock the taskbar ✓",action:()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:"The taskbar is locked."}))},
+      {label:"Properties",action:()=>{openApp("control");window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"taskbar"}))}}
+    ],event.clientX,event.clientY)
+  })
 }
 
 function initClock(){
@@ -112,6 +164,8 @@ function initClock(){
     const date=now.toLocaleDateString([],{month:"2-digit",day:"2-digit",year:"numeric"})
     byId("clock").textContent=`${time}\n${date}`
     byId("clock").title=now.toString()
+    if(byId("clockFlyoutDate"))byId("clockFlyoutDate").textContent=now.toLocaleDateString([],{weekday:"long",year:"numeric",month:"long",day:"numeric"})
+    if(byId("clockFlyoutTime"))byId("clockFlyoutTime").textContent=now.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit",second:"2-digit"})
   }
   tick()
   setInterval(tick,1000)

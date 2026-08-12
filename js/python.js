@@ -40,9 +40,11 @@ function request(payload,timeout=30000){
 }
 
 export async function runPythonFile(path,cwd=roots().desktop){
-  const full=resolvePath(cwd,path)
-  const code=readFile(full)
-  if(code===null)throw new Error(`python: can't open file '${path}': No such file`)
+  const locations=[resolvePath(cwd,path)]
+  if(!/^[a-z]:/i.test(String(path)))for(const root of[roots().desktop,roots().documents,roots().downloads])locations.push(resolvePath(root,path))
+  const full=locations.find(candidate=>readFile(candidate)!==null)
+  const code=full?readFile(full):null
+  if(code===null)throw new Error(`python: can't open file '${path}': [Errno 2] No such file or directory`)
   return request({type:"run",path:full,code,files:allVirtualFiles()},30000)
 }
 

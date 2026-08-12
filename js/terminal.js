@@ -108,12 +108,13 @@ function splitRedirect(line){
 }
 
 async function runPython(args,outId,path){
-  if(!args.length||["--version","-v"].includes(args[0].toLowerCase())){
+  if(!args.length||["--version","-v","-V"].map(value=>value.toLowerCase()).includes(args[0].toLowerCase())){
     append(outId,"Loading Python WebAssembly runtime...")
     try{const version=await getPythonVersion();append(outId,`Python ${version} · Pyodide browser runtime`)}catch(error){append(outId,`Python runtime error: ${error.message}`)}
     return
   }
-  const file=args[0]
+  const file=args.find(arg=>/\.py$/i.test(arg))||args.find(arg=>!arg.startsWith("-"))
+  if(!file){append(outId,"Python usage: python script.py  or  py script.py");return}
   append(outId,`[Python] Running ${file}...`)
   try{
     const result=await runPythonFile(file,path)
@@ -205,7 +206,7 @@ async function runCmd(line){
   if(customCommand(command,"cmdOutput"))return
   if(command==="help"){
     if(parts.length){append("cmdOutput",`${parts[0].toUpperCase()}\n${HELP[parts[0].toLowerCase()]||"No detailed help is available for this command."}`);return}
-    append("cmdOutput","ASSOC  ATTRIB  CD  CHDIR  CLS  COLOR  CONTROL  COPY  DATE  DEL  DIR  DRIVERQUERY  ECHO  ERASE  EXIT  EXPLORER  FINDSTR  GETMAC  HELP  HOSTNAME  IPCONFIG  MD  MKDIR  MORE  MOVE  NETSTAT  NOTEPAD  PATH  PAUSE  PING  POWERSHELL  PYTHON  RD  REN  RMDIR  SET  SHUTDOWN  SORT  START  SYSTEMINFO  TASKLIST  TIME  TITLE  TREE  TYPE  VER  VOL  WHERE  WHOAMI  WMIC\n\nWindows apps: MSPAINT  WRITE  WMPLAYER  IEXPLORE  TASKMGR  OSK  CHARMAP  SNIPPINGTOOL  STIKYNOT  MSINFO32\nEka commands: EKA  GITHUB  PROJECTS  TELEGRAM  PROFILE  MATRIX  COFFEE  FORTUNE");return
+    append("cmdOutput","ASSOC  ATTRIB  CD  CHDIR  CLS  COLOR  CONTROL  COPY  DATE  DEL  DIR  DRIVERQUERY  ECHO  ERASE  EXIT  EXPLORER  FINDSTR  FTYPE  GETMAC  HELP  HOSTNAME  IPCONFIG  MD  MKDIR  MORE  MOVE  NETSTAT  NOTEPAD  PATH  PAUSE  PING  POWERSHELL  PY  PYTHON  RD  REN  RMDIR  SET  SHUTDOWN  SORT  START  SYSTEMINFO  TASKLIST  TIME  TITLE  TREE  TYPE  VER  VOL  WHERE  WHOAMI  WMIC\n\nWindows apps: MSPAINT  WRITE  WMPLAYER  IEXPLORE  TASKMGR  OSK  CHARMAP  SNIPPINGTOOL  STIKYNOT  MSINFO32\nEka commands: EKA  GITHUB  PROJECTS  TELEGRAM  PROFILE  MATRIX  COFFEE  FORTUNE");return
   }
   if(command==="ver"){append("cmdOutput","Microsoft Windows [Version 6.1.7601]");return}
   if(command==="vol"){append("cmdOutput",` Volume in drive ${cmdPath[0]} is Windows\n Volume Serial Number is EKA7-2026`);return}
@@ -224,7 +225,8 @@ async function runCmd(line){
   if(command==="ping"){append("cmdOutput",pingText(parts[0]));return}
   if(command==="driverquery"){append("cmdOutput",driverQuery());return}
   if(command==="wmic"){append("cmdOutput",arg.toLowerCase().startsWith("os")?"Caption                    Version     BuildNumber\nMicrosoft Windows 7 Ultimate 6.1.7601    7601":"WMIC simulation supports: wmic os get caption,version,buildnumber");return}
-  if(command==="assoc"){append("cmdOutput",".txt=txtfile\n.html=htmlfile\n.htm=htmlfile\n.py=Python.File\n.cmd=cmdfile\n.bat=batfile");return}
+  if(command==="assoc"){const associations={".txt":"txtfile",".html":"htmlfile",".htm":"htmlfile",".py":"Python.File",".cmd":"cmdfile",".bat":"batfile"};if(arg)append("cmdOutput",associations[arg.toLowerCase()]?`${arg.toLowerCase()}=${associations[arg.toLowerCase()]}`:`File association not found for extension ${arg}`);else append("cmdOutput",Object.entries(associations).map(([extension,type])=>`${extension}=${type}`).join("\n"));return}
+  if(command==="ftype"){append("cmdOutput",arg&&arg.toLowerCase()!=="python.file"?`File type '${arg}' not found or no open command associated with it.`:'Python.File="C:\\Users\\Eka\\BrowserRuntime\\python.exe" "%1" %*\ntxtfile=%SystemRoot%\\system32\\NOTEPAD.EXE %1\nhtmlfile="C:\\Program Files\\Internet Explorer\\iexplore.exe" -nohome');return}
   if(command==="attrib"){append("cmdOutput",cmdAttrib(arg||cmdPath));return}
   if(command==="findstr"){append("cmdOutput",findStr(parts));return}
   if(command==="more"){const text=fileText(arg,cmdPath);append("cmdOutput",text===null?"Cannot access file.":text);return}
@@ -296,7 +298,7 @@ async function runCmd(line){
     window.dispatchEvent(new CustomEvent("win7:power",{detail:action}));return
   }
   if(command==="powershell"){openApp("powershell");return}
-  if(command==="python"||command==="py"){await runPython(parts,"cmdOutput",cmdPath);return}
+  if(command==="python"||command==="python3"||command==="py"){await runPython(parts,"cmdOutput",cmdPath);return}
   if(command==="github"){window.open(PROFILE.github,"_blank","noopener,noreferrer");return}
   if(command==="telegram"){window.open(PROFILE.telegramUrl,"_blank","noopener,noreferrer");return}
   if(command==="projects"){navigate("projects");return}
@@ -388,7 +390,7 @@ async function runPs(line){
   if(lower==="start-process"){if(!openTarget(arg,psPath))append("psOutput",`Start-Process : This session cannot find '${arg}'.`);return}
   if(lower==="stop-computer"){window.dispatchEvent(new CustomEvent("win7:power",{detail:"shutdown"}));return}
   if(lower==="restart-computer"){window.dispatchEvent(new CustomEvent("win7:power",{detail:"restart"}));return}
-  if(lower==="python"||lower==="py"){await runPython(parts,"psOutput",psPath);return}
+  if(lower==="python"||lower==="python3"||lower==="py"){await runPython(parts,"psOutput",psPath);return}
   if(lower==="github"){window.open(PROFILE.github,"_blank","noopener,noreferrer");return}
   if(lower==="telegram"){window.open(PROFILE.telegramUrl,"_blank","noopener,noreferrer");return}
   if(lower==="projects"){navigate("projects");return}

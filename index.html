@@ -87,7 +87,8 @@ Initializing USB, keyboard and touch input...</pre>
               <div class="address" id="addressBar">Computer</div>
               <input class="explorer-search" id="explorerSearch" placeholder="Search Computer" autocomplete="off">
             </div>
-            <div class="explorer-command"><button id="organizeBtn">Organize ▾</button><span id="explorerHint">System locations and project files</span></div>
+            <div class="explorer-menu hidden" id="explorerMenuBar"><button>File</button><button>Edit</button><button>View</button><button>Tools</button><button>Help</button></div>
+            <div class="explorer-command"><button id="organizeBtn">Organize ▾</button><button id="newFolderBtn">New folder</button><span id="explorerHint">System locations and project files</span><button id="changeViewBtn" title="Change your view">▦ ▾</button></div>
             <div class="explorer-body">
               <aside class="navpane">
                 <div class="nav-group">Favorites</div>
@@ -96,9 +97,15 @@ Initializing USB, keyboard and touch input...</pre>
                 <div class="nav-group">Libraries</div>
                 <button class="nav-item" data-open="documents">Documents</button>
                 <button class="nav-item" data-open="pictures">Pictures</button>
+                <button class="nav-item" data-open="music">Music</button>
+                <button class="nav-item" data-open="videos">Videos</button>
+                <div class="nav-group">Homegroup</div>
+                <button class="nav-item" data-open="homegroup">Homegroup</button>
                 <div class="nav-group">Computer</div>
                 <button class="nav-item" data-open="computer">Computer</button>
                 <button class="nav-item" data-open="github">GitHub (G:)</button>
+                <div class="nav-group">Network</div>
+                <button class="nav-item" data-open="network">Network</button>
               </aside>
               <div class="filepane" id="fileArea"></div>
             </div>
@@ -156,8 +163,15 @@ Initializing USB, keyboard and touch input...</pre>
                 <span></span>
                 <button id="notePrint">Print...</button>
               </div>
+              <div class="notepad-dropdown note-edit-dropdown hidden" id="noteEditDropdown">
+                <button data-note-edit="undo">Undo <kbd>Ctrl+Z</kbd></button><span></span><button data-note-edit="cut">Cut <kbd>Ctrl+X</kbd></button><button data-note-edit="copy">Copy <kbd>Ctrl+C</kbd></button><button data-note-edit="paste">Paste <kbd>Ctrl+V</kbd></button><button data-note-edit="delete">Delete <kbd>Del</kbd></button><span></span><button data-note-edit="find">Find... <kbd>Ctrl+F</kbd></button><button data-note-edit="replace">Replace... <kbd>Ctrl+H</kbd></button><button data-note-edit="goto">Go To... <kbd>Ctrl+G</kbd></button><span></span><button data-note-edit="selectAll">Select All <kbd>Ctrl+A</kbd></button><button data-note-edit="time">Time/Date <kbd>F5</kbd></button>
+              </div>
+              <div class="notepad-dropdown note-format-dropdown hidden" id="noteFormatDropdown"><button id="noteWordWrap">Word Wrap</button><button id="noteFont">Font...</button></div>
+              <div class="notepad-dropdown note-view-dropdown hidden" id="noteViewDropdown"><button id="noteStatusToggle">Status Bar</button></div>
+              <div class="notepad-dropdown note-help-dropdown hidden" id="noteHelpDropdown"><button id="noteViewHelp">View Help</button><button id="noteAbout">About Notepad</button></div>
             </div>
             <textarea id="noteText" spellcheck="false"></textarea>
+            <div class="notepad-status hidden" id="noteStatus"><span>Ln 1, Col 1</span><span>100%</span><span>Windows (CRLF)</span><span>UTF-8</span></div>
           </section>
 
           <section class="window calculator-window hidden" id="calculatorWindow" data-app="calculator">
@@ -240,20 +254,32 @@ Initializing USB, keyboard and touch input...</pre>
             </div>
           </section>
 
-          <div class="taskbar">
+          <div class="taskbar" id="taskbar">
             <button class="start-orb" id="startBtn" aria-label="Start"></button>
             <div class="task-apps" id="taskApps">
-              <button class="task-button" data-app-open="explorer" data-task="explorer" aria-label="Windows Explorer"><span data-icon="folder"></span></button>
-              <button class="task-button" data-app-open="cmd" data-task="cmd" aria-label="Command Prompt"><span data-icon="cmd"></span></button>
-              <button class="task-button" data-app-open="powershell" data-task="powershell" aria-label="Windows PowerShell"><span data-icon="powershell"></span></button>
+              <button class="task-button" data-task="explorer" aria-label="Windows Explorer"><span data-icon="folder"></span></button>
+              <button class="task-button" data-task="cmd" aria-label="Command Prompt"><span data-icon="cmd"></span></button>
+              <button class="task-button" data-task="powershell" aria-label="Windows PowerShell"><span data-icon="powershell"></span></button>
+            </div>
+            <button class="desktop-toolbar-button" id="desktopToolbarBtn">Desktop <span>»</span></button>
+            <div class="tray-flyout desktop-toolbar-menu hidden" id="desktopToolbarMenu">
+              <button data-toolbar-open="computer">Computer</button><button data-toolbar-open="documents">Documents</button><button data-toolbar-open="pictures">Pictures</button><button data-toolbar-app="notepad">Notepad</button><button data-toolbar-app="printprofile">Print Profile</button><button data-toolbar-external="https://github.com/TheLouisMahdi">Eka @GitHub</button>
             </div>
             <div class="tray">
-              <span class="tray-small">▲</span>
-              <span class="tray-small">◔</span>
-              <span class="tray-signal">▂▄▆</span>
+              <button class="tray-button tray-overflow-button" id="trayOverflowBtn" aria-label="Show hidden icons">▲</button>
+              <button class="tray-button action-center-button" id="actionCenterBtn" aria-label="Action Center">⚑</button>
+              <button class="tray-button network-button" id="networkBtn" aria-label="Network">▂▄▆</button>
+              <button class="tray-button volume-button" id="volumeBtn" aria-label="Speakers">◖))</button>
+              <button class="tray-button battery-button" id="batteryBtn" aria-label="Battery">▰</button>
               <button class="clock" id="clock" aria-label="Date and time"></button>
               <button class="peek" id="peekBtn" aria-label="Show desktop"></button>
             </div>
+            <div class="tray-flyout tray-overflow hidden" id="trayOverflow"><strong>Hidden icons</strong><div><button title="EKA Control Center">E</button><button title="Python runtime">Py</button><button title="GitHub workspace">GH</button></div><a href="#" id="customizeTray">Customize...</a></div>
+            <div class="tray-flyout action-center-flyout hidden" id="actionCenterFlyout"><h3>Action Center</h3><p><b>No current issues detected.</b></p><p>Windows Update and Firewall are on.</p><button id="actionCenterOpen">Open Action Center</button></div>
+            <div class="tray-flyout network-flyout hidden" id="networkFlyout"><h3>Wireless Network Connection</h3><button class="network-row selected"><b>EKA-NETWORK</b><span id="networkStatus">Connected · Internet access</span><i>▂▄▆</i></button><button class="network-row"><b>GitHub-Pages</b><span>Secured network</span><i>▂▄▆</i></button><button id="networkConnect">Disconnect</button><a href="#" data-app-open="control">Open Network and Sharing Center</a></div>
+            <div class="tray-flyout volume-flyout hidden" id="volumeFlyout"><h3>Speakers</h3><input id="volumeSlider" type="range" min="0" max="100" value="70"><strong id="volumeValue">70%</strong><button id="muteBtn">Mute</button><a href="#" data-app-open="control">Mixer</a></div>
+            <div class="tray-flyout battery-flyout hidden" id="batteryFlyout"><h3>83% available (plugged in, charging)</h3><div class="battery-meter"><i></i></div><p>Current power plan: <b>Balanced</b></p><button id="powerPlanLink">More power options</button></div>
+            <div class="tray-flyout clock-flyout hidden" id="clockFlyout"><h3 id="clockFlyoutTime"></h3><p id="clockFlyoutDate"></p><div class="mini-calendar">S&nbsp; M&nbsp; T&nbsp; W&nbsp; T&nbsp; F&nbsp; S<br>·&nbsp; ·&nbsp; ·&nbsp; 1&nbsp; 2&nbsp; 3&nbsp; 4<br>5&nbsp; 6&nbsp; 7&nbsp; 8&nbsp; 9&nbsp; 10 11<br>12 13 14 15 16 17 18<br>19 20 21 22 23 24 25</div><button id="dateTimeLink">Change date and time settings...</button></div>
           </div>
           <div class="fake-cursor" id="fakeCursor"></div>
         </div>
@@ -265,9 +291,11 @@ Initializing USB, keyboard and touch input...</pre>
   <section class="printer-zone" id="printerZone">
     <div class="printer">
       <div class="printer-head">
-        <div><strong>LM / PROFILE PRINTER</strong><span class="printer-sub">GitHub profile · @TheLouisMahdi</span></div>
-        <div class="led-wrap"><i></i><span id="printerState">READY</span></div>
+        <div class="printer-logo">E</div><span>EKA THERMAL PROFILE TERMINAL</span><div class="printer-home">⌂ Home</div>
       </div>
+      <div class="printer-order"><div><strong>Mahdi Ghahremani</strong><span class="printer-sub">GitHub engineering profile</span></div><div><small>Profile</small><b>@TheLouisMahdi</b></div></div>
+      <div class="printer-live"><span class="printer-spinner"></span><span id="statusText">Ready to print profile receipt</span><div class="led-wrap"><i></i><span id="printerState">READY</span></div></div>
+      <div class="printer-track"><i id="printerProgress"></i></div>
       <div class="slot"></div>
     </div>
     <div class="receipt-stage">
@@ -283,7 +311,7 @@ Initializing USB, keyboard and touch input...</pre>
       <button id="txtBtn">TXT</button>
       <button id="copyBtn">Copy</button>
     </div>
-    <div class="printer-status" id="statusText">Ready to print profile receipt</div>
+    <div class="printer-status">Local EKA printer · no account or payment required</div>
   </section>
 </section>
 

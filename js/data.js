@@ -56,6 +56,10 @@ export const FILE_SYSTEM={
     {name:"github-avatar.png",type:"photo",image:"https://avatars.githubusercontent.com/u/284312505?v=4"},
     {name:"about-terminal.svg",type:"photo",image:"about-terminal.svg"}
   ]},
+  music:{title:"Music",path:"Libraries > Music",type:"folder",items:[]},
+  videos:{title:"Videos",path:"Libraries > Videos",type:"folder",items:[]},
+  homegroup:{title:"Homegroup",path:"Homegroup",type:"folder",items:[{name:"EKA-PC",type:"computer",target:"computer"}]},
+  network:{title:"Network",path:"Network",type:"folder",items:[{name:"EKA-PC",type:"computer",target:"computer"},{name:"GitHub Pages",type:"github",external:PROFILE.github}]},
   documents:{title:"Documents",path:"Libraries > Documents",type:"folder",items:[
     {name:"profile.txt",type:"text",text:"profile"},
     {name:"github.url",type:"github",external:PROFILE.github}

@@ -1,168 +1,117 @@
-function initNotepad(){
-  const saved=localStorage.getItem("eka-notepad")
-  $("#noteText").value=saved||profileFile()
-  $("#noteSave").addEventListener("click",()=>{
-    localStorage.setItem("eka-notepad",$("#noteText").value)
-    toast("Saved")
-  })
-  $("#noteNew").addEventListener("click",()=>$("#noteText").value="")
-  $("#noteProfile").addEventListener("click",()=>$("#noteText").value=profileFile())
+import{profileText}from"./data.js"
+
+const byId=id=>document.getElementById(id)
+
+const buttons=[
+  ["MC","memory-clear"],["MR","memory-read"],["M+","memory-add"],["M-","memory-sub"],["←","back"],
+  ["CE","clear-entry"],["C","clear"],["±","sign"],["√","sqrt"],["÷","op"],
+  ["7","digit"],["8","digit"],["9","digit"],["%","percent"],["×","op"],
+  ["4","digit"],["5","digit"],["6","digit"],["1/x","inverse"],["−","op"],
+  ["1","digit"],["2","digit"],["3","digit"],["=","equals"],["+","op"],
+  ["0","digit"],[".","decimal"]
+]
+
+let value="0"
+let stored=null
+let operation=null
+let fresh=true
+let memory=0
+
+function display(){byId("calcDisplay").value=value}
+function number(){return Number(value)||0}
+
+function calculate(){
+  if(stored===null||!operation)return number()
+  const right=number()
+  if(operation==="+")return stored+right
+  if(operation==="−")return stored-right
+  if(operation==="×")return stored*right
+  if(operation==="÷")return right===0?0:stored/right
+  return right
+}
+
+function calcAction(label,type){
+  if(type==="digit"){
+    value=fresh?label:(value==="0"?label:value+label)
+    fresh=false
+  }
+  if(type==="decimal"){
+    if(fresh){value="0.";fresh=false}
+    else if(!value.includes("."))value+="."
+  }
+  if(type==="op"){
+    if(stored!==null&&!fresh)value=String(calculate())
+    stored=number()
+    operation=label
+    fresh=true
+  }
+  if(type==="equals"){
+    value=String(calculate())
+    stored=null
+    operation=null
+    fresh=true
+  }
+  if(type==="clear"||type==="clear-entry"){value="0";if(type==="clear"){stored=null;operation=null}fresh=true}
+  if(type==="back"&&!fresh){value=value.length>1?value.slice(0,-1):"0"}
+  if(type==="sign")value=String(-number())
+  if(type==="sqrt")value=String(Math.sqrt(Math.max(0,number())))
+  if(type==="percent")value=String(number()/100)
+  if(type==="inverse")value=String(number()===0?0:1/number())
+  if(type==="memory-clear")memory=0
+  if(type==="memory-read"){value=String(memory);fresh=true}
+  if(type==="memory-add")memory+=number()
+  if(type==="memory-sub")memory-=number()
+  display()
 }
 
 function initCalculator(){
-  const keys=["7","8","9","÷","4","5","6","×","1","2","3","−","0",".","=","+","C","±","%","⌫"]
-  $("#calcGrid").innerHTML=keys.map(k=>`<button data-key="${k}">${k}</button>`).join("")
-  $("#calcGrid").addEventListener("click",e=>{
-    const b=e.target.closest("[data-key]")
-    if(!b)return
-    calcPress(b.dataset.key)
+  const grid=byId("calcGrid")
+  grid.innerHTML=buttons.map(([label,type])=>`<button data-calc-type="${type}" data-calc-label="${label}">${label}</button>`).join("")
+  grid.querySelectorAll("button").forEach(button=>button.addEventListener("click",()=>calcAction(button.dataset.calcLabel,button.dataset.calcType)))
+}
+
+function downloadText(filename,text){
+  const blob=new Blob([text],{type:"text/plain;charset=utf-8"})
+  const url=URL.createObjectURL(blob)
+  const link=document.createElement("a")
+  link.href=url
+  link.download=filename
+  link.click()
+  setTimeout(()=>URL.revokeObjectURL(url),1000)
+}
+
+function initNotepad(){
+  byId("noteNew").addEventListener("click",()=>{
+    byId("noteText").value=""
+    byId("notepadTitle").textContent="Untitled - Notepad"
   })
-}
-
-function calcPress(key){
-  const d=$("#calcDisplay")
-  if(/[0-9.]/.test(key)){
-    if(key==="."&&calcValue.includes("."))return
-    calcValue=calcValue==="0"&&key!=="."?key:calcValue+key
-  }else if(["+","−","×","÷"].includes(key)){
-    calcStored=Number(calcValue)
-    calcOp=key
-    calcValue="0"
-  }else if(key==="="&&calcStored!==null&&calcOp){
-    const n=Number(calcValue)
-    const map={"+":()=>calcStored+n,"−":()=>calcStored-n,"×":()=>calcStored*n,"÷":()=>n===0?0:calcStored/n}
-    calcValue=String(map[calcOp]())
-    calcStored=null
-    calcOp=null
-  }else if(key==="C"){
-    calcValue="0";calcStored=null;calcOp=null
-  }else if(key==="±"){
-    calcValue=String(-Number(calcValue))
-  }else if(key==="%"){
-    calcValue=String(Number(calcValue)/100)
-  }else if(key==="⌫"){
-    calcValue=calcValue.length>1?calcValue.slice(0,-1):"0"
-  }
-  d.value=calcValue
-}
-
-function initControlPanel(){
-  document.querySelectorAll("[data-wallpaper]").forEach(b=>b.addEventListener("click",()=>{
-    UI.desktop.classList.remove("wallpaper-aurora","wallpaper-dark")
-    if(b.dataset.wallpaper==="aurora")UI.desktop.classList.add("wallpaper-aurora")
-    if(b.dataset.wallpaper==="dark")UI.desktop.classList.add("wallpaper-dark")
-  }))
-  $("#aeroToggle").addEventListener("change",e=>document.body.classList.toggle("no-aero",!e.target.checked))
-  setInterval(()=>$("#controlClock").textContent=new Date().toLocaleString(),1000)
-}
-
-function runProgram(value){
-  const v=value.trim()
-  if(!v)return
-  if(!launchName(v))toast("Windows cannot find '"+v+"'.")
-  closeApp("runWindow")
+  byId("noteProfile").addEventListener("click",()=>{
+    byId("noteText").value=profileText()
+    byId("notepadTitle").textContent="profile.txt - Notepad"
+  })
+  byId("noteSave").addEventListener("click",()=>downloadText("notepad.txt",byId("noteText").value))
 }
 
 function initRun(){
-  $("#runForm").addEventListener("submit",e=>{
-    e.preventDefault()
-    runProgram($("#runInput").value)
-    $("#runInput").value=""
+  const launch=value=>{
+    const name=value.trim().toLowerCase().replace(".exe","")
+    const apps={cmd:"cmd",powershell:"powershell",notepad:"notepad",calc:"calculator",calculator:"calculator",explorer:"explorer"}
+    if(apps[name])window.dispatchEvent(new CustomEvent("win7:open-app",{detail:apps[name]}))
+    else if(name==="github")window.open("https://github.com/TheLouisMahdi","_blank","noopener,noreferrer")
+    else if(name==="telegram")window.open("https://t.me/thelouis_mahdi","_blank","noopener,noreferrer")
+    else window.dispatchEvent(new CustomEvent("win7:toast",{detail:`Windows cannot find '${value}'.`}))
+  }
+  byId("runForm").addEventListener("submit",event=>{
+    event.preventDefault()
+    launch(byId("runInput").value)
+    byId("runWindow").classList.add("hidden")
+    byId("runInput").value=""
   })
-  $("#runCancel").addEventListener("click",()=>closeApp("runWindow"))
+  byId("runCancel").addEventListener("click",()=>byId("runWindow").classList.add("hidden"))
 }
 
-function powerOff(){
-  closeStart()
-  const overlay=$("#powerOverlay")
-  overlay.classList.remove("hidden")
-  $("#powerLogo").innerHTML=svg.windows()
-  $("#powerText").textContent="Shutting down..."
-  $("#powerButton").classList.add("hidden")
-  setTimeout(()=>{
-    $("#powerText").textContent=""
-    $("#powerLogo").innerHTML=""
-    $("#powerButton").classList.remove("hidden")
-  },1200)
-}
-
-function initPower(){
-  document.querySelector(".shutdown-arrow").addEventListener("click",powerOff)
-  $("#powerButton").addEventListener("click",()=>{
-    $("#powerOverlay").classList.add("hidden")
-    $("#powerButton").classList.add("hidden")
-  })
-}
-
-function resetPrintAfterTear(){
-  const receipt=$("#receipt")
-  receipt.classList.add("tearing")
-  receipt.style.transform="translateY(-103%)"
-  UI.screen.classList.remove("done","busy")
-  UI.zone.classList.remove("finished","printing")
-  UI.print.disabled=false
-  UI.status.textContent="Ready to print GitHub profile"
-  UI.printerState.textContent="IDLE"
-  setTimeout(()=>{
-    receipt.style.transform=""
-    receipt.classList.remove("tearing")
-  },60)
-}
-
-function tearReceipt(){
-  if(!UI.zone.classList.contains("finished")||tearTriggered)return
-  tearTriggered=true
-  const receipt=$("#receipt")
-  const clone=receipt.cloneNode(true)
-  clone.removeAttribute("id")
-  clone.classList.add("torn-receipt")
-  clone.style.transform="none"
-  $("#tornStack").appendChild(clone)
-  navigator.vibrate?.(20)
-  resetPrintAfterTear()
-  setTimeout(()=>{
-    clone.remove()
-    tearTriggered=false
-  },1100)
-}
-
-function initTear(){
-  const zone=$("#tearZone")
-  zone.addEventListener("click",tearReceipt)
-  zone.addEventListener("pointerdown",e=>{
-    tearStartY=e.clientY
-    tearTriggered=false
-    zone.setPointerCapture?.(e.pointerId)
-  })
-  zone.addEventListener("pointermove",e=>{
-    if(tearStartY&&e.clientY-tearStartY>38)tearReceipt()
-  })
-  zone.addEventListener("pointerup",()=>tearStartY=0)
-}
-
-function initTasks(){
-  $("#taskCmd").addEventListener("click",()=>toggleApp("cmdWindow"))
-  $("#taskPowerShell").addEventListener("click",()=>toggleApp("psWindow"))
-  $("#devicePrint").addEventListener("click",printProfile)
-}
-
-function initSearch(){
-  $("#searchBox").addEventListener("keydown",e=>{
-    if(e.key!=="Enter")return
-    const q=e.target.value.trim().toLowerCase()
-    const map=[
-      ["command","cmd"],["cmd","cmd"],["powershell","powershell"],["notepad","notepad"],
-      ["calculator","calculator"],["calc","calculator"],["control","control"],["run","run"],
-      ["github","github"],["telegram","telegram"],["computer","thispc"],["project","projects"]
-    ]
-    const hit=map.find(x=>q.includes(x[0]))
-    if(hit){e.preventDefault();openTarget(hit[1]);closeStart()}
-  })
-}
-
-function initAppShortcuts(){
-  $("#runBtn").addEventListener("click",()=>openTarget("run"))
-  document.addEventListener("keydown",e=>{
-    if(e.ctrlKey&&e.key.toLowerCase()==="l"){e.preventDefault();showDesktop()}
-  })
+export function initApps(){
+  initCalculator()
+  initNotepad()
+  initRun()
 }

@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#eceae5">
+<title>Eka · TheLouisMahdi</title>
+<link rel="stylesheet" href="css/windows.css">
+<link rel="stylesheet" href="css/apps-printer.css">
+</head>
+<body>
+<main class="app">
+  <div class="site-head"><b>Eka</b><a href="https://github.com/TheLouisMahdi" target="_blank" rel="noreferrer">@TheLouisMahdi · GitHub</a></div>
+
+  <section class="laptop">
+    <div class="lid">
+      <div class="screen" id="screen">
+        <div class="desktop" id="desktop">
+          <div class="desktop-icons" id="desktopIcons"></div>
+
+          <div class="printer-gadget">
+            <div class="gadget-title">Profile Printer</div>
+            <div class="gadget-state"><i class="gadget-dot"></i><span id="statusText">Ready to print GitHub profile</span></div>
+            <button class="aero-button" id="printBtn">Print Profile</button>
+            <div class="gadget-tools">
+              <button class="aero-button" id="pdfBtn">PDF</button>
+              <button class="aero-button" id="txtBtn">TXT</button>
+              <button class="aero-button" id="copyBtn">COPY</button>
+            </div>
+          </div>
+
+          <section class="window hidden" id="explorerWindow">
+            <div class="titlebar" id="titlebar">
+              <div class="title-left">
+                <span class="title-mini" id="titleIcon"></span>
+                <span class="window-title" id="windowTitle">Computer</span>
+              </div>
+              <div class="win-controls">
+                <button class="win-control" id="minBtn">_</button>
+                <button class="win-control" id="maxBtn">□</button>
+                <button class="win-control" id="closeBtn">×</button>
+              </div>
+            </div>
+            <div class="explorer-tools">
+              <button class="nav-circle" id="backBtn">‹</button>
+              <button class="nav-circle" id="forwardBtn">›</button>
+              <div class="address" id="addressBar">Computer</div>
+            </div>
+            <div class="explorer-command">
+              <span>Organize ▾</span>
+              <span id="command1">System properties</span>
+              <span id="command2">Uninstall or change a program</span>
+            </div>
+            <div class="explorer-body">
+              <aside class="navpane">
+                <div class="nav-group">Favorites</div>
+                <button class="nav-item" data-open="desktop">Desktop</button>
+                <button class="nav-item" data-open="downloads">Downloads</button>
+                <div class="nav-group">Libraries</div>
+                <button class="nav-item" data-open="photos">Pictures</button>
+                <button class="nav-item" data-open="documents">Documents</button>
+                <div class="nav-group">Computer</div>
+                <button class="nav-item" data-open="thispc">Computer</button>
+                <button class="nav-item" data-open="github">GitHub (G:)</button>
+              </aside>
+              <div class="filepane" id="fileArea"></div>
+            </div>
+          </section>
+
+          <section class="window app-window console-window hidden" id="cmdWindow">
+            <div class="titlebar app-titlebar">
+              <div class="title-left"><span class="title-mini app-icon" data-icon="cmd"></span><span class="window-title">Command Prompt</span></div>
+              <div class="win-controls">
+                <button class="win-control" data-win="min" data-target="cmdWindow">_</button>
+                <button class="win-control" data-win="max" data-target="cmdWindow">□</button>
+                <button class="win-control" data-win="close" data-target="cmdWindow">×</button>
+              </div>
+            </div>
+            <div class="console-body cmd-console" id="cmdOutput"></div>
+            <form class="console-input-row" id="cmdForm">
+              <span id="cmdPrompt"></span><input id="cmdInput" autocomplete="off" spellcheck="false">
+            </form>
+          </section>
+
+          <section class="window app-window console-window hidden" id="psWindow">
+            <div class="titlebar app-titlebar">
+              <div class="title-left"><span class="title-mini app-icon" data-icon="powershell"></span><span class="window-title">Windows PowerShell</span></div>
+              <div class="win-controls">
+                <button class="win-control" data-win="min" data-target="psWindow">_</button>
+                <button class="win-control" data-win="max" data-target="psWindow">□</button>
+                <button class="win-control" data-win="close" data-target="psWindow">×</button>
+              </div>
+            </div>
+            <div class="console-body ps-console" id="psOutput"></div>
+            <form class="console-input-row ps-input-row" id="psForm">
+              <span id="psPrompt"></span><input id="psInput" autocomplete="off" spellcheck="false">
+            </form>
+          </section>
+
+          <section class="window app-window notepad-window hidden" id="notepadWindow">
+            <div class="titlebar app-titlebar">
+              <div class="title-left"><span class="title-mini app-icon" data-icon="notepad"></span><span class="window-title">profile.txt - Notepad</span></div>
+              <div class="win-controls">
+                <button class="win-control" data-win="min" data-target="notepadWindow">_</button>
+                <button class="win-control" data-win="max" data-target="notepadWindow">□</button>
+                <button class="win-control" data-win="close" data-target="notepadWindow">×</button>
+              </div>
+            </div>
+            <div class="notepad-menu">
+              <button id="noteNew">File: New</button>
+              <button id="noteSave">Save</button>
+              <button id="noteProfile">Open profile.txt</button>
+            </div>
+            <textarea id="noteText" spellcheck="false"></textarea>
+          </section>
+
+          <section class="window app-window calculator-window hidden" id="calculatorWindow">
+            <div class="titlebar app-titlebar">
+              <div class="title-left"><span class="title-mini app-icon" data-icon="calculator"></span><span class="window-title">Calculator</span></div>
+              <div class="win-controls">
+                <button class="win-control" data-win="min" data-target="calculatorWindow">_</button>
+                <button class="win-control" data-win="close" data-target="calculatorWindow">×</button>
+              </div>
+            </div>
+            <div class="calc-body">
+              <input id="calcDisplay" value="0" readonly>
+              <div class="calc-grid" id="calcGrid"></div>
+            </div>
+          </section>
+
+          <section class="window app-window control-window hidden" id="controlWindow">
+            <div class="titlebar app-titlebar">
+              <div class="title-left"><span class="title-mini app-icon" data-icon="control"></span><span class="window-title">Control Panel</span></div>
+              <div class="win-controls">
+                <button class="win-control" data-win="min" data-target="controlWindow">_</button>
+                <button class="win-control" data-win="close" data-target="controlWindow">×</button>
+              </div>
+            </div>
+            <div class="control-body">
+              <h3>Appearance and Personalization</h3>
+              <div class="control-options">
+                <button data-wallpaper="blue">Windows 7 Blue</button>
+                <button data-wallpaper="aurora">Aurora</button>
+                <button data-wallpaper="dark">Dark</button>
+              </div>
+              <label class="control-check"><input type="checkbox" id="aeroToggle" checked> Enable Aero transparency</label>
+              <h3>User Accounts</h3>
+              <div class="control-card"><b>Eka</b><span>@TheLouisMahdi</span></div>
+              <h3>Date and Time</h3>
+              <div class="control-card" id="controlClock"></div>
+            </div>
+          </section>
+
+          <section class="window app-window devices-window hidden" id="devicesWindow">
+            <div class="titlebar app-titlebar">
+              <div class="title-left"><span class="title-mini app-icon" data-icon="printer"></span><span class="window-title">Devices and Printers</span></div>
+              <div class="win-controls">
+                <button class="win-control" data-win="min" data-target="devicesWindow">_</button>
+                <button class="win-control" data-win="close" data-target="devicesWindow">×</button>
+              </div>
+            </div>
+            <div class="devices-body">
+              <div class="device-card">
+                <span class="device-icon" data-icon="printer"></span>
+                <div><b>LM Profile Printer</b><span>Ready</span></div>
+              </div>
+              <button class="small-btn" id="devicePrint">Print test page</button>
+            </div>
+          </section>
+
+          <section class="window app-window run-window hidden" id="runWindow">
+            <div class="titlebar app-titlebar">
+              <div class="title-left"><span class="title-mini app-icon" data-icon="run"></span><span class="window-title">Run</span></div>
+              <div class="win-controls"><button class="win-control" data-win="close" data-target="runWindow">×</button></div>
+            </div>
+            <form class="run-body" id="runForm">
+              <span class="run-icon" data-icon="run"></span>
+              <p>Type the name of a program, folder, document, or Internet resource.</p>
+              <label>Open:</label>
+              <input id="runInput" autocomplete="off" spellcheck="false">
+              <div class="run-actions"><button type="submit">OK</button><button type="button" id="runCancel">Cancel</button></div>
+            </form>
+          </section>
+
+          <div class="power-overlay hidden" id="powerOverlay">
+            <div class="power-logo" id="powerLogo"></div>
+            <div class="power-text" id="powerText">Shutting down...</div>
+            <button class="power-button hidden" id="powerButton">Power on</button>
+          </div>
+
+          <section class="start-menu" id="startMenu">
+            <div class="start-left">
+              <div class="start-user">
+                <div class="user-tile">M</div>
+                <div class="user-name">Mahdi Ghahremani</div>
+              </div>
+              <button class="start-program" data-open="thispc" id="startComputer"></button>
+              <button class="start-program" data-open="github" id="startGithub"></button>
+              <button class="start-program" data-open="projects" id="startProjects"></button>
+              <button class="start-program" data-open="telegram" id="startTelegram"></button>
+              <button class="start-program" data-open="cmd" id="startCmd"></button>
+              <button class="start-program" data-open="powershell" id="startPowerShell"></button>
+              <button class="start-program" data-open="notepad" id="startNotepad"></button>
+              <button class="start-program" data-open="calculator" id="startCalculator"></button>
+              <button class="start-program" id="startPrint"></button>
+              <input class="searchbox" id="searchBox" placeholder="Search programs and files">
+            </div>
+            <div class="start-right">
+              <div class="start-avatar">M</div>
+              <button class="start-link" data-open="documents">Documents</button>
+              <button class="start-link" data-open="photos">Pictures</button>
+              <button class="start-link" data-open="music">Music</button>
+              <button class="start-link" data-open="thispc">Computer</button>
+              <button class="start-link" id="controlPanelBtn">Control Panel</button>
+              <button class="start-link" id="devicesBtn">Devices and Printers</button>
+              <button class="start-link" id="runBtn">Run...</button>
+              <div class="shutdown">
+                <button class="shutdown-main" id="shutdownBtn">Shut down</button>
+                <button class="shutdown-arrow">▸</button>
+              </div>
+            </div>
+          </section>
+
+          <div class="taskbar">
+            <button class="start-orb" id="startBtn" aria-label="Start"></button>
+            <button class="task-button" id="taskExplorer" aria-label="Windows Explorer"></button>
+            <button class="task-button" id="taskCmd" aria-label="Command Prompt"></button>
+            <button class="task-button" id="taskPowerShell" aria-label="Windows PowerShell"></button>
+            <button class="task-button" id="taskGithub" aria-label="GitHub"></button>
+            <button class="task-button" id="taskPrinter" aria-label="Profile Printer"></button>
+            <div class="tray">
+              <span class="tray-icon">▲</span>
+              <span class="tray-icon">◔</span>
+              <span class="tray-icon">▂▅</span>
+              <div class="clock" id="clock"></div>
+              <button class="peek" id="peekBtn" aria-label="Show desktop"></button>
+            </div>
+          </div>
+
+          <div class="fake-cursor" id="fakeCursor"></div>
+        </div>
+      </div>
+    </div>
+    <div class="base"></div>
+  </section>
+
+  <section class="printer-zone" id="printerZone">
+    <div class="printer">
+      <div class="printer-head">
+        <div class="printer-logo">LM / PROFILE PRINTER</div>
+        <div class="led-wrap"><i class="led"></i><span id="printerState">IDLE</span></div>
+      </div>
+      <div class="printer-title">Developer Receipt</div>
+      <div class="printer-sub">GitHub profile · @TheLouisMahdi</div>
+      <div class="slot"></div>
+    </div>
+
+    <button class="tear-zone" id="tearZone" aria-label="Tear receipt">
+      <span class="tear-line"></span><span class="tear-label">Pull to tear</span>
+    </button>
+    <div class="torn-stack" id="tornStack"></div>
+    <div class="paper-window">
+      <article class="receipt" id="receipt">
+        <div class="receipt-top">
+          <div class="receipt-gh">GH</div>
+          <div class="receipt-title">GITHUB PROFILE RECEIPT</div>
+          <div class="receipt-handle">@TheLouisMahdi</div>
+        </div>
+
+        <div class="receipt-section">
+          <div class="receipt-row"><span>NAME</span><span>Mahdi Ghahremani</span></div>
+          <div class="receipt-row"><span>USER</span><span>TheLouisMahdi</span></div>
+          <div class="receipt-row"><span>ROLE</span><span>EE Student</span></div>
+          <div class="receipt-row"><span>UNIVERSITY</span><span>University of Zanjan</span></div>
+          <div class="receipt-row"><span>TELEGRAM</span><span>@thelouis_mahdi</span></div>
+          <div class="receipt-row"><span>FOCUS</span><span>AI + Hardware</span></div>
+        </div>
+
+        <div class="receipt-section">
+          <div class="project-title">SELECTED REPOSITORIES</div>
+          <div class="project">fpga-cnn-fatigue-monitoring</div>
+          <div class="project">npvt-terminal-converter</div>
+          <div class="project">VideoX_Compressor</div>
+          <div class="project">lights-out-gf2-solver</div>
+          <div class="project">btc-hourly-forecast</div>
+          <div class="project">bwbuilder</div>
+        </div>
+
+        <div class="receipt-section">
+          <div class="receipt-row"><span>STACK</span><span>Python / C / Verilog</span></div>
+          <div class="receipt-row"><span>HARDWARE</span><span>STM32 / FPGA / Zynq</span></div>
+          <div class="receipt-row"><span>STYLE</span><span>Local-first tools</span></div>
+          <div class="receipt-row"><span>PROFILE</span><span>github.com/TheLouisMahdi</span></div>
+        </div>
+
+        <div class="receipt-total">
+          <div class="success">✓ PROFILE PRINTED</div>
+          <div class="receipt-meta"><span id="receiptDate"></span> · PUBLIC PROFILE</div>
+          <div class="barcode"></div>
+          <div class="code">THELOUISMAHDI</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  </main>
+<div class="toast" id="toast"></div>
+
+<script src="js/core.js" defer></script>
+<script src="js/windows.js" defer></script>
+<script src="js/terminal.js" defer></script>
+<script src="js/apps.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

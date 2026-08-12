@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - agent/windows7-interactions-python
+      - agent/windows7-complete-simulator
   pull_request:
     branches:
       - main
@@ -39,6 +40,10 @@ jobs:
           test -f js/python-worker.js
           test -f js/terminal.js
           test -f js/receipt.js
+          test -f js/system.js
+          test -f js/system-apps.js
           grep -q 'type="module" src="js/app.js"' index.html
           grep -q 'loadPyodide' js/python-worker.js
           grep -q 'Eka Command Deck.txt' EKA_COMMANDS.txt
+      - name: Run simulator smoke checks
+        run: node tests/smoke.mjs

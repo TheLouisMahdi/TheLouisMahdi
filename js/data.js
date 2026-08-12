@@ -24,6 +24,7 @@ export const FILE_SYSTEM={
   desktop:{title:"Desktop",path:"C:\\Users\\Eka\\Desktop",type:"folder",items:[
     {name:"Computer",type:"computer",target:"computer"},
     {name:"GitHub Projects",type:"folder",target:"projects"},
+    {name:"Print Profile",type:"printer",app:"printprofile"},
     {name:"Pictures",type:"photo",target:"pictures"},
     {name:"Recycle Bin",type:"recycle",target:"recycle"},
     {name:"Telegram",type:"telegram",external:PROFILE.telegramUrl}
@@ -63,7 +64,9 @@ export const FILE_SYSTEM={
   users:{title:"Users",path:"C:\\Users",type:"folder",items:[{name:"Eka",type:"folder",target:"desktop"}]},
   programfiles:{title:"Program Files",path:"C:\\Program Files",type:"folder",items:[
     {name:"Windows PowerShell",type:"folder",target:"powershellFolder"},
-    {name:"Internet Explorer",type:"folder",target:"ieFolder"}
+    {name:"Internet Explorer",type:"folder",target:"ieFolder"},
+    {name:"Windows Media Player",type:"media",app:"media"},
+    {name:"Windows Photo Viewer",type:"photo",app:"image"}
   ]},
   powershellFolder:{title:"Windows PowerShell",path:"C:\\Program Files\\WindowsPowerShell",type:"folder",items:[{name:"v1.0",type:"folder",target:"psV1"}]},
   psV1:{title:"v1.0",path:"C:\\Program Files\\WindowsPowerShell\\v1.0",type:"folder",items:[{name:"powershell.exe",type:"powershell",app:"powershell"}]},
@@ -76,7 +79,12 @@ export const FILE_SYSTEM={
   system32:{title:"System32",path:"C:\\Windows\\System32",type:"folder",items:[
     {name:"cmd.exe",type:"cmd",app:"cmd"},
     {name:"calc.exe",type:"calculator",app:"calculator"},
-    {name:"notepad.exe",type:"notepad",app:"notepad"}
+    {name:"notepad.exe",type:"notepad",app:"notepad"},
+    {name:"mspaint.exe",type:"paint",app:"paint"},
+    {name:"SnippingTool.exe",type:"snipping",app:"snipping"},
+    {name:"StikyNot.exe",type:"sticky",app:"sticky"},
+    {name:"Taskmgr.exe",type:"taskmanager",app:"taskmanager"},
+    {name:"wordpad.exe",type:"wordpad",app:"wordpad"}
   ]},
   recycle:{title:"Recycle Bin",path:"Recycle Bin",type:"folder",items:[]}
 }

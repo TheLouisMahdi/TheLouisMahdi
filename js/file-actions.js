@@ -1,5 +1,5 @@
 import{askConfirm,askText}from"./interaction.js"
-import{copyPath,deletePath,fileName,folderPath,getEntry,movePath,parentPath,readFile,renamePath,resolvePath,uniquePath,writeFile,makeFolder}from"./vfs.js"
+import{copyPath,deletePath,emptyRecycleBin,fileName,folderPath,getEntry,movePath,parentPath,readFile,renamePath,resolvePath,restorePath,roots,trashPath,uniquePath,writeFile,makeFolder}from"./vfs.js"
 
 let clipboard={mode:null,paths:[]}
 
@@ -32,10 +32,11 @@ export async function renameVirtual(item){
 export async function deleteVirtual(items){
   const paths=items.map(pathOf).filter(Boolean)
   if(!paths.length)return
-  const ok=await askConfirm("Delete",paths.length===1?`Are you sure you want to delete '${fileName(paths[0])}'?`:`Are you sure you want to delete these ${paths.length} items?`)
+  const permanent=paths.every(path=>path.toLowerCase().startsWith(roots().recycle.toLowerCase()))
+  const ok=await askConfirm(permanent?"Delete File":"Move to Recycle Bin",paths.length===1?`${permanent?"Permanently delete":"Move"} '${fileName(paths[0])}'${permanent?"?":" to the Recycle Bin?"}`:`${permanent?"Permanently delete":"Move to Recycle Bin"} these ${paths.length} items?`)
   if(!ok)return
   let failed=0
-  for(const path of paths)if(!deletePath(path))failed+=1
+  for(const path of paths)if(!(permanent?deletePath(path):trashPath(path)))failed+=1
   if(failed)toast(`${failed} item(s) could not be deleted because a folder is not empty.`)
 }
 
@@ -106,9 +107,10 @@ export function fileContextItems(item,selected,{open}){
   const writable=selected.filter(entry=>entry?.writable&&entry.virtualPath)
   const allWritable=writable.length===selected.length&&writable.length>0
   const path=pathOf(item)
+  const recycled=path?.toLowerCase().startsWith(roots().recycle.toLowerCase())
   const isEditable=path&&editable.test(path)
   const items=[
-    {label:"Open",action:()=>open(item)},
+    recycled?{label:"Restore",action:()=>restorePath(path)}:{label:"Open",action:()=>open(item)},
     isEditable?{label:"Open with Notepad",action:()=>openVirtual(item,true)}:null,
     item.type==="python"?{label:"Run with Python",action:()=>runPython(path)}:null,
     separator,
@@ -125,6 +127,11 @@ export function fileContextItems(item,selected,{open}){
 }
 
 export function backgroundContextItems(target,{selectAll,clear,refresh}){
+  if(directoryFor(target)?.toLowerCase()===roots().recycle.toLowerCase())return [
+    {label:"Empty Recycle Bin",action:async()=>{if(await askConfirm("Empty Recycle Bin","Are you sure you want to permanently delete these items?"))emptyRecycleBin()}},
+    separator,
+    {label:"Select All",action:selectAll},{label:"Refresh",action:refresh},{label:"Clear selection",action:clear}
+  ]
   return [
     {label:"Paste",disabled:!canPaste(),action:()=>pasteInto(target)},
     separator,

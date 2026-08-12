@@ -1,6 +1,6 @@
-import{loadPyodide}from"https://cdn.jsdelivr.net/pyodide/v314.0.3/full/pyodide.mjs"
+import{loadPyodide}from"https://cdn.jsdelivr.net/pyodide/v314.0.4/full/pyodide.mjs"
 
-const PYODIDE_VERSION="314.0.3"
+const PYODIDE_VERSION="314.0.4"
 const INDEX_URL=`https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`
 let runtimePromise=null
 

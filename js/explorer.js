@@ -14,7 +14,7 @@ const byId=id=>document.getElementById(id)
 const DESKTOP=roots().desktop
 
 function fileIcon(item){
-  const map={computer:"computer",drive:"drive",folder:"folder",github:"github",telegram:"telegram",photo:"photo",zip:"zip",text:"text",python:"python",html:"html",recycle:"recycle",cmd:"cmd",powershell:"powershell",notepad:"notepad",calculator:"calculator",link:"link"}
+  const map={computer:"computer",drive:"drive",folder:"folder",github:"github",telegram:"telegram",photo:"photo",zip:"zip",text:"text",python:"python",html:"html",recycle:"recycle",cmd:"cmd",powershell:"powershell",notepad:"notepad",calculator:"calculator",link:"link",paint:"paint",wordpad:"wordpad",sticky:"sticky",snipping:"snipping",media:"media",taskmanager:"taskmanager",printer:"printer"}
   return icon(map[item.type]||"text")
 }
 
@@ -99,6 +99,7 @@ export function resolveFolderFromPath(path){
   const table={
     "c:\\":"cdrive","c:":"cdrive","d:\\":"ddrive","d:":"ddrive","g:\\":"github","g:":"github",
     "c:\\users\\eka\\desktop":"desktop","c:\\users\\eka\\documents":"documents","c:\\users\\eka\\downloads":"downloads",
+    "g:\\workspace":"github",
     "c:\\windows":"windows","c:\\windows\\system32":"system32","c:\\program files":"programfiles"
   }
   if(table[value])return table[value]

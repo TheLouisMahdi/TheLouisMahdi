@@ -9,6 +9,8 @@
 
 ### Electrical Engineering Student at University of Zanjan · AI Vision · Embedded & Digital Hardware Systems
 
+### [Open the interactive EKA Windows 7 portfolio](https://thelouismahdi.github.io/TheLouisMahdi/)
+
 <a href="https://github.com/TheLouisMahdi">
   <img src="https://img.shields.io/badge/GitHub-TheLouisMahdi-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
 </a>

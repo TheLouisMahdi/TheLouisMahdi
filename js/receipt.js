@@ -28,14 +28,6 @@ function receiptHtml(){
 
 function setStatus(text,state="READY"){byId("statusText").textContent=text;byId("printerState").textContent=state}
 
-function snapshot(){
-  const node=document.createElement("div")
-  node.className="torn-receipt arriving"
-  node.innerHTML=`<div class="torn-summary"><span>GITHUB PROFILE RECEIPT</span><span>#${String(serial).padStart(3,"0")}</span></div><div>${PROFILE.name} · @${PROFILE.user}</div><div>${nowText()}</div><div class="mini-code">||| || | |||| | |||</div>`
-  requestAnimationFrame(()=>node.classList.remove("arriving"))
-  return node
-}
-
 export function tearReceipt(silent=false){
   if(!active||tearing||printing)return false
   tearing=true
@@ -44,17 +36,15 @@ export function tearReceipt(silent=false){
   byId("tearZone").classList.add("hidden")
   setStatus("Tearing along perforation...","TEAR")
   setTimeout(()=>{
-    const stack=byId("tornStack")
-    stack.prepend(snapshot())
-    while(stack.children.length>4)stack.lastElementChild.remove()
-    byId("printerZone").querySelector(".receipt-stage").classList.add("has-torn")
+    byId("tornStack").replaceChildren()
+    byId("printerZone").querySelector(".receipt-stage").classList.remove("has-torn")
     receipt.className="receipt hidden"
     receipt.style.transform=""
     active=false
     tearing=false
     serial+=1
-    setStatus(silent?"Previous receipt detached":"Receipt detached. Print another anytime.","READY")
-  },430)
+    setStatus(silent?"Receipt detached":"Receipt detached. The paper path is clear.","READY")
+  },620)
   return true
 }
 
@@ -75,7 +65,7 @@ function beginPrint(){
     receipt.className="receipt printing"
     active=true
     setStatus("Feeding and printing profile...","PRINT")
-  },180)
+  },520)
   setTimeout(()=>{
     receipt.classList.remove("printing")
     printer.classList.remove("printer-working")
@@ -83,13 +73,13 @@ function beginPrint(){
     byId("tearZone").classList.remove("hidden")
     printing=false
     setStatus("Printed. Pull down or click the perforation.","READY")
-  },1560)
+  },5200)
 }
 
 export function printReceipt(){
   if(printing)return
   if(active){
-    if(tearReceipt(true))setTimeout(beginPrint,470)
+    setStatus("Tear the current receipt before printing another.","WAIT")
     return
   }
   beginPrint()
@@ -142,7 +132,8 @@ export function initReceipt(){
     try{await navigator.clipboard.writeText(`${profileText()}\n${nowText()}`);setStatus("Profile copied to clipboard.","READY")}
     catch{setStatus("Clipboard permission was not available.","READY")}
   })
-  byId("pdfBtn").addEventListener("click",()=>{if(!active)printReceipt();setTimeout(()=>window.print(),active?0:1650)})
+  byId("pdfBtn").addEventListener("click",()=>{if(!active){printReceipt();setTimeout(()=>window.print(),5400)}else window.print()})
   bindPull(byId("tearZone"),true)
   bindPull(byId("receipt"),false)
+  window.addEventListener("win7:print-profile",printReceipt)
 }

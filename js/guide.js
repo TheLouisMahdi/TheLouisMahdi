@@ -1,0 +1,145 @@
+export const COMMAND_GUIDE=`EKA WINDOWS 7 COMMAND DECK
+==========================
+
+DESKTOP / EXPLORER
+------------------
+Single click / tap       Select an item
+Double click / double tap Open an item
+Right click              Open the Windows-style context menu
+Touch and hold           Right click on phones/tablets
+Ctrl + click             Add/remove items from a multi-selection
+Shift + click            Select a range in Explorer
+Ctrl + A                 Select all visible files
+Delete                    Delete selected writable files
+F2                        Rename a selected writable file
+Enter                     Open the selected item
+Esc                       Close Start/context menus or clear selection
+Win + E                   Open Windows Explorer when the browser receives it
+Win + R                   Open Run when the browser receives it
+Win + D / Win + M         Show desktop / minimize windows
+Alt + F4                  Close the active simulated window
+Alt + Tab                 Cycle visible simulated windows when delivered by browser
+Explorer Alt + Left/Right Back / Forward
+Explorer Ctrl + E / F     Focus search
+Explorer F5               Refresh
+
+COMMAND PROMPT
+--------------
+help                     List supported commands
+help <command>           Show short command help
+ver                      Windows version
+vol                      Volume information
+dir [path]               List files and folders
+cd / chdir <path>        Change directory
+cls                      Clear the console
+echo <text>              Print text
+type <file>              Show a text file
+copy <src> <dst>         Copy a writable virtual file
+move <src> <dst>         Move a writable virtual file
+ren <src> <name>         Rename a writable virtual file
+del / erase <file>       Delete a writable virtual file
+mkdir / md <name>        Create a virtual folder marker
+rmdir / rd <name>        Remove an empty virtual folder marker
+tree                     Print the current virtual tree
+where <name>             Resolve common executables
+start <file|url|app>     Open a file, URL, or app
+notepad [file]           Open Notepad
+explorer [path]          Open Windows Explorer
+calc                     Open Calculator
+powershell               Open Windows PowerShell
+python <file.py>         Run a saved Python file in the browser
+py <file.py>             Alias for python
+python --version         Show the browser Python runtime
+whoami                   Current simulated user
+hostname                 Computer name
+date /t                  Current date
+time /t                  Current time
+tasklist                 Simulated Windows process list
+systeminfo               Windows 7-style system information
+ipconfig                 Simulated local network configuration
+getmac                   Simulated adapter MAC table
+netstat                  Simulated active connections
+ping localhost           Local simulated ICMP reply
+attrib [path]            Show virtual file attributes
+findstr [/i] text file   Search text inside a virtual file
+more <file>              Display a file
+sort <file>              Sort file lines
+set [NAME=value]         Show or set simulated environment variables
+path [value]             Show or set simulated PATH
+title <text>             Change Command Prompt title
+color <hex>              Windows console color pair such as 0A
+driverquery              Simulated Windows 7 driver list
+wmic os get ...          Windows 7-style OS information
+assoc                    Show common file associations
+cmd /c <command>         Run a command through the command interpreter
+profile                  Print Mahdi's profile receipt data
+github                   Open @TheLouisMahdi
+projects                 Open GitHub Projects
+telegram                 Open Telegram
+eka                      Show the Eka command splash
+matrix                    Tiny console easter egg
+coffee                    Critical developer subsystem status
+fortune                   Random builder line
+
+WINDOWS POWERSHELL 2.0 STYLE
+----------------------------
+$PSVersionTable
+Get-Help [command]
+Get-Command
+Get-ChildItem [path]      aliases: dir, ls, gci
+Get-Location              aliases: pwd, gl
+Set-Location <path>       alias: cd
+Get-Content <file>        aliases: cat, type
+Set-Content <file> <text>
+Add-Content <file> <text>
+New-Item <file>
+Remove-Item <file>
+Rename-Item <src> <name>
+Copy-Item <src> <dst>
+Move-Item <src> <dst>
+Get-Date
+Get-Process
+Get-Host
+Get-Item <path>
+Test-Path <path>
+Select-String <text> <file>
+Get-WmiObject Win32_OperatingSystem
+Get-Variable
+Get-History
+Clear-Host                aliases: cls, clear
+Write-Output <text>       alias: echo
+Start-Process <app|file>
+python <file.py>
+profile / github / projects / telegram / eka
+
+RUN DIALOG
+----------
+cmd
+powershell
+notepad
+notepad <file>
+calc
+explorer
+explorer C:\\Users\\Eka\\Desktop
+python C:\\Users\\Eka\\Desktop\\hello.py
+github
+telegram
+
+NOTEPAD + FILES
+---------------
+Use Save As... to save into the simulated Desktop or Documents folder.
+Files are stored in browser localStorage for this site.
+.py files can be run with Python from CMD, PowerShell, Run, or the context menu.
+.html / .htm files open inside the simulated Internet Explorer preview window.
+Relative .css and .js files saved beside an HTML file are loaded into that preview too.
+Right click a text, Python, HTML, CSS, JS, JSON, Markdown, or batch file and choose Open with Notepad.
+
+TRY THESE
+---------
+python hello.py
+start hello.html
+type "Eka Command Deck.txt"
+Get-Content "Eka Command Deck.txt"
+eka
+matrix
+coffee`

@@ -141,6 +141,10 @@ notepad
 notepad <file>
 calc
 mspaint
+solitaire
+freecell
+minesweeper
+chess
 write
 wmplayer
 iexplore

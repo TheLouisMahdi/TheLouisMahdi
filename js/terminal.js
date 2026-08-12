@@ -91,7 +91,7 @@ function openTarget(value,cwd=cmdPath){
   const raw=String(value||"").trim().replace(/^"|"$/g,"")
   if(!raw||raw==="."){window.dispatchEvent(new CustomEvent("win7:explorer-path",{detail:cwd}));return true}
   const lower=raw.toLowerCase().replace(/\.exe$/i,"")
-  const apps={cmd:"cmd",powershell:"powershell",notepad:"notepad",calc:"calculator",calculator:"calculator",explorer:"explorer",iexplore:"browser",mspaint:"paint",paint:"paint",write:"wordpad",wordpad:"wordpad",wmplayer:"media",taskmgr:"taskmanager",control:"control",osk:"keyboard",charmap:"charmap",snippingtool:"snipping",stikynot:"sticky",minesweeper:"minesweeper",msinfo32:"systeminfo"}
+  const apps={cmd:"cmd",powershell:"powershell",notepad:"notepad",calc:"calculator",calculator:"calculator",explorer:"explorer",iexplore:"browser",mspaint:"paint",paint:"paint",write:"wordpad",wordpad:"wordpad",wmplayer:"media",taskmgr:"taskmanager",control:"control",osk:"keyboard",charmap:"charmap",snippingtool:"snipping",stikynot:"sticky",minesweeper:"minesweeper",solitaire:"solitaire",freecell:"freecell",chess:"chess",msinfo32:"systeminfo"}
   if(apps[lower]){openApp(apps[lower]);return true}
   if(lower==="github"){window.open(PROFILE.github,"_blank","noopener,noreferrer");return true}
   if(lower==="telegram"){window.open(PROFILE.telegramUrl,"_blank","noopener,noreferrer");return true}
@@ -282,6 +282,7 @@ async function runCmd(line){
   }
   if(command==="calc"){openApp("calculator");return}
   if(command==="mspaint"||command==="paint"){openApp("paint");return}
+  if(["solitaire","freecell","minesweeper","chess"].includes(command)){openApp(command);return}
   if(command==="write"||command==="wordpad"){openApp("wordpad");return}
   if(command==="wmplayer"){openApp("media");return}
   if(command==="iexplore"){openApp("browser");return}

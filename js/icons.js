@@ -10,6 +10,8 @@ export const icons={
   photo:()=>s('<rect x="7" y="9" width="50" height="45" rx="4" fill="#e3f5ff" stroke="#5785a3"/><circle cx="21" cy="23" r="6" fill="#ffd35a"/><path d="M10 48l14-16 9 10 7-7 14 13z" fill="#63ad5a"/>'),
   zip:()=>s('<path d="M12 7h30l10 10v40H12z" fill="#f2c34f" stroke="#9e6d09"/><path d="M42 7v12h10" fill="#ffe9a1"/><path d="M28 7h7v6h-7zm0 8h7v6h-7zm0 8h7v6h-7zm0 8h7v6h-7zm0 8h7v6h-7z" fill="#676e74"/>'),
   text:()=>s('<path d="M13 7h29l9 9v41H13z" fill="#fff" stroke="#849eaf"/><path d="M42 7v11h10" fill="#dceaf4"/><path d="M20 26h24M20 33h24M20 40h20M20 47h17" stroke="#6b8497" stroke-width="3"/>'),
+  python:()=>s('<path d="M17 10c0-5 30-6 30 2v13H28c-7 0-12 5-12 12H9V23c0-8 8-13 15-13h18" fill="#3776ab"/><path d="M47 54c0 5-30 6-30-2V39h19c7 0 12-5 12-12h7v14c0 8-8 13-15 13H22" fill="#ffd343"/><circle cx="25" cy="17" r="2.5" fill="#fff"/><circle cx="39" cy="47" r="2.5" fill="#4b6681"/>'),
+  html:()=>s('<path d="M12 7h31l9 9v41H12z" fill="#fff" stroke="#8aa1b0"/><path d="M43 7v11h10" fill="#e3edf4"/><path d="M24 27l-7 6 7 6M40 27l7 6-7 6M35 23l-6 20" fill="none" stroke="#e34f26" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'),
   recycle:()=>s('<path d="M18 17h28l-3 39H21z" fill="#def0f4" stroke="#6c939b"/><path d="M15 14h34M25 9h14" stroke="#6c939b" stroke-width="4"/><path d="M27 25l10 6-8 4 7 5M38 25l-7 10-4-7" fill="none" stroke="#47a66b" stroke-width="3"/>'),
   cmd:()=>s('<rect x="6" y="10" width="52" height="42" rx="4" fill="#101010" stroke="#9a9a9a"/><path d="M14 23l9 8-9 8M28 40h15" fill="none" stroke="#fff" stroke-width="4"/>'),
   powershell:()=>s('<path d="M7 12h50l-7 40H10z" fill="#1267a5" stroke="#d2edff"/><path d="M17 23l11 8-12 9M31 41h13" fill="none" stroke="#fff" stroke-width="4"/>'),
@@ -17,6 +19,7 @@ export const icons={
   calculator:()=>s('<rect x="12" y="6" width="40" height="52" rx="5" fill="#dce8f0" stroke="#617989"/><rect x="18" y="12" width="28" height="11" fill="#edf8dc" stroke="#7f9284"/><g fill="#6d8495"><rect x="18" y="29" width="7" height="7"/><rect x="29" y="29" width="7" height="7"/><rect x="40" y="29" width="7" height="7"/><rect x="18" y="40" width="7" height="7"/><rect x="29" y="40" width="7" height="7"/><rect x="40" y="40" width="7" height="7"/></g>'),
   run:()=>s('<rect x="8" y="12" width="48" height="38" rx="5" fill="#eaf3fb" stroke="#6586a0"/><path d="M17 24h30M17 32h22" stroke="#6b8295" stroke-width="3"/><path d="M39 39h8l-4 7z" fill="#2d82bd"/>'),
   link:()=>s('<rect x="9" y="9" width="46" height="46" rx="6" fill="#dceeff" stroke="#5790bc"/><path d="M26 38l12-12m-7 0h7v7" fill="none" stroke="#1977bd" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>'),
+  ie:()=>s('<circle cx="32" cy="32" r="19" fill="#1ba9e8"/><path d="M13 39c7 13 32 16 43 2M10 34c4-20 34-32 48-20M17 49c12-23 23-32 38-35" fill="none" stroke="#f6ca25" stroke-width="4" stroke-linecap="round"/><path d="M22 31h22c0-7-4-11-10-11-7 0-12 6-12 14 0 9 5 14 13 14 5 0 9-2 12-5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>'),
   cursor:()=>s('<path d="M3 2v26l7-7 5 12 5-2-5-12h10z" fill="#fff" stroke="#111" stroke-width="2" stroke-linejoin="round"/>',"0 0 28 36")
 }
 

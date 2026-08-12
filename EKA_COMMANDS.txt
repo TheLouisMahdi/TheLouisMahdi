@@ -63,6 +63,7 @@ calc                     Open Calculator
 powershell               Open Windows PowerShell
 python <file.py>         Run a saved Python file in the browser
 py <file.py>             Alias for python
+python3 <file.py>        Alias for python
 python --version         Show the browser Python runtime
 whoami                   Current simulated user
 hostname                 Computer name
@@ -87,6 +88,8 @@ shutdown /r              Restart the EKA laptop
 driverquery              Simulated Windows 7 driver list
 wmic os get ...          Windows 7-style OS information
 assoc                    Show common file associations
+assoc .py                Show the Python file association
+ftype Python.File        Show the command used to run .py files
 cmd /c <command>         Run a command through the command interpreter
 profile                  Print Mahdi's profile receipt data
 github                   Open @TheLouisMahdi
@@ -161,6 +164,8 @@ Use Save As... to choose Desktop, Documents, Downloads, or the local GitHub (G:)
 Files are stored in browser localStorage for this site.
 The GitHub (G:) workspace never writes to the real repository and never asks for a token.
 .py files can be run with Python from CMD, PowerShell, Run, or the context menu.
+.py files opened normally use the Python association; choose Open with Notepad to edit them.
+Relative Python names are resolved from the current folder, Desktop, Documents, and Downloads.
 .html / .htm files open inside the simulated Internet Explorer preview window.
 Relative .css and .js files saved beside an HTML file are loaded into that preview too.
 Right click a text, Python, HTML, CSS, JS, JSON, Markdown, or batch file and choose Open with Notepad.
@@ -168,6 +173,7 @@ Right click a text, Python, HTML, CSS, JS, JSON, Markdown, or batch file and cho
 TRY THESE
 ---------
 python hello.py
+py Hello.py
 start hello.html
 type "Eka Command Deck.txt"
 Get-Content "Eka Command Deck.txt"

@@ -1,9 +1,9 @@
 import{FILE_SYSTEM,PROFILE,profileText,repoText}from"./data.js"
 import{icon}from"./icons.js"
 import{openWindow}from"./window-manager.js"
-import{bindSelectableSurface,refreshSurface}from"./interaction.js"
+import{askText,bindSelectableSurface,refreshSurface,showContextMenu}from"./interaction.js"
 import{backgroundContextItems,deleteSelected,fileContextItems,openVirtual,renameSelected}from"./file-actions.js"
-import{fileName,folderPath,getEntry,isFolder,listVirtual,normalizePath,resolvePath,roots}from"./vfs.js"
+import{fileName,folderPath,getEntry,isFolder,listVirtual,makeFolder,normalizePath,resolvePath,roots,uniquePath}from"./vfs.js"
 
 let current="computer"
 let history=["computer"]
@@ -110,6 +110,14 @@ export function resolveFolderFromPath(path){
 
 function backgroundTarget(){return current.startsWith("vfs:")?current:folderPath(current)?current:null}
 
+async function createFolder(){
+  const target=backgroundTarget()
+  const dir=target?.startsWith("vfs:")?target.slice(4):folderPath(target)
+  if(!dir){window.dispatchEvent(new CustomEvent("win7:toast",{detail:"A folder cannot be created in this system location."}));return}
+  const name=await askText("New Folder","Folder name:","New folder")
+  if(name)makeFolder(uniquePath(resolvePath(dir,name)))
+}
+
 function initSelection(){
   const area=byId("fileArea")
   bindSelectableSurface(area,".file-item,.drive-row",{
@@ -153,12 +161,42 @@ export function initExplorer(){
   byId("explorerSearch").addEventListener("input",render)
   document.querySelectorAll("[data-open]").forEach(node=>node.addEventListener("click",()=>{navigate(node.dataset.open);byId("startMenu").classList.add("hidden")}))
   document.querySelectorAll("[data-external]").forEach(node=>node.addEventListener("click",()=>openExternal(node.dataset.external)))
-  byId("organizeBtn").addEventListener("click",()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Organize · Cut · Copy · Paste · Layout · Folder and search options"})))
+  byId("organizeBtn").addEventListener("click",event=>{
+    const rect=event.currentTarget.getBoundingClientRect()
+    showContextMenu([
+      {label:"New folder",action:createFolder},
+      {separator:true},
+      {label:"Select all",action:()=>{byId("fileArea").focus();byId("fileArea").dispatchEvent(new KeyboardEvent("keydown",{key:"a",ctrlKey:true,bubbles:true}))}},
+      {label:"Layout  ›  Navigation pane ✓",action:()=>byId("explorerWindow").classList.toggle("hide-navigation")},
+      {label:"Layout  ›  Menu bar",action:()=>byId("explorerMenuBar").classList.toggle("hidden")},
+      {separator:true},
+      {label:"Folder and search options",action:()=>{window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"control"}));window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"folder-options"}))}}
+    ],rect.left,rect.bottom)
+  })
+  byId("newFolderBtn").addEventListener("click",createFolder)
+  byId("changeViewBtn").addEventListener("click",()=>{byId("fileArea").classList.toggle("details-view");byId("changeViewBtn").textContent=byId("fileArea").classList.contains("details-view")?"☰ ▾":"▦ ▾"})
+  byId("addressBar").tabIndex=0
+  byId("addressBar").addEventListener("dblclick",event=>{event.currentTarget.contentEditable="true";event.currentTarget.focus();document.execCommand?.("selectAll",false,null)})
+  byId("addressBar").addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();event.currentTarget.contentEditable="false";navigatePath(event.currentTarget.textContent)}if(event.key==="Escape"){event.currentTarget.contentEditable="false";render()}})
+  byId("addressBar").addEventListener("blur",event=>{event.currentTarget.contentEditable="false";render()})
+  byId("explorerMenuBar").addEventListener("click",event=>{
+    const button=event.target.closest("button");if(!button)return
+    const rect=button.getBoundingClientRect(),menu=button.textContent.trim()
+    const menus={
+      File:[{label:"New folder",action:createFolder},{separator:true},{label:"Close",action:()=>byId("explorerWindow").querySelector('[data-window-action="close"]').click()}],
+      Edit:[{label:"Select all",action:()=>byId("fileArea").dispatchEvent(new KeyboardEvent("keydown",{key:"a",ctrlKey:true,bubbles:true}))},{label:"Invert selection",action:()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Selection inverted."}))}],
+      View:[{label:"Large icons",action:()=>byId("fileArea").classList.remove("details-view")},{label:"Details",action:()=>byId("fileArea").classList.add("details-view")},{separator:true},{label:"Refresh",action:render}],
+      Tools:[{label:"Map network drive...",action:()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:"GitHub workspace is mapped as G:."}))},{label:"Folder options...",action:()=>{window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"control"}));window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"folder-options"}))}}],
+      Help:[{label:"View Help",action:()=>window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"help"}))},{label:"About Windows",action:()=>window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"systeminfo"}))}]
+    }
+    showContextMenu(menus[menu]||[],rect.left,rect.bottom)
+  })
   byId("explorerWindow").addEventListener("keydown",event=>{
     if(event.altKey&&event.key==="ArrowLeft"){event.preventDefault();byId("backBtn").click();return}
     if(event.altKey&&event.key==="ArrowRight"){event.preventDefault();byId("forwardBtn").click();return}
     if((event.ctrlKey||event.metaKey)&&["e","f"].includes(event.key.toLowerCase())){event.preventDefault();byId("explorerSearch").focus();byId("explorerSearch").select();return}
     if(event.key==="F5"){event.preventDefault();render();return}
+    if(event.key==="Alt"){event.preventDefault();byId("explorerMenuBar").classList.toggle("hidden");return}
     if(event.key==="Backspace"&&!event.target.matches("input,textarea")){event.preventDefault();byId("backBtn").click()}
   })
   window.addEventListener("win7:vfs-changed",render)

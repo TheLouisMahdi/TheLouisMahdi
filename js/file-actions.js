@@ -14,6 +14,7 @@ export function openVirtual(item,forceNotepad=false){
   const path=pathOf(item)
   if(!path)return false
   if(item.type==="folder"){window.dispatchEvent(new CustomEvent("win7:navigate",{detail:item.target}));return true}
+  if(item.type==="python"&&!forceNotepad){runPython(path);return true}
   window.dispatchEvent(new CustomEvent("win7:open-file",{detail:{path,forceNotepad}}))
   return true
 }

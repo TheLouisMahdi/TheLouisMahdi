@@ -26,7 +26,13 @@ function receiptHtml(){
   <div class="receipt-total">EKA @GITHUB · PROFILE #${String(serial).padStart(3,"0")}</div><div class="receipt-time">${nowText()}</div><div class="receipt-code">|| ||| | |||| || | |||</div>`
 }
 
-function setStatus(text,state="READY"){byId("statusText").textContent=text;byId("printerState").textContent=state}
+function setStatus(text,state="READY"){
+  byId("statusText").textContent=text
+  byId("printerState").textContent=state
+  const printer=byId("printerZone").querySelector(".printer")
+  printer.classList.toggle("printer-done",state==="READY"&&active)
+  if(state==="WAIT"||state==="TEAR"||!active)printer.classList.remove("printer-done")
+}
 
 export function tearReceipt(silent=false){
   if(!active||tearing||printing)return false
@@ -58,6 +64,7 @@ function beginPrint(){
   byId("tearZone").classList.add("hidden")
   receipt.className="receipt hidden"
   printer.classList.add("printer-working")
+  printer.classList.remove("printer-done")
   zone.classList.add("printing-active")
   setStatus("Warming thermal print head...","WARM")
   setTimeout(()=>{
@@ -69,6 +76,7 @@ function beginPrint(){
   setTimeout(()=>{
     receipt.classList.remove("printing")
     printer.classList.remove("printer-working")
+    printer.classList.add("printer-done")
     zone.classList.remove("printing-active")
     byId("tearZone").classList.remove("hidden")
     printing=false

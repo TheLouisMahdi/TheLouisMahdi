@@ -5,6 +5,7 @@ let active=false
 let serial=1
 let tearing=false
 let printing=false
+let feedAnimations=[]
 
 function nowText(){return new Intl.DateTimeFormat(undefined,{year:"numeric",month:"short",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"}).format(new Date())}
 
@@ -43,7 +44,9 @@ export function tearReceipt(silent=false){
   setStatus("Tearing along perforation...","TEAR")
   setTimeout(()=>{
     byId("tornStack").replaceChildren()
-    byId("printerZone").querySelector(".receipt-stage").classList.remove("has-torn")
+    const stage=byId("printerZone").querySelector(".receipt-stage")
+    stage.classList.remove("has-torn","receipt-ready")
+    stage.style.height="0px"
     receipt.className="receipt hidden"
     receipt.style.transform=""
     active=false
@@ -61,6 +64,12 @@ function beginPrint(){
   const zone=byId("printerZone")
   const printer=zone.querySelector(".printer")
   const receipt=byId("receipt")
+  const stage=zone.querySelector(".receipt-stage")
+  const controls=[zone.querySelector(".printer-actions"),zone.querySelector(".printer-status")]
+  feedAnimations.forEach(animation=>animation.cancel())
+  feedAnimations=[]
+  stage.classList.remove("receipt-ready")
+  stage.style.height="0px"
   byId("tearZone").classList.add("hidden")
   receipt.className="receipt hidden"
   printer.classList.add("printer-working")
@@ -70,11 +79,26 @@ function beginPrint(){
   setTimeout(()=>{
     receipt.innerHTML=receiptHtml()
     receipt.className="receipt printing"
+    receipt.style.transform="translate3d(0,-100%,0)"
+    const height=receipt.getBoundingClientRect().height
+    const targetHeight=height+31,timing={duration:4680,easing:"linear",fill:"forwards"}
+    controls.forEach(node=>node.style.transform=`translate3d(0,-${targetHeight}px,0)`)
+    stage.style.height=`${targetHeight}px`
+    if(receipt.animate)feedAnimations=[
+      receipt.animate([{transform:"translate3d(0,-100%,0)"},{transform:"translate3d(0,0,0)"}],timing),
+      ...controls.map(node=>node.animate([{transform:`translate3d(0,-${targetHeight}px,0)`},{transform:"translate3d(0,0,0)"}],timing))
+    ];else{receipt.style.transform="translate3d(0,0,0)";controls.forEach(node=>node.style.transform="")}
     active=true
     setStatus("Feeding and printing profile...","PRINT")
   },520)
   setTimeout(()=>{
+    feedAnimations.forEach(animation=>animation.finish())
+    feedAnimations=[]
     receipt.classList.remove("printing")
+    receipt.style.transform=""
+    controls.forEach(node=>node.style.transform="")
+    stage.style.height=""
+    stage.classList.add("receipt-ready")
     printer.classList.remove("printer-working")
     printer.classList.add("printer-done")
     zone.classList.remove("printing-active")

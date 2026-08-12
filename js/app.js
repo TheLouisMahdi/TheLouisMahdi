@@ -6,15 +6,18 @@ import{initTerminals}from"./terminal.js"
 import{initReceipt,printReceipt}from"./receipt.js"
 import{initApps,mountRuntimeWindows}from"./apps.js"
 import{initSystemApps,mountSystemApps}from"./system-apps.js"
+import{initGames,mountGames}from"./games.js"
+import{initGadgets,mountGadgets}from"./gadgets.js"
 import{initSystem,lockSystem,showSecurityScreen,systemState}from"./system.js"
 import{bindSelectableSurface,initPointerCursor,mountInteractionUi,refreshSurface,showContextMenu}from"./interaction.js"
-import{backgroundContextItems,deleteSelected,fileContextItems,openVirtual,renameSelected}from"./file-actions.js"
+import{backgroundContextItems,createDesktopItem,deleteSelected,fileContextItems,openVirtual,renameSelected}from"./file-actions.js"
 import{listVirtual}from"./vfs.js"
 
 const byId=id=>document.getElementById(id)
-const appWindows={explorer:"explorerWindow",cmd:"cmdWindow",powershell:"psWindow",notepad:"notepadWindow",calculator:"calculatorWindow",run:"runWindow",image:"imageWindow",browser:"browserWindow",paint:"paintWindow",wordpad:"wordpadWindow",sticky:"stickyWindow",snipping:"snippingWindow",media:"mediaWindow",control:"controlWindow",devices:"devicesWindow",taskmanager:"taskmanagerWindow",minesweeper:"minesweeperWindow",systeminfo:"systeminfoWindow",charmap:"charmapWindow",keyboard:"keyboardWindow",help:"helpWindow",accessory:"accessoryWindow"}
+const appWindows={explorer:"explorerWindow",cmd:"cmdWindow",powershell:"psWindow",notepad:"notepadWindow",calculator:"calculatorWindow",run:"runWindow",image:"imageWindow",browser:"browserWindow",paint:"paintWindow",wordpad:"wordpadWindow",sticky:"stickyWindow",snipping:"snippingWindow",media:"mediaWindow",control:"controlWindow",devices:"devicesWindow",taskmanager:"taskmanagerWindow",minesweeper:"minesweeperWindow",solitaire:"solitaireWindow",freecell:"freecellWindow",chess:"chessWindow",systeminfo:"systeminfoWindow",charmap:"charmapWindow",keyboard:"keyboardWindow",help:"helpWindow",accessory:"accessoryWindow"}
 let desktopItems=[]
 let mobileHintShown=false
+let desktopSort="name",desktopIconSize=""
 
 function openApp(app){
   if(app==="printprofile"){printReceipt();document.getElementById("printerZone")?.scrollIntoView({behavior:"smooth",block:"center"});return}
@@ -27,7 +30,7 @@ function openApp(app){
 }
 
 function mountTaskButtons(){
-  const iconNames={notepad:"notepad",calculator:"calculator",run:"run",image:"photo",paint:"paint",wordpad:"wordpad",sticky:"sticky",snipping:"snipping",media:"media",control:"control",devices:"devices",taskmanager:"taskmanager",minesweeper:"games",systeminfo:"system",charmap:"charmap",keyboard:"keyboard",help:"system"}
+  const iconNames={notepad:"notepad",calculator:"calculator",run:"run",image:"photo",paint:"paint",wordpad:"wordpad",sticky:"sticky",snipping:"snipping",media:"media",control:"control",devices:"devices",taskmanager:"taskmanager",minesweeper:"minesweeper",solitaire:"solitaire",freecell:"freecell",chess:"chess",systeminfo:"system",charmap:"charmap",keyboard:"keyboard",help:"system"}
   for(const [app,iconName] of Object.entries(iconNames)){
     if(document.querySelector(`[data-task="${app}"]`))continue
     const button=document.createElement("button")
@@ -51,6 +54,9 @@ function activateDesktop(item){
 
 function renderDesktop(){
   desktopItems=[...FILE_SYSTEM.desktop.items,...listVirtual("desktop")]
+  if(desktopSort==="name")desktopItems.sort((a,b)=>a.name.localeCompare(b.name))
+  if(desktopSort==="type")desktopItems.sort((a,b)=>String(a.type).localeCompare(String(b.type))||a.name.localeCompare(b.name))
+  if(desktopSort==="size")desktopItems.sort((a,b)=>String(a.content||"").length-String(b.content||"").length||a.name.localeCompare(b.name))
   byId("desktopIcons").innerHTML=desktopItems.map((item,index)=>`<button class="desktop-icon" data-desktop-index="${index}" data-key="${encodeURIComponent(itemKey(item))}"><span class="desktop-svg">${icon(item.type)}</span><span class="desktop-label">${item.name}</span></button>`).join("")
   refreshSurface(byId("desktop"))
 }
@@ -71,6 +77,14 @@ function initDesktopInteraction(){
     if(event.pointerType!=="touch"||mobileHintShown||!event.target.closest(".desktop-icon"))return
     mobileHintShown=true
     window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Tap to select · double-tap to open · touch and hold for right-click"}))
+  })
+  window.addEventListener("win7:desktop-menu",event=>{
+    const x=Math.max(12,Math.min(window.innerWidth-190,window.innerWidth*.22)),y=Math.max(12,Math.min(window.innerHeight-230,window.innerHeight*.35))
+    const iconSize=size=>{desktopIconSize=size;desktop.classList.remove("large-desktop-icons","small-desktop-icons");if(size)desktop.classList.add(size)}
+    const checked=(label,value,current)=>`${label}${value===current?"  ✓":""}`
+    if(event.detail==="view")showContextMenu([{label:checked("Large icons","large-desktop-icons",desktopIconSize),action:()=>iconSize("large-desktop-icons")},{label:checked("Medium icons","",desktopIconSize),action:()=>iconSize("")},{label:checked("Small icons","small-desktop-icons",desktopIconSize),action:()=>iconSize("small-desktop-icons")},{separator:true},{label:"Auto arrange icons  ✓",action:renderDesktop},{label:"Align icons to grid  ✓",action:renderDesktop},{label:`Show desktop icons${byId("desktopIcons").classList.contains("hidden")?"":"  ✓"}`,action:()=>byId("desktopIcons").classList.toggle("hidden")},{label:`Show desktop gadgets${byId("desktopGadgets").classList.contains("hidden")?"":"  ✓"}`,action:()=>window.dispatchEvent(new Event("win7:toggle-gadgets"))}],x,y)
+    if(event.detail==="sort")showContextMenu([{label:checked("Name","name",desktopSort),action:()=>{desktopSort="name";renderDesktop()}},{label:checked("Size","size",desktopSort),action:()=>{desktopSort="size";renderDesktop()}},{label:checked("Item type","type",desktopSort),action:()=>{desktopSort="type";renderDesktop()}},{label:checked("Date modified","date",desktopSort),action:()=>{desktopSort="date";renderDesktop()}}],x,y)
+    if(event.detail==="new")showContextMenu([{label:"Folder",action:()=>createDesktopItem("folder")},{separator:true},{label:"Text Document",action:()=>createDesktopItem("text")},{label:"Python File",action:()=>createDesktopItem("python")},{label:"HTML File",action:()=>createDesktopItem("html")}],x,y)
   })
 }
 
@@ -289,6 +303,8 @@ function init(){
   mountInteractionUi()
   mountRuntimeWindows()
   mountSystemApps()
+  mountGames()
+  mountGadgets()
   mountTaskButtons()
   paintIcons()
   renderDesktop()
@@ -297,6 +313,8 @@ function init(){
   initTerminals()
   initApps()
   initSystemApps()
+  initGames()
+  initGadgets()
   initReceipt()
   initDesktopInteraction()
   initStart()

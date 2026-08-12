@@ -183,7 +183,7 @@ function initRun(){
     if(!parts.length)return
     const name=parts[0].toLowerCase().replace(/\.exe$/i,"")
     const arg=parts.slice(1).join(" ")
-    const apps={cmd:"cmd",powershell:"powershell",notepad:"notepad",calc:"calculator",calculator:"calculator",explorer:"explorer",iexplore:"browser","internet explorer":"browser",mspaint:"paint",paint:"paint",write:"wordpad",wordpad:"wordpad",wmplayer:"media",taskmgr:"taskmanager",control:"control",osk:"keyboard",charmap:"charmap",snippingtool:"snipping",stikynot:"sticky",minesweeper:"minesweeper",msinfo32:"systeminfo"}
+    const apps={cmd:"cmd",powershell:"powershell",notepad:"notepad",calc:"calculator",calculator:"calculator",explorer:"explorer",iexplore:"browser","internet explorer":"browser",mspaint:"paint",paint:"paint",write:"wordpad",wordpad:"wordpad",wmplayer:"media",taskmgr:"taskmanager",control:"control",osk:"keyboard",charmap:"charmap",snippingtool:"snipping",stikynot:"sticky",minesweeper:"minesweeper",solitaire:"solitaire",freecell:"freecell",chess:"chess",msinfo32:"systeminfo"}
     if(name==="python"||name==="py"){
       if(arg)window.dispatchEvent(new CustomEvent("win7:cmd-run",{detail:`python "${arg}"`}))
       else window.dispatchEvent(new CustomEvent("win7:cmd-run",{detail:"python --version"}))

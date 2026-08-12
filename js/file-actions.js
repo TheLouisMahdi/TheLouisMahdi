@@ -81,6 +81,8 @@ async function newFile(target,kind){
   window.dispatchEvent(new CustomEvent("win7:open-file",{detail:{path,forceNotepad:true}}))
 }
 
+export function createDesktopItem(kind){return newFile("desktop",kind)}
+
 function downloadVirtual(item){
   const path=pathOf(item)
   const content=readFile(path)
@@ -134,18 +136,18 @@ export function backgroundContextItems(target,{selectAll,clear,refresh}){
     {label:"Select All",action:selectAll},{label:"Refresh",action:refresh},{label:"Clear selection",action:clear}
   ]
   return [
-    {label:"Paste",disabled:!canPaste(),action:()=>pasteInto(target)},
-    separator,
-    {label:"New Folder",action:()=>newFile(target,"folder")},
-    {label:"New Text Document",action:()=>newFile(target,"text")},
-    {label:"New Python File",action:()=>newFile(target,"python")},
-    {label:"New HTML File",action:()=>newFile(target,"html")},
-    separator,
-    {label:"Select All",action:selectAll},
+    {label:"View  ›",action:()=>window.dispatchEvent(new CustomEvent("win7:desktop-menu",{detail:"view"}))},
+    {label:"Sort by  ›",action:()=>window.dispatchEvent(new CustomEvent("win7:desktop-menu",{detail:"sort"}))},
     {label:"Refresh",action:refresh},
-    {label:"Personalize",action:()=>toast("Windows 7 Aero · Eka desktop")},
-    {label:"Screen resolution",action:()=>toast(`${Math.round(document.getElementById("screen").clientWidth)} × ${Math.round(document.getElementById("screen").clientHeight)} simulated display`)},
-    {label:"Clear selection",action:clear}
+    separator,
+    {label:"Paste",disabled:!canPaste(),action:()=>pasteInto(target)},
+    {label:"Paste shortcut",disabled:true,action:()=>{}},
+    separator,
+    {label:"New  ›",action:()=>window.dispatchEvent(new CustomEvent("win7:desktop-menu",{detail:"new"}))},
+    separator,
+    {label:"Screen resolution",action:()=>{window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"control"}));window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"display"}))}},
+    {label:"Gadgets",action:()=>{window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"control"}));window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"desktop-gadgets"}))}},
+    {label:"Personalize",action:()=>{window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"control"}));window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"personalization"}))}}
   ]
 }
 

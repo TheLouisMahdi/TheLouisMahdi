@@ -1,0 +1,24 @@
+const s=(body,view="0 0 64 64")=>`<svg viewBox="${view}" aria-hidden="true">${body}</svg>`
+
+export const icons={
+  windows:()=>s('<circle cx="32" cy="32" r="29" fill="#49b733" stroke="#d9f5ff" stroke-width="2"/><path fill="#f15b2a" d="M14 17l16-3v17H14z"/><path fill="#80cc28" d="M33 13l17-3v21H33z"/><path fill="#27a8e8" d="M14 34h16v17l-16-3z"/><path fill="#ffd21f" d="M33 34h17v20l-17-3z"/>'),
+  folder:()=>s('<path d="M6 17h20l5 6h27v29H6z" fill="#f6bf24" stroke="#a87308"/><path d="M7 14h18l6 6H7z" fill="#ffe17b"/>'),
+  computer:()=>s('<rect x="6" y="8" width="46" height="34" rx="3" fill="#dcecf5" stroke="#557488"/><rect x="10" y="12" width="38" height="25" fill="#398cc4"/><path d="M23 44h13l4 7H19z" fill="#8499a8"/><rect x="16" y="51" width="29" height="4" rx="2" fill="#607482"/><rect x="49" y="24" width="10" height="28" rx="2" fill="#dce6ec" stroke="#6f8797"/>'),
+  drive:()=>s('<path d="M8 19h48l-6 28H14z" fill="#dce3e7" stroke="#606f78"/><rect x="12" y="37" width="40" height="10" rx="2" fill="#f6f8f9"/><circle cx="46" cy="42" r="2.3" fill="#49b85a"/>'),
+  github:()=>s('<circle cx="32" cy="32" r="28" fill="#24292f"/><path fill="#fff" d="M32 14c-10 0-18 8-18 18 0 8 5 15 12 17 1 .2 1.4-.4 1.4-1v-4c-5 1-6-2-6-2-.8-2-2-3-2-3-2-1 0-1 0-1 2 0 3 2 4 3 1 2 3 1 4 .8-1.3-3-2-5-4-5-8 0-6 3-6 7 0 2 .8 4 2 5-.2.5-.9 2 .2 5 0 0 2-.7 5 2a17 17 0 019 0c3-2.7 5-2 5-2 1 3 .4 4 .2 5 1.3 1.4 2 3 2 5 0 5-3 7-6 7 .7.6 1.5 1.8 1.5 3.5V48c0 .6.4 1.2 1.5 1 7-2 12-9 12-17 0-10-8-18-18-18z"/>'),
+  telegram:()=>s('<circle cx="32" cy="32" r="28" fill="#2aabee"/><path fill="#fff" d="M15 31l34-13-6 30-11-9-6 7-1-11zm13 4l4 3 10-12z"/>'),
+  photo:()=>s('<rect x="7" y="9" width="50" height="45" rx="4" fill="#e3f5ff" stroke="#5785a3"/><circle cx="21" cy="23" r="6" fill="#ffd35a"/><path d="M10 48l14-16 9 10 7-7 14 13z" fill="#63ad5a"/>'),
+  zip:()=>s('<path d="M12 7h30l10 10v40H12z" fill="#f2c34f" stroke="#9e6d09"/><path d="M42 7v12h10" fill="#ffe9a1"/><path d="M28 7h7v6h-7zm0 8h7v6h-7zm0 8h7v6h-7zm0 8h7v6h-7zm0 8h7v6h-7z" fill="#676e74"/>'),
+  text:()=>s('<path d="M13 7h29l9 9v41H13z" fill="#fff" stroke="#849eaf"/><path d="M42 7v11h10" fill="#dceaf4"/><path d="M20 26h24M20 33h24M20 40h20M20 47h17" stroke="#6b8497" stroke-width="3"/>'),
+  recycle:()=>s('<path d="M18 17h28l-3 39H21z" fill="#def0f4" stroke="#6c939b"/><path d="M15 14h34M25 9h14" stroke="#6c939b" stroke-width="4"/><path d="M27 25l10 6-8 4 7 5M38 25l-7 10-4-7" fill="none" stroke="#47a66b" stroke-width="3"/>'),
+  cmd:()=>s('<rect x="6" y="10" width="52" height="42" rx="4" fill="#101010" stroke="#9a9a9a"/><path d="M14 23l9 8-9 8M28 40h15" fill="none" stroke="#fff" stroke-width="4"/>'),
+  powershell:()=>s('<path d="M7 12h50l-7 40H10z" fill="#1267a5" stroke="#d2edff"/><path d="M17 23l11 8-12 9M31 41h13" fill="none" stroke="#fff" stroke-width="4"/>'),
+  notepad:()=>s('<rect x="12" y="8" width="40" height="48" rx="3" fill="#fff" stroke="#6d899e"/><path d="M18 20h28M18 28h28M18 36h25M18 44h21" stroke="#6c899e" stroke-width="2"/><path d="M18 6v8M26 6v8M34 6v8M42 6v8M50 6v8" stroke="#4d6475" stroke-width="3"/>'),
+  calculator:()=>s('<rect x="12" y="6" width="40" height="52" rx="5" fill="#dce8f0" stroke="#617989"/><rect x="18" y="12" width="28" height="11" fill="#edf8dc" stroke="#7f9284"/><g fill="#6d8495"><rect x="18" y="29" width="7" height="7"/><rect x="29" y="29" width="7" height="7"/><rect x="40" y="29" width="7" height="7"/><rect x="18" y="40" width="7" height="7"/><rect x="29" y="40" width="7" height="7"/><rect x="40" y="40" width="7" height="7"/></g>'),
+  run:()=>s('<rect x="8" y="12" width="48" height="38" rx="5" fill="#eaf3fb" stroke="#6586a0"/><path d="M17 24h30M17 32h22" stroke="#6b8295" stroke-width="3"/><path d="M39 39h8l-4 7z" fill="#2d82bd"/>'),
+  link:()=>s('<rect x="9" y="9" width="46" height="46" rx="6" fill="#dceeff" stroke="#5790bc"/><path d="M26 38l12-12m-7 0h7v7" fill="none" stroke="#1977bd" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>'),
+  cursor:()=>s('<path d="M3 2v26l7-7 5 12 5-2-5-12h10z" fill="#fff" stroke="#111" stroke-width="2" stroke-linejoin="round"/>',"0 0 28 36")
+}
+
+export function icon(name){return (icons[name]||icons.text)()}
+export function paintIcons(root=document){root.querySelectorAll("[data-icon]").forEach(node=>node.innerHTML=icon(node.dataset.icon))}

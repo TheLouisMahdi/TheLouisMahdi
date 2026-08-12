@@ -40,5 +40,5 @@ jobs:
           test -f js/terminal.js
           test -f js/receipt.js
           grep -q 'type="module" src="js/app.js"' index.html
-          grep -q 'Pyodide' js/python.js
+          grep -q 'loadPyodide' js/python-worker.js
           grep -q 'Eka Command Deck.txt' EKA_COMMANDS.txt

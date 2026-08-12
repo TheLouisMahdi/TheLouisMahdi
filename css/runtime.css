@@ -1,0 +1,55 @@
+.file-item.selected,.drive-row.selected{border-color:#6da9cf!important;background:linear-gradient(#dff3ff,#bfe2f5)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7)}
+.win-context-menu{position:absolute;z-index:12000;width:178px;padding:3px;border:1px solid #777;border-radius:2px;background:#f5f5f5;box-shadow:3px 4px 12px rgba(0,0,0,.4);font:10px/1.2 Segoe UI,Arial,sans-serif;color:#111}
+.win-context-menu button{display:block;width:100%;height:24px;padding:3px 22px;border:0;background:transparent;text-align:left;color:#111;white-space:nowrap}
+.win-context-menu button:hover:not(:disabled){background:linear-gradient(#e8f5ff,#c8e7f8);outline:1px solid #9cc9e2}
+.win-context-menu button:disabled{color:#999}
+.context-separator{height:1px;margin:3px 2px;background:#c8c8c8;border-bottom:1px solid #fff}
+.win-prompt{position:absolute;z-index:12500;left:50%;top:42%;width:min(360px,86%);transform:translate(-50%,-50%);border:1px solid #275d7d;border-radius:7px;background:#f5f7f8;box-shadow:0 12px 30px rgba(0,0,0,.52),inset 0 0 0 1px rgba(255,255,255,.7);overflow:hidden;color:#172b38;font-size:10px}
+.win-prompt-title{height:28px;padding:7px 9px;background:linear-gradient(#e9f8ff,#72aed1 50%,#3e82ab 51%,#c4e6f7);border-bottom:1px solid #527b96;font-weight:600;text-shadow:0 1px #fff}
+.win-prompt-body{padding:13px;background:#f8f8f8}
+.win-prompt-body label{display:block;margin-bottom:7px;line-height:1.4}
+.win-prompt-body input{width:100%;height:25px;padding:3px 6px;border:1px solid #899ca8;background:#fff}
+.win-prompt-actions{display:flex;justify-content:flex-end;gap:6px;margin-top:11px}
+.win-prompt-actions button{min-width:68px;height:25px;border:1px solid #8296a4;border-radius:2px;background:linear-gradient(#fff,#dce6ec);font-size:9px}
+.win-prompt.confirm-only .win-prompt-actions{margin-top:4px}
+.browser-window{top:47px;left:115px;width:72%;height:72%;background:#e8edf0}
+.ie-toolbar{height:32px;display:grid;grid-template-columns:25px 25px 1fr;gap:3px;align-items:center;padding:4px 6px;background:linear-gradient(#f7fbfd,#d8e8f1);border-bottom:1px solid #9cadb7}
+.ie-toolbar button{height:23px;border:1px solid #a2b1ba;border-radius:3px;background:linear-gradient(#fff,#dbe8ef);color:#60727d}
+.ie-toolbar input{height:23px;border:1px solid #8da1ae;padding:3px 7px;background:#fff;color:#333;font-size:9px}
+.browser-window iframe{display:block;width:100%;height:calc(100% - 84px);border:0;background:#fff}
+.ie-status{height:23px;padding:5px 8px;border-top:1px solid #a7b4bc;background:linear-gradient(#f7f9fa,#e3e8eb);font-size:8px;color:#53636d}
+.empty-folder{padding:18px;font-size:10px;color:#777}
+.fake-cursor:after{content:"";position:absolute;left:-8px;top:-8px;width:20px;height:20px;border:2px solid rgba(255,255,255,.8);border-radius:50%;opacity:0;pointer-events:none}
+.fake-cursor.left-click:after{animation:leftClickPulse .25s ease-out}
+.fake-cursor.right-click:after{border-color:#ffd45a;animation:rightClickPulse .35s ease-out}
+@keyframes leftClickPulse{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(1.5)}}
+@keyframes rightClickPulse{0%{opacity:1;transform:scale(.4)}55%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.45)}}
+.printer{overflow:hidden}
+.printer.printer-working .led-wrap i{animation:printerLed .34s steps(1) infinite}
+.printer.printer-working .slot{box-shadow:inset 0 2px 5px #000,0 0 9px rgba(101,231,255,.28)}
+.printer.printer-working:after{content:"";position:absolute;left:8%;right:8%;bottom:15px;height:1px;background:linear-gradient(90deg,transparent,#7eeaff,white,#7eeaff,transparent);box-shadow:0 0 8px #83eaff;animation:printHead 1.05s linear infinite;opacity:.7}
+.printing-active .slot:after{content:"";display:block;width:28%;height:3px;margin:3px auto 0;border-radius:2px;background:#f6f0df;box-shadow:0 1px 2px #000}
+.receipt{touch-action:none}
+.receipt.printing{animation:thermalFeed 1.38s cubic-bezier(.16,.72,.25,1)!important}
+.receipt.printing .receipt-section,.receipt.printing .receipt-header,.receipt.printing .receipt-total,.receipt.printing .receipt-time,.receipt.printing .receipt-code{animation:inkResolve .48s ease both}
+.torn-receipt.arriving{opacity:0;transform:translateY(-12px) rotate(0)!important}
+.torn-receipt{transition:transform .35s ease,opacity .35s ease}
+.mini-code{margin-top:8px;text-align:center;letter-spacing:.15em;font-weight:700}
+@keyframes printerLed{0%,49%{background:#63e173;box-shadow:0 0 10px #4dff6e}50%,100%{background:#ffd35a;box-shadow:0 0 10px #ffd35a}}
+@keyframes printHead{0%{transform:translateX(-85%)}50%{transform:translateX(85%)}100%{transform:translateX(-85%)}}
+@keyframes thermalFeed{0%{clip-path:inset(0 0 100% 0);transform:translateY(-92px) scaleY(.97)}18%{clip-path:inset(0 0 86% 0)}55%{clip-path:inset(0 0 42% 0)}100%{clip-path:inset(0 0 0 0);transform:translateY(0) scaleY(1)}}
+@keyframes inkResolve{0%{filter:blur(.35px);opacity:.35}100%{filter:none;opacity:1}}
+@media(max-width:760px){
+  .screen.pointer-active .fake-cursor{display:block!important;width:20px;height:28px}
+  .window{min-width:0!important}
+  .explorer-window,.console-window,.notepad-window,.browser-window{left:7px!important;top:20px!important;width:calc(100% - 14px)!important;height:calc(100% - 58px)!important;transform:none!important}
+  .explorer-body{grid-template-columns:84px 1fr!important}
+  .file-grid{grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:4px}
+  .file-item{min-height:65px;padding:3px}.file-icon{width:32px;height:32px}.file-name{font-size:8px;line-height:10px}
+  .console-body{font-size:9px}.console-input-row{font-size:9px}
+  .notepad-window textarea{font-size:9px}
+  .browser-window iframe{height:calc(100% - 84px)}
+  .win-context-menu{width:164px;font-size:9px}.win-context-menu button{height:27px;padding-left:17px}
+  .printer-zone{width:min(610px,96vw)}
+  .printer{padding:13px 14px 17px}.receipt{max-width:94%}.tear-zone,.torn-stack{max-width:94%}
+}

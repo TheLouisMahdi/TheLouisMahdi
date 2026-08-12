@@ -3,313 +3,310 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#eceae5">
-<title>Eka · TheLouisMahdi</title>
-<link rel="stylesheet" href="css/windows.css">
-<link rel="stylesheet" href="css/apps-printer.css">
+<meta name="theme-color" content="#e9e7e2">
+<meta name="description" content="Mahdi Ghahremani, TheLouisMahdi, electrical engineering, embedded systems, FPGA, AI and computer vision.">
+<title>Eka @GitHub · TheLouisMahdi</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/windows7.css">
+<link rel="stylesheet" href="css/receipt.css">
 </head>
 <body>
-<main class="app">
-  <div class="site-head"><b>Eka</b><a href="https://github.com/TheLouisMahdi" target="_blank" rel="noreferrer">@TheLouisMahdi · GitHub</a></div>
+<main>
+<section class="hero">
+  <div class="hero-bar">
+    <a class="eka-link" href="https://github.com/TheLouisMahdi" target="_blank" rel="noreferrer">Eka @GitHub</a>
+    <span class="hero-name">Mahdi Ghahremani · TheLouisMahdi</span>
+  </div>
 
-  <section class="laptop">
+  <section class="laptop" aria-label="Interactive Windows 7 portfolio">
     <div class="lid">
       <div class="screen" id="screen">
         <div class="desktop" id="desktop">
           <div class="desktop-icons" id="desktopIcons"></div>
 
-          <div class="printer-gadget">
-            <div class="gadget-title">Profile Printer</div>
-            <div class="gadget-state"><i class="gadget-dot"></i><span id="statusText">Ready to print GitHub profile</span></div>
-            <button class="aero-button" id="printBtn">Print Profile</button>
-            <div class="gadget-tools">
-              <button class="aero-button" id="pdfBtn">PDF</button>
-              <button class="aero-button" id="txtBtn">TXT</button>
-              <button class="aero-button" id="copyBtn">COPY</button>
-            </div>
-          </div>
-
-          <section class="window hidden" id="explorerWindow">
-            <div class="titlebar" id="titlebar">
-              <div class="title-left">
-                <span class="title-mini" id="titleIcon"></span>
-                <span class="window-title" id="windowTitle">Computer</span>
-              </div>
+          <section class="window explorer-window hidden" id="explorerWindow" data-app="explorer">
+            <div class="titlebar" data-drag-handle>
+              <div class="title-left"><span class="title-mini" data-icon="folder"></span><span class="window-title" id="explorerTitle">Computer</span></div>
               <div class="win-controls">
-                <button class="win-control" id="minBtn">_</button>
-                <button class="win-control" id="maxBtn">□</button>
-                <button class="win-control" id="closeBtn">×</button>
+                <button class="win-control" data-window-action="min" aria-label="Minimize">_</button>
+                <button class="win-control" data-window-action="max" aria-label="Maximize">□</button>
+                <button class="win-control close" data-window-action="close" aria-label="Close">×</button>
               </div>
             </div>
-            <div class="explorer-tools">
-              <button class="nav-circle" id="backBtn">‹</button>
-              <button class="nav-circle" id="forwardBtn">›</button>
+            <div class="explorer-nav">
+              <button class="nav-circle" id="backBtn" aria-label="Back">‹</button>
+              <button class="nav-circle" id="forwardBtn" aria-label="Forward">›</button>
               <div class="address" id="addressBar">Computer</div>
+              <input class="explorer-search" id="explorerSearch" placeholder="Search Computer" autocomplete="off">
             </div>
-            <div class="explorer-command">
-              <span>Organize ▾</span>
-              <span id="command1">System properties</span>
-              <span id="command2">Uninstall or change a program</span>
-            </div>
+            <div class="explorer-command"><button id="organizeBtn">Organize ▾</button><span id="explorerHint">System locations and project files</span></div>
             <div class="explorer-body">
               <aside class="navpane">
                 <div class="nav-group">Favorites</div>
                 <button class="nav-item" data-open="desktop">Desktop</button>
                 <button class="nav-item" data-open="downloads">Downloads</button>
                 <div class="nav-group">Libraries</div>
-                <button class="nav-item" data-open="photos">Pictures</button>
                 <button class="nav-item" data-open="documents">Documents</button>
+                <button class="nav-item" data-open="pictures">Pictures</button>
                 <div class="nav-group">Computer</div>
-                <button class="nav-item" data-open="thispc">Computer</button>
+                <button class="nav-item" data-open="computer">Computer</button>
                 <button class="nav-item" data-open="github">GitHub (G:)</button>
               </aside>
               <div class="filepane" id="fileArea"></div>
             </div>
+            <div class="statusbar" id="explorerStatus">0 items</div>
           </section>
 
-          <section class="window app-window console-window hidden" id="cmdWindow">
-            <div class="titlebar app-titlebar">
-              <div class="title-left"><span class="title-mini app-icon" data-icon="cmd"></span><span class="window-title">Command Prompt</span></div>
+          <section class="window console-window hidden" id="cmdWindow" data-app="cmd">
+            <div class="titlebar" data-drag-handle>
+              <div class="title-left"><span class="title-mini" data-icon="cmd"></span><span class="window-title">Command Prompt</span></div>
               <div class="win-controls">
-                <button class="win-control" data-win="min" data-target="cmdWindow">_</button>
-                <button class="win-control" data-win="max" data-target="cmdWindow">□</button>
-                <button class="win-control" data-win="close" data-target="cmdWindow">×</button>
+                <button class="win-control" data-window-action="min">_</button>
+                <button class="win-control" data-window-action="max">□</button>
+                <button class="win-control close" data-window-action="close">×</button>
               </div>
             </div>
             <div class="console-body cmd-console" id="cmdOutput"></div>
-            <form class="console-input-row" id="cmdForm">
-              <span id="cmdPrompt"></span><input id="cmdInput" autocomplete="off" spellcheck="false">
-            </form>
+            <form class="console-input-row" id="cmdForm"><span id="cmdPrompt"></span><input id="cmdInput" autocomplete="off" spellcheck="false"></form>
           </section>
 
-          <section class="window app-window console-window hidden" id="psWindow">
-            <div class="titlebar app-titlebar">
-              <div class="title-left"><span class="title-mini app-icon" data-icon="powershell"></span><span class="window-title">Windows PowerShell</span></div>
+          <section class="window console-window hidden" id="psWindow" data-app="powershell">
+            <div class="titlebar" data-drag-handle>
+              <div class="title-left"><span class="title-mini" data-icon="powershell"></span><span class="window-title">Windows PowerShell</span></div>
               <div class="win-controls">
-                <button class="win-control" data-win="min" data-target="psWindow">_</button>
-                <button class="win-control" data-win="max" data-target="psWindow">□</button>
-                <button class="win-control" data-win="close" data-target="psWindow">×</button>
+                <button class="win-control" data-window-action="min">_</button>
+                <button class="win-control" data-window-action="max">□</button>
+                <button class="win-control close" data-window-action="close">×</button>
               </div>
             </div>
             <div class="console-body ps-console" id="psOutput"></div>
-            <form class="console-input-row ps-input-row" id="psForm">
-              <span id="psPrompt"></span><input id="psInput" autocomplete="off" spellcheck="false">
-            </form>
+            <form class="console-input-row ps-input-row" id="psForm"><span id="psPrompt"></span><input id="psInput" autocomplete="off" spellcheck="false"></form>
           </section>
 
-          <section class="window app-window notepad-window hidden" id="notepadWindow">
-            <div class="titlebar app-titlebar">
-              <div class="title-left"><span class="title-mini app-icon" data-icon="notepad"></span><span class="window-title">profile.txt - Notepad</span></div>
+          <section class="window notepad-window hidden" id="notepadWindow" data-app="notepad">
+            <div class="titlebar" data-drag-handle>
+              <div class="title-left"><span class="title-mini" data-icon="notepad"></span><span class="window-title" id="notepadTitle">Untitled - Notepad</span></div>
               <div class="win-controls">
-                <button class="win-control" data-win="min" data-target="notepadWindow">_</button>
-                <button class="win-control" data-win="max" data-target="notepadWindow">□</button>
-                <button class="win-control" data-win="close" data-target="notepadWindow">×</button>
+                <button class="win-control" data-window-action="min">_</button>
+                <button class="win-control" data-window-action="max">□</button>
+                <button class="win-control close" data-window-action="close">×</button>
               </div>
             </div>
             <div class="notepad-menu">
-              <button id="noteNew">File: New</button>
-              <button id="noteSave">Save</button>
+              <button id="noteNew">File · New</button>
               <button id="noteProfile">Open profile.txt</button>
+              <button id="noteSave">Save As...</button>
             </div>
             <textarea id="noteText" spellcheck="false"></textarea>
           </section>
 
-          <section class="window app-window calculator-window hidden" id="calculatorWindow">
-            <div class="titlebar app-titlebar">
-              <div class="title-left"><span class="title-mini app-icon" data-icon="calculator"></span><span class="window-title">Calculator</span></div>
+          <section class="window calculator-window hidden" id="calculatorWindow" data-app="calculator">
+            <div class="titlebar" data-drag-handle>
+              <div class="title-left"><span class="title-mini" data-icon="calculator"></span><span class="window-title">Calculator</span></div>
               <div class="win-controls">
-                <button class="win-control" data-win="min" data-target="calculatorWindow">_</button>
-                <button class="win-control" data-win="close" data-target="calculatorWindow">×</button>
+                <button class="win-control" data-window-action="min">_</button>
+                <button class="win-control close" data-window-action="close">×</button>
               </div>
             </div>
             <div class="calc-body">
-              <input id="calcDisplay" value="0" readonly>
+              <div class="calc-mode">View · Standard</div>
+              <input id="calcDisplay" value="0" readonly aria-label="Calculator display">
               <div class="calc-grid" id="calcGrid"></div>
             </div>
           </section>
 
-          <section class="window app-window control-window hidden" id="controlWindow">
-            <div class="titlebar app-titlebar">
-              <div class="title-left"><span class="title-mini app-icon" data-icon="control"></span><span class="window-title">Control Panel</span></div>
-              <div class="win-controls">
-                <button class="win-control" data-win="min" data-target="controlWindow">_</button>
-                <button class="win-control" data-win="close" data-target="controlWindow">×</button>
-              </div>
-            </div>
-            <div class="control-body">
-              <h3>Appearance and Personalization</h3>
-              <div class="control-options">
-                <button data-wallpaper="blue">Windows 7 Blue</button>
-                <button data-wallpaper="aurora">Aurora</button>
-                <button data-wallpaper="dark">Dark</button>
-              </div>
-              <label class="control-check"><input type="checkbox" id="aeroToggle" checked> Enable Aero transparency</label>
-              <h3>User Accounts</h3>
-              <div class="control-card"><b>Eka</b><span>@TheLouisMahdi</span></div>
-              <h3>Date and Time</h3>
-              <div class="control-card" id="controlClock"></div>
-            </div>
-          </section>
-
-          <section class="window app-window devices-window hidden" id="devicesWindow">
-            <div class="titlebar app-titlebar">
-              <div class="title-left"><span class="title-mini app-icon" data-icon="printer"></span><span class="window-title">Devices and Printers</span></div>
-              <div class="win-controls">
-                <button class="win-control" data-win="min" data-target="devicesWindow">_</button>
-                <button class="win-control" data-win="close" data-target="devicesWindow">×</button>
-              </div>
-            </div>
-            <div class="devices-body">
-              <div class="device-card">
-                <span class="device-icon" data-icon="printer"></span>
-                <div><b>LM Profile Printer</b><span>Ready</span></div>
-              </div>
-              <button class="small-btn" id="devicePrint">Print test page</button>
-            </div>
-          </section>
-
-          <section class="window app-window run-window hidden" id="runWindow">
-            <div class="titlebar app-titlebar">
-              <div class="title-left"><span class="title-mini app-icon" data-icon="run"></span><span class="window-title">Run</span></div>
-              <div class="win-controls"><button class="win-control" data-win="close" data-target="runWindow">×</button></div>
+          <section class="window run-window hidden" id="runWindow" data-app="run">
+            <div class="titlebar" data-drag-handle>
+              <div class="title-left"><span class="title-mini" data-icon="run"></span><span class="window-title">Run</span></div>
+              <div class="win-controls"><button class="win-control close" data-window-action="close">×</button></div>
             </div>
             <form class="run-body" id="runForm">
-              <span class="run-icon" data-icon="run"></span>
-              <p>Type the name of a program, folder, document, or Internet resource.</p>
-              <label>Open:</label>
+              <span class="run-big-icon" data-icon="run"></span>
+              <p>Type the name of a program, folder, document, or Internet resource, and Windows will open it for you.</p>
+              <label for="runInput">Open:</label>
               <input id="runInput" autocomplete="off" spellcheck="false">
               <div class="run-actions"><button type="submit">OK</button><button type="button" id="runCancel">Cancel</button></div>
             </form>
           </section>
 
-          <div class="power-overlay hidden" id="powerOverlay">
-            <div class="power-logo" id="powerLogo"></div>
-            <div class="power-text" id="powerText">Shutting down...</div>
-            <button class="power-button hidden" id="powerButton">Power on</button>
-          </div>
-
-          <section class="start-menu" id="startMenu">
-            <div class="start-left">
-              <div class="start-user">
-                <div class="user-tile">M</div>
-                <div class="user-name">Mahdi Ghahremani</div>
+          <section class="window image-window hidden" id="imageWindow" data-app="image">
+            <div class="titlebar" data-drag-handle>
+              <div class="title-left"><span class="title-mini" data-icon="photo"></span><span class="window-title" id="imageTitle">Windows Photo Viewer</span></div>
+              <div class="win-controls">
+                <button class="win-control" data-window-action="min">_</button>
+                <button class="win-control" data-window-action="max">□</button>
+                <button class="win-control close" data-window-action="close">×</button>
               </div>
-              <button class="start-program" data-open="thispc" id="startComputer"></button>
-              <button class="start-program" data-open="github" id="startGithub"></button>
-              <button class="start-program" data-open="projects" id="startProjects"></button>
-              <button class="start-program" data-open="telegram" id="startTelegram"></button>
-              <button class="start-program" data-open="cmd" id="startCmd"></button>
-              <button class="start-program" data-open="powershell" id="startPowerShell"></button>
-              <button class="start-program" data-open="notepad" id="startNotepad"></button>
-              <button class="start-program" data-open="calculator" id="startCalculator"></button>
-              <button class="start-program" id="startPrint"></button>
-              <input class="searchbox" id="searchBox" placeholder="Search programs and files">
+            </div>
+            <div class="image-body"><img id="imageView" alt=""></div>
+            <div class="photo-toolbar">File · Print · E-mail · Burn · Open</div>
+          </section>
+
+          <section class="start-menu hidden" id="startMenu">
+            <div class="start-left">
+              <div class="start-user"><span class="user-tile">M</span><strong>Mahdi Ghahremani</strong></div>
+              <div class="program-list" id="programList">
+                <button class="start-program" data-app-open="explorer"><span data-icon="folder"></span><b>Windows Explorer</b></button>
+                <button class="start-program" data-app-open="cmd"><span data-icon="cmd"></span><b>Command Prompt</b></button>
+                <button class="start-program" data-app-open="powershell"><span data-icon="powershell"></span><b>Windows PowerShell</b></button>
+                <button class="start-program" data-app-open="notepad"><span data-icon="notepad"></span><b>Notepad</b></button>
+                <button class="start-program" data-app-open="calculator"><span data-icon="calculator"></span><b>Calculator</b></button>
+                <button class="start-program" data-open="projects"><span data-icon="github"></span><b>GitHub Projects</b></button>
+                <button class="start-program" data-external="https://t.me/thelouis_mahdi"><span data-icon="telegram"></span><b>Telegram</b></button>
+              </div>
+              <input class="searchbox" id="searchBox" placeholder="Search programs and files" autocomplete="off">
             </div>
             <div class="start-right">
               <div class="start-avatar">M</div>
               <button class="start-link" data-open="documents">Documents</button>
-              <button class="start-link" data-open="photos">Pictures</button>
-              <button class="start-link" data-open="music">Music</button>
-              <button class="start-link" data-open="thispc">Computer</button>
-              <button class="start-link" id="controlPanelBtn">Control Panel</button>
-              <button class="start-link" id="devicesBtn">Devices and Printers</button>
-              <button class="start-link" id="runBtn">Run...</button>
-              <div class="shutdown">
-                <button class="shutdown-main" id="shutdownBtn">Shut down</button>
-                <button class="shutdown-arrow">▸</button>
-              </div>
+              <button class="start-link" data-open="pictures">Pictures</button>
+              <button class="start-link" data-open="computer">Computer</button>
+              <button class="start-link" data-open="github">GitHub (G:)</button>
+              <button class="start-link" data-app-open="run">Run...</button>
+              <a class="start-link external-link" href="https://github.com/TheLouisMahdi" target="_blank" rel="noreferrer">Eka @GitHub</a>
             </div>
           </section>
 
           <div class="taskbar">
             <button class="start-orb" id="startBtn" aria-label="Start"></button>
-            <button class="task-button" id="taskExplorer" aria-label="Windows Explorer"></button>
-            <button class="task-button" id="taskCmd" aria-label="Command Prompt"></button>
-            <button class="task-button" id="taskPowerShell" aria-label="Windows PowerShell"></button>
-            <button class="task-button" id="taskGithub" aria-label="GitHub"></button>
-            <button class="task-button" id="taskPrinter" aria-label="Profile Printer"></button>
+            <div class="task-apps" id="taskApps">
+              <button class="task-button" data-app-open="explorer" data-task="explorer" aria-label="Windows Explorer"><span data-icon="folder"></span></button>
+              <button class="task-button" data-app-open="cmd" data-task="cmd" aria-label="Command Prompt"><span data-icon="cmd"></span></button>
+              <button class="task-button" data-app-open="powershell" data-task="powershell" aria-label="Windows PowerShell"><span data-icon="powershell"></span></button>
+            </div>
             <div class="tray">
-              <span class="tray-icon">▲</span>
-              <span class="tray-icon">◔</span>
-              <span class="tray-icon">▂▅</span>
-              <div class="clock" id="clock"></div>
+              <span class="tray-small">▲</span>
+              <span class="tray-small">◔</span>
+              <span class="tray-signal">▂▄▆</span>
+              <button class="clock" id="clock" aria-label="Date and time"></button>
               <button class="peek" id="peekBtn" aria-label="Show desktop"></button>
             </div>
           </div>
-
           <div class="fake-cursor" id="fakeCursor"></div>
         </div>
       </div>
     </div>
-    <div class="base"></div>
+    <div class="laptop-base"><div class="trackpad"></div></div>
   </section>
 
   <section class="printer-zone" id="printerZone">
     <div class="printer">
       <div class="printer-head">
-        <div class="printer-logo">LM / PROFILE PRINTER</div>
-        <div class="led-wrap"><i class="led"></i><span id="printerState">IDLE</span></div>
+        <div><strong>LM / PROFILE PRINTER</strong><span class="printer-sub">GitHub profile · @TheLouisMahdi</span></div>
+        <div class="led-wrap"><i></i><span id="printerState">READY</span></div>
       </div>
-      <div class="printer-title">Developer Receipt</div>
-      <div class="printer-sub">GitHub profile · @TheLouisMahdi</div>
       <div class="slot"></div>
     </div>
-
-    <button class="tear-zone" id="tearZone" aria-label="Tear receipt">
-      <span class="tear-line"></span><span class="tear-label">Pull to tear</span>
-    </button>
-    <div class="torn-stack" id="tornStack"></div>
-    <div class="paper-window">
-      <article class="receipt" id="receipt">
-        <div class="receipt-top">
-          <div class="receipt-gh">GH</div>
-          <div class="receipt-title">GITHUB PROFILE RECEIPT</div>
-          <div class="receipt-handle">@TheLouisMahdi</div>
-        </div>
-
-        <div class="receipt-section">
-          <div class="receipt-row"><span>NAME</span><span>Mahdi Ghahremani</span></div>
-          <div class="receipt-row"><span>USER</span><span>TheLouisMahdi</span></div>
-          <div class="receipt-row"><span>ROLE</span><span>EE Student</span></div>
-          <div class="receipt-row"><span>UNIVERSITY</span><span>University of Zanjan</span></div>
-          <div class="receipt-row"><span>TELEGRAM</span><span>@thelouis_mahdi</span></div>
-          <div class="receipt-row"><span>FOCUS</span><span>AI + Hardware</span></div>
-        </div>
-
-        <div class="receipt-section">
-          <div class="project-title">SELECTED REPOSITORIES</div>
-          <div class="project">fpga-cnn-fatigue-monitoring</div>
-          <div class="project">npvt-terminal-converter</div>
-          <div class="project">VideoX_Compressor</div>
-          <div class="project">lights-out-gf2-solver</div>
-          <div class="project">btc-hourly-forecast</div>
-          <div class="project">bwbuilder</div>
-        </div>
-
-        <div class="receipt-section">
-          <div class="receipt-row"><span>STACK</span><span>Python / C / Verilog</span></div>
-          <div class="receipt-row"><span>HARDWARE</span><span>STM32 / FPGA / Zynq</span></div>
-          <div class="receipt-row"><span>STYLE</span><span>Local-first tools</span></div>
-          <div class="receipt-row"><span>PROFILE</span><span>github.com/TheLouisMahdi</span></div>
-        </div>
-
-        <div class="receipt-total">
-          <div class="success">✓ PROFILE PRINTED</div>
-          <div class="receipt-meta"><span id="receiptDate"></span> · PUBLIC PROFILE</div>
-          <div class="barcode"></div>
-          <div class="code">THELOUISMAHDI</div>
-        </div>
-      </article>
+    <div class="receipt-stage">
+      <article class="receipt hidden" id="receipt"></article>
+      <button class="tear-zone hidden" id="tearZone" aria-label="Tear current receipt">
+        <span class="tear-line"></span><span>Pull or click to tear</span>
+      </button>
+      <div class="torn-stack" id="tornStack"></div>
     </div>
+    <div class="printer-actions">
+      <button id="printBtn">Print Profile</button>
+      <button id="pdfBtn">PDF</button>
+      <button id="txtBtn">TXT</button>
+      <button id="copyBtn">Copy</button>
+    </div>
+    <div class="printer-status" id="statusText">Ready to print profile receipt</div>
   </section>
+</section>
 
-  </main>
-<div class="toast" id="toast"></div>
+<section class="readme" id="about">
+  <div class="readme-head">
+    <h1>Mahdi Ghahremani <span>(TheLouisMahdi)</span></h1>
+    <p>Electrical Engineering Student at University of Zanjan · AI Vision · Embedded &amp; Digital Hardware Systems</p>
+    <div class="profile-links">
+      <a href="https://github.com/TheLouisMahdi" target="_blank" rel="noreferrer">GitHub · TheLouisMahdi</a>
+      <a href="https://t.me/thelouis_mahdi" target="_blank" rel="noreferrer">Telegram · @thelouis_mahdi</a>
+    </div>
+    <div class="badges">
+      <span>AI + Computer Vision</span><span>Electronics + Hardware</span><span>Embedded Systems</span><span>FPGA + Verilog</span><span>Local-First Tools</span><span>Digital Systems</span>
+    </div>
+  </div>
 
-<script src="js/core.js" defer></script>
-<script src="js/windows.js" defer></script>
-<script src="js/terminal.js" defer></script>
-<script src="js/apps.js" defer></script>
-<script src="js/main.js" defer></script>
+  <article class="readme-section">
+    <h2>👨‍💻 About Me</h2>
+    <p>I'm <strong>Mahdi Ghahremani</strong>, known online as <strong>TheLouisMahdi</strong>. I am an <strong>Electrical Engineering student at the University of Zanjan</strong>, focused on practical work across <strong>computer vision</strong>, <strong>FPGA and Verilog RTL</strong>, <strong>embedded systems</strong>, <strong>applied AI</strong>, and <strong>hardware-software co-design</strong>.</p>
+    <p>I build practical systems at the intersection of <strong>engineering</strong>, <strong>software</strong>, <strong>AI</strong>, and <strong>hardware</strong>. My work usually starts from a technical problem and ends as a usable tool, prototype, or intelligent workflow.</p>
+    <p>Other online names I have used include <strong>poimu</strong>, <strong>eka</strong>, and <strong>Eka Francium</strong>. The name <strong>Eka Francium</strong> represents how I like to build: experimental, slightly unstable in the creative sense, and always trying to move one step beyond the obvious.</p>
+    <p>Some applied projects stay private because of technical, team, or company-related limitations.</p>
+  </article>
+
+  <article class="readme-section">
+    <h2>🧭 Current Roles</h2>
+    <div class="cards two">
+      <div><h3>🏝️ Three Islands Team</h3><p>Technical Lead, focused on engineering decisions, system design, and technical coordination.</p></div>
+      <div><h3>👁️ Rast Eye</h3><p>Technical, Software, and AI Engineer working on applied computer vision and intelligent systems.</p></div>
+    </div>
+  </article>
+
+  <article class="readme-section">
+    <h2>🚀 Focus Areas</h2>
+    <div class="cards two">
+      <div><h3>👁️ Computer Vision</h3><ul><li>Image processing</li><li>Object detection and recognition</li><li>Visual monitoring systems</li><li>Feature extraction</li><li>Camera-based intelligent systems</li></ul></div>
+      <div><h3>🧬 Applied AI</h3><ul><li>Deep learning workflows</li><li>Model training and evaluation</li><li>Pattern recognition</li><li>Classification and prediction models</li><li>AI-assisted engineering systems</li></ul></div>
+      <div><h3>🌱 Smart Engineering Systems</h3><ul><li>Smart irrigation intelligence</li><li>Environmental and sensor data analysis</li><li>Decision-support systems</li><li>Resource optimization</li><li>Signal and time-series analysis</li></ul></div>
+      <div><h3>⚙️ Hardware + Digital Systems</h3><ul><li>Electronics and circuit design</li><li>Digital logic and FPGA concepts</li><li>Embedded systems concepts</li><li>Hardware/software integration</li><li>Real-world engineering automation</li></ul></div>
+    </div>
+  </article>
+
+  <article class="readme-section">
+    <h2>⚡ Electrical Engineering Core</h2>
+    <div class="cards three">
+      <div><h3>🔌 Embedded Hardware</h3><ul><li>STM32, Arduino, and ESP32 prototyping</li><li>Microcontroller-based control logic</li><li>Sensor interfacing and data acquisition</li><li>Embedded C for hardware-level systems</li></ul></div>
+      <div><h3>🧠 Digital Logic + FPGA</h3><ul><li>Verilog RTL design</li><li>FPGA architecture concepts</li><li>Testbenches and simulation workflows</li><li>ModelSim-based verification</li></ul></div>
+      <div><h3>🧪 Circuit + Simulation Work</h3><ul><li>Schematic design and circuit analysis</li><li>Hardware/software co-design</li><li>Simulation-driven debugging</li><li>Engineering documentation and validation</li></ul></div>
+    </div>
+  </article>
+
+  <article class="readme-section">
+    <h2>🧩 Selected Projects</h2>
+    <div class="cards two projects">
+      <a href="https://github.com/TheLouisMahdi/npvt-terminal-converter" target="_blank" rel="noreferrer"><h3>🟢 NPVT Terminal Converter</h3><p>A local-first browser tool for converting between NPVT containers, V2Ray-style links, and Xray/V2Ray JSON profiles.</p></a>
+      <a href="https://github.com/TheLouisMahdi/lights-out-gf2-solver" target="_blank" rel="noreferrer"><h3>🧠 Lights Out GF(2) Solver</h3><p>An offline puzzle engine and solver built around linear algebra over GF(2), custom board generation, and automatic solving.</p></a>
+      <a href="https://github.com/TheLouisMahdi/VideoX_Compressor" target="_blank" rel="noreferrer"><h3>🎬 VideoX Compressor</h3><p>A Windows video-compression tool using FFmpeg with NVIDIA, Intel, AMD, and CPU processing paths for classes, tutorials, and screen recordings.</p></a>
+      <a href="https://github.com/TheLouisMahdi/LizardSpace" target="_blank" rel="noreferrer"><h3>🦎 Lizard Space</h3><p>A small offline Windows sound application with global keyboard reactions, system-tray controls, and Windows startup support.</p></a>
+      <a class="wide" href="https://github.com/TheLouisMahdi/fpga-cnn-fatigue-monitoring" target="_blank" rel="noreferrer"><h3>🔶 FPGA CNN Fatigue Monitoring</h3><p>A Python + FPGA co-processing prototype where Python handles the computer-vision pipeline and Verilog RTL accelerates CNN-style feature extraction from eye and mouth ROIs, with ModelSim-based accelerator verification.</p></a>
+      <a class="wide" href="https://github.com/TheLouisMahdi/proxy-speed-tester" target="_blank" rel="noreferrer"><h3>🌐 Proxy Speed Tester</h3><p>A Python HTTP CONNECT proxy validator that measures tunnel latency and HTTPS transfer speed for authorized upstream-proxy testing.</p></a>
+    </div>
+  </article>
+
+  <article class="readme-section">
+    <h2>🛠️ Tech Stack &amp; Tools</h2>
+    <div class="badges tech"><span>C#</span><span>Python</span><span>C</span><span>Verilog RTL Design</span><span>STM32</span><span>Arduino</span><span>ESP32</span><span>ModelSim</span><span>Proteus</span><span>MATLAB</span><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>GitHub</span><span>VS Code</span><span>Windows</span></div>
+  </article>
+
+  <article class="readme-section">
+    <h2>🎯 How I Build</h2>
+    <pre class="skill-bars">Practical AI        ██████████  100%
+Engineering         █████████░   90%
+Computer Vision     █████████░   90%
+Creative Systems    ████████░░   80%
+Hardware Thinking   ████████░░   80%</pre>
+    <p>I like projects that are <strong>useful</strong>, <strong>clean</strong>, <strong>experimental</strong>, and connected to real-world problems. A small tool built carefully is often more valuable than a large unfinished idea.</p>
+  </article>
+
+  <article class="readme-section">
+    <h2>🧠 How I Think</h2>
+    <p>I usually start with ideas. When I see a system, I naturally think about how it could be improved, rebuilt, simplified, or solved in a better way.</p>
+    <p>I enjoy the process of struggling with problems, testing different paths, failing, fixing, and pushing forward until the work is finished.</p>
+  </article>
+
+  <article class="readme-section contact">
+    <h2>📬 Contact</h2>
+    <p>I only use Telegram for social communication.</p>
+    <div class="profile-links"><a href="https://t.me/thelouis_mahdi" target="_blank" rel="noreferrer">Telegram · Contact Me</a></div>
+    <pre>Telegram ID: @thelouis_mahdi
+GitHub:      TheLouisMahdi
+Name:        Mahdi Ghahremani
+University:  University of Zanjan</pre>
+    <p class="learning">The most enjoyable thing in the world for me is learning.</p>
+  </article>
+</section>
+</main>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>

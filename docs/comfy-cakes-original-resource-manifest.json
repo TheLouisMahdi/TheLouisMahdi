@@ -1,0 +1,3188 @@
+[
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_CAKEBATTERBUTTON.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_CAKEBATTERBUTTON.WMA",
+    "bytes": 14077,
+    "sha256": "2b6dd985230eb24c4d68a9990c81a8bce23430960dfe2c5f124f9f16b16f1532"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_CAKEBOXED.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_CAKEBOXED.WMA",
+    "bytes": 58989,
+    "sha256": "0982b047c9088b3ebb94d210b07a41c17c5b3144b48d477c2d5b994472ba213e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_CAKEBUTTONS.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_CAKEBUTTONS.WMA",
+    "bytes": 9583,
+    "sha256": "6bcb3bf3082c5c0b8dac559c17a7e8e7551997b546ffc476e0e0c6d370bc5cc5"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_CAKEDUMPED.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_CAKEDUMPED.WMA",
+    "bytes": 41025,
+    "sha256": "0c1b62150d8970616785ef4991f8ae2299c823f1542866df10d5cfdf9e1a364e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_CAKEFILLINGBUTTON.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_CAKEFILLINGBUTTON.WMA",
+    "bytes": 23057,
+    "sha256": "449c24870ff0dec9cc6a031ea2e5a80f20b8d0897ffa0d3b815e20ba68af3b85"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_CAKEPANBUTTON.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_CAKEPANBUTTON.WMA",
+    "bytes": 18567,
+    "sha256": "65b391eb0c893867f50f4a05167266cdb67dd7cbb60ee556710bdf0dd8c0de93"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_CHEFENTER.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_CHEFENTER.WMA",
+    "bytes": 27547,
+    "sha256": "d717e44f50cc8a92d47da937450bf6b88f77abd1fcfef3af54ad1545df748696"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_CHEFEXIT.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_CHEFEXIT.WMA",
+    "bytes": 18567,
+    "sha256": "d57f563643bddc57bad49045f7924c066598f8bb3d62c74d914d0571e5ec9422"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_COMFYWIN.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_COMFYWIN.WMA",
+    "bytes": 27551,
+    "sha256": "cf8e8ba9a4cab35bc048bcd7673da7e7920d0b895c2c3a353e8c0589a3cf4ee7"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_CONVEYOR.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_CONVEYOR.WMA",
+    "bytes": 40767,
+    "sha256": "d7e38d9992f0103d523df0f48d55ba0c1ffe32c45b6095e25e0fdf28030f2540"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_DECORATIONSBUTTONS.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_DECORATIONSBUTTONS.WMA",
+    "bytes": 14073,
+    "sha256": "b8af9bddcb297816b209b86c6f4240d10f6e69c891aac2f7cea5a36a457958d2"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_FLAMEBUTTON.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_FLAMEBUTTON.WMA",
+    "bytes": 14073,
+    "sha256": "df7b8a57958b7c4e6a89ec3d758fc1d20841631a7df5888da457f81e4357767e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_FROSTINGBUTTON.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_FROSTINGBUTTON.WMA",
+    "bytes": 18567,
+    "sha256": "eb3be2a0a233998d7d78815639b0bbbb67aeb68d5806a8779ac988eb3263e7fa"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_ROTATEBUTTON.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_ROTATEBUTTON.WMA",
+    "bytes": 9583,
+    "sha256": "207bf53afd348351d2643ff1cff443d134bcfce6afdb3aa528ac7cbee3472b3b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_SHAKERBUTTON.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_SHAKERBUTTON.WMA",
+    "bytes": 14073,
+    "sha256": "aabc82f919b9239497c8f39fb8a7f6def6076d7a5914dcba21d4e6631262a8d5"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\COMFYCAKES\\PURBLES_TVON_DING.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/COMFYCAKES/PURBLES_TVON_DING.WMA",
+    "bytes": 121299,
+    "sha256": "9f4dd5dbb198dc2dbaebbe25b2cdffd7183673be5b1c4fa194dadf2a4bb15261"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\PURBLES_LEFTARROWBUTTON.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/PURBLES_LEFTARROWBUTTON.WMA",
+    "bytes": 9583,
+    "sha256": "311280444d12ca847f58dc5773e3cd2793de61f3180cae1aacb021cd0508d7af"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "AUDIO\\SFX\\PURBLES_RIGHTARROWBUTTON.WMA",
+    "language": "1033",
+    "path": "PurblePlace/AUDIO/SFX/PURBLES_RIGHTARROWBUTTON.WMA",
+    "bytes": 9583,
+    "sha256": "0a7a5e43cd846d20109dcb13125d1ba3a0ba39284697c832f6ec05e8bc618952"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "COMFYCAKESVARS.XML",
+    "language": "1033",
+    "path": "PurblePlace/COMFYCAKESVARS.XML",
+    "bytes": 8631,
+    "sha256": "c94573dc16de9adeaebbd36d4e812777157a8438fe9337cf0250f8b37fcef466"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESCONVEYORSHEET5.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESCONVEYORSHEET5.BMP.CAB",
+    "bytes": 69917,
+    "sha256": "84b34b54da33fcb628aa63bf17d8413665612ee258a4dfbe8a0b50b42375b670"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESCONVEYORSHEET5.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESCONVEYORSHEET5.JPG",
+    "bytes": 165196,
+    "sha256": "5bf0635c6ce563315a31fe59dd8c6a42d5c0a0132c9261ad2bdb2aa1c217e218"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESCONVEYORSHEET5X21.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESCONVEYORSHEET5X21.BMP.CAB",
+    "bytes": 17396,
+    "sha256": "1fbdf28c688114a513ac72f48093e9675662ce06a694f0608bc7c268cb792c19"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESCONVEYORSHEET5X21.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESCONVEYORSHEET5X21.JPG",
+    "bytes": 66043,
+    "sha256": "badf7b78f68826468a0395182a4c050cfbe15eb106b726092a828d99dd50d917"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESCONVEYORSHEET5X22.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESCONVEYORSHEET5X22.BMP.CAB",
+    "bytes": 27963,
+    "sha256": "1ce57ac99d7cb4d7e75b595d44df2a98b7e831d4793746362723606493dcedc7"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESCONVEYORSHEET5X22.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESCONVEYORSHEET5X22.JPG",
+    "bytes": 104417,
+    "sha256": "c3a7e8a3180d19e3ce6ec189883fe9cce368115aa3e9e4388ee2e973e2941f0b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESCONVEYORSHEET5X23.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESCONVEYORSHEET5X23.BMP.CAB",
+    "bytes": 51022,
+    "sha256": "e8343c40c958134ad26bacb5e395027df49f9ed4d97f14bae729a35b9b5d783f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESCONVEYORSHEET5X23.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESCONVEYORSHEET5X23.JPG",
+    "bytes": 153933,
+    "sha256": "0768caf478666c40d695aea4cd5a8815af35b85ccaeee0ee65f46b31b0715847"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESCONVEYORSHEET5X24.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESCONVEYORSHEET5X24.BMP.CAB",
+    "bytes": 44028,
+    "sha256": "885a338cfacb83d939854a85513fb4928a0620a3860b0c45cbe6a3e964d6bc57"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESCONVEYORSHEET5X24.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESCONVEYORSHEET5X24.JPG",
+    "bytes": 95102,
+    "sha256": "e5eebe9077e196452bf7a3416e763d85732a6335cae11a1c7fdc8d3383d02293"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET23.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET23.BMP.CAB",
+    "bytes": 10248,
+    "sha256": "8ee3e758340ebb7b504b9c7fdb608ea0307dc4c5743f08a7e0178d673dd84d6e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET23.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET23.JPG",
+    "bytes": 42813,
+    "sha256": "2a3992efd2f8aafe2304e0f03715ed2e2e1ea80aa076f0b2828fa64edac38c7d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET23X2.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET23X2.BMP.CAB",
+    "bytes": 21616,
+    "sha256": "54543ef11ebbae80619708a627f6b42f25e324d0415476580da6d017e5677f29"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET23X2.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET23X2.JPG",
+    "bytes": 107381,
+    "sha256": "842ba96cf58a1594e3b32450d135190cbc6dfc9260477992f01320a9a15508b2"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET6.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET6.BMP.CAB",
+    "bytes": 51793,
+    "sha256": "ae17fcdc86826cba6e19a4b5a2fac437e14f8d8780c616b51a37f0aa341ea358"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET6.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET6.JPG",
+    "bytes": 233594,
+    "sha256": "ebd3e4a8e0acbaa4173539c07658215663aa00fd75339ee3ef38cbedb5bb65e0"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET6X21.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET6X21.BMP.CAB",
+    "bytes": 46509,
+    "sha256": "48a0202be411118729a6dfaaaae4c3c27f2da1d4fb23156c4e83cc7cad4a7af6"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET6X21.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET6X21.JPG",
+    "bytes": 196810,
+    "sha256": "d0e04b0e16da9c52263574e2f1bbb946444165bbb176cf92ef517f6fea6338fc"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET6X22.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET6X22.BMP.CAB",
+    "bytes": 43976,
+    "sha256": "0a9348fafc22db970fcf104c67f25f704487f6889a6ba95932a23f5c574b2a8b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET6X22.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET6X22.JPG",
+    "bytes": 226618,
+    "sha256": "dc1598fcc23bc4a12b7be8d3e46247767da9fccbbecc71fb5ec46671733e338a"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET6X23.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET6X23.BMP.CAB",
+    "bytes": 16073,
+    "sha256": "a059b00c2ddb3c0574a64c7cec1b0bd3b2b469a62e3ea0bf8a17cd4c199ef5cb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET6X23.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET6X23.JPG",
+    "bytes": 81580,
+    "sha256": "479ab5d6997c337f420fa8105e1651e926ecd19d6e257db497222642bcbe9875"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET6X24.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET6X24.BMP.CAB",
+    "bytes": 17194,
+    "sha256": "c3f91fc48776e1a9c875d808734fa9a39673abe7a46016c7c120976692f08cc1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEFINALSHEET6X24.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEFINALSHEET6X24.JPG",
+    "bytes": 81907,
+    "sha256": "c30b6b22b620fa60dc58618198d334ac0a6c0655ebc15c984ab4ca61744a9af0"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEMAINSHEET8.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEMAINSHEET8.BMP.CAB",
+    "bytes": 103661,
+    "sha256": "a1df2eb39bd60b660a29e8ebdadc4eb6703689ea4b4ea5840d1bb40d5cca6d83"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEMAINSHEET8.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEMAINSHEET8.JPG",
+    "bytes": 428384,
+    "sha256": "093406edbbd2e3b515f9f29d374d5ce64a9eb286d6acb922249dba505439131f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEMAINSHEET8X21.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEMAINSHEET8X21.BMP.CAB",
+    "bytes": 32661,
+    "sha256": "23f041e1cf29396128e34e7fd8d1f620f6cffa1f281fe7b4699f1a40e874012d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEMAINSHEET8X21.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEMAINSHEET8X21.JPG",
+    "bytes": 280598,
+    "sha256": "72e589fa0dbf8aeba39f3f0977d0e15dfe1401bc44dd534fd4a46948b50ec83b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEMAINSHEET8X22.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEMAINSHEET8X22.BMP.CAB",
+    "bytes": 60886,
+    "sha256": "4398ecb7b27d07b31654dc0e2fb870e55a7629580a637ef8499aca1a0346af13"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEMAINSHEET8X22.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEMAINSHEET8X22.JPG",
+    "bytes": 254310,
+    "sha256": "bfce20c47ae7a06b71016e78922a0e0e2bd3cce466a86bcf5c40fe2cadc31432"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEMAINSHEET8X23.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEMAINSHEET8X23.BMP.CAB",
+    "bytes": 62325,
+    "sha256": "8701dd895aabeb030fd9afa47d1b9a8e206b29a5b84ab0870a205858d42b98de"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEMAINSHEET8X23.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEMAINSHEET8X23.JPG",
+    "bytes": 248397,
+    "sha256": "537e33789c85aed7e13d88cffecbfe6f3dbc42ccc6c873d7e8c51158866156bb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEMAINSHEET8X24.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEMAINSHEET8X24.BMP.CAB",
+    "bytes": 85689,
+    "sha256": "d3dc4154e7714bcfecd0982d41115a6704c5545f6a4cdf0a2cfbba5585271ce7"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESMACHINEMAINSHEET8X24.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESMACHINEMAINSHEET8X24.JPG",
+    "bytes": 311259,
+    "sha256": "c8cfd95ecc5f731aaf16f97443557a2629ac08cd31efd66591ae34cc57f86776"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESPANNODXTSHEET9.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESPANNODXTSHEET9.BMP.CAB",
+    "bytes": 98722,
+    "sha256": "d0407ccd7c3b72dbb50bd6ddd19d479aa303e2c312266cdb486f052f32e09d77"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESPANNODXTSHEET9.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESPANNODXTSHEET9.JPG",
+    "bytes": 372294,
+    "sha256": "b45dce232473e475382706139af1b10f268b6a80b3d635fc8a13f966c5e84ad3"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESPANNODXTSHEET9X21.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESPANNODXTSHEET9X21.BMP.CAB",
+    "bytes": 28853,
+    "sha256": "43dfe25358aed13894791fda912a4f1fc88c5e4b11def015168809469a894221"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESPANNODXTSHEET9X21.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESPANNODXTSHEET9X21.JPG",
+    "bytes": 271285,
+    "sha256": "c6ab012c341a905f3647d45908b26114b6114abdd91b98ae146b3c48e2cd6154"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESPANNODXTSHEET9X22.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESPANNODXTSHEET9X22.BMP.CAB",
+    "bytes": 61176,
+    "sha256": "d110f2a90adaccbcbd941a448996addae42fd45a2dc4a159846932ecaed4a880"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESPANNODXTSHEET9X22.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESPANNODXTSHEET9X22.JPG",
+    "bytes": 231662,
+    "sha256": "836d8631d343e38221be1fc9fd84641391290b99512d29d35561233c896eebfa"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESPANNODXTSHEET9X23.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESPANNODXTSHEET9X23.BMP.CAB",
+    "bytes": 55653,
+    "sha256": "1e80939e931eefb8440eda265d166c11b4e28e5a1ecd86f75a7256013e767d52"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESPANNODXTSHEET9X23.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESPANNODXTSHEET9X23.JPG",
+    "bytes": 251712,
+    "sha256": "04252609db58e08aa3d774439283d36633362c4e5dc0a32d9af111b3523c7432"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESPANNODXTSHEET9X24.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESPANNODXTSHEET9X24.BMP.CAB",
+    "bytes": 82823,
+    "sha256": "3af33f5187628eaee086aa84024774b04495e008675124ce2e8e08415a522b8f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESPANNODXTSHEET9X24.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESPANNODXTSHEET9X24.JPG",
+    "bytes": 269426,
+    "sha256": "53b91e3bb1880dcadbd41d64938165ec6fde947b97dd7fd59977c76f92885634"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESSHEET4.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESSHEET4.BMP.CAB",
+    "bytes": 36429,
+    "sha256": "3392f31f93a83b69f59734108013091311bca012f703ed842dc70907a1d1aa2d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESSHEET4.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESSHEET4.JPG",
+    "bytes": 174616,
+    "sha256": "872d1b39a049213ceaae01a0d16ca5350dd075215eadb3b84250127e97732e28"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESSHEET4X21.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESSHEET4X21.BMP.CAB",
+    "bytes": 19644,
+    "sha256": "a42e5dee9c5ca0f4f3dbafa74e6fd8274794fdee280fd87ffb9f9cef23a066a9"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESSHEET4X21.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESSHEET4X21.JPG",
+    "bytes": 102915,
+    "sha256": "008cbdb244386ffeac2093f1761768a0e362ec861d274f2aa511421065aa3829"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESSHEET4X22.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESSHEET4X22.BMP.CAB",
+    "bytes": 24228,
+    "sha256": "964ba04181b5a939047143c222e794f09c01dae92bc7787c1c91c501b5138158"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESSHEET4X22.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESSHEET4X22.JPG",
+    "bytes": 95339,
+    "sha256": "e2e1919e6bc769696c4d2a0cf32e9d438f3c5fd60fc66df0f247f08142fff1e2"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESSHEET4X23.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESSHEET4X23.BMP.CAB",
+    "bytes": 13351,
+    "sha256": "e5681b6e64efac07a603d6b64c91bf945deaf6ed4c89810341b52cab1e449070"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESSHEET4X23.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESSHEET4X23.JPG",
+    "bytes": 62031,
+    "sha256": "845d168121eb0b8fd454ab9272c4d8425280617e3e1cf8c80995c3e1d63ab882"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESSHEET4X24.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESSHEET4X24.BMP.CAB",
+    "bytes": 33793,
+    "sha256": "75293f90648bb8b4deac413c66399c4d0efe47395da070c242f6e7e78ab2ba21"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESSHEET4X24.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESSHEET4X24.JPG",
+    "bytes": 186018,
+    "sha256": "cdaa6e5ed5b5548ce84601879314f1274176d257acf8e4449a73c4e6608d02eb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET25.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET25.BMP.CAB",
+    "bytes": 51445,
+    "sha256": "dada375a944baf250e2fb3ffec2f1c12e5ae2f34ff4ed586286a77317d067786"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET25.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET25.JPG",
+    "bytes": 88647,
+    "sha256": "44146aeb3924ce0398c6b26c0122f82b0c3bfef680a0e2484011eb256e617405"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET25X21.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET25X21.BMP.CAB",
+    "bytes": 92417,
+    "sha256": "ea8c94bf3d3f242b0c18764534c7d944f4ce6696f743656d28342a98f2261812"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET25X21.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET25X21.JPG",
+    "bytes": 115939,
+    "sha256": "be24dee1e1b4adf7f9c10e6fe83756d4a0fce2a0b1086f52b93b472ffc840f30"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET25X22.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET25X22.BMP.CAB",
+    "bytes": 18938,
+    "sha256": "b18289a2c3373910ba6c526e939f78dd7ac173d682961dfa422ca174ad3b0800"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET25X22.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET25X22.JPG",
+    "bytes": 59654,
+    "sha256": "f7ec9d7303240d30a75cf633b46c56cbe6aa379a068626e13f2caef2544624e5"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET25X23.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET25X23.BMP.CAB",
+    "bytes": 27446,
+    "sha256": "95fb9b91d6986eb7c9717577b92152214a4359a60a1d0094d56e01da294193d2"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET25X23.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET25X23.JPG",
+    "bytes": 50644,
+    "sha256": "400529b438529076f408301f6c6f8e185fbe08c8353a3adb0bdc8e37252758de"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET25X24.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET25X24.BMP.CAB",
+    "bytes": 11575,
+    "sha256": "73bfd5f35cacf0ed0c938f24b598702c70d32651f0a6f80ad19cb26777c252e5"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET25X24.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET25X24.JPG",
+    "bytes": 14469,
+    "sha256": "6bbacff18ec460100294ce91d8271ddd3ba0141c17a45c5cc8c13a00dc4c1862"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET26.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET26.BMP.CAB",
+    "bytes": 7924,
+    "sha256": "f4e4fcbf4c134f109c1816578f00679780b79534008023b742bba53a1572d10f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET26.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET26.JPG",
+    "bytes": 18185,
+    "sha256": "a54c38732d8ff87c4cc2571f024752500aeeba0d5abeda3de035e5edc8b42b8c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET26X2.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET26X2.BMP.CAB",
+    "bytes": 14356,
+    "sha256": "42f69de4c419a115a9a5aa933711320505c539dde4eeb8e552adf9c089b371a1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\COMFYCAKESTRASHCANSHEET26X2.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/COMFYCAKESTRASHCANSHEET26X2.JPG",
+    "bytes": 47803,
+    "sha256": "144f74ec8ef97ba8206e6428ecf224ec20bd1d8e08633ce3d54a1bbb53c52ba0"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\PURBLEPLACEBUTTONSHEET18.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/PURBLEPLACEBUTTONSHEET18.BMP.CAB",
+    "bytes": 102725,
+    "sha256": "92bcefa34382dae2279254320678251a52f897fb42da94ba55224d706025f1e3"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\PURBLEPLACEBUTTONSHEET18.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/PURBLEPLACEBUTTONSHEET18.JPG",
+    "bytes": 176804,
+    "sha256": "ec4a08648294fb123ed88d1ca18199b797483e7f3bb3f2db6bf320c7e2c84c81"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\PURBLEPLACEBUTTONSHEET18X21.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/PURBLEPLACEBUTTONSHEET18X21.BMP.CAB",
+    "bytes": 111558,
+    "sha256": "24432fca1968eca574bc4e0ec4bd49a7d117d3edf056a5b9c0efb9ed2dc95764"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\PURBLEPLACEBUTTONSHEET18X21.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/PURBLEPLACEBUTTONSHEET18X21.JPG",
+    "bytes": 172710,
+    "sha256": "17e40961029d0d1c053030097945a43e23a7ed583f3e2065d87459095790a3cb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\PURBLEPLACEBUTTONSHEET18X22.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/PURBLEPLACEBUTTONSHEET18X22.BMP.CAB",
+    "bytes": 98033,
+    "sha256": "30d27d34748e81118b2c4d566cdeb96510515af6756b648a5d29dbe3da1b3f5c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\PURBLEPLACEBUTTONSHEET18X22.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/PURBLEPLACEBUTTONSHEET18X22.JPG",
+    "bytes": 145606,
+    "sha256": "609853b6e9eeaf8eb7857995835a53b8464beec044fa656dc2d93595a4aa1a77"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\PURBLEPLACEBUTTONSHEET18X23.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/PURBLEPLACEBUTTONSHEET18X23.BMP.CAB",
+    "bytes": 80290,
+    "sha256": "66096ab90e5e16a2099af6ff81aee679cb046c08a8eecceb7daff773a968a90a"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\PURBLEPLACEBUTTONSHEET18X23.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/PURBLEPLACEBUTTONSHEET18X23.JPG",
+    "bytes": 110423,
+    "sha256": "e291acc1e61078d3f0a012b02ac0fd7ff1a5790fb24c1dc7d2aef712f4be9613"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\PURBLEPLACEBUTTONSHEET18X24.BMP.CAB",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/PURBLEPLACEBUTTONSHEET18X24.BMP.CAB",
+    "bytes": 3009,
+    "sha256": "13b43cbc50d7440922e872f75a2ac3c38fab4eb56b7f4d92b0f592bf8ed8e71d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "SHEETS\\PURBLEPLACEBUTTONSHEET18X24.JPG",
+    "language": "1033",
+    "path": "PurblePlace/SHEETS/PURBLEPLACEBUTTONSHEET18X24.JPG",
+    "bytes": 2747,
+    "sha256": "8594d34b1fa1348a5d904d661f5c862e3b47b68efadc8402aa6ebc341f11e3ea"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\BACKWALLSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/BACKWALLSPRITE.XML",
+    "bytes": 432,
+    "sha256": "c0548ea6910f209959d9e405952e316ebc246feb9ba4688d9aa6978162d3c097"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\BOXBOUNCEANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/BOXBOUNCEANIM.XML",
+    "bytes": 312,
+    "sha256": "e0d0ee03484d787480ed7fc4a2fb2d71f6cf375e94be7514d9901d4e6c4b30a7"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\BOXBOUNCESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/BOXBOUNCESPRITE.XML",
+    "bytes": 419,
+    "sha256": "94f0e9e70651914aa0399818a91e16bad97a8fce1e6a90aa62066bcbb50dcce8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\BOXDROPANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/BOXDROPANIM.XML",
+    "bytes": 1149,
+    "sha256": "a44102b927bf434f1d4c6b9a1cc3b7fed41e05817ec41769642e3d2564b220c1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\BOXDROPSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/BOXDROPSPRITE.XML",
+    "bytes": 1091,
+    "sha256": "00b9a347d69071e662d02713ff2a617e744791c4cd0d625fe04ece10996da475"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CAKEBOXANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CAKEBOXANIM.XML",
+    "bytes": 355,
+    "sha256": "4f012cacca4b77f7fa5abf8c1040a16e95a8794ed8be4d76304eb4a3ff4eff64"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CAKEBOXSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CAKEBOXSPRITE.XML",
+    "bytes": 416,
+    "sha256": "51c9e8c50ba9d9a548a0a6470968749ac9f32bb2fa23ec4a6a09c17a734e2eef"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CAKEFADEOUTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CAKEFADEOUTANIM.XML",
+    "bytes": 470,
+    "sha256": "4d9bd5c68f9696204f5a421d128720e8a7936f0c87c705042da75e5b879720f1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CAKEMOVETOBOXANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CAKEMOVETOBOXANIM.XML",
+    "bytes": 355,
+    "sha256": "951a2fe4197225d616cd18cc8e36f788d5cd54aae11061fd525518a0b5d35b3c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CAKEMOVETOTRASHANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CAKEMOVETOTRASHANIM.XML",
+    "bytes": 354,
+    "sha256": "32e84467afa524eccc81284d35204d21f28b01177c4aa498168d28629b70589d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CAKESLIDEDOWNLEFTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CAKESLIDEDOWNLEFTANIM.XML",
+    "bytes": 353,
+    "sha256": "92c3f46c73f8d4b70ae5159101391bce5d58a1269a932d287e6c4bc0dce5878b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CAKESLIDELEFTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CAKESLIDELEFTANIM.XML",
+    "bytes": 241,
+    "sha256": "a4d3d6cce8eee792258fd6781bf11a080ac3fab9b33e0efb2942aa00b8ac13cd"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CAKESLIDERIGHTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CAKESLIDERIGHTANIM.XML",
+    "bytes": 240,
+    "sha256": "b4399cd6bcdeba31504fdee4710f80725ca41b1fea42a8769d7ced61c265d49a"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CAKESLIDEUPRIGHTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CAKESLIDEUPRIGHTANIM.XML",
+    "bytes": 353,
+    "sha256": "d71114d3fb5e789435121d61540dd42dbe9fffb3b75646f86f81bc0d2281f00b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\ARM-01.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/ARM-01.XML",
+    "bytes": 431,
+    "sha256": "55b1285563fbd03866a2f270d3a16c60aafb8419f92fbefcd25710f3f86c6073"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\ARM-02.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/ARM-02.XML",
+    "bytes": 431,
+    "sha256": "293530914a61f6368a49240a94028129ad9b00243ce2cfb87edc9b2bcdfaed30"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\BLUR1.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/BLUR1.XML",
+    "bytes": 433,
+    "sha256": "f68afbd9ed7c219037b1078090b6f9fc0388062ed883fa600f0ead6308171a75"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\BLUR2.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/BLUR2.XML",
+    "bytes": 433,
+    "sha256": "71c2d4f59bcbdb906d47ebe88798acd69a66a474f0cc93c91dc556a895c26ad7"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\BODY.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/BODY.XML",
+    "bytes": 431,
+    "sha256": "2ed4b86bae47d03fa935b5f0720d761c04832cfeaa87b38bad1b864e7b2756c0"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\BROW1.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/BROW1.XML",
+    "bytes": 431,
+    "sha256": "1c5815de258baa887fc34ad27bee24951e2b833f42ec00cc76de644d40bad4a5"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\BROW2.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/BROW2.XML",
+    "bytes": 431,
+    "sha256": "72b0155dd6bb8627f0b4e7d68b0d6d74ac3caf8dfdd4e27493d745320b53949d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\CHEFENTERMOVIE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/CHEFENTERMOVIE.XML",
+    "bytes": 6272,
+    "sha256": "95aa84c858bbbc6d5debb97a8444a2553664871d352a3e2110599a517265cd4d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\CHEFIDLEMOVIE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/CHEFIDLEMOVIE.XML",
+    "bytes": 13168,
+    "sha256": "4b6d59510f18720a7fa0c6bb2f32944210a3307cd8f06110fe4a40fc2fdfc854"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\CHEFLEAVEMOVIE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/CHEFLEAVEMOVIE.XML",
+    "bytes": 8755,
+    "sha256": "35211c416ab04a8a169b531a3eea43bc3e8dcd8895ac5e1a78921a7c13b9ca6f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\CHEFLOSEMOVIE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/CHEFLOSEMOVIE.XML",
+    "bytes": 16436,
+    "sha256": "64367c7e323b008f0cabbc88bd39c6f8ba2260a3142ccbd8aa6bdd8367d457a8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\CHEFTALKMOVIE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/CHEFTALKMOVIE.XML",
+    "bytes": 42703,
+    "sha256": "4511d67ced8577add01ad192f57a3860a6b817a621a2ec5191358637ee728f01"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\CHEFWINMOVIE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/CHEFWINMOVIE.XML",
+    "bytes": 11789,
+    "sha256": "eb0e7d1d128708fc1da88ac35bf9d6708c5af85ae52410feb6a92d6a3e6c47f9"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE1BLINK_1.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE1BLINK_1.XML",
+    "bytes": 431,
+    "sha256": "daaa13402e7e7502f0991ba3a921bd1106755344253e82e4d31216b041120687"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE1BLINK_2.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE1BLINK_2.XML",
+    "bytes": 431,
+    "sha256": "a8f5de09b65e690ffdea62113851f227ea36ff1dcf23e32abc761d1ea13e148e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE1BLINK_3.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE1BLINK_3.XML",
+    "bytes": 432,
+    "sha256": "24eb4b84dc63e6dcbb2ae694c5d26d04a3fefc5dca49a47db9ad6f07c965f06f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE1PUPIL_LEFT.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE1PUPIL_LEFT.XML",
+    "bytes": 431,
+    "sha256": "8b9ed8476a86006d40a6a8c0708011dbe3c8e9c07775d964446e860b2a55b04e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE1PUPIL_RIGHT.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE1PUPIL_RIGHT.XML",
+    "bytes": 431,
+    "sha256": "0fb3f4a1cc584bf89326ba21fe7b3e89003ac03cd6489539698063e27c71fc88"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE2BLINK_1.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE2BLINK_1.XML",
+    "bytes": 431,
+    "sha256": "7645471ad5891efe8cf5b0026eff7445c49376a7eb85b2be7c971180a3495c09"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE2BLINK_2.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE2BLINK_2.XML",
+    "bytes": 432,
+    "sha256": "b1a20ce000f4f802f2c91cfbfd55be74fc69e52b28f755e8e47ef4860f8dd96e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE2BLINK_3.PNG",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE2BLINK_3.PNG",
+    "bytes": 5386,
+    "sha256": "bdc0b73f3abde2f468aa3830c7f532194f87b7adac650b8c06f827ac630eb7a2"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE2BLINK_3.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE2BLINK_3.XML",
+    "bytes": 432,
+    "sha256": "b62501f0e17af91e94b0b92b8fe88ad9d88593f5892c65ee0bbb533d43eb6178"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE2BLINK_3X2.PNG",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE2BLINK_3X2.PNG",
+    "bytes": 10425,
+    "sha256": "3bee5ab937b8bf6e63c5c4bd4748b894c73644ced1ffe032379ab72b4a4473b0"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE2PUPIL_LEFT.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE2PUPIL_LEFT.XML",
+    "bytes": 431,
+    "sha256": "e5f56d7c93a0460ce709bf080d88dacc5ca9a10e7f496fc3c6a5e343867b9e5f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\EYE2PUPIL_RIGHT.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/EYE2PUPIL_RIGHT.XML",
+    "bytes": 431,
+    "sha256": "c16b9b187f0cdfc7b75c96d61def6d2e55b3da017c8cb48b7e73612b852a6222"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\FOOT-01.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/FOOT-01.XML",
+    "bytes": 431,
+    "sha256": "fc8856ed242a085a0330f59ccb0d1fa88a263168dd4a477ebbb4b33d5916fa3f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\FOOT-02.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/FOOT-02.XML",
+    "bytes": 432,
+    "sha256": "872467adb4e08934d2ead03fa668d3ddc6d315a3e2fc838a4b199f4fa21b3232"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\HAPPYMOUTH_1.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/HAPPYMOUTH_1.XML",
+    "bytes": 431,
+    "sha256": "838ad44634f57fe6a6cd7e85a77056ee45cdfe454f31efc3ee4b0582a579d3d9"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\HAPPYMOUTH_2.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/HAPPYMOUTH_2.XML",
+    "bytes": 431,
+    "sha256": "97467ee9808851bc372be56867151bea5f4b3e493cc0b30c8f23fd637e4bbfe6"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\HAPPYMOUTH_3.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/HAPPYMOUTH_3.XML",
+    "bytes": 431,
+    "sha256": "d0a258280a1b2c0cb83f244fae88605284a5df850082c4528ffe10efa4e2844c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\HAPPYMOUTH_4.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/HAPPYMOUTH_4.XML",
+    "bytes": 431,
+    "sha256": "8beeab7084bb6e96b061465018c4693794ee3f03a12d1eb512d4e4f1fd3f6416"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\HAT.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/HAT.XML",
+    "bytes": 431,
+    "sha256": "9a76d4fa864946db7c6bab39741e6c2b79eb75cddf8c89158de5fedc2dcc53c9"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\HEAD.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/HEAD.XML",
+    "bytes": 433,
+    "sha256": "28683eafa88e09406540f4273afb3e814498ab106936c59fbbb3d9c149f18f02"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\NOSE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/NOSE.XML",
+    "bytes": 431,
+    "sha256": "a62667f2e9e3bb638a98b9ac10b8d351a47f2988eedb088290619f6bd73e5402"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\SADMOUTH_1.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/SADMOUTH_1.XML",
+    "bytes": 431,
+    "sha256": "e4534a33dcacec352977606c243ea142e6d7be7bb487af5a484006d90467cab6"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\SADMOUTH_2.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/SADMOUTH_2.XML",
+    "bytes": 431,
+    "sha256": "396f698621ecba962359572e45fed4fec37bf3f074f62593a7cbfe8f440bf015"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\SHADOW.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/SHADOW.XML",
+    "bytes": 432,
+    "sha256": "aafa94ee2a9feb6cdbce0ff52b8a86f3be35e4f6c0ccd3ef693161672146a3e5"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\STASH_1.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/STASH_1.XML",
+    "bytes": 431,
+    "sha256": "8e8c150d3c3f19314a0ba0002c655df08a1ede412b5abaf1b2c2afa5321b810b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CHEF\\STASH_2.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CHEF/STASH_2.XML",
+    "bytes": 431,
+    "sha256": "18eabd35482c28a07514203c5e7825a445e2ebc460b1606944d62ef55460d88b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\COMFYCAKESBACKGROUND2.JPG",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/COMFYCAKESBACKGROUND2.JPG",
+    "bytes": 186696,
+    "sha256": "94cf0a833913ffa82c4db2e73c6abd9a6a33dce29660029446a2a7cb4bd0032d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\COMFYCAKESBACKGROUND2.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/COMFYCAKESBACKGROUND2.XML",
+    "bytes": 438,
+    "sha256": "9cfb38a68668ffb9e2b586e98f48d968afe648502905350f18aea41b27b62bc4"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\COMFYCAKESBACKGROUND2X2.JPG",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/COMFYCAKESBACKGROUND2X2.JPG",
+    "bytes": 519931,
+    "sha256": "9fd434f516edfb3bccfabbdeb6c20124681bcc183d33c850edd64e2cf8229dcb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\COMFYCAKESGAME.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/COMFYCAKESGAME.XML",
+    "bytes": 10524,
+    "sha256": "a060d3995cc10e576a36a8a06290cd4d29f06dc68ffe69825a6f0fa4d89d871e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\COMFYCAKESTIPS.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/COMFYCAKESTIPS.XML",
+    "bytes": 13708,
+    "sha256": "4d0269fe838e5f38c97c55ebd2bda2c06c66310d4c8561fa1b4d1613040ca70c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CONVEYORBELTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CONVEYORBELTANIM.XML",
+    "bytes": 145,
+    "sha256": "4314ede00c525e6c58aef192ca4cd489f8f9a089b7167510d8f58c1bee291f60"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CONVEYORPLATFORMANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CONVEYORPLATFORMANIM.XML",
+    "bytes": 307,
+    "sha256": "9a642e7bb0375e96d48e0de2820c4b354d2d0548b1cb3023d7f05a0093f7e87e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\CONVEYORPLATFORMSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/CONVEYORPLATFORMSPRITE.XML",
+    "bytes": 450,
+    "sha256": "8973895258bb18383955eb44818072336ce0d76ed9f61031c4fcfd25cdc8e3f3"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\DECORATIONCOORDINATES.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/DECORATIONCOORDINATES.XML",
+    "bytes": 2585,
+    "sha256": "b13206f16cbc73c8b45d36cf795bffc8b4b1d262888fba96e8bed0e4b0599ab1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\GLAZELAYERS.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/GLAZELAYERS.XML",
+    "bytes": 1540,
+    "sha256": "9c0f776c779df3eaa88387fdaeffded4849acddf760f0276b3111df9d7b34ded"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS.XML",
+    "bytes": 6100,
+    "sha256": "06bb17e21b8ced1260dfb0fec6b5bec90da26b417770936c529309cfa0a691c2"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\BATTERCHOCOLATEHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/BATTERCHOCOLATEHEARTSPRITE.XML",
+    "bytes": 449,
+    "sha256": "180e2d522b90513271c3fa7a5f0156b5ab7c1a96a6102bd573aa28553f0b33e1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\BATTERCHOCOLATERECTANGLESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/BATTERCHOCOLATERECTANGLESPRITE.XML",
+    "bytes": 448,
+    "sha256": "97eb98183cae6dc750efe36ebc6f6505888ae2e7d4b9efa33e364c3bb36c8765"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\BATTERCHOCOLATEROUNDSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/BATTERCHOCOLATEROUNDSPRITE.XML",
+    "bytes": 449,
+    "sha256": "c3730241cc1f1968a9435a14aecef3c6140bcc79ea9691303e692bccf1af4fe9"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\BATTERSTRAWBERRYHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/BATTERSTRAWBERRYHEARTSPRITE.XML",
+    "bytes": 449,
+    "sha256": "24646bc69e1bdb3035657ddb06bf78c8c1883f7248d475cd7dd506a50122b386"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\BATTERSTRAWBERRYRECTANGLESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/BATTERSTRAWBERRYRECTANGLESPRITE.XML",
+    "bytes": 450,
+    "sha256": "7517460efcbd1ea853c6ee1803adc5dcbb01407659173d1c8db2b47e0c01ec87"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\BATTERSTRAWBERRYROUNDSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/BATTERSTRAWBERRYROUNDSPRITE.XML",
+    "bytes": 449,
+    "sha256": "de6cc27dd53a9f0d5c213c1e65b2e98ac1af01a5be739c7dbb312380c5143be7"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\BATTERVANILLAHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/BATTERVANILLAHEARTSPRITE.XML",
+    "bytes": 449,
+    "sha256": "0bf873ced24886f2e9de67ce5d046aed6fa3d1035460f2b3d7df0bc75be43ebd"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\BATTERVANILLARECTANGLESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/BATTERVANILLARECTANGLESPRITE.XML",
+    "bytes": 450,
+    "sha256": "caf134ff05a99f0807200265fc74a5fb871235536ea2d03f48005669422faa46"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\BATTERVANILLAROUNDSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/BATTERVANILLAROUNDSPRITE.XML",
+    "bytes": 449,
+    "sha256": "ccd62ecdd18d3dec56b5c0fc966a35ea1cca2b1db979ee14c05d60834be50f61"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\DECORATIONGUMDROPSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/DECORATIONGUMDROPSPRITE.XML",
+    "bytes": 439,
+    "sha256": "5232d00d42ac74b5cb9559d580666c6fd766f2e9452b52c474e6b5c06506c757"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\DECORATIONHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/DECORATIONHEARTSPRITE.XML",
+    "bytes": 437,
+    "sha256": "cb6f13d4ba56d4601fa43b85567c0bd22c40b119b86634694edc586c36368073"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\DECORATIONSHAMROCKSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/DECORATIONSHAMROCKSPRITE.XML",
+    "bytes": 440,
+    "sha256": "12ef6ecfeea6eeda58b16e73385584b54f1712056de650c06b15242199919c10"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\DECORATIONSMILEYSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/DECORATIONSMILEYSPRITE.XML",
+    "bytes": 439,
+    "sha256": "123671e672937941810ffc1e30bcb691f05bc75b69c11e2ff7ee928f85d03dab"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FILLINGFUDGEHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FILLINGFUDGEHEARTSPRITE.XML",
+    "bytes": 434,
+    "sha256": "562b0e0e056c68be6d60e3b895729f8e5fb31bcf8a48de83437fb23f5fbf22ad"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FILLINGFUDGERECTANGLESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FILLINGFUDGERECTANGLESPRITE.XML",
+    "bytes": 434,
+    "sha256": "0c83ac03033b504fef47e8134d52375c63c8f24edf4daef7bb26b5adb1d5beeb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FILLINGFUDGEROUNDSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FILLINGFUDGEROUNDSPRITE.XML",
+    "bytes": 433,
+    "sha256": "2a46236740241023f5c85f1ddbf47e9ebce580bd40d7b1f0179d60b0aa285c3e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FILLINGRASPBERRYHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FILLINGRASPBERRYHEARTSPRITE.XML",
+    "bytes": 434,
+    "sha256": "4c021e527a63621f2f9f336338dbd238644daafe18093e1ded202e8db2604fcc"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FILLINGRASPBERRYRECTANGLESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FILLINGRASPBERRYRECTANGLESPRITE.XML",
+    "bytes": 434,
+    "sha256": "fd6c78e41cc20b8c3c94ea857e280f9dcf1f8420acec0376c5a5066a93bd2d23"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FILLINGRASPBERRYROUNDSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FILLINGRASPBERRYROUNDSPRITE.XML",
+    "bytes": 433,
+    "sha256": "de30fbb6da512ecd37935d8ee1224bd2208a8970ad25d2a0acb5fbbfae13868d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FILLINGVANILLAHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FILLINGVANILLAHEARTSPRITE.XML",
+    "bytes": 434,
+    "sha256": "d3594507ca9f16814b06057ae2ac009e4f04dd019ce7f87ccfc976b8df026eb4"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FILLINGVANILLARECTANGLESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FILLINGVANILLARECTANGLESPRITE.XML",
+    "bytes": 434,
+    "sha256": "80cedb9092481172c9bbd5736b0325c95d470792d33a9a5f20eee1ce2a273ee2"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FILLINGVANILLAROUNDSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FILLINGVANILLAROUNDSPRITE.XML",
+    "bytes": 433,
+    "sha256": "4b97b322c6fdd9d6606146de1a2e59e296c73c916d8ae33f12f192d474743187"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHBURNTGLAZECHOCOLATEHEART.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHBURNTGLAZECHOCOLATEHEART.XML",
+    "bytes": 433,
+    "sha256": "cb7505fcef8e4c9643f12466eb84b58793b6c048d8d5611cfa816d94ae802173"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHBURNTGLAZECHOCOLATERECTANGLE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHBURNTGLAZECHOCOLATERECTANGLE.XML",
+    "bytes": 434,
+    "sha256": "8938c1448960e3b2dd4cddf414f34b4372c0ad808e0806f9a158eb147fa46f6b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHBURNTGLAZECHOCOLATEROUND.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHBURNTGLAZECHOCOLATEROUND.XML",
+    "bytes": 433,
+    "sha256": "3d484d586a1c1becb16a6c48cd79c32d589e97935396bf6088294aab0f148aa8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHBURNTGLAZESTRAWBERRYHEART.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHBURNTGLAZESTRAWBERRYHEART.XML",
+    "bytes": 433,
+    "sha256": "9a9ae2baa096d24f1ca40a7158cd89ae18924ec04f348e57251b7283e9492a1c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHBURNTGLAZESTRAWBERRYRECTANGLE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHBURNTGLAZESTRAWBERRYRECTANGLE.XML",
+    "bytes": 434,
+    "sha256": "e151c0b88663c7786909f8246d7a9bb6fc3a57a2d6c73c95988333edc80be64f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHBURNTGLAZESTRAWBERRYROUND.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHBURNTGLAZESTRAWBERRYROUND.XML",
+    "bytes": 433,
+    "sha256": "45425862e2ff648001b74a0c30cda69814dad41efb785fd93f32cb8ebdbb1f59"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHBURNTGLAZEVANILLAHEART.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHBURNTGLAZEVANILLAHEART.XML",
+    "bytes": 433,
+    "sha256": "9e4da3265183ae1f1a96f0fa974adb72b02edf5989fe0982b806d280466aa6ac"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHBURNTGLAZEVANILLARECTANGLE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHBURNTGLAZEVANILLARECTANGLE.XML",
+    "bytes": 434,
+    "sha256": "11ce887af25a0d82e25c7d857e33b877ead39a314125d23779a1b72f98a66bd4"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHBURNTGLAZEVANILLAROUND.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHBURNTGLAZEVANILLAROUND.XML",
+    "bytes": 433,
+    "sha256": "f7242e76a78561ea64e3d990a722270a39f6b7945af683bb65a83aa70d301483"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHSUGARHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHSUGARHEARTSPRITE.XML",
+    "bytes": 433,
+    "sha256": "ef6fae1b1ed459e09a3b07242f2f86302e3f4c99c5e948d5ad1394c99a6cbbfa"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHSUGARRECTANGLESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHSUGARRECTANGLESPRITE.XML",
+    "bytes": 433,
+    "sha256": "62508007aab72a1d3ae682be98d698f29b630a6c85efde03896ec241ab398e9c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\FINALTOUCHSUGARROUNDSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/FINALTOUCHSUGARROUNDSPRITE.XML",
+    "bytes": 433,
+    "sha256": "005e00937b91acb16849ca1667b88db3dd0e0dfa3410a763447238812fc2cece"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\ICINGCHOCOLATEHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/ICINGCHOCOLATEHEARTSPRITE.XML",
+    "bytes": 433,
+    "sha256": "6e81fce0d55daaa8bf7371ed1ffa16ba384a28d794d1afbf5806f4f591d0e32e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\ICINGCHOCOLATERECTANGLESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/ICINGCHOCOLATERECTANGLESPRITE.XML",
+    "bytes": 450,
+    "sha256": "038b7c3e7420004a0a20acef01e0b89b079c7956b1b911b9f601314fb08e88d4"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\ICINGCHOCOLATEROUNDSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/ICINGCHOCOLATEROUNDSPRITE.XML",
+    "bytes": 433,
+    "sha256": "da1025fc02cc553c67b51391c115fa5ef4c7c2c8ad5a5555a5473fe55c1aee5d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\ICINGSTRAWBERRYHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/ICINGSTRAWBERRYHEARTSPRITE.XML",
+    "bytes": 433,
+    "sha256": "65c2f4fc75516f08e57c838d76ec137da1764fcc773477b999a12b270fa3eab8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\ICINGSTRAWBERRYRECTANGLESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/ICINGSTRAWBERRYRECTANGLESPRITE.XML",
+    "bytes": 450,
+    "sha256": "70691fdfcda4f37ad147bab933e04e7f29f5b72843cd05882bedb405df97a08f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\ICINGSTRAWBERRYROUNDSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/ICINGSTRAWBERRYROUNDSPRITE.XML",
+    "bytes": 433,
+    "sha256": "e154be1d73384f8c00cc31a0263e015ba50114582c213f0583058a7f5c4a9ffb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\ICINGVANILLAHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/ICINGVANILLAHEARTSPRITE.XML",
+    "bytes": 433,
+    "sha256": "c6379b4ebfeb842df11096c4f5e127818b154934c91461c8d20c14933c28346b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\ICINGVANILLARECTANGLESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/ICINGVANILLARECTANGLESPRITE.XML",
+    "bytes": 450,
+    "sha256": "cfaa49f87c0d84c9f00df99b5b006748416f897bd11e4d647081d83252d47eee"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\ICINGVANILLAROUNDSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/ICINGVANILLAROUNDSPRITE.XML",
+    "bytes": 433,
+    "sha256": "2bcd8d5169726bea672e9925d96bf780f12a2f418af02c206c1fac2c8322d206"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\PANHEARTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/PANHEARTSPRITE.XML",
+    "bytes": 449,
+    "sha256": "9e7e3eec1206314afe802d06ae6c15110b0c8baace2c02b70677f4edf654290e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\PANRECTANGLESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/PANRECTANGLESPRITE.XML",
+    "bytes": 450,
+    "sha256": "59f1307779f905e27a65f27d03bf122b0d4def87cb7672585d0bed669aa19331"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LAYERS\\PANROUNDSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LAYERS/PANROUNDSPRITE.XML",
+    "bytes": 449,
+    "sha256": "0db8c2be956c20124dfea79f71a4c9aaa81c8d1795fbb4dc45c7f23dbf4a2ffb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LEFTCONVEYORBELT.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LEFTCONVEYORBELT.XML",
+    "bytes": 429,
+    "sha256": "ed9f11f107fd8d554a9f9f13a928fae6662458304a3a605d0ce05abef2eb0bfe"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\LEFTCONVEYORBELTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/LEFTCONVEYORBELTANIM.XML",
+    "bytes": 307,
+    "sha256": "2e021c594a15c55d1b5f559a4ed3e55b93675eacb15f94d34d5d123d8ef18fe1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\BATTERMACHINECHOCOLATEACTIONANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/BATTERMACHINECHOCOLATEACTIONANIM.XML",
+    "bytes": 479,
+    "sha256": "c1be32418c5adcb6d8af00ac120e166ed68acd745587f7d4b5ed6d5aeec3f3d4"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\BATTERMACHINELEMONACTIONANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/BATTERMACHINELEMONACTIONANIM.XML",
+    "bytes": 478,
+    "sha256": "b675ed1b55f30266144c8117ba4bc4a62f880cae664e7982ff8602c351d85a75"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\BATTERMACHINESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/BATTERMACHINESPRITE.XML",
+    "bytes": 914,
+    "sha256": "ab01d7781a226d1bf66d0cf50bdd4cbf5c739b2c93c632218b602a5be14023c8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\BATTERMACHINESTRAWBERRYACTIONANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/BATTERMACHINESTRAWBERRYACTIONANIM.XML",
+    "bytes": 479,
+    "sha256": "c1be32418c5adcb6d8af00ac120e166ed68acd745587f7d4b5ed6d5aeec3f3d4"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\CAKEPANFILLANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/CAKEPANFILLANIM.XML",
+    "bytes": 234,
+    "sha256": "a86ce49b4bc07ff03ce6c36d0a263163678ad7f1460e31238ad6be9ca98c77d7"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\CAKEPANHEARTFILLANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/CAKEPANHEARTFILLANIM.XML",
+    "bytes": 565,
+    "sha256": "036401c1830e6e7051883381d9b19435b45883f628d9116c3bbe397a43c7c199"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\CAKEPANMACHINEACTIONANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/CAKEPANMACHINEACTIONANIM.XML",
+    "bytes": 270,
+    "sha256": "c1e4464265eb9eed34b2a3776669a9551b42ed1973c731c29d8fdb0710f43e36"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\CAKEPANMACHINEFALLINGANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/CAKEPANMACHINEFALLINGANIM.XML",
+    "bytes": 234,
+    "sha256": "24654c8c22d7737e01aa7b1c0c6b5faf9f1dfacf6779c51202e8c3fbe5af5f4e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\CAKEPANMACHINESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/CAKEPANMACHINESPRITE.XML",
+    "bytes": 439,
+    "sha256": "3bb2638a629b6265bb2daf7c73407b3dd6b9b8245efd89170cef1c465e7e32ee"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\CAKEPANRECTANGLEFILLANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/CAKEPANRECTANGLEFILLANIM.XML",
+    "bytes": 565,
+    "sha256": "56eed6caef6e159773efc0dfc74168c9bee1a9530b6d979fa00606c0076d2bee"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\CAKEPANROUNDFILLANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/CAKEPANROUNDFILLANIM.XML",
+    "bytes": 565,
+    "sha256": "036401c1830e6e7051883381d9b19435b45883f628d9116c3bbe397a43c7c199"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\CAKEPANSQUISHSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/CAKEPANSQUISHSPRITE.XML",
+    "bytes": 902,
+    "sha256": "7a9dd764891a6c3a3e603553990f3495bf26503324ac2490231b6e5009e55e04"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\DECORATIONMACHINEFALLINGANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/DECORATIONMACHINEFALLINGANIM.XML",
+    "bytes": 234,
+    "sha256": "7052dcae8b9b4be4780eb1247301a08f69024808f5cdbd7dbc599c3dd758dd46"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\DECORATIONMACHINEGUMDROPANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/DECORATIONMACHINEGUMDROPANIM.XML",
+    "bytes": 271,
+    "sha256": "aac829ff8efc67c9895aa3b65a70dd95841a3f73851ffe6edbb7e893ca059ece"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\DECORATIONMACHINEHEARTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/DECORATIONMACHINEHEARTANIM.XML",
+    "bytes": 271,
+    "sha256": "aac829ff8efc67c9895aa3b65a70dd95841a3f73851ffe6edbb7e893ca059ece"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\DECORATIONMACHINESHAMROCKANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/DECORATIONMACHINESHAMROCKANIM.XML",
+    "bytes": 270,
+    "sha256": "9daa99d77807831938d30f3f0e61fc7f0547b5fbb8cb455508638587e8f446d2"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\DECORATIONMACHINESMILEYANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/DECORATIONMACHINESMILEYANIM.XML",
+    "bytes": 271,
+    "sha256": "aac829ff8efc67c9895aa3b65a70dd95841a3f73851ffe6edbb7e893ca059ece"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\DECORATIONMACHINESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/DECORATIONMACHINESPRITE.XML",
+    "bytes": 1153,
+    "sha256": "0dc570886fcfee2589ef0df2ffc4a1dd07dfe89548212368c921567a703036d6"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FALLINGBATTERANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FALLINGBATTERANIM.XML",
+    "bytes": 736,
+    "sha256": "00c43a2213303e600bc0543b2613a8417c64a274c8a7d721025cd7e83416cdc6"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FALLINGBATTERSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FALLINGBATTERSPRITE.XML",
+    "bytes": 910,
+    "sha256": "4bfd46a02770dfd86f5e1769cd84f56eee42ac8b29f5a765deaefa7b64e62340"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FALLINGDECORATIONSSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FALLINGDECORATIONSSPRITE.XML",
+    "bytes": 1156,
+    "sha256": "a7cb5101b3cbd4f0cba6c9fa832e1c79b7fba7de9fb2d1393cbbfdd05ce37338"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FILLINGMACHINEACTIONANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FILLINGMACHINEACTIONANIM.XML",
+    "bytes": 273,
+    "sha256": "dbfd6f44797e5da5cb6c65effc0987b797c6d7263a953166f2bd1808d01e0d3c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FILLINGMACHINECHOCOLATEBASEANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FILLINGMACHINECHOCOLATEBASEANIM.XML",
+    "bytes": 233,
+    "sha256": "7c8024b583080e3a2c6520618b31fd18f1d5bfb568199e10a5eccd96013b1da1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FILLINGMACHINELEMONBASEANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FILLINGMACHINELEMONBASEANIM.XML",
+    "bytes": 233,
+    "sha256": "7c8024b583080e3a2c6520618b31fd18f1d5bfb568199e10a5eccd96013b1da1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FILLINGMACHINESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FILLINGMACHINESPRITE.XML",
+    "bytes": 440,
+    "sha256": "ed6325f7cd739feb5aa2214bd385efb5d17ceb970c7aa3cbb2d8c9c48048c32f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FILLINGMACHINESTRAWBERRYBASEANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FILLINGMACHINESTRAWBERRYBASEANIM.XML",
+    "bytes": 233,
+    "sha256": "7c8024b583080e3a2c6520618b31fd18f1d5bfb568199e10a5eccd96013b1da1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FILLINGMACHINETUBESSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FILLINGMACHINETUBESSPRITE.XML",
+    "bytes": 915,
+    "sha256": "6f53c817b129e034b0a16778ba611519cdb34803709b5d0660a957c3a48dfa22"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FILLINGSPLATANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FILLINGSPLATANIM.XML",
+    "bytes": 234,
+    "sha256": "a46fcb8de89b1cbed84a4fb85fe35c28cdcf92fce15191910134c4dea7e3803c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FILLINGSPLATSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FILLINGSPLATSPRITE.XML",
+    "bytes": 909,
+    "sha256": "c4b456bd62e9b03c2324c4554060d1b42cec08cb5bdea05612d7d65c0f94afdf"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FINALTOUCHMACHINEACTIONSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FINALTOUCHMACHINEACTIONSPRITE.XML",
+    "bytes": 678,
+    "sha256": "b2cfd39897d63b5077787c568fef21e37d34a25434393492b568018da9985630"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FINALTOUCHMACHINEBASESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FINALTOUCHMACHINEBASESPRITE.XML",
+    "bytes": 915,
+    "sha256": "bfbf886f3339d9cfdfe1f7499ceb4b8a4944166cdcf9ccea8187a7c845027d94"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FINALTOUCHMACHINEBURNTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FINALTOUCHMACHINEBURNTANIM.XML",
+    "bytes": 270,
+    "sha256": "dd6f955110f78ed20fda6c861637d4f2ee0ea49124210bd3dfd13a8470294950"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FINALTOUCHMACHINEROTATIONANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FINALTOUCHMACHINEROTATIONANIM.XML",
+    "bytes": 234,
+    "sha256": "24654c8c22d7737e01aa7b1c0c6b5faf9f1dfacf6779c51202e8c3fbe5af5f4e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\FINALTOUCHMACHINESUGARANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/FINALTOUCHMACHINESUGARANIM.XML",
+    "bytes": 272,
+    "sha256": "fb9a640fd019d7f67ddd466349a0dae1c98704bd26cc2cfe68a7d2d2cfb626cc"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\HEARTBATTERFILLSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/HEARTBATTERFILLSPRITE.XML",
+    "bytes": 1182,
+    "sha256": "e177a7a21341852cb457c15a8b9700b69ebc9933ee99f059da2305a2fce47886"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ICINGMACHINEACTIONSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/ICINGMACHINEACTIONSPRITE.XML",
+    "bytes": 1623,
+    "sha256": "9939d1d67b6d60a6d5adc93e99ade98fefc533d050e0b1edf6a7ef6d5ca38c81"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ICINGMACHINECHOCOLATE-STRAWBERRYANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/ICINGMACHINECHOCOLATE-STRAWBERRYANIM.XML",
+    "bytes": 234,
+    "sha256": "1d03851540f54dfa33b5dc9fb1f6662168b19bee42863af0a0a8dbd796d0423f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ICINGMACHINECHOCOLATEANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/ICINGMACHINECHOCOLATEANIM.XML",
+    "bytes": 271,
+    "sha256": "23cff78397209c538b143549eb1adfff299d04cd70e064c1d33471007fc89deb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ICINGMACHINELEMON-CHOCOLATEANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/ICINGMACHINELEMON-CHOCOLATEANIM.XML",
+    "bytes": 234,
+    "sha256": "1d03851540f54dfa33b5dc9fb1f6662168b19bee42863af0a0a8dbd796d0423f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ICINGMACHINELEMONANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/ICINGMACHINELEMONANIM.XML",
+    "bytes": 271,
+    "sha256": "23cff78397209c538b143549eb1adfff299d04cd70e064c1d33471007fc89deb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ICINGMACHINESTRAWBERRY-LEMONANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/ICINGMACHINESTRAWBERRY-LEMONANIM.XML",
+    "bytes": 234,
+    "sha256": "1d03851540f54dfa33b5dc9fb1f6662168b19bee42863af0a0a8dbd796d0423f"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ICINGMACHINESTRAWBERRYANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/ICINGMACHINESTRAWBERRYANIM.XML",
+    "bytes": 271,
+    "sha256": "b18032c46d73a2fa6c038af99a093e1a31b398e87f7f54265bd4c49c876627df"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ICINGSPLATANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/ICINGSPLATANIM.XML",
+    "bytes": 234,
+    "sha256": "24654c8c22d7737e01aa7b1c0c6b5faf9f1dfacf6779c51202e8c3fbe5af5f4e"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ICINGSPLATSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/ICINGSPLATSPRITE.XML",
+    "bytes": 909,
+    "sha256": "b8a2df641f4ccad0730c310a12fb52473bdaf9a8dfe679397fde3044f9e823e1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ICINGSTREAMANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/ICINGSTREAMANIM.XML",
+    "bytes": 270,
+    "sha256": "95298c59d506d391a941a380c84677dbbb4d8b52df9d8a329cd8c5500ffbf164"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ICINGSTREAMSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/ICINGSTREAMSPRITE.XML",
+    "bytes": 917,
+    "sha256": "7df09f309a2c464d658f9eb1ef34135cc7acbd3c89b1ece882c0ad8ae7ed20e2"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\LEMONBATTERMACHINESPRITE.PNG",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/LEMONBATTERMACHINESPRITE.PNG",
+    "bytes": 187491,
+    "sha256": "affdd20e6b4700848ddd7e50f574c2359e21e94b997d075dc3d303789a00c408"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\LEMONBATTERMACHINESPRITEX2.PNG",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/LEMONBATTERMACHINESPRITEX2.PNG",
+    "bytes": 380165,
+    "sha256": "d780d7e97f40d5749f47b7635d9835cdfba123cb3a15c1d25a6c1c15aa51fcdd"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\LEMONFILLINGMACHINESPRITE.PNG",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/LEMONFILLINGMACHINESPRITE.PNG",
+    "bytes": 309950,
+    "sha256": "4b98b995e7fddd58c96e72938de5121987358c401e365837550e5f73980fb3cb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\MACHINEUNUSABLESHAKEANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/MACHINEUNUSABLESHAKEANIM.XML",
+    "bytes": 643,
+    "sha256": "5aefdef960f095bc9c30ccc7c773e85f129c3348e302c0bdf404ad7b509d3e90"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\TOOLHIGHLIGHTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/TOOLHIGHLIGHTANIM.XML",
+    "bytes": 1957,
+    "sha256": "4339ad8b662c2e4c25f5d06a770679b0a76068ac2834ad793c349c08047f1af8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\TOOLHIGHLIGHTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MACHINES/TOOLHIGHLIGHTSPRITE.XML",
+    "bytes": 439,
+    "sha256": "3fb3671708876ec668f3cd140e90aafb4aa7776f29d63828f12ea9ecc5758c7c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MAINCONVEYORBELT.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MAINCONVEYORBELT.XML",
+    "bytes": 667,
+    "sha256": "5097cc540d70a99321bb274b9e09222c6227c566fe456d00954d99a69a994423"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MAINCONVEYORBELTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MAINCONVEYORBELTANIM.XML",
+    "bytes": 310,
+    "sha256": "2e5024ca930e18c64885b6d7a9314b5e0cdf45d90deaa5d0c6e62c9833f8ab0c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MAINCONVEYORBELTENDANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/MAINCONVEYORBELTENDANIM.XML",
+    "bytes": 310,
+    "sha256": "96d7b2e5d7c0e1708a81197583c1ae2e339aa027b34ed6910bbea96b7ee12c41"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\REDLIGHTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/REDLIGHTANIM.XML",
+    "bytes": 1500,
+    "sha256": "7cf5df497a3feb6535e842f9a05b861f6cc6705663f2688883792b2dba4284f8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\REDLIGHTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/REDLIGHTSPRITE.XML",
+    "bytes": 429,
+    "sha256": "7f4d6e7625ab8c7d01f60d0a938ed2cd06969c43dd1a6d7b302ca0dfd6255ae0"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\RIGHTCONVEYORBELTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/RIGHTCONVEYORBELTANIM.XML",
+    "bytes": 556,
+    "sha256": "ecf9ef14255d7c9034a1f63c192d2c69f144c504b035c4e62ca72fe440c4b3f8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\RIGHTCONVEYORBELTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/RIGHTCONVEYORBELTSPRITE.XML",
+    "bytes": 431,
+    "sha256": "73169c928c8920dcfa9ee7a5d4721ba4ac4880fd260e3c938e70c22506c0554c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SCREENSLOTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SCREENSLOTANIM.XML",
+    "bytes": 1957,
+    "sha256": "4339ad8b662c2e4c25f5d06a770679b0a76068ac2834ad793c349c08047f1af8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SCREENSLOTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SCREENSLOTSPRITE.XML",
+    "bytes": 453,
+    "sha256": "dbc47190ed4cdf9ad618111a5826a2b22253e944d7cc8455d7271ec6d6cca8f7"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SHIPPINGSIGNBACK.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SHIPPINGSIGNBACK.XML",
+    "bytes": 432,
+    "sha256": "98f714325e1b5169bd164508e1e5366f8d4234e62da6c2ccb6b53ff1bb9358ed"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SHIPPINGSIGNDELIVERYANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SHIPPINGSIGNDELIVERYANIM.XML",
+    "bytes": 1497,
+    "sha256": "acaa13aba9a6f97693c1e0ca6aa38abcdf52bebc23bd698c1889a67fcbeb4f65"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SHIPPINGSIGNNODELIVERYANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SHIPPINGSIGNNODELIVERYANIM.XML",
+    "bytes": 1022,
+    "sha256": "42b867160abf9dd5e19dbc4d8d16613868dfc6e152d76697e26881e205514d5a"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SHIPPINGSIGNSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SHIPPINGSIGNSPRITE.XML",
+    "bytes": 662,
+    "sha256": "42e92592f7729dbb2c39fa288b0ec133b3e69ddcf0cefef0558851b1d2bf5c49"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SLIDELEFTBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SLIDELEFTBUTTON.XML",
+    "bytes": 1146,
+    "sha256": "44dda5a9e80fdd2fe5e2dd1e32b7a98fbb321d5623a388618ce246877c16e12a"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SLIDELEFTHIGHLIGHTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SLIDELEFTHIGHLIGHTANIM.XML",
+    "bytes": 1957,
+    "sha256": "4339ad8b662c2e4c25f5d06a770679b0a76068ac2834ad793c349c08047f1af8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SLIDELEFTHIGHLIGHTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SLIDELEFTHIGHLIGHTSPRITE.XML",
+    "bytes": 437,
+    "sha256": "5de657f0b11ac10043afdfe2bcb938400085ec8456fbbe15fb584bd5d5d4418b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SLIDERIGHTBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SLIDERIGHTBUTTON.XML",
+    "bytes": 1151,
+    "sha256": "3e49c227d79cf77e8a5af44f88cf18269a1e41a209413eaea78f66edea5eb1ec"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SLIDERIGHTHIGHLIGHTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SLIDERIGHTHIGHLIGHTANIM.XML",
+    "bytes": 1957,
+    "sha256": "4339ad8b662c2e4c25f5d06a770679b0a76068ac2834ad793c349c08047f1af8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\SLIDERIGHTHIGHLIGHTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/SLIDERIGHTHIGHLIGHTSPRITE.XML",
+    "bytes": 437,
+    "sha256": "450bfcefd1089b8ed4cc54b0742cd54921e124574097584b74ab9426df26f82d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TIMERBACKSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TIMERBACKSPRITE.XML",
+    "bytes": 435,
+    "sha256": "0c1fc3e132d1de8a1ba8f3b373e6563e9c84621301f291b31dabaed73f1697f7"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TIMERBARSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TIMERBARSPRITE.XML",
+    "bytes": 431,
+    "sha256": "e9fa841a4f663abf415ea978bfd2fccd4ea8f83e489b9fbc2c05893cee995983"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\BATTERTOOL.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/BATTERTOOL.XML",
+    "bytes": 3282,
+    "sha256": "5cae2df2a16b5cd94d97fcb856fc86d9021bf748547f0b1fabe27f5e0947a648"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\BATTERTOOLCHOCOLATEBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/BATTERTOOLCHOCOLATEBUTTON.XML",
+    "bytes": 1157,
+    "sha256": "b74097a3233b0a3ea3f9d558b5aecb2a8eb84e95b86b7368ce1ab05b8f05cff2"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\BATTERTOOLLEMONBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/BATTERTOOLLEMONBUTTON.XML",
+    "bytes": 1151,
+    "sha256": "7976764af086a336386a67d518bd1ce1656041f9dfb91e20c73ae292ea53874c"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\BATTERTOOLSTRAWBERRYBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/BATTERTOOLSTRAWBERRYBUTTON.XML",
+    "bytes": 1161,
+    "sha256": "624cc817e651c4050115545d91de4d26029f9cfbc260ae31328dba5abb3596f7"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\CAKEPANTOOL.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/CAKEPANTOOL.XML",
+    "bytes": 2081,
+    "sha256": "df4546481047377d87de19647471ab52df1c842699c7c9f8a166daec409d6d95"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\CAKEPANTOOLHEARTBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/CAKEPANTOOLHEARTBUTTON.XML",
+    "bytes": 1144,
+    "sha256": "c1a9a7e8367b7da4f332aae250207a9b1865971d9b18b91d25429824433d2bb3"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\CAKEPANTOOLRECTANGLEBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/CAKEPANTOOLRECTANGLEBUTTON.XML",
+    "bytes": 1152,
+    "sha256": "421686aaaf1c060f57088f9cab8c53fe67b4a4704395cc5bc8c57cc8735ad0ff"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\CAKEPANTOOLROUNDBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/CAKEPANTOOLROUNDBUTTON.XML",
+    "bytes": 1145,
+    "sha256": "7d4da7b15536512a72431d17df392d401f28d6972dadd68da7e7323040ce207b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\DECORATIONTOOL.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/DECORATIONTOOL.XML",
+    "bytes": 2643,
+    "sha256": "97086b3662581123af49eb58cf68bd8c99585ad23e722986cffe23a5c4d66dac"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\DECORATIONTOOLGUMDROPBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/DECORATIONTOOLGUMDROPBUTTON.XML",
+    "bytes": 1141,
+    "sha256": "35347b7cd82b987bc4ea2bb8377ebb49c647bf73f0e45c9b3c33da70fc5082ec"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\DECORATIONTOOLHEARTBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/DECORATIONTOOLHEARTBUTTON.XML",
+    "bytes": 1137,
+    "sha256": "d8f5c997576ea7b17464426ae1613228cab8794bcabe75db65a3fcd37673b018"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\DECORATIONTOOLSHAMROCKBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/DECORATIONTOOLSHAMROCKBUTTON.XML",
+    "bytes": 1143,
+    "sha256": "7bfda5bb92b322c63c069dbb1a60b68ab276a7da3377c29d6620a801187f8316"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\DECORATIONTOOLSMILEYBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/DECORATIONTOOLSMILEYBUTTON.XML",
+    "bytes": 1137,
+    "sha256": "ebd997321e8d42a75a2942d9131d14eb6c8a90d4ee9f5e574570a24c8b53cf6b"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\FILLINGTOOL.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/FILLINGTOOL.XML",
+    "bytes": 2598,
+    "sha256": "7fcbe939caf4dd74ce85d30801eba9579576c22ea91eb4f615c13265657e9776"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\FILLINGTOOLCHOCOLATEBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/FILLINGTOOLCHOCOLATEBUTTON.XML",
+    "bytes": 1160,
+    "sha256": "7375fd70c6a9dd4af2ddcfe8b16af5b33fc7eaf8b88981b50f1029474ac78d79"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\FILLINGTOOLRASPBERRYBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/FILLINGTOOLRASPBERRYBUTTON.XML",
+    "bytes": 1150,
+    "sha256": "b5e6779931ee5599fd43ebdb246f29dfda821e9848017fba04c6bc5c16f95909"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\FILLINGTOOLVANILLACUSTARDBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/FILLINGTOOLVANILLACUSTARDBUTTON.XML",
+    "bytes": 1168,
+    "sha256": "4fd1bd73aea7f73cac97ed050888d0e36640d8f8d54afdac7802ea70a949ee26"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\FINALTOUCHTOOL.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/FINALTOUCHTOOL.XML",
+    "bytes": 1943,
+    "sha256": "8278484af6c4c20deede1173759321a12f44632ff47f11dfad98cbe13a9ea9cb"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\FINALTOUCHTOOLBURNTGLAZEBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/FINALTOUCHTOOLBURNTGLAZEBUTTON.XML",
+    "bytes": 1149,
+    "sha256": "72c01e292f1e624f7264139d332c536c320ddc360d45b5eec491e33dbfa05d58"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\FINALTOUCHTOOLPOWDEREDSUGARBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/FINALTOUCHTOOLPOWDEREDSUGARBUTTON.XML",
+    "bytes": 1153,
+    "sha256": "350580768d74774831003c4ea0e1214af0bc3073b2109916dfd1f4c24d6df049"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\ICINGTOOL.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/ICINGTOOL.XML",
+    "bytes": 2796,
+    "sha256": "6cda1bef456c9265e420ef16ca208a771b3a01ce1544c19b875c4e7956158ff1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\ICINGTOOLCHOCOLATEBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/ICINGTOOLCHOCOLATEBUTTON.XML",
+    "bytes": 1157,
+    "sha256": "530838e1ab517d56143ace394f79beb8a0ab64abc724108bd6303e06f2693ea2"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\ICINGTOOLLEMONBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/ICINGTOOLLEMONBUTTON.XML",
+    "bytes": 1149,
+    "sha256": "d3327f25c707a43004abbcae451a7464947bf41a029d18d5e7234eb9d36ca590"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TOOLS\\ICINGTOOLSTRAWBERRYBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TOOLS/ICINGTOOLSTRAWBERRYBUTTON.XML",
+    "bytes": 1158,
+    "sha256": "cc6e45558d439f621b97ff83f388f5078c807cc2ccf575627b27ba99b1b7b3e1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TRASHCAKEANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TRASHCAKEANIM.XML",
+    "bytes": 1141,
+    "sha256": "2839f9769ea7a5652eed4f7c7e5400292edd1ec8fcc2dd11f9e51a6b335330fd"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TRASHCAKESPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TRASHCAKESPRITE.XML",
+    "bytes": 1148,
+    "sha256": "1d161d6b2da7c26986f83dffd79167ee113caaf75654c4cf87adf10d85145a20"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TVANIMATIONANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TVANIMATIONANIM.XML",
+    "bytes": 312,
+    "sha256": "847cba924fc1f9fc643210b68b021806e8bb75b481f7d96f76d368979529d8f1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TVANIMATIONSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TVANIMATIONSPRITE.XML",
+    "bytes": 434,
+    "sha256": "4b24d0f486ec2a22f4d018fe5375ae9aae6428c6ddff2784fd3254ac87538027"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TVGLASSSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TVGLASSSPRITE.XML",
+    "bytes": 437,
+    "sha256": "f9229e90771077ddedfb517e25d06f2212dddab20ccac1cc33bf7945ff846481"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TVHIGHLIGHTANIM.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TVHIGHLIGHTANIM.XML",
+    "bytes": 1957,
+    "sha256": "4339ad8b662c2e4c25f5d06a770679b0a76068ac2834ad793c349c08047f1af8"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TVHIGHLIGHTSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TVHIGHLIGHTSPRITE.XML",
+    "bytes": 440,
+    "sha256": "6e8f9f4d9d56f3777a18abf2fb28ccee1c9f64a42bd95c60febd512015065dd1"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\TVSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/TVSPRITE.XML",
+    "bytes": 448,
+    "sha256": "3f756f494490b994bd804af6cb2cb19c78f49bfad416f6b3221e863a0cf4ab53"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\WAXPAPERSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/COMFYCAKES/WAXPAPERSPRITE.XML",
+    "bytes": 450,
+    "sha256": "91196272ceef4444cf3c1c1422797c93b1656575871dc4613a2876fba9621c8d"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\GAMESCREEN.PNG",
+    "language": "1033",
+    "path": "PurblePlace/UI/GAMESCREEN.PNG",
+    "bytes": 341093,
+    "sha256": "d4002ae5741b5db206b6a64ddc2aae2e588272eae565b26c1c12d80d19c43daf"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\GAMESCREENX2.PNG",
+    "language": "1033",
+    "path": "PurblePlace/UI/GAMESCREENX2.PNG",
+    "bytes": 814962,
+    "sha256": "08174a6da4fc3707a807ffaf388979ddb5a14176a2fc872a3f4e68966a3613ed"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\BUILDAPURBLEBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/PURBLEPLACE/BUILDAPURBLEBUTTON.XML",
+    "bytes": 1080,
+    "sha256": "cd1980b36ca987b439651ca019806f7e05314e4e46193cf2e40b0a36a16673dd"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\COMFYCAKESBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/PURBLEPLACE/COMFYCAKESBUTTON.XML",
+    "bytes": 1082,
+    "sha256": "87dc51ca58f210ce5046da49f4e780787e87e76b045f61d7651ca805c1dc80d4"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\EXITBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/PURBLEPLACE/EXITBUTTON.XML",
+    "bytes": 1099,
+    "sha256": "6777d44e0b0ac8b7842a2b3488b47a9ab7a08d6d56fb378a9a300397f815abe9"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\EXITGAMEBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/PURBLEPLACE/EXITGAMEBUTTON.XML",
+    "bytes": 1130,
+    "sha256": "7331ec278a22800513e0ea60313ebad2f4e4c73d99833112f3f8e8b335a4a6cf"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\LOADING.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/PURBLEPLACE/LOADING.XML",
+    "bytes": 432,
+    "sha256": "9a75aa6bfe5627586fc00a435726fe4165a4ac37ce1e6e6d6cdcc017f2c136ba"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\NEWGAMEBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/PURBLEPLACE/NEWGAMEBUTTON.XML",
+    "bytes": 1141,
+    "sha256": "ca79f77369ae4fcbc93eac0704f53c8e1ee34fd2cc11ecd60128612b36aa1e85"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\PURBLEPLACEBACKGROUND.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/PURBLEPLACE/PURBLEPLACEBACKGROUND.XML",
+    "bytes": 439,
+    "sha256": "4ebb4731a6a1feae15fc0ceaba77de16d36aa5426823e06e96a680c6767daafc"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\PURBLEPLACEMANAGER.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/PURBLEPLACE/PURBLEPLACEMANAGER.XML",
+    "bytes": 3404,
+    "sha256": "12e88e6b7e4dfc007bf752ddaf1aa26ce15bc307d341911b75b5f8816b05b3f6"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\RETURNTOMAINMENU.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/PURBLEPLACE/RETURNTOMAINMENU.XML",
+    "bytes": 1043,
+    "sha256": "d680efe7f69e1b5c1b0227cda5943423bf71e98edd8dce3e211cf0effbccc966"
+  },
+  {
+    "dll": "PurblePlace.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\TIPS.XML",
+    "language": "1033",
+    "path": "PurblePlace/UI/PURBLEPLACE/TIPS.XML",
+    "bytes": 551,
+    "sha256": "49b96529e00bb0c54b402df10e8241479d7841fe6e7c5114fb7dd71a2683a279"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\LEMONFILLINGMACHINESPRITEX2.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/LEMONFILLINGMACHINESPRITEX2.PNG",
+    "bytes": 342738,
+    "sha256": "7f36ca44d2dd0d211e23709992d0893848dffad1f5eaf15aee06a665e610baa1"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\MACHINEANIMATIONGUMDROP.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/MACHINEANIMATIONGUMDROP.PNG",
+    "bytes": 319687,
+    "sha256": "917b8a3d64bb92390fecc089954e2396947af4c2e0f0a7fe8e07e2903ee08523"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\MACHINEANIMATIONGUMDROPX2.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/MACHINEANIMATIONGUMDROPX2.PNG",
+    "bytes": 348692,
+    "sha256": "608aede96f0bd7ec09b0736454a071fe897339c001b18e3935faedd6b87218fb"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\MACHINEANIMATIONSHAMROCK.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/MACHINEANIMATIONSHAMROCK.PNG",
+    "bytes": 253535,
+    "sha256": "8098b79c9bfb512da1e3770ad1b8b5227158fdf52c197e14f1a2b76c5b1444a9"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\MACHINEANIMATIONSHAMROCKX2.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/MACHINEANIMATIONSHAMROCKX2.PNG",
+    "bytes": 330123,
+    "sha256": "1f94db4722dd3703bbc79da17537a38db812a9ba5dba2dd81b159abec69439e6"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\MACHINEANIMATIONSMILEY.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/MACHINEANIMATIONSMILEY.PNG",
+    "bytes": 315233,
+    "sha256": "68c58d23cb4a4c85ad070979454e969a7484ff9d256496dc16c836b33ef0246b"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\MACHINEANIMATIONSMILEYX2.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/MACHINEANIMATIONSMILEYX2.PNG",
+    "bytes": 340270,
+    "sha256": "620c6a1f352eb98b7f1b70a302eb7abd1b8b1a911c79597927ae9296c082d173"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\RASPBERRYFILLINGMACHINESPRITE.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/RASPBERRYFILLINGMACHINESPRITE.PNG",
+    "bytes": 321970,
+    "sha256": "70b2def80cee41b759a7ccfb4d32a49b1e1e8153250c449654a0d738696fe230"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\RASPBERRYFILLINGMACHINESPRITEX2.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/RASPBERRYFILLINGMACHINESPRITEX2.PNG",
+    "bytes": 361452,
+    "sha256": "fc144f8c4f0004d8f67f7e618086e112436fda6a9790cf9b2d0575c465183e64"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\RECTANGLEBATTERFILLSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/RECTANGLEBATTERFILLSPRITE.XML",
+    "bytes": 1181,
+    "sha256": "8d79bcb2f60f9305d758f0bd5cf161bfd4fbdf1491e4b248bb089017cc8fe322"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\ROUNDBATTERFILLSPRITE.XML",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/ROUNDBATTERFILLSPRITE.XML",
+    "bytes": 1188,
+    "sha256": "46f16fd93fd2a678a01ec9efd3c54b41db0e9a41a3adf786ae6e300688309b54"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\STRAWBERRYBATTERMACHINESPRITE.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/STRAWBERRYBATTERMACHINESPRITE.PNG",
+    "bytes": 257068,
+    "sha256": "1cd63c714c2b76e3c543f13762cfd6164c22cd5b2dce331c0e5afb9605fc1fd1"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\COMFYCAKES\\MACHINES\\STRAWBERRYBATTERMACHINESPRITEX2.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/COMFYCAKES/MACHINES/STRAWBERRYBATTERMACHINESPRITEX2.PNG",
+    "bytes": 390742,
+    "sha256": "043d088e364444948c5846741e46aed4429a2699307562ede833eb6b6274236f"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\CLOUD1.XML",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/CLOUD1.XML",
+    "bytes": 445,
+    "sha256": "a8993ecd1d89a90d47f57ff46b0f214b878fd3fb062d3105e08fd4e6868fb403"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\CLOUD2.XML",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/CLOUD2.XML",
+    "bytes": 448,
+    "sha256": "7ee7aba968f122bedefe0872020fb23d8f0ef5278f484c20c9f9452f00347bf9"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\CLOUD3.XML",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/CLOUD3.XML",
+    "bytes": 447,
+    "sha256": "a03ff7a080e16e0634807fa6c15ae880540c8447379b2a2b55c1ab8724b1d6fd"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\CLOUD4.XML",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/CLOUD4.XML",
+    "bytes": 447,
+    "sha256": "b68d2c16190a65bf98c1c4c3fcbd40e0c8c0029a2ed79c382f20d33055ed709d"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\CLOUDSMOVIE.XML",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/CLOUDSMOVIE.XML",
+    "bytes": 147622,
+    "sha256": "e9754ebdd1d7188db83040967c16dd939977d9e0ece4e7b397c19425454d340c"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\LOADING.JPG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/LOADING.JPG",
+    "bytes": 24278,
+    "sha256": "2447519a60b4899e940f09ca98db795cdd9018d58ebfc1920ee9af670942336d"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\LOADINGX2.JPG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/LOADINGX2.JPG",
+    "bytes": 72880,
+    "sha256": "fbd41c3f0a52ae85c6596ba335e9e2d07a4264d33713280f8a578e626f959d69"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\PURBLECONCENTRATIONBUTTON.XML",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/PURBLECONCENTRATIONBUTTON.XML",
+    "bytes": 1088,
+    "sha256": "3ef5b4290f2a390e4b5ada00ff6983f5da915c8a2d74a90fe131388029a419a6"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\PURBLEPLACEBACKGROUND.JPG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/PURBLEPLACEBACKGROUND.JPG",
+    "bytes": 68905,
+    "sha256": "32d814e5bc3459e6be0bc931454a5a45e908c2b1097ce7743f7c2f6a010a95de"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\PURBLEPLACEBACKGROUNDX2.JPG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/PURBLEPLACEBACKGROUNDX2.JPG",
+    "bytes": 165352,
+    "sha256": "1630d571cafd938c0b9d3f651a618070f6b9d1ac3b6248f3569fa17406944e8a"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\PURBLEPLACEFOREGROUND.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/PURBLEPLACEFOREGROUND.PNG",
+    "bytes": 406917,
+    "sha256": "c13c39045188a0759af729a5dc22b09aa72c278503970a007efde85e3f1dea7b"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\PURBLEPLACEFOREGROUND.XML",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/PURBLEPLACEFOREGROUND.XML",
+    "bytes": 439,
+    "sha256": "bc36822dc540201a86291c939eb676649eb4dfdd500888da16adb450670d3b5a"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\PURBLEPLACEFOREGROUNDX2.PNG",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/PURBLEPLACEFOREGROUNDX2.PNG",
+    "bytes": 1191736,
+    "sha256": "ac005464193f121dcad0c153229e7a7afb87b21f9cc5616abed522841742cd0a"
+  },
+  {
+    "dll": "PurblePlace2.dll",
+    "resource_type": "DATA",
+    "resource_name": "UI\\PURBLEPLACE\\WIDGETTIP.XML",
+    "language": "1033",
+    "path": "PurblePlace2/UI/PURBLEPLACE/WIDGETTIP.XML",
+    "bytes": 153,
+    "sha256": "f8f04e16d81474cfd33e1115a5124c6fc4c0f4d4dd790cdfdd52658dc49460ef"
+  }
+]

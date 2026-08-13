@@ -1,0 +1,114 @@
+{
+    "anims": [
+        {
+            "key": "burn-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "burn_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "burn_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "burn_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "burn_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "burn_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "burn_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "burn_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "spice-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "spice_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "spice_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "spice_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "spice_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "spice_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "spice_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "spice_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        }
+    ],
+    "globalTimeScale": 1,
+    "meta": {
+        "app": "Phaser Editor 2D v3",
+        "contentType": "Phaser v3 Animations"
+    },
+    "settings": {
+        "sourceLang": "JAVA_SCRIPT",
+        "esModule": false,
+        "generateCode": false
+    }
+}

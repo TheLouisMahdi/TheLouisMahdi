@@ -1,6 +1,7 @@
 const s=(body,view="0 0 64 64")=>`<svg viewBox="${view}" aria-hidden="true">${body}</svg>`
 
 export const icons={
+  purble:()=>s('<rect x="4" y="4" width="56" height="56" rx="7" fill="#a8d6ff"/><image href="assets/windows7/games/purble-place/icon.png" x="4" y="4" width="56" height="56" preserveAspectRatio="xMidYMid slice"/>'),
   windows:()=>s('<circle cx="32" cy="32" r="29" fill="#49b733" stroke="#d9f5ff" stroke-width="2"/><path fill="#f15b2a" d="M14 17l16-3v17H14z"/><path fill="#80cc28" d="M33 13l17-3v21H33z"/><path fill="#27a8e8" d="M14 34h16v17l-16-3z"/><path fill="#ffd21f" d="M33 34h17v20l-17-3z"/>'),
   folder:()=>s('<path d="M6 17h20l5 6h27v29H6z" fill="#f6bf24" stroke="#a87308"/><path d="M7 14h18l6 6H7z" fill="#ffe17b"/>'),
   computer:()=>s('<rect x="6" y="8" width="46" height="34" rx="3" fill="#dcecf5" stroke="#557488"/><rect x="10" y="12" width="38" height="25" fill="#398cc4"/><path d="M23 44h13l4 7H19z" fill="#8499a8"/><rect x="16" y="51" width="29" height="4" rx="2" fill="#607482"/><rect x="49" y="24" width="10" height="28" rx="2" fill="#dce6ec" stroke="#6f8797"/>'),

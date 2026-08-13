@@ -9,6 +9,7 @@ import{initSystemApps,mountSystemApps}from"./system-apps.js"
 import{initFidelityApps,mountFidelityApps}from"./fidelity-apps.js"
 import{initUac,mountUac}from"./uac.js"
 import{initGames,mountGames}from"./games.js"
+import{initComfyCakes,mountComfyCakes}from"./comfy-cakes.js"
 import{initGadgets,mountGadgets}from"./gadgets.js"
 import{initSystem,lockSystem,showSecurityScreen,systemState}from"./system.js"
 import{bindSelectableSurface,initPointerCursor,mountInteractionUi,refreshSurface,showContextMenu}from"./interaction.js"
@@ -16,7 +17,7 @@ import{backgroundContextItems,createDesktopItem,deleteSelected,fileContextItems,
 import{listVirtual}from"./vfs.js"
 
 const byId=id=>document.getElementById(id)
-const appWindows={explorer:"explorerWindow",cmd:"cmdWindow",powershell:"psWindow",notepad:"notepadWindow",calculator:"calculatorWindow",run:"runWindow",image:"imageWindow",browser:"browserWindow",paint:"paintWindow",wordpad:"wordpadWindow",sticky:"stickyWindow",snipping:"snippingWindow",media:"mediaWindow",control:"controlWindow",devices:"devicesWindow",taskmanager:"taskmanagerWindow",minesweeper:"minesweeperWindow",solitaire:"solitaireWindow",freecell:"freecellWindow",chess:"chessWindow",systeminfo:"systeminfoWindow",charmap:"charmapWindow",keyboard:"keyboardWindow",help:"helpWindow",accessory:"accessoryWindow"}
+const appWindows={explorer:"explorerWindow",cmd:"cmdWindow",powershell:"psWindow",notepad:"notepadWindow",calculator:"calculatorWindow",run:"runWindow",image:"imageWindow",browser:"browserWindow",paint:"paintWindow",wordpad:"wordpadWindow",sticky:"stickyWindow",snipping:"snippingWindow",media:"mediaWindow",control:"controlWindow",devices:"devicesWindow",taskmanager:"taskmanagerWindow",minesweeper:"minesweeperWindow",solitaire:"solitaireWindow",freecell:"freecellWindow",chess:"chessWindow",comfy:"comfyWindow",systeminfo:"systeminfoWindow",charmap:"charmapWindow",keyboard:"keyboardWindow",help:"helpWindow",accessory:"accessoryWindow"}
 let desktopItems=[]
 let mobileHintShown=false
 let desktopSort="name",desktopIconSize=""
@@ -32,7 +33,7 @@ function openApp(app){
 }
 
 function mountTaskButtons(){
-  const iconNames={notepad:"notepad",calculator:"calculator",run:"run",image:"photo",paint:"paint",wordpad:"wordpad",sticky:"sticky",snipping:"snipping",media:"media",control:"control",devices:"devices",taskmanager:"taskmanager",minesweeper:"minesweeper",solitaire:"solitaire",freecell:"freecell",chess:"chess",systeminfo:"system",charmap:"charmap",keyboard:"keyboard",help:"system"}
+  const iconNames={notepad:"notepad",calculator:"calculator",run:"run",image:"photo",paint:"paint",wordpad:"wordpad",sticky:"sticky",snipping:"snipping",media:"media",control:"control",devices:"devices",taskmanager:"taskmanager",minesweeper:"minesweeper",solitaire:"solitaire",freecell:"freecell",chess:"chess",comfy:"purble",systeminfo:"system",charmap:"charmap",keyboard:"keyboard",help:"system"}
   for(const [app,iconName] of Object.entries(iconNames)){
     if(document.querySelector(`[data-task="${app}"]`))continue
     const button=document.createElement("button")
@@ -344,6 +345,7 @@ function init(){
   mountFidelityApps()
   mountUac()
   mountGames()
+  mountComfyCakes()
   mountGadgets()
   mountTaskButtons()
   paintIcons()
@@ -356,6 +358,7 @@ function init(){
   initFidelityApps()
   initUac()
   initGames()
+  initComfyCakes()
   initGadgets()
   initReceipt()
   initDesktopInteraction()

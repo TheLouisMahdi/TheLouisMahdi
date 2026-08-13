@@ -9,7 +9,7 @@ const THEME_COLORS={"Windows 7":"#4f96c5",Architecture:"#647786",Characters:"#b8
 let wallpaperTimer=null
 
 function wallpaperCss(category,index=0){
-  return `url(${wallpaperAsset(category,index)})`
+  return `url("${new URL(wallpaperAsset(category,index),document.baseURI).href}")`
 }
 
 function wallpaperPreviewCss(category,index=0){
@@ -74,10 +74,11 @@ export function applyTheme(name,notify=true){
 
 export function applyWallpaper(category,index=0,notify=true,position=null){
   const desktop=byId("desktop"),resolvedPosition=position||byId("wallpaperPosition")?.value||savedWallpaper().position||"Fill"
-  desktop.style.background=wallpaperCss(category,index)
+  desktop.style.backgroundColor="#0c6fb8"
+  desktop.style.backgroundImage=wallpaperCss(category,index)
   desktop.style.backgroundRepeat=resolvedPosition==="Tile"?"repeat":"no-repeat"
   desktop.style.backgroundPosition="center"
-  desktop.style.backgroundSize=resolvedPosition==="Fit"?"contain":resolvedPosition==="Stretch"?"100% 100%":resolvedPosition==="Center"?"auto":"cover"
+  desktop.style.backgroundSize=resolvedPosition==="Fit"?"contain":resolvedPosition==="Stretch"?"100% 100%":resolvedPosition==="Center"||resolvedPosition==="Tile"?"auto":"cover"
   desktop.dataset.wallpaper=wallpaperId(category,index)
   const saved=savedWallpaper();localStorage.setItem("eka.windows7.wallpaper",JSON.stringify({...saved,category,index,position:resolvedPosition}))
   if(notify)window.dispatchEvent(new CustomEvent("win7:toast",{detail:`${category} desktop background applied.`}))
@@ -102,6 +103,5 @@ export function restorePersonalization(){
   const theme=localStorage.getItem("eka.windows7.theme")||"Windows 7"
   const wallpaper=savedWallpaper()
   applyTheme(theme,false)
-  localStorage.setItem("eka.windows7.wallpaper",JSON.stringify(wallpaper))
-  applyWallpaper(wallpaper.category,wallpaper.index,false,wallpaper.position);startSlideshow(wallpaper)
+  if(AERO.includes(theme)||theme==="Windows 7 Basic"){localStorage.setItem("eka.windows7.wallpaper",JSON.stringify(wallpaper));applyWallpaper(wallpaper.category,wallpaper.index,false,wallpaper.position);startSlideshow(wallpaper)}
 }

@@ -1,5 +1,6 @@
 let topZ=30
 const states=new Map()
+const desktopHidden=new Set()
 
 function screenBounds(){return document.querySelector("#desktop").getBoundingClientRect()}
 
@@ -22,10 +23,11 @@ export function openWindow(id){
   bringToFront(win)
   const input=win.querySelector("input,textarea")
   if(input)setTimeout(()=>input.focus(),0)
+  window.dispatchEvent(new CustomEvent("win7:window-state",{detail:{id,state:"open"}}))
 }
 
-export function closeWindow(win){win.classList.add("hidden");setTask(win.dataset.app,false)}
-export function minimizeWindow(win){win.classList.add("hidden");setTask(win.dataset.app,true)}
+export function closeWindow(win){win.classList.add("hidden");setTask(win.dataset.app,false);window.dispatchEvent(new CustomEvent("win7:window-state",{detail:{id:win.id,state:"closed"}}))}
+export function minimizeWindow(win){win.classList.add("hidden");setTask(win.dataset.app,true);window.dispatchEvent(new CustomEvent("win7:window-state",{detail:{id:win.id,state:"minimized"}}))}
 
 export function maximizeWindow(win){
   if(win.classList.contains("maximized")){
@@ -67,12 +69,17 @@ function dragWindow(win,handle){
   let active=false
   let offsetX=0
   let offsetY=0
+  let lastX=0
+  let lastDirection=0
+  let reversals=0
+  let shakeStarted=0
   handle.addEventListener("pointerdown",event=>{
     if(event.target.closest(".win-controls")||win.classList.contains("maximized"))return
     active=true
     const rect=win.getBoundingClientRect()
     offsetX=event.clientX-rect.left
     offsetY=event.clientY-rect.top
+    lastX=event.clientX;lastDirection=0;reversals=0;shakeStarted=performance.now()
     handle.setPointerCapture(event.pointerId)
     bringToFront(win)
   })
@@ -83,11 +90,42 @@ function dragWindow(win,handle){
     const y=Math.max(0,Math.min(event.clientY-bounds.top-offsetY,bounds.height-win.offsetHeight-39))
     win.style.left=`${x}px`
     win.style.top=`${y}px`
+    const delta=event.clientX-lastX,direction=Math.sign(delta)
+    if(Math.abs(delta)>10&&direction&&lastDirection&&direction!==lastDirection)reversals+=1
+    if(Math.abs(delta)>10&&direction)lastDirection=direction
+    lastX=event.clientX
+    if(reversals>=3&&performance.now()-shakeStarted<850){minimizeOthers(win);reversals=0;shakeStarted=performance.now()}
   })
-  const stop=()=>{active=false}
+  const stop=event=>{
+    if(active&&event){const bounds=screenBounds(),x=event.clientX-bounds.left,y=event.clientY-bounds.top;if(y<12)snapWindow(win,"up");else if(x<12)snapWindow(win,"left");else if(x>bounds.width-12)snapWindow(win,"right")}
+    active=false
+  }
   handle.addEventListener("pointerup",stop)
   handle.addEventListener("pointercancel",stop)
   handle.addEventListener("dblclick",()=>maximizeWindow(win))
+}
+
+function resizeWindow(win){
+  for(const edge of["n","e","s","w","ne","nw","se","sw"]){
+    const handle=document.createElement("i");handle.className=`resize-handle resize-${edge}`
+    handle.addEventListener("pointerdown",event=>{
+      if(win.classList.contains("maximized"))return
+      event.preventDefault();event.stopPropagation();bringToFront(win);handle.setPointerCapture(event.pointerId)
+      const bounds=screenBounds(),start=win.getBoundingClientRect(),origin={x:event.clientX,y:event.clientY}
+      const move=next=>{
+        const dx=next.clientX-origin.x,dy=next.clientY-origin.y,minWidth=Math.min(240,bounds.width-12),minHeight=140
+        let left=start.left-bounds.left,top=start.top-bounds.top,width=start.width,height=start.height
+        if(edge.includes("e"))width=Math.max(minWidth,Math.min(bounds.width-left,start.width+dx))
+        if(edge.includes("s"))height=Math.max(minHeight,Math.min(bounds.height-top-39,start.height+dy))
+        if(edge.includes("w")){const candidate=Math.max(0,Math.min(left+dx,left+width-minWidth));width+=left-candidate;left=candidate}
+        if(edge.includes("n")){const candidate=Math.max(0,Math.min(top+dy,top+height-minHeight));height+=top-candidate;top=candidate}
+        Object.assign(win.style,{left:`${left}px`,top:`${top}px`,width:`${width}px`,height:`${height}px`})
+      }
+      const stop=()=>{handle.removeEventListener("pointermove",move);handle.removeEventListener("pointerup",stop);handle.removeEventListener("pointercancel",stop)}
+      handle.addEventListener("pointermove",move);handle.addEventListener("pointerup",stop);handle.addEventListener("pointercancel",stop)
+    })
+    win.appendChild(handle)
+  }
 }
 
 export function initWindowManager(){
@@ -95,6 +133,7 @@ export function initWindowManager(){
     win.addEventListener("pointerdown",()=>bringToFront(win))
     const handle=win.querySelector("[data-drag-handle]")
     if(handle)dragWindow(win,handle)
+    resizeWindow(win)
     win.querySelectorAll("[data-window-action]").forEach(button=>{
       button.addEventListener("click",event=>{
         event.stopPropagation()
@@ -108,7 +147,8 @@ export function initWindowManager(){
 }
 
 export function showDesktop(){
-  document.querySelectorAll(".window").forEach(win=>win.classList.add("hidden"))
+  if(desktopHidden.size){for(const win of desktopHidden)openWindow(win.id);desktopHidden.clear();return}
+  document.querySelectorAll(".window:not(.hidden)").forEach(win=>{desktopHidden.add(win);minimizeWindow(win)})
   document.querySelectorAll(".task-button").forEach(button=>button.classList.remove("active"))
 }
 

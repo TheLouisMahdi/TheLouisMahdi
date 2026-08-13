@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/windows7.css">
 <link rel="stylesheet" href="css/receipt.css">
+<link rel="stylesheet" href="css/fidelity.css">
 </head>
 <body>
 <main>
@@ -43,26 +44,26 @@ Initializing USB, keyboard and touch input...</pre>
             <div class="windows-boot hidden" id="windowsBoot">
               <div class="boot-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
               <strong>Starting Windows</strong>
-              <span>Microsoft Windows 7 Ultimate</span>
+              <span>Microsoft Windows 7 Professional</span>
             </div>
           </section>
 
           <section class="system-screen welcome-screen hidden" id="welcomeScreen" aria-live="polite">
             <div class="welcome-user"><span>M</span><strong>Mahdi Ghahremani</strong><small>Welcome</small></div>
-            <div class="welcome-brand">Windows 7 Ultimate · EKA-PC</div>
+            <div class="welcome-brand">Windows 7 Professional · EKA-PC</div>
           </section>
 
           <section class="system-screen lock-screen hidden" id="lockScreen">
             <div class="lock-time" id="lockTime"></div>
             <button class="lock-user" id="unlockBtn"><span>M</span><strong>Mahdi Ghahremani</strong><small>Locked · click to unlock</small></button>
             <button class="lock-power" id="lockPowerBtn" aria-label="Power options">⏻</button>
-            <div class="welcome-brand">Windows 7 Ultimate · EKA-PC</div>
+            <div class="welcome-brand">Windows 7 Professional · EKA-PC</div>
           </section>
 
           <section class="system-screen shutdown-screen hidden" id="shutdownScreen" aria-live="polite">
             <div class="shutdown-spinner"></div>
             <strong id="shutdownText">Shutting down...</strong>
-            <span>Windows 7 Ultimate</span>
+            <span>Windows 7 Professional</span>
           </section>
 
           <section class="system-screen power-off-screen hidden" id="powerOffScreen">
@@ -183,7 +184,7 @@ Initializing USB, keyboard and touch input...</pre>
               </div>
             </div>
             <div class="calc-body">
-              <div class="calc-mode">View · Standard</div>
+              <div class="calc-mode"><label>View: <select id="calcMode"><option>Standard</option><option>Scientific</option><option>Programmer</option><option>Statistics</option></select></label></div>
               <input id="calcDisplay" value="0" readonly aria-label="Calculator display">
               <div class="calc-grid" id="calcGrid"></div>
             </div>

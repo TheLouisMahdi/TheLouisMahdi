@@ -71,7 +71,7 @@ function mountSecurityScreen(){
   const panel=document.createElement("section")
   panel.className="system-screen security-screen hidden"
   panel.id="securityScreen"
-  panel.innerHTML=`<div class="security-card"><strong>Windows Security</strong><button data-security="lock">Lock this computer</button><button data-security="switch">Switch User</button><button data-security="logoff">Log off</button><button data-security="taskmgr">Start Task Manager</button><button data-security="cancel">Cancel</button></div><button class="lock-power" data-security="shutdown">⏻</button><div class="welcome-brand">Windows 7 Ultimate · EKA-PC</div>`
+  panel.innerHTML=`<div class="security-card"><strong>Windows Security</strong><button data-security="lock">Lock this computer</button><button data-security="switch">Switch User</button><button data-security="logoff">Log off</button><button data-security="taskmgr">Start Task Manager</button><button data-security="cancel">Cancel</button></div><button class="lock-power" data-security="shutdown">⏻</button><div class="welcome-brand">Windows 7 Professional · EKA-PC</div>`
   byId("desktop").appendChild(panel)
   panel.addEventListener("click",event=>{
     const action=event.target.closest("[data-security]")?.dataset.security
@@ -99,8 +99,8 @@ function showBiosSetup(mode){
   panel.innerHTML=mode==="boot"?`<strong>EKA BOOT MENU</strong><span>Choose a boot device</span><pre>▶ EKA SSD 128 GB
   USB Storage Device
   Network Boot (IPv4)</pre><small>Enter: boot · Esc: continue startup</small>`:`<strong>EKA BIOS SETUP UTILITY</strong><span>Main · Advanced · Boot · Security · Exit</span><pre>System Model        EKA Notebook 7
-BIOS Version        7.1.7601
-Processor           EKA Virtual x64
+BIOS Version        7.1.7600
+Processor           EKA Virtual x86
 System Memory       4096 MB
 Primary Storage     EKA SSD 128 GB
 Boot Mode           Legacy BIOS

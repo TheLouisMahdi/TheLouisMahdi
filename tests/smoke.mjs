@@ -21,6 +21,10 @@ const personalization=read("js/personalization.js")
 const fileActions=read("js/file-actions.js")
 const receiptCss=read("css/receipt.css")
 const runtimeCss=read("css/runtime.css")
+const fidelityApps=read("js/fidelity-apps.js")
+const controlPages=read("js/control-pages.js")
+const taskManager=read("js/task-manager.js")
+const terminal=read("js/terminal.js")
 
 for(const file of readdirSync(resolve(root,"js")).filter(name=>name.endsWith(".js"))){
   const source=read(`js/${file}`)
@@ -73,6 +77,7 @@ for(const group of WINDOWS7_WALLPAPERS)for(const [index] of group.files.entries(
   assert.ok(existsSync(asset),`missing Windows 7 wallpaper ${asset}`)
   assert.ok(statSync(asset).size>200000,`Windows 7 wallpaper is unexpectedly small: ${asset}`)
   assert.ok(existsSync(thumbnail)&&statSync(thumbnail).size>5000,`missing Windows 7 wallpaper thumbnail ${thumbnail}`)
+  for(const path of[asset,thumbnail]){const jpeg=readFileSync(path);assert.equal(jpeg[0],0xff,`invalid JPEG start: ${path}`);assert.equal(jpeg[1],0xd8,`invalid JPEG start: ${path}`);assert.equal(jpeg.at(-2),0xff,`truncated JPEG: ${path}`);assert.equal(jpeg.at(-1),0xd9,`truncated JPEG: ${path}`)}
 }
 assert.ok(data.includes('name:"Windows 7 Wallpapers"')&&data.includes("WINDOWS7_WALLPAPERS.map"),"Pictures must expose the complete Windows 7 wallpaper library")
 assert.ok(explorer.includes("file-thumbnail")&&explorer.includes('loading="lazy"'),"Pictures must render lazy-loaded image thumbnails")
@@ -80,6 +85,12 @@ for(const item of["Administrative Tools","BitLocker Drive Encryption","Color Man
 assert.ok(systemApps.includes("CONTROL_ITEMS.filter")&&systemApps.includes("CONTROL_ITEM_BY_ID"),"Large and Small icons must use the complete Control Panel item registry")
 assert.ok(gadgets.includes('addGadget("clock")')&&gadgets.includes("gadget-cpu")&&gadgets.includes("gadget-calendar"),"desktop gadgets are incomplete")
 for(const item of["View  ›","Sort by  ›","Refresh","Screen resolution","Gadgets","Personalize"])assert.ok(fileActions.includes(item),`desktop context menu item missing: ${item}`)
+for(const appName of["Private Character Editor","Windows Journal","Windows PowerShell ISE","Remote Desktop Connection","Windows Memory Diagnostic","Registry Editor"])assert.ok(fidelityApps.includes(appName),`missing documented Windows accessory: ${appName}`)
+for(const control of["windows-features","biometric","credential-manager","tablet-settings","windows-defender"])assert.ok(controlPages.includes(control),`missing documented Control Panel surface: ${control}`)
+for(const tab of["applications","processes","services","performance","networking","users"])assert.ok(taskManager.includes(`\"${tab}\"`),`Task Manager is missing ${tab}`)
+assert.ok(index.includes("Windows 7 Professional")&&systemApps.includes("32-bit Operating System")&&terminal.includes("6.1.7600 Build 7600"),"the locked Professional x86 RTM profile is inconsistent")
+assert.ok(apps.includes("Scientific")&&apps.includes("Programmer")&&apps.includes("Statistics"),"Calculator modes are incomplete")
+assert.ok(app.includes("pointerenter")&&app.includes("Connect to a Projector"),"Aero Peek or Win+P integration is incomplete")
 
 const ids=[...index.matchAll(/\sid=["']([^"']+)["']/g)].map(match=>match[1])
 assert.equal(new Set(ids).size,ids.length,"duplicate static DOM id")

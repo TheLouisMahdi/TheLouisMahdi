@@ -165,7 +165,7 @@ function setCmdColor(code){
 }
 
 function taskList(){return `Image Name                     PID Session Name        Mem Usage\n========================= ======== ================ ============\nSystem Idle Process              0 Services                   24 K\nSystem                           4 Services                1,820 K\nexplorer.exe                  1648 Console                41,212 K\ncmd.exe                       3024 Console                11,208 K\npowershell.exe                2452 Console                17,140 K\niexplore.exe                  3316 Console                32,804 K`}
-function systemInfo(){return `Host Name:                 EKA-PC\nOS Name:                   Microsoft Windows 7 Ultimate\nOS Version:                6.1.7601 Service Pack 1 Build 7601\nOS Manufacturer:           Microsoft Corporation\nSystem Type:               x64-based PC\nRegistered Owner:          Eka\nWindows Directory:         C:\\Windows\nSystem Directory:          C:\\Windows\\system32\nBoot Device:               \\Device\\HarddiskVolume1\nSystem Locale:             en-us;English (United States)\nTime Zone:                 Local browser time\nTotal Physical Memory:     4,096 MB\nAvailable Physical Memory: 2,718 MB`}
+function systemInfo(){return `Host Name:                 EKA-PC\nOS Name:                   Microsoft Windows 7 Professional\nOS Version:                6.1.7600 Build 7600\nOS Manufacturer:           Microsoft Corporation\nSystem Type:               X86-based PC\nRegistered Owner:          Eka\nWindows Directory:         C:\\Windows\nSystem Directory:         C:\\Windows\\system32\nBoot Device:               \\Device\\HarddiskVolume1\nSystem Locale:             en-us;English (United States)\nTime Zone:                 Local browser time\nTotal Physical Memory:     4,096 MB\nAvailable Physical Memory: 2,718 MB`}
 function ipConfig(){return `Windows IP Configuration\n\nEthernet adapter Local Area Connection:\n\n   Connection-specific DNS Suffix  . : local\n   IPv4 Address. . . . . . . . . . . : 192.168.1.27\n   Subnet Mask . . . . . . . . . . . : 255.255.255.0\n   Default Gateway . . . . . . . . . : 192.168.1.1`}
 
 function whereOutput(name){
@@ -208,7 +208,7 @@ async function runCmd(line){
     if(parts.length){append("cmdOutput",`${parts[0].toUpperCase()}\n${HELP[parts[0].toLowerCase()]||"No detailed help is available for this command."}`);return}
     append("cmdOutput","ASSOC  ATTRIB  CD  CHDIR  CLS  COLOR  CONTROL  COPY  DATE  DEL  DIR  DRIVERQUERY  ECHO  ERASE  EXIT  EXPLORER  FINDSTR  FTYPE  GETMAC  HELP  HOSTNAME  IPCONFIG  MD  MKDIR  MORE  MOVE  NETSTAT  NOTEPAD  PATH  PAUSE  PING  POWERSHELL  PY  PYTHON  RD  REN  RMDIR  SET  SHUTDOWN  SORT  START  SYSTEMINFO  TASKLIST  TIME  TITLE  TREE  TYPE  VER  VOL  WHERE  WHOAMI  WMIC\n\nWindows apps: MSPAINT  WRITE  WMPLAYER  IEXPLORE  TASKMGR  OSK  CHARMAP  SNIPPINGTOOL  STIKYNOT  MSINFO32\nEka commands: EKA  GITHUB  PROJECTS  TELEGRAM  PROFILE  MATRIX  COFFEE  FORTUNE");return
   }
-  if(command==="ver"){append("cmdOutput","Microsoft Windows [Version 6.1.7601]");return}
+  if(command==="ver"){append("cmdOutput","Microsoft Windows [Version 6.1.7600]");return}
   if(command==="vol"){append("cmdOutput",` Volume in drive ${cmdPath[0]} is Windows\n Volume Serial Number is EKA7-2026`);return}
   if(command==="dir"){append("cmdOutput",cmdDir(arg||cmdPath));return}
   if(command==="cls"){byId("cmdOutput").textContent="";return}
@@ -224,7 +224,7 @@ async function runCmd(line){
   if(command==="netstat"){append("cmdOutput",netstatText());return}
   if(command==="ping"){append("cmdOutput",pingText(parts[0]));return}
   if(command==="driverquery"){append("cmdOutput",driverQuery());return}
-  if(command==="wmic"){append("cmdOutput",arg.toLowerCase().startsWith("os")?"Caption                    Version     BuildNumber\nMicrosoft Windows 7 Ultimate 6.1.7601    7601":"WMIC simulation supports: wmic os get caption,version,buildnumber");return}
+  if(command==="wmic"){append("cmdOutput",arg.toLowerCase().startsWith("os")?"Caption                        Version   BuildNumber\nMicrosoft Windows 7 Professional  6.1.7600  7600":"WMIC simulation supports: wmic os get caption,version,buildnumber");return}
   if(command==="assoc"){const associations={".txt":"txtfile",".html":"htmlfile",".htm":"htmlfile",".py":"Python.File",".cmd":"cmdfile",".bat":"batfile"};if(arg)append("cmdOutput",associations[arg.toLowerCase()]?`${arg.toLowerCase()}=${associations[arg.toLowerCase()]}`:`File association not found for extension ${arg}`);else append("cmdOutput",Object.entries(associations).map(([extension,type])=>`${extension}=${type}`).join("\n"));return}
   if(command==="ftype"){append("cmdOutput",arg&&arg.toLowerCase()!=="python.file"?`File type '${arg}' not found or no open command associated with it.`:'Python.File="C:\\Users\\Eka\\BrowserRuntime\\python.exe" "%1" %*\ntxtfile=%SystemRoot%\\system32\\NOTEPAD.EXE %1\nhtmlfile="C:\\Program Files\\Internet Explorer\\iexplore.exe" -nohome');return}
   if(command==="attrib"){append("cmdOutput",cmdAttrib(arg||cmdPath));return}
@@ -243,7 +243,7 @@ async function runCmd(line){
   if(command==="pause"){append("cmdOutput","Press any key to continue . . .");return}
   if(command==="cmd"){
     if(parts[0]?.toLowerCase()==="/c"){await runCmd(parts.slice(1).join(" "));return}
-    append("cmdOutput","Microsoft Windows [Version 6.1.7601]");return
+    append("cmdOutput","Microsoft Windows [Version 6.1.7600]");return
   }
   if(command==="tree"){append("cmdOutput",treeText(arg?resolvePath(cmdPath,arg):cmdPath));return}
   if(command==="where"){append("cmdOutput",whereOutput(parts[0]||""));return}
@@ -358,7 +358,7 @@ async function runPs(line){
     if(text===null){append("psOutput",`Select-String : Cannot find path '${clean[1]}'.`);return}
     append("psOutput",text.split(/\r?\n/).map((line,index)=>({line,index})).filter(x=>x.line.toLowerCase().includes(pattern.toLowerCase())).map(x=>`${clean[1]}:${x.index+1}:${x.line}`).join("\n"));return
   }
-  if(lower==="get-wmiobject"||lower==="gwmi"){append("psOutput",arg.toLowerCase().includes("win32_operatingsystem")?"SystemDirectory : C:\\Windows\\system32\nCaption         : Microsoft Windows 7 Ultimate\nVersion         : 6.1.7601\nBuildNumber     : 7601":"Get-WmiObject simulation supports Win32_OperatingSystem.");return}
+  if(lower==="get-wmiobject"||lower==="gwmi"){append("psOutput",arg.toLowerCase().includes("win32_operatingsystem")?"SystemDirectory : C:\\Windows\\system32\nCaption         : Microsoft Windows 7 Professional\nVersion         : 6.1.7600\nBuildNumber     : 7600":"Get-WmiObject simulation supports Win32_OperatingSystem.");return}
   if(lower==="get-command"){append("psOutput","CommandType     Name\n-----------     ----\nCmdlet          Add-Content\nCmdlet          Copy-Item\nCmdlet          Get-ChildItem\nCmdlet          Get-Content\nCmdlet          Get-Date\nCmdlet          Get-Help\nCmdlet          Get-History\nCmdlet          Get-Host\nCmdlet          Get-Item\nCmdlet          Get-Location\nCmdlet          Get-Process\nCmdlet          Get-Variable\nCmdlet          Get-WmiObject\nCmdlet          Move-Item\nCmdlet          New-Item\nCmdlet          Remove-Item\nCmdlet          Rename-Item\nCmdlet          Select-String\nCmdlet          Set-Content\nCmdlet          Set-Location\nCmdlet          Start-Process\nCmdlet          Test-Path\nCmdlet          Write-Output\nApplication     python\nAlias           dir, ls, pwd, cat, type, echo");return}
   if(lower==="get-help"){append("psOutput",psHelp(parts[0]||""));return}
   if(lower==="get-history"){append("psOutput",`  Id CommandLine\n  -- -----------\n${psExecuted.slice(0,-1).map((line,index)=>String(index+1).padStart(4," ")+" "+line).join("\n")}`);return}
@@ -411,7 +411,7 @@ function bindHistory(input,history,runner){
 async function submitCmd(value){append("cmdOutput",`${cmdPath}>${value}`);await runCmd(value);setCmdPrompt()}
 
 export function initTerminals(){
-  append("cmdOutput","Microsoft Windows [Version 6.1.7601]\nCopyright (c) 2009 Microsoft Corporation.  All rights reserved.\n\nType HELP for commands. Try EKA or open 'Eka Command Deck.txt'.")
+  append("cmdOutput","Microsoft Windows [Version 6.1.7600]\nCopyright (c) 2009 Microsoft Corporation.  All rights reserved.\n\nType HELP for commands. Try EKA or open 'Eka Command Deck.txt'.")
   setCmdPrompt()
   const cmdRun=bindHistory(byId("cmdInput"),cmdHistory,runCmd)
   byId("cmdForm").addEventListener("submit",async event=>{event.preventDefault();const value=byId("cmdInput").value;append("cmdOutput",`${cmdPath}>${value}`);byId("cmdInput").value="";await cmdRun(value);setCmdPrompt()})

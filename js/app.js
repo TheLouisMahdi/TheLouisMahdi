@@ -6,6 +6,8 @@ import{initTerminals}from"./terminal.js"
 import{initReceipt,printReceipt}from"./receipt.js"
 import{initApps,mountRuntimeWindows}from"./apps.js"
 import{initSystemApps,mountSystemApps}from"./system-apps.js"
+import{initFidelityApps,mountFidelityApps}from"./fidelity-apps.js"
+import{initUac,mountUac}from"./uac.js"
 import{initGames,mountGames}from"./games.js"
 import{initGadgets,mountGadgets}from"./gadgets.js"
 import{initSystem,lockSystem,showSecurityScreen,systemState}from"./system.js"
@@ -141,6 +143,8 @@ function initStart(){
 
 function initTaskbar(){
   byId("peekBtn").addEventListener("click",showDesktop)
+  byId("peekBtn").addEventListener("pointerenter",()=>byId("desktop").classList.add("aero-peek"))
+  byId("peekBtn").addEventListener("pointerleave",()=>byId("desktop").classList.remove("aero-peek"))
   document.querySelectorAll("[data-task]").forEach(button=>{
     button.addEventListener("click",event=>{
       event.stopPropagation()
@@ -310,10 +314,10 @@ function initKeyboard(){
       const win=activeWindow();if(win){event.preventDefault();snapWindow(win,key.replace("arrow",""))}return
     }
     if(event.metaKey&&key==="p"){
-      event.preventDefault();window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Projector: Computer only · Duplicate · Extend · Projector only"}));return
+      event.preventDefault();window.dispatchEvent(new CustomEvent("win7:open-generic",{detail:"Connect to a Projector"}));return
     }
     if(event.metaKey&&key==="x"){
-      event.preventDefault();window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Windows Mobility Center · Display · Volume · Battery · Wireless"}));return
+      event.preventDefault();window.dispatchEvent(new CustomEvent("win7:open-generic",{detail:"Windows Mobility Center"}));return
     }
     if(event.metaKey&&/^[1-9]$/.test(key)){
       event.preventDefault();document.querySelectorAll("[data-task]")[Number(key)-1]?.click();return
@@ -337,6 +341,8 @@ function init(){
   mountInteractionUi()
   mountRuntimeWindows()
   mountSystemApps()
+  mountFidelityApps()
+  mountUac()
   mountGames()
   mountGadgets()
   mountTaskButtons()
@@ -347,6 +353,8 @@ function init(){
   initTerminals()
   initApps()
   initSystemApps()
+  initFidelityApps()
+  initUac()
   initGames()
   initGadgets()
   initReceipt()

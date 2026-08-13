@@ -16,6 +16,7 @@ try{
     page.on("pageerror",error=>errors.push(error.message))
     await page.goto(siteUrl,{waitUntil:"domcontentloaded"})
     await page.waitForSelector("#comfyWindow",{state:"attached"})
+    await page.addStyleTag({content:".system-screen{display:none!important}"})
     await page.evaluate(()=>window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"comfy"})))
     await page.waitForFunction(()=>!document.getElementById("comfyWindow").classList.contains("hidden"))
     assert.equal(await page.locator("#comfyFrame").getAttribute("sandbox"),"allow-scripts")

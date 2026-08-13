@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>Comfy Cakes</title>
@@ -10,15 +9,40 @@
             cursor: url("assets/aero_arrow.png") 0 0, default !important;
         }
         body {
-            padding: 0px;
-            margin: 0px;
+            padding: 0;
+            margin: 0;
             background: #242424;
             overflow: hidden;
         }
     </style>
-<script defer src="phaser-d927f4f9eb634fa5a31b.bundle.js"></script><script defer src="main-752b11a3ff13ff1fef1d.bundle.js"></script></head>
+    <script>
+        (() => {
+            const NativeAudio = window.Audio
+            const audioInstances = new Set()
+            window.Audio = function (...args) {
+                const audio = new NativeAudio(...args)
+                audioInstances.add(audio)
+                return audio
+            }
+            window.Audio.prototype = NativeAudio.prototype
 
-<body>
-</body>
+            window.addEventListener("keydown", event => {
+                if (!["F2", "F4", "F5"].includes(event.key)) return
+                event.preventDefault()
+                window.parent.postMessage({Type: "shortcut", Key: event.key}, "*")
+            })
 
+            window.addEventListener("message", event => {
+                const message = event.data
+                if (event.source !== window.parent || !message || typeof message !== "object" || message.Type !== "visibility") return
+                const paused = message.State === "paused"
+                if (paused) for (const audio of audioInstances) audio.pause()
+                window.dispatchEvent(new Event(paused ? "blur" : "focus"))
+            })
+        })()
+    </script>
+    <script defer src="phaser-d927f4f9eb634fa5a31b.bundle.js"></script>
+    <script defer src="main-752b11a3ff13ff1fef1d.bundle.js"></script>
+</head>
+<body></body>
 </html>

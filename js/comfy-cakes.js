@@ -5,8 +5,9 @@ const GAME_URL="games/comfy-cakes/index.html"
 const STATS_KEY="eka.purble-place.comfy-cakes.stats"
 
 function controls(){return`<div class="win-controls"><button class="win-control" data-window-action="min" aria-label="Minimize">_</button><button class="win-control" data-window-action="max" aria-label="Maximize">□</button><button class="win-control close" data-window-action="close" aria-label="Close">×</button></div>`}
-function readStats(){try{return{played:0,wins:0,losses:0,...JSON.parse(localStorage.getItem(STATS_KEY)||"{}")}}catch{return{played:0,wins:0,losses:0}}}
-function writeStats(stats){localStorage.setItem(STATS_KEY,JSON.stringify(stats))}
+function count(value){const number=Number(value);return Number.isFinite(number)&&number>0?Math.floor(number):0}
+function readStats(){try{const saved=JSON.parse(localStorage.getItem(STATS_KEY)||"{}")||{};return{played:count(saved.played),wins:count(saved.wins),losses:count(saved.losses)}}catch{return{played:0,wins:0,losses:0}}}
+function writeStats(stats){try{localStorage.setItem(STATS_KEY,JSON.stringify(stats))}catch{}}
 function playMenuSound(){const audio=new Audio("games/comfy-cakes/assets/sounds/PURBLES_CAKEBUTTONS.ogg");audio.play().catch(()=>undefined)}
 
 export function mountComfyCakes(){
@@ -44,7 +45,7 @@ export function mountComfyCakes(){
         </section>
         <section class="purble-play hidden" id="purblePlay">
           <div class="purble-loading" id="purbleLoading">LOADING...</div>
-          <iframe id="comfyFrame" title="Comfy Cakes" allow="autoplay" tabindex="0"></iframe>
+          <iframe id="comfyFrame" title="Comfy Cakes" sandbox="allow-scripts" allow="autoplay" tabindex="0"></iframe>
         </section>
         <section class="purble-dialog hidden" id="purbleDifficulty" role="dialog" aria-modal="true" aria-labelledby="purbleDifficultyTitle">
           <div class="purble-dialog-title" id="purbleDifficultyTitle">Select Difficulty</div>
@@ -87,32 +88,40 @@ export function mountComfyCakes(){
 }
 
 export function initComfyCakes(){
-  const root=byId("comfyWindow"),home=byId("purbleHome"),play=byId("purblePlay"),frame=byId("comfyFrame")
+  const root=byId("comfyWindow"),home=byId("purbleHome"),play=byId("purblePlay"),frame=byId("comfyFrame"),loading=byId("purbleLoading")
   const dialogs=[byId("purbleDifficulty"),byId("purbleOptions"),byId("purbleStats"),byId("purbleResult")]
-  let level=1,singleCake=false
+  let level=1,singleCake=false,resultRecorded=false
   const closeDialogs=()=>dialogs.forEach(dialog=>dialog.classList.add("hidden"))
-  const showHome=()=>{closeDialogs();play.classList.add("hidden");home.classList.remove("hidden");frame.removeAttribute("src")}
-  const showDifficulty=()=>{closeDialogs();byId("purbleDifficulty").classList.remove("hidden")}
+  const hasOpenDialog=()=>dialogs.some(dialog=>!dialog.classList.contains("hidden"))
+  const isPlaying=()=>!play.classList.contains("hidden")&&Boolean(frame.getAttribute("src"))
+  const sendToGame=message=>{if(isPlaying())frame.contentWindow?.postMessage(message,"*")}
+  const pauseGame=()=>sendToGame({Type:"visibility",State:"paused"})
+  const resumeGame=()=>sendToGame({Type:"visibility",State:"running"})
+  const showHome=()=>{closeDialogs();play.classList.add("hidden");home.classList.remove("hidden");resultRecorded=false;frame.removeAttribute("src");loading.classList.add("hidden")}
+  const showDialog=dialog=>{closeDialogs();pauseGame();dialog.classList.remove("hidden");setTimeout(()=>dialog.querySelector("button,input")?.focus(),0)}
+  const showDifficulty=()=>showDialog(byId("purbleDifficulty"))
   const startGame=()=>{
-    closeDialogs();home.classList.add("hidden");play.classList.remove("hidden");byId("purbleLoading").classList.remove("hidden")
+    closeDialogs();resultRecorded=false;home.classList.add("hidden");play.classList.remove("hidden");loading.classList.remove("hidden")
     const nonce=Date.now(),single=singleCake&&level>1?"&single=1":""
     frame.src=`${GAME_URL}?level=${level}${single}&run=${nonce}`
-    const stats=readStats();stats.played++;writeStats(stats)
   }
   const showStats=()=>{
-    closeDialogs();const stats=readStats(),percentage=stats.played?Math.round(stats.wins/stats.played*100):0
+    const stats=readStats(),percentage=stats.played?Math.round(stats.wins/stats.played*100):0
     byId("purbleStatsBody").innerHTML=`<strong>Comfy Cakes</strong><dl><div><dt>Games played</dt><dd>${stats.played}</dd></div><div><dt>Games won</dt><dd>${stats.wins}</dd></div><div><dt>Games lost</dt><dd>${stats.losses}</dd></div><div><dt>Win percentage</dt><dd>${percentage}%</dd></div></dl><div class="purble-dialog-actions"><button data-purble-action="reset-stats">Reset Statistics</button><button data-purble-action="cancel-dialog">Close</button></div>`
-    byId("purbleStats").classList.remove("hidden")
+    showDialog(byId("purbleStats"))
   }
   const showOptions=()=>{
-    closeDialogs();root.querySelector(`input[name="purbleOptionLevel"][value="${level}"]`).checked=true;byId("purbleSingleCake").checked=singleCake;byId("purbleOptions").classList.remove("hidden")
+    root.querySelector(`input[name="purbleOptionLevel"][value="${level}"]`).checked=true;byId("purbleSingleCake").checked=singleCake;showDialog(byId("purbleOptions"))
   }
   const showResult=data=>{
-    const won=data.Result==="win",stats=readStats();if(won)stats.wins++;else stats.losses++;writeStats(stats)
+    if(resultRecorded)return
+    resultRecorded=true
+    const won=data.Result==="win",stats=readStats();stats.played++;if(won)stats.wins++;else stats.losses++;writeStats(stats)
     byId("purbleResultText").textContent=won?"You won!":"Game over"
     byId("purbleResultDetail").textContent=won?"Every order was completed.":`${Number(data.FailCount)||0} cakes did not match their orders.`
-    byId("purbleResult").classList.remove("hidden")
+    showDialog(byId("purbleResult"))
   }
+  const handleShortcut=key=>{if(key==="F2")showDifficulty();else if(key==="F4")showStats();else if(key==="F5")showOptions()}
   root.addEventListener("click",event=>{
     const menuButton=event.target.closest("#purbleGameMenu")
     if(menuButton){event.stopPropagation();byId("purbleGameDropdown").classList.toggle("hidden");return}
@@ -128,14 +137,25 @@ export function initComfyCakes(){
     else if(action==="options")showOptions()
     else if(action==="main")showHome()
     else if(action==="replay")startGame()
-    else if(action==="cancel-dialog")closeDialogs()
-    else if(action==="save-options"){level=Number(root.querySelector('input[name="purbleOptionLevel"]:checked')?.value||level);singleCake=byId("purbleSingleCake").checked;closeDialogs()}
+    else if(action==="cancel-dialog"){closeDialogs();resumeGame()}
+    else if(action==="save-options"){level=Number(root.querySelector('input[name="purbleOptionLevel"]:checked')?.value||level);singleCake=byId("purbleSingleCake").checked;closeDialogs();resumeGame()}
     else if(action==="reset-stats"){writeStats({played:0,wins:0,losses:0});showStats()}
     else if(action==="exit")root.querySelector('[data-window-action="close"]').click()
   })
   byId("purbleHelp").addEventListener("click",()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Match the order on the TV: pan, batter, filling, icing, decoration, then final touch."})))
-  frame.addEventListener("load",()=>{byId("purbleLoading").classList.add("hidden");frame.contentWindow?.postMessage(level,"*");frame.focus()})
-  window.addEventListener("message",event=>{if(event.source===frame.contentWindow&&event.data&&typeof event.data==="object"&&["win","lose"].includes(event.data.Result))showResult(event.data)})
+  frame.addEventListener("load",()=>{if(!frame.getAttribute("src"))return;loading.classList.add("hidden");frame.contentWindow?.postMessage(level,"*");frame.focus()})
+  window.addEventListener("message",event=>{
+    if(event.source!==frame.contentWindow||!event.data||typeof event.data!=="object")return
+    if(event.data.Type==="shortcut"){handleShortcut(event.data.Key);return}
+    if(["win","lose"].includes(event.data.Result))showResult(event.data)
+  })
+  window.addEventListener("win7:window-state",event=>{
+    if(event.detail?.id!==root.id)return
+    if(event.detail.state==="closed")showHome()
+    else if(event.detail.state==="minimized")pauseGame()
+    else if(event.detail.state==="open"&&!hasOpenDialog())resumeGame()
+  })
+  document.addEventListener("visibilitychange",()=>{if(document.hidden)pauseGame();else if(!root.classList.contains("hidden")&&!hasOpenDialog())resumeGame()})
   document.addEventListener("click",event=>{if(!event.target.closest("#purbleGameMenu,#purbleGameDropdown"))byId("purbleGameDropdown")?.classList.add("hidden")})
-  root.addEventListener("keydown",event=>{if(event.key==="F2"){event.preventDefault();showDifficulty()}if(event.key==="F4"){event.preventDefault();showStats()}if(event.key==="F5"){event.preventDefault();showOptions()}})
+  root.addEventListener("keydown",event=>{if(["F2","F4","F5"].includes(event.key)){event.preventDefault();handleShortcut(event.key)}})
 }

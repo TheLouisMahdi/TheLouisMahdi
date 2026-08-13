@@ -47,3 +47,22 @@ jobs:
           grep -q 'Eka Command Deck.txt' EKA_COMMANDS.txt
       - name: Run simulator smoke checks
         run: node tests/smoke.mjs
+      - name: Install browser test tooling
+        run: |
+          npm install --no-save --no-package-lock playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Run browser checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 > "$RUNNER_TEMP/site.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:4173/ > /dev/null
+          node tests/browser.mjs

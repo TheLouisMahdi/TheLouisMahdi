@@ -124,4 +124,4 @@ Beginner has no time-attack flow. Intermediate and Advanced support concurrent c
 
 ## Rights and attribution
 
-Purble Place, Comfy Cakes, their characters, artwork, audio, and original UI are Microsoft/Oberon Games material. They are included here solely for a non-commercial archival recreation; no ownership is claimed. Before any broader commercial distribution, obtain the necessary permissions or replace the original media with independently licensed equivalents.
+Purble Place, Comfy Cakes, their characters, artwork, audio, and original UI are Microsoft/Oberon Games material. The archival and non-commercial description does not grant redistribution permission. Public deployment or redistribution requires authorization from the relevant rights holders; otherwise replace these media files with independently licensed equivalents. The adapted web runtime has separate MIT notices in `THIRD_PARTY_NOTICES.md`.

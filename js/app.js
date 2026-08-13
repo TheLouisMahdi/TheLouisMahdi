@@ -89,7 +89,39 @@ function initDesktopInteraction(){
 }
 
 function initStart(){
-  const closeStart=()=>{byId("startMenu").classList.add("hidden");byId("allProgramsPanel")?.classList.add("hidden")}
+  const controlRecords=[
+    ["Control Panel","home"],["Personalization","personalization"],["Change the theme","personalization"],["Desktop Background","desktop-background"],["Window Color and Appearance","window-color"],["Network and Sharing Center","network-sharing"],["Programs and Features","programs-features"],["Power Options","power-options"],["Devices and Printers","devices"],["Taskbar and Start Menu","taskbar"]
+  ]
+  const escapeHtml=value=>String(value).replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[char])
+  const resetSearch=()=>{byId("searchBox").value="";byId("programList").classList.remove("hidden");byId("startSearchResults").classList.add("hidden");byId("startSearchResults").innerHTML=""}
+  const closeStart=()=>{byId("startMenu").classList.add("hidden");byId("allProgramsPanel")?.classList.add("hidden");resetSearch()}
+  const searchRecords=()=>{
+    const records=[]
+    document.querySelectorAll("#programList [data-app-open],#allProgramsPanel [data-app-open],#allProgramsPanel [data-generic-app]").forEach(button=>records.push({group:"Programs",label:button.textContent.trim().replace(/^Games · /,""),app:button.dataset.appOpen,generic:button.dataset.genericApp,icon:button.dataset.appOpen||"system"}))
+    controlRecords.forEach(([label,control])=>records.push({group:"Control Panel",label,control,icon:"control"}))
+    desktopItems.forEach(item=>records.push({group:item.type==="folder"?"Folders":"Documents",label:item.name,item,icon:item.type||"text"}))
+    const seen=new Set()
+    return records.filter(record=>{const key=`${record.group}|${record.label.toLowerCase()}`;if(seen.has(key))return false;seen.add(key);return true})
+  }
+  const resultMarkup=record=>`<button class="start-search-item" ${record.app?`data-search-app="${record.app}"`:record.generic?`data-search-generic="${record.generic}"`:record.control?`data-search-control="${record.control}"`:`data-search-file="${encodeURIComponent(itemKey(record.item))}"`}><span>${icon(record.icon)}</span><b>${escapeHtml(record.label)}</b></button>`
+  const renderSearch=()=>{
+    const q=byId("searchBox").value.trim().toLocaleLowerCase()
+    byId("programList").classList.toggle("hidden",Boolean(q))
+    byId("allProgramsPanel")?.classList.add("hidden")
+    const results=byId("startSearchResults")
+    if(!q){results.classList.add("hidden");results.innerHTML="";return}
+    const matches=searchRecords().filter(record=>record.label.toLocaleLowerCase().includes(q)).sort((a,b)=>Number(!a.label.toLocaleLowerCase().startsWith(q))-Number(!b.label.toLocaleLowerCase().startsWith(q))||a.label.localeCompare(b.label)).slice(0,18)
+    const groups=["Programs","Control Panel","Documents","Folders"].map(group=>{const items=matches.filter(record=>record.group===group);return items.length?`<section><h4>${group}</h4>${items.map(resultMarkup).join("")}</section>`:""}).join("")
+    results.innerHTML=groups||'<p class="start-no-results">No items match your search.</p>'
+    results.classList.remove("hidden")
+  }
+  const activateResult=button=>{
+    if(button.dataset.searchApp)openApp(button.dataset.searchApp)
+    else if(button.dataset.searchGeneric)window.dispatchEvent(new CustomEvent("win7:open-generic",{detail:button.dataset.searchGeneric}))
+    else if(button.dataset.searchControl){openApp("control");if(button.dataset.searchControl!=="home")window.dispatchEvent(new CustomEvent("win7:control-page",{detail:button.dataset.searchControl}))}
+    else if(button.dataset.searchFile){const key=decodeURIComponent(button.dataset.searchFile),item=desktopItems.find(candidate=>itemKey(candidate)===key);activateDesktop(item)}
+    closeStart()
+  }
   byId("startBtn").innerHTML=icon("windows")
   byId("startBtn").addEventListener("click",event=>{
     event.stopPropagation()
@@ -99,12 +131,12 @@ function initStart(){
   byId("startMenu").addEventListener("click",event=>event.stopPropagation())
   document.addEventListener("click",closeStart)
   byId("startMenu").querySelectorAll("[data-app-open]").forEach(node=>node.addEventListener("click",()=>openApp(node.dataset.appOpen)))
+  byId("startMenu").querySelectorAll("[data-control-open]").forEach(node=>node.addEventListener("click",event=>{event.preventDefault();openApp("control");window.dispatchEvent(new CustomEvent("win7:control-page",{detail:node.dataset.controlOpen}))}))
   byId("allProgramsBtn")?.addEventListener("click",event=>{event.stopPropagation();byId("allProgramsPanel")?.classList.toggle("hidden")})
   byId("allProgramsPanel")?.addEventListener("click",event=>event.stopPropagation())
-  byId("searchBox").addEventListener("input",()=>{
-    const q=byId("searchBox").value.trim().toLowerCase()
-    byId("programList").querySelectorAll(".start-program").forEach(button=>button.hidden=q&&!button.textContent.toLowerCase().includes(q))
-  })
+  byId("searchBox").addEventListener("input",renderSearch)
+  byId("searchBox").addEventListener("keydown",event=>{if(event.key==="Enter"){const first=byId("startSearchResults").querySelector("button");if(first){event.preventDefault();activateResult(first)}}})
+  byId("startSearchResults").addEventListener("click",event=>{const button=event.target.closest(".start-search-item");if(button)activateResult(button)})
 }
 
 function initTaskbar(){
@@ -144,6 +176,8 @@ function initTaskbar(){
   byId("taskbar").addEventListener("click",event=>{
     const appLink=event.target.closest(".tray-flyout [data-app-open]")
     if(appLink){event.preventDefault();openApp(appLink.dataset.appOpen);closeFlyouts()}
+    const controlLink=event.target.closest(".tray-flyout [data-control-open]")
+    if(controlLink){event.preventDefault();openApp("control");window.dispatchEvent(new CustomEvent("win7:control-page",{detail:controlLink.dataset.controlOpen}));closeFlyouts()}
   })
   byId("customizeTray")?.addEventListener("click",event=>{event.preventDefault();openApp("control");window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"notification-area"}))})
   document.addEventListener("click",()=>closeFlyouts())

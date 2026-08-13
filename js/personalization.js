@@ -3,6 +3,7 @@ const byId=id=>document.getElementById(id)
 const AERO=["Windows 7","Architecture","Characters","Landscapes","Nature","Scenes","United States"]
 const BASIC=["Windows 7 Basic","Windows Classic","High Contrast #1","High Contrast #2","High Contrast Black","High Contrast White"]
 const COUNTS={"Windows 7":1,Architecture:6,Characters:6,Landscapes:6,Nature:6,Scenes:6,"United States":6}
+const THEME_COLORS={"Windows 7":"#4f96c5",Architecture:"#647786",Characters:"#b85d82",Landscapes:"#4384b3",Nature:"#4f8b45",Scenes:"#826086","United States":"#9b4d4d","Windows 7 Basic":"#5794b8","Windows Classic":"#3a6ea5","High Contrast #1":"#000080","High Contrast #2":"#008080","High Contrast Black":"#000000","High Contrast White":"#f5f5f5"}
 let wallpaperTimer=null
 
 const palettes={
@@ -27,6 +28,11 @@ function wallpaperCss(category,index=0){
 }
 
 function wallpaperId(category,index){return `${category.toLowerCase().replaceAll(" ","-")}-${index+1}`}
+function themeSlug(name){return name.toLowerCase().replaceAll(" ","-").replaceAll("#","")}
+function themeTile(name,active,basic=false,label=name){
+  const attr=basic?`data-basic-theme="${name}"`:`data-theme-name="${name}"`,preview=basic?`<i class="${themeSlug(name)}"><em style="--theme-swatch:${THEME_COLORS[name]}"></em></i>`:`<i style="background:${wallpaperCss(name,0)}"><em style="--theme-swatch:${THEME_COLORS[name]}"></em></i>`
+  return `<button class="theme-tile ${basic?"basic-theme":""} ${name===active?"selected":""}" ${attr}>${preview}<span>${label}</span></button>`
+}
 
 function savedWallpaper(){
   const fallback={category:"Windows 7",index:0,position:"Fill",interval:"30 minutes",shuffle:false,items:[{category:"Windows 7",index:0}]}
@@ -35,9 +41,9 @@ function savedWallpaper(){
 
 export function personalizationHtml(){
   const active=localStorage.getItem("eka.windows7.theme")||"Windows 7"
-  const aero=AERO.map(name=>`<button class="theme-tile ${name===active?"selected":""}" data-theme-name="${name}"><i style="background:${wallpaperCss(name,0)}"></i><span>${name}</span></button>`).join("")
-  const basic=BASIC.map(name=>`<button class="theme-tile basic-theme ${name===active?"selected":""}" data-basic-theme="${name}"><i class="${name.toLowerCase().replaceAll(" ","-").replaceAll("#","")}"></i><span>${name}</span></button>`).join("")
-  return `<div class="personalization-page"><aside><button data-control-action="desktop-icons">Change desktop icons</button><button data-control-action="mouse-pointers">Change mouse pointers</button><button data-control-action="account-picture">Change your account picture</button></aside><main><h3>Change the visuals and sounds on your computer</h3><p>Click a theme to change the desktop background, window color, sounds, and screen saver all at once.</p><h4>Aero Themes</h4><div class="theme-grid">${aero}</div><h4>Basic and High Contrast Themes</h4><div class="theme-grid">${basic}</div><div class="personalization-links"><button data-control-link="desktop-background"><b>Desktop Background</b><small id="personalizationBackgroundName">Windows 7</small></button><button data-control-link="window-color"><b>Window Color</b><small>Sky</small></button><button data-control-link="sounds"><b>Sounds</b><small>Windows Default</small></button><button data-control-link="screen-saver"><b>Screen Saver</b><small>None</small></button></div></main></div>`
+  const wallpaper=savedWallpaper(),aero=AERO.map(name=>themeTile(name,active)).join(""),basic=BASIC.map(name=>themeTile(name,active,true)).join("")
+  const myTheme=themeTile(active,active,BASIC.includes(active),"Unsaved Theme")
+  return `<div class="personalization-page"><aside><strong>Control Panel Home</strong><button data-control-route="home">Control Panel Home</button><button data-control-action="desktop-icons">Change desktop icons</button><button data-control-action="mouse-pointers">Change mouse pointers</button><button data-control-action="account-picture">Change your account picture</button><div class="personalization-see-also"><small>See also</small><button data-control-link="display">Display</button><button data-control-link="taskbar">Taskbar and Start Menu</button><button data-control-link="ease-center">Ease of Access Center</button></div></aside><main><h3>Change the visuals and sounds on your computer</h3><p>Click a theme to change the desktop background, window color, sounds, and screen saver all at once.</p><div class="theme-browser"><section class="theme-section"><h4>My Themes (1)</h4><div class="theme-grid my-themes">${myTheme}</div><div class="theme-actions"><button data-control-action="save-theme">Save theme</button><button data-control-action="themes-online">Get more themes online</button></div></section><section class="theme-section"><h4>Aero Themes (7)</h4><div class="theme-grid">${aero}</div></section><section class="theme-section"><h4>Basic and High Contrast Themes (6)</h4><div class="theme-grid">${basic}</div></section></div><div class="personalization-links"><button data-control-link="desktop-background"><i class="personalization-link-icon background-link" style="background:${wallpaperCss(wallpaper.category,wallpaper.index)}"></i><b>Desktop Background</b><small id="personalizationBackgroundName">${wallpaper.items.length>1?"Slide Show":wallpaper.category}</small></button><button data-control-link="window-color"><i class="personalization-link-icon color-link" style="--theme-swatch:${THEME_COLORS[active]}"></i><b>Window Color</b><small>${active}</small></button><button data-control-link="sounds"><i class="personalization-link-icon sounds-link">♫</i><b>Sounds</b><small>Windows Default</small></button><button data-control-link="screen-saver"><i class="personalization-link-icon saver-link"></i><b>Screen Saver</b><small>None</small></button></div></main></div>`
 }
 
 export function desktopBackgroundHtml(){
@@ -47,12 +53,24 @@ export function desktopBackgroundHtml(){
   return `<div class="desktop-background-page"><h3>Choose your desktop background</h3><div class="wallpaper-toolbar"><label>Picture location: <select id="wallpaperLocation"><option>Windows Desktop Backgrounds</option><option>Pictures Library</option><option>Top Rated Photos</option><option>Solid Colors</option></select></label><button data-control-action="browse-wallpaper">Browse...</button><button data-wallpaper-select="all">Select all</button><button data-wallpaper-select="none">Clear all</button></div><div class="wallpaper-scroll">${groups}</div><div class="wallpaper-options"><label>Picture position: <select id="wallpaperPosition">${["Fill","Fit","Stretch","Tile","Center"].map(value=>option(value,saved.position)).join("")}</select></label><label>Change picture every: <select id="wallpaperInterval">${["10 seconds","30 seconds","1 minute","10 minutes","30 minutes","1 hour","1 day"].map(value=>option(value,saved.interval)).join("")}</select></label><label><input id="wallpaperShuffle" type="checkbox"${saved.shuffle?" checked":""}> Shuffle</label><button data-control-action="save-wallpaper">Save changes</button><button data-control-route="personalization">Cancel</button></div></div>`
 }
 
+export function applyAccent(accent){
+  const desktop=byId("desktop")
+  desktop.style.setProperty("--aero-accent",accent)
+  document.documentElement.style.setProperty("--site-accent",accent)
+  document.documentElement.style.setProperty("--site-accent-soft",`color-mix(in srgb, ${accent} 18%, white)`)
+  document.documentElement.style.setProperty("--site-accent-dark",`color-mix(in srgb, ${accent} 72%, #152b39)`)
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content",accent)
+}
+
 export function applyTheme(name,notify=true){
   const desktop=byId("desktop")
   const basic=BASIC.includes(name)
   clearInterval(wallpaperTimer);wallpaperTimer=null
-  desktop.dataset.theme=name.toLowerCase().replaceAll(" ","-").replaceAll("#","")
+  const accent=THEME_COLORS[name]||THEME_COLORS["Windows 7"]
+  desktop.dataset.theme=themeSlug(name)
   desktop.classList.toggle("high-contrast",name.startsWith("High Contrast"))
+  applyAccent(accent)
+  document.body.dataset.win7Theme=themeSlug(name)
   if(!basic){const settings={category:name,index:0,position:"Fill",interval:"30 minutes",shuffle:false,items:[{category:name,index:0}]};localStorage.setItem("eka.windows7.wallpaper",JSON.stringify(settings));applyWallpaper(name,0,false,"Fill")}
   if(name==="Windows 7 Basic"){const settings={category:"Windows 7",index:0,position:"Fill",interval:"30 minutes",shuffle:false,items:[{category:"Windows 7",index:0}]};localStorage.setItem("eka.windows7.wallpaper",JSON.stringify(settings));applyWallpaper("Windows 7",0,false,"Fill")}
   if(name==="Windows Classic")desktop.style.background="#3a6ea5"
@@ -61,6 +79,7 @@ export function applyTheme(name,notify=true){
   if(name==="High Contrast Black")desktop.style.background="#000"
   if(name==="High Contrast White")desktop.style.background="#fff"
   localStorage.setItem("eka.windows7.theme",name)
+  if(notify){desktop.classList.remove("opaque-aero");desktop.style.setProperty("--aero-intensity","65%");localStorage.setItem("eka.windows7.windowColor",JSON.stringify({color:accent,intensity:65,transparent:true}))}
   if(notify)window.dispatchEvent(new CustomEvent("win7:toast",{detail:`${name} theme applied.`}))
 }
 

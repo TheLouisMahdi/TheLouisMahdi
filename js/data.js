@@ -1,3 +1,5 @@
+import{WINDOWS7_WALLPAPERS,wallpaperAsset,wallpaperThumbnail}from"./wallpapers.js"
+
 export const PROFILE={
   name:"Mahdi Ghahremani",
   user:"TheLouisMahdi",
@@ -53,9 +55,11 @@ export const FILE_SYSTEM={
   projects:{title:"Repositories",path:"Computer > GitHub (G:) > Repositories",type:"folder",items:REPOSITORIES.map(repo=>({name:repo.name,type:"folder",target:`repo:${repo.name}`}))},
   archives:{title:"Archives",path:"Computer > Data (D:) > Archives",type:"folder",items:REPOSITORIES.map(repo=>({name:`${repo.name}.zip`,type:"zip",external:zip(repo.name)}))},
   pictures:{title:"Pictures",path:"Libraries > Pictures",type:"folder",items:[
+    {name:"Windows 7 Wallpapers",type:"folder",target:"win7wallpapers"},
     {name:"github-avatar.png",type:"photo",image:"https://avatars.githubusercontent.com/u/284312505?v=4"},
     {name:"about-terminal.svg",type:"photo",image:"about-terminal.svg"}
   ]},
+  win7wallpapers:{title:"Windows 7 Wallpapers",path:"Libraries > Pictures > Windows 7 Wallpapers",type:"folder",items:WINDOWS7_WALLPAPERS.map(group=>({name:group.name,type:"folder",target:`wallpapers:${group.folder}`}))},
   music:{title:"Music",path:"Libraries > Music",type:"folder",items:[]},
   videos:{title:"Videos",path:"Libraries > Videos",type:"folder",items:[]},
   homegroup:{title:"Homegroup",path:"Homegroup",type:"folder",items:[{name:"EKA-PC",type:"computer",target:"computer"}]},
@@ -91,6 +95,15 @@ export const FILE_SYSTEM={
     {name:"wordpad.exe",type:"wordpad",app:"wordpad"}
   ]},
   recycle:{title:"Recycle Bin",path:"Recycle Bin",type:"folder",items:[]}
+}
+
+for(const group of WINDOWS7_WALLPAPERS){
+  FILE_SYSTEM[`wallpapers:${group.folder}`]={
+    title:group.name,
+    path:`Libraries > Pictures > Windows 7 Wallpapers > ${group.name}`,
+    type:"folder",
+    items:group.files.map((file,index)=>({name:file,type:"photo",image:wallpaperAsset(group.name,index),thumbnail:wallpaperThumbnail(group.name,index)}))
+  }
 }
 
 for(const repo of REPOSITORIES){

@@ -1,13 +1,16 @@
 import assert from"node:assert/strict"
-import{existsSync,readFileSync,readdirSync}from"node:fs"
+import{existsSync,readFileSync,readdirSync,statSync}from"node:fs"
 import{dirname,resolve}from"node:path"
 import{fileURLToPath}from"node:url"
+import{WINDOWS7_WALLPAPERS,wallpaperAsset,wallpaperThumbnail}from"../js/wallpapers.js"
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),"..")
 const read=path=>readFileSync(resolve(root,path),"utf8")
 const index=read("index.html")
 const app=read("js/app.js")
 const apps=read("js/apps.js")
+const data=read("js/data.js")
+const explorer=read("js/explorer.js")
 const system=read("js/system.js")
 const systemApps=read("js/system-apps.js")
 const receipt=read("js/receipt.js")
@@ -63,6 +66,16 @@ for(const brush of["calligraphy1","calligraphy2","airbrush","oil","crayon","mark
 for(const theme of["Windows 7","Architecture","Characters","Landscapes","Nature","Scenes","United States","Windows Classic","High Contrast Black"])assert.ok(personalization.includes(theme),`missing Windows 7 theme: ${theme}`)
 assert.ok(personalization.includes("saveWallpaperPlaylist")&&personalization.includes("startSlideshow"),"wallpaper slideshow settings are missing")
 assert.ok(personalization.includes("applyAccent")&&personalization.includes("--site-accent")&&runtimeCss.includes("Theme color is system-wide"),"theme colors must propagate beyond the wallpaper")
+assert.equal(WINDOWS7_WALLPAPERS.reduce((total,group)=>total+group.files.length,0),37,"the complete Windows 7 Aero wallpaper set must contain 37 files")
+for(const group of WINDOWS7_WALLPAPERS)for(const [index] of group.files.entries()){
+  const asset=resolve(root,wallpaperAsset(group.name,index))
+  const thumbnail=resolve(root,wallpaperThumbnail(group.name,index))
+  assert.ok(existsSync(asset),`missing Windows 7 wallpaper ${asset}`)
+  assert.ok(statSync(asset).size>200000,`Windows 7 wallpaper is unexpectedly small: ${asset}`)
+  assert.ok(existsSync(thumbnail)&&statSync(thumbnail).size>5000,`missing Windows 7 wallpaper thumbnail ${thumbnail}`)
+}
+assert.ok(data.includes('name:"Windows 7 Wallpapers"')&&data.includes("WINDOWS7_WALLPAPERS.map"),"Pictures must expose the complete Windows 7 wallpaper library")
+assert.ok(explorer.includes("file-thumbnail")&&explorer.includes('loading="lazy"'),"Pictures must render lazy-loaded image thumbnails")
 for(const item of["Administrative Tools","BitLocker Drive Encryption","Color Management","Credential Manager","Device Manager","Indexing Options","Performance Information and Tools","Speech Recognition","Sync Center","Windows Defender"])assert.ok(systemApps.includes(item),`All Control Panel Items is missing ${item}`)
 assert.ok(systemApps.includes("CONTROL_ITEMS.filter")&&systemApps.includes("CONTROL_ITEM_BY_ID"),"Large and Small icons must use the complete Control Panel item registry")
 assert.ok(gadgets.includes('addGadget("clock")')&&gadgets.includes("gadget-cpu")&&gadgets.includes("gadget-calendar"),"desktop gadgets are incomplete")

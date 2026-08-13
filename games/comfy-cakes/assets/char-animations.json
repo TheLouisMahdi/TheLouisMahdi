@@ -1,0 +1,116 @@
+{
+    "anims": [
+        {
+            "key": "eyeleft-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "eye_left_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "eye_left_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "eye_left_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "eye_left_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 8,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "eyeright-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "eye_right_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "eye_right_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "eye_right_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "eye_right_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "eye_right_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 8,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "talk-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "mouth_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "mouth_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "mouth_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "mouth_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        }
+    ],
+    "globalTimeScale": 1,
+    "meta": {
+        "app": "Phaser Editor 2D v3",
+        "contentType": "Phaser v3 Animations"
+    },
+    "settings": {
+        "sourceLang": "JAVA_SCRIPT",
+        "esModule": false,
+        "generateCode": false
+    }
+}

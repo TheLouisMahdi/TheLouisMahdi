@@ -1,0 +1,650 @@
+{
+    "anims": [
+        {
+            "key": "brown-circle-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_circle_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_circle_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_circle_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_circle_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_circle_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_circle_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_circle_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "brown-heart-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_heart_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_heart_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_heart_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_heart_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_heart_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_heart_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_heart_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "brown-square-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_square_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_square_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_square_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_square_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_square_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_square_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_square_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_square_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "pink-heart-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_heart_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_heart_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_heart_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_heart_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_heart_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_heart_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_heart_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "pink-circle-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_circle_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_circle_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_circle_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_circle_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_circle_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_circle_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_circle_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "pink-square-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_square_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_square_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_square_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_square_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_square_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_square_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_square_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_square_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "yellow-circle-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_circle_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_circle_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_circle_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_circle_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_circle_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_circle_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_circle_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "yellow-heart-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_heart_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_heart_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_heart_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_heart_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_heart_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_heart_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_heart_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "yellow-square-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_square_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_square_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_square_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_square_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_square_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_square_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_square_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_square_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "brown-flour-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_flour_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_flour_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_flour_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_flour_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_flour_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_flour_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_flour_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "brown_flour_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "pink-flour-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_flour_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_flour_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_flour_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_flour_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_flour_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_flour_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_flour_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "pink_flour_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "yellow-flour-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_flour_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_flour_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_flour_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_flour_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_flour_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_flour_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_flour_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "yellow_flour_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        }
+    ],
+    "globalTimeScale": 1,
+    "meta": {
+        "app": "Phaser Editor 2D v3",
+        "contentType": "Phaser v3 Animations"
+    },
+    "settings": {
+        "sourceLang": "JAVA_SCRIPT",
+        "esModule": false,
+        "generateCode": false
+    }
+}

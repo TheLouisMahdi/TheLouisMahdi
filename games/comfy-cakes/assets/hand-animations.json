@@ -1,0 +1,235 @@
+{
+    "anims": [
+        {
+            "key": "shake-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_08.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_09.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_10.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_11.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_12.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_13.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_14.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_15.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_16.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "box_moving_17.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "hand-in-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_00.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_08.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_09.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_10.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_11.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_12.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_13.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_14.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "hand_in_15.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 15,
+            "skipMissedFrames": true,
+            "hideOnComplete": true
+        }
+    ],
+    "globalTimeScale": 1,
+    "meta": {
+        "app": "Phaser Editor 2D v3",
+        "contentType": "Phaser v3 Animations"
+    },
+    "settings": {
+        "sourceLang": "JAVA_SCRIPT",
+        "esModule": false,
+        "generateCode": false
+    }
+}

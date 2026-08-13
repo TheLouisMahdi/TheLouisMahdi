@@ -1,0 +1,35 @@
+{
+    "anims": [
+        {
+            "key": "alarm-animation",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "alarm_light.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "comfy-spritesheet",
+                    "frame": "alarm_normal.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 8,
+            "skipMissedFrames": true,
+            "repeat": 2
+        }
+    ],
+    "globalTimeScale": 1,
+    "meta": {
+        "app": "Phaser Editor 2D v3",
+        "contentType": "Phaser v3 Animations"
+    },
+    "settings": {
+        "sourceLang": "JAVA_SCRIPT",
+        "esModule": false,
+        "generateCode": false
+    }
+}

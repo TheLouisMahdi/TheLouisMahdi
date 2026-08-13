@@ -3,7 +3,7 @@ import{askOpenFile,askSaveAs,askText}from"./interaction.js"
 import{icon}from"./icons.js"
 import{fileName,getEntry,readFile,writeFile}from"./vfs.js"
 import{closeWindow,openWindow}from"./window-manager.js"
-import{applyTheme,desktopBackgroundHtml,personalizationHtml,restorePersonalization,saveWallpaperPlaylist}from"./personalization.js"
+import{applyAccent,applyTheme,desktopBackgroundHtml,personalizationHtml,restorePersonalization,saveWallpaperPlaylist}from"./personalization.js"
 
 const byId=id=>document.getElementById(id)
 const toast=text=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:text}))
@@ -206,17 +206,24 @@ function initMedia(){
 }
 
 const CONTROL_CATEGORIES=[
-  {id:"system-security",name:"System and Security",icon:"🛡️",links:[["action-center","Review your computer's status"],["firewall","Check firewall status"],["system","View amount of RAM and processor speed"],["windows-update","Check for updates"],["power-options","Change when the computer sleeps"],["backup","Back up your computer"]]},
-  {id:"network-internet",name:"Network and Internet",icon:"🌐",links:[["network-sharing","View network status and tasks"],["homegroup","Choose homegroup and sharing options"],["internet-options","Internet Options"]]},
-  {id:"hardware-sound",name:"Hardware and Sound",icon:"🔊",links:[["devices","View devices and printers"],["autoplay","Play CDs or other media automatically"],["sound","Adjust system volume"],["power-options","Change battery settings"]]},
-  {id:"programs",name:"Programs",icon:"📦",links:[["programs-features","Uninstall a program"],["default-programs","Default Programs"],["desktop-gadgets","Get desktop gadgets online"]]},
-  {id:"user-accounts",name:"User Accounts and Family Safety",icon:"👥",links:[["user-account","Add or remove user accounts"],["parental-controls","Set up parental controls for any user"]]},
-  {id:"appearance",name:"Appearance and Personalization",icon:"🎨",links:[["personalization","Change the theme"],["desktop-background","Change desktop background"],["window-color","Change window glass colors"],["sounds","Change system sounds"],["screen-saver","Change screen saver"],["display","Adjust screen resolution"],["taskbar","Taskbar and Start Menu"],["folder-options","Folder Options"],["fonts","Fonts"]]},
-  {id:"clock-region",name:"Clock, Language, and Region",icon:"🕘",links:[["date-time","Set the time and date"],["region-language","Change display language"],["location","Change location"]]},
-  {id:"ease-access",name:"Ease of Access",icon:"♿",links:[["ease-center","Let Windows suggest settings"],["keyboard","Use the computer without a mouse or keyboard"],["display-access","Optimize visual display"]]}
+  {id:"system-security",name:"System and Security",icon:"system",links:[["action-center","Review your computer's status"],["backup","Back up your computer"],["troubleshooting","Find and fix problems"],["windows-update","Check for updates"]]},
+  {id:"network-internet",name:"Network and Internet",icon:"ie",links:[["network-sharing","View network status and tasks"],["homegroup","Choose homegroup and sharing options"],["internet-options","Internet Options"]]},
+  {id:"hardware-sound",name:"Hardware and Sound",icon:"devices",links:[["devices","View devices and printers"],["autoplay","Play CDs or other media automatically"],["sound","Adjust system volume"],["power-options","Change battery settings"]]},
+  {id:"programs",name:"Programs",icon:"folder",links:[["programs-features","Uninstall a program"],["default-programs","Default Programs"],["desktop-gadgets","Get desktop gadgets online"]]},
+  {id:"user-accounts",name:"User Accounts and Family Safety",icon:"system",links:[["user-account","Add or remove user accounts"],["parental-controls","Set up parental controls for any user"]]},
+  {id:"appearance",name:"Appearance and Personalization",icon:"paint",links:[["personalization","Change the theme"],["desktop-background","Change desktop background"],["display","Adjust screen resolution"]]},
+  {id:"clock-region",name:"Clock, Language, and Region",icon:"run",links:[["date-time","Change keyboards or other input methods"],["region-language","Change display language"]]},
+  {id:"ease-access",name:"Ease of Access",icon:"keyboard",links:[["ease-center","Let Windows suggest settings"],["display-access","Optimize visual display"]]}
 ]
 
-const CONTROL_NAMES=Object.fromEntries(CONTROL_CATEGORIES.flatMap(category=>category.links.map(([id,name])=>[id,name])))
+const CONTROL_ITEMS=[
+  ["action-center","Action Center","system"],["administrative-tools","Administrative Tools","control"],["autoplay","AutoPlay","media"],["backup","Backup and Restore","drive"],["bitlocker","BitLocker Drive Encryption","drive"],["color-management","Color Management","paint"],["credential-manager","Credential Manager","system"],["date-time","Date and Time","run"],["default-programs","Default Programs","system"],["desktop-gadgets","Desktop Gadgets","control"],["device-manager","Device Manager","devices"],["devices","Devices and Printers","devices"],["display","Display","computer"],["ease-center","Ease of Access Center","keyboard"],["folder-options","Folder Options","folder"],["fonts","Fonts","text"],["getting-started","Getting Started","windows"],["homegroup","HomeGroup","computer"],["indexing-options","Indexing Options","folder"],["internet-options","Internet Options","ie"],["keyboard","Keyboard","keyboard"],["location","Location and Other Sensors","system"],["mouse","Mouse","cursor"],["network-sharing","Network and Sharing Center","ie"],["notification-area","Notification Area Icons","system"],["parental-controls","Parental Controls","system"],["performance","Performance Information and Tools","taskmanager"],["personalization","Personalization","paint"],["phone-modem","Phone and Modem","devices"],["power-options","Power Options","system"],["programs-features","Programs and Features","folder"],["recovery","Recovery","system"],["region-language","Region and Language","system"],["remoteapp","RemoteApp and Desktop Connections","computer"],["sound","Sound","media"],["speech-recognition","Speech Recognition","system"],["sync-center","Sync Center","system"],["system","System","computer"],["taskbar","Taskbar and Start Menu","windows"],["troubleshooting","Troubleshooting","control"],["user-account","User Accounts","system"],["windows-anytime","Windows Anytime Upgrade","windows"],["windows-defender","Windows Defender","system"],["firewall","Windows Firewall","system"],["windows-update","Windows Update","windows"]
+].map(([id,name,iconName])=>({id,name,icon:iconName}))
+const CONTROL_ITEM_BY_ID=Object.fromEntries(CONTROL_ITEMS.map(item=>[item.id,item]))
+const CONTROL_NAMES={...Object.fromEntries(CONTROL_CATEGORIES.flatMap(category=>category.links.map(([id,name])=>[id,name]))),...Object.fromEntries(CONTROL_ITEMS.map(item=>[item.id,item.name]))}
+const CONTROL_DESCRIPTIONS={
+  "administrative-tools":"Configure advanced Windows management tools, services, scheduled tasks, event logs, and computer management.",bitlocker:"Protect data on fixed and removable drives with BitLocker Drive Encryption.","color-management":"Associate color profiles with displays, scanners, and printers.","credential-manager":"Manage Windows credentials and certificate-based credentials saved for network resources.","device-manager":"View hardware devices, update drivers, and inspect device status.","getting-started":"Learn the essential Windows 7 tasks and personalize this computer.","indexing-options":"Choose which locations Windows Search indexes and rebuild the search index.",mouse:"Change button, pointer, wheel, and hardware settings for the mouse.",performance:"View the Windows Experience Index and adjust visual effects and performance options.","phone-modem":"Configure dialing rules, modems, and telephony providers.",recovery:"Restore system files and settings from a restore point or open advanced recovery methods.",remoteapp:"Set up connections to RemoteApp programs and remote desktops.","speech-recognition":"Set up a microphone, train speech recognition, and open the Speech Reference Card.","sync-center":"Manage offline files and synchronization partnerships.",troubleshooting:"Find and fix common problems with programs, hardware, networks, appearance, and security.","windows-anytime":"Upgrade this edition of Windows 7 using Windows Anytime Upgrade.","windows-defender":"Scan for spyware and potentially unwanted software and review detected items."
+}
 
 function controlPage(id){
   const pages={
@@ -251,28 +258,35 @@ function controlPage(id){
     "ease-center":`<h3>Ease of Access Center</h3><p>Quick access to common tools</p><div class="ease-tools"><button data-control-app="keyboard">Start On-Screen Keyboard</button><button data-generic-app="Magnifier">Start Magnifier</button><button data-control-action="high-contrast">Set up High Contrast</button></div>`,
     "display-access":`<h3>Make the computer easier to see</h3><label><input id="highContrastSetting" type="checkbox"> Choose a High Contrast theme</label><label><input type="checkbox"> Turn on Narrator</label><label><input type="checkbox"> Turn on Audio Description</label><button data-control-action="access-apply">Apply</button>`
   }
-  return pages[id]||`<h3>${CONTROL_NAMES[id]||"Control Panel item"}</h3><p>This Windows 7 setting is available in the safe browser simulation. Changes remain inside this page and do not alter the visitor's device.</p><button data-control-action="save-setting">OK</button>`
+  const item=CONTROL_ITEM_BY_ID[id]
+  return pages[id]||`<h3>${item?.name||CONTROL_NAMES[id]||"Control Panel item"}</h3><section class="setting-hero"><span>${item?icon(item.icon):icon("control")}</span><div><h3>${item?.name||"Windows setting"}</h3><p>${CONTROL_DESCRIPTIONS[id]||"View and change the Windows 7 settings for this Control Panel item."}</p></div></section><div class="setting-panels"><article><h4>Settings</h4><p>Changes made here are saved inside the EKA Windows browser workspace.</p><button data-control-action="save-setting">Change settings</button></article><article><h4>Related support</h4><p>Use Windows Help and Support for an explanation of this item.</p><button data-control-app="help">Open Help</button></article></div>`
 }
 
 function initControl(){
   let route="home",history=["home"],historyIndex=0
   const categoryFor=id=>CONTROL_CATEGORIES.find(category=>category.id===id)
   const pageName=id=>categoryFor(id)?.name||CONTROL_NAMES[id]||"Control Panel"
+  const relatedCategory=id=>CONTROL_CATEGORIES.find(category=>category.links.some(([linkId])=>linkId===id))||({id:"system-security"})
   const homeHtml=(query="")=>{
     const q=query.trim().toLowerCase(),view=byId("controlView").value
     if(view!=="category"){
-      const links=CONTROL_CATEGORIES.flatMap(category=>category.links).filter(([,name])=>!q||name.toLowerCase().includes(q))
-      return `<div class="control-icons ${view}">${links.map(([id,name])=>`<button data-control-link="${id}"><span>⚙</span><b>${name}</b></button>`).join("")}</div>`
+      const items=CONTROL_ITEMS.filter(item=>!q||item.name.toLowerCase().includes(q))
+      return `<div class="control-icons ${view}">${items.map(item=>`<button data-control-link="${item.id}"><span>${icon(item.icon)}</span><b>${item.name}</b></button>`).join("")}</div>`
     }
-    return `<div class="control-categories">${CONTROL_CATEGORIES.filter(category=>!q||`${category.name} ${category.links.flat().join(" ")}`.toLowerCase().includes(q)).map(category=>`<section><button class="control-category-title" data-control-category="${category.id}"><span>${category.icon}</span><b>${category.name}</b></button><div>${category.links.slice(0,3).map(([id,name])=>`<button data-control-link="${id}">${name}</button>`).join("")}</div></section>`).join("")}</div>`
+    return `<div class="control-categories">${CONTROL_CATEGORIES.filter(category=>!q||`${category.name} ${category.links.flat().join(" ")}`.toLowerCase().includes(q)).map(category=>`<section><button class="control-category-title" data-control-category="${category.id}"><span>${icon(category.icon)}</span><b>${category.name}</b></button><div>${category.links.slice(0,3).map(([id,name])=>`<button data-control-link="${id}">${name}</button>`).join("")}</div></section>`).join("")}</div>`
   }
   const render=(next=route,push=false)=>{
     route=next
     if(push){history=history.slice(0,historyIndex+1);history.push(next);historyIndex=history.length-1}
     byId("controlBack").disabled=historyIndex<=0;byId("controlForward").disabled=historyIndex>=history.length-1
-    byId("controlCrumb").textContent=next==="home"?"":`› ${pageName(next)}`
+    const category=relatedCategory(next)
+    byId("controlCrumb").textContent=next==="home"?"":next==="personalization"?"› Appearance and Personalization  › Personalization":`› ${categoryFor(next)?pageName(next):`${categoryFor(category.id)?.name||"All Control Panel Items"}  › ${pageName(next)}`}`
     byId("controlHeading").textContent=next==="home"?"Adjust your computer's settings":pageName(next)
-    byId("controlContent").innerHTML=next==="home"?homeHtml(byId("controlSearch").value):categoryFor(next)?`<div class="control-category-page"><aside><button data-control-route="home">Control Panel Home</button>${CONTROL_CATEGORIES.map(category=>`<button data-control-category="${category.id}">${category.name}</button>`).join("")}</aside><main><h3>${categoryFor(next).name}</h3>${categoryFor(next).links.map(([id,name])=>`<button class="category-task" data-control-link="${id}"><span>⚙</span><b>${name}</b><small>View or change this Windows setting</small></button>`).join("")}</main></div>`:`<div class="control-setting"><aside><button data-control-route="home">Control Panel Home</button><button data-control-category="${CONTROL_CATEGORIES.find(category=>category.links.some(([id])=>id===next))?.id||"system-security"}">Related category</button></aside><main>${controlPage(next)}</main></div>`
+    const detail=next!=="home"
+    byId("controlWindow").classList.toggle("control-detail-route",detail)
+    byId("controlWindow").classList.toggle("control-personalization-route",next==="personalization")
+    byId("controlHeading").parentElement.classList.toggle("hidden",detail)
+    byId("controlContent").innerHTML=next==="home"?homeHtml(byId("controlSearch").value):next==="personalization"?controlPage(next):categoryFor(next)?`<div class="control-category-page"><aside><button data-control-route="home">Control Panel Home</button>${CONTROL_CATEGORIES.map(item=>`<button data-control-category="${item.id}">${item.name}</button>`).join("")}</aside><main><h3>${categoryFor(next).name}</h3>${categoryFor(next).links.map(([id,name])=>`<button class="category-task" data-control-link="${id}"><span>${icon(CONTROL_ITEM_BY_ID[id]?.icon||"control")}</span><b>${name}</b><small>View or change this Windows setting</small></button>`).join("")}</main></div>`:`<div class="control-setting"><aside><button data-control-route="home">Control Panel Home</button><button data-control-category="${category.id}">${categoryFor(category.id)?.name||"Related category"}</button></aside><main>${controlPage(next)}</main></div>`
     byId("controlFooter").textContent=next==="home"?"Windows 7 Control Panel · EKA-PC":`${pageName(next)} · Changes apply only to this browser simulation`
   }
   byId("controlContent").addEventListener("click",event=>{
@@ -284,14 +298,14 @@ function initControl(){
     const basicTheme=event.target.closest("[data-basic-theme]")?.dataset.basicTheme;if(basicTheme){applyTheme(basicTheme);render("personalization");return}
     const wallpaperButton=event.target.closest("[data-wallpaper-category]");if(wallpaperButton){wallpaperButton.classList.toggle("selected");return}
     const selectWallpapers=event.target.closest("[data-wallpaper-select]")?.dataset.wallpaperSelect;if(selectWallpapers){byId("controlContent").querySelectorAll(".wallpaper-thumb").forEach(button=>button.classList.toggle("selected",selectWallpapers==="all"));return}
-    const windowColor=event.target.closest("[data-window-color]")?.dataset.windowColor;if(windowColor!==undefined){const button=event.target.closest("[data-window-color]");byId("controlContent").querySelectorAll("[data-window-color]").forEach(candidate=>candidate.classList.toggle("selected",candidate===button));byId("desktop").style.setProperty("--aero-accent",button.dataset.windowColorValue);return}
+    const windowColor=event.target.closest("[data-window-color]")?.dataset.windowColor;if(windowColor!==undefined){const button=event.target.closest("[data-window-color]");byId("controlContent").querySelectorAll("[data-window-color]").forEach(candidate=>candidate.classList.toggle("selected",candidate===button));applyAccent(button.dataset.windowColorValue);return}
     const action=event.target.closest("[data-control-action]")?.dataset.controlAction;if(!action)return
     if(action==="updates"){byId("updateStatus").textContent="Checking for updates...";setTimeout(()=>{if(byId("updateStatus"))byId("updateStatus").textContent="Windows is up to date. No important updates are available."},1300);return}
     if(action==="backup"){byId("backupStatus").textContent="Backup destination selected: GitHub (G:) local workspace.";return}
     if(action==="taskbar-apply"){byId("taskbar").classList.toggle("small-icons",byId("smallTaskbarIcons").checked);toast("Taskbar settings applied.");return}
     if(action==="save-wallpaper"){const items=[...byId("controlContent").querySelectorAll(".wallpaper-thumb.selected")].map(button=>({category:button.dataset.wallpaperCategory,index:Number(button.dataset.wallpaperIndex)}));saveWallpaperPlaylist(items,byId("wallpaperPosition").value,byId("wallpaperInterval").value,byId("wallpaperShuffle").checked);render("personalization",true);return}
     if(action==="browse-wallpaper"){toast("Browse uses pictures saved in the EKA Pictures library.");return}
-    if(action==="window-color-apply"){const settings={color:byId("desktop").style.getPropertyValue("--aero-accent")||"#4f96c5",intensity:byId("windowColorIntensity").value,transparent:byId("windowTransparency").checked};byId("desktop").classList.toggle("opaque-aero",!settings.transparent);byId("desktop").style.setProperty("--aero-intensity",`${settings.intensity}%`);localStorage.setItem("eka.windows7.windowColor",JSON.stringify(settings));toast("Window color and transparency saved.");return}
+    if(action==="window-color-apply"){const settings={color:byId("desktop").style.getPropertyValue("--aero-accent")||"#4f96c5",intensity:byId("windowColorIntensity").value,transparent:byId("windowTransparency").checked};byId("desktop").classList.toggle("opaque-aero",!settings.transparent);byId("desktop").style.setProperty("--aero-intensity",`${settings.intensity}%`);applyAccent(settings.color);localStorage.setItem("eka.windows7.windowColor",JSON.stringify(settings));toast("Window color, Start menu, taskbar, and site accent saved.");return}
     if(action==="screen-preview"){const preview=byId("screenSaverPreview");preview.textContent=byId("screenSaver").value;preview.classList.add("playing");setTimeout(()=>preview?.classList.remove("playing"),1800);return}
     if(action==="gadget-clock"||action==="gadget-cpu"||action==="gadget-calendar"){window.dispatchEvent(new CustomEvent("win7:add-gadget",{detail:action.replace("gadget-","")}));return}
     if(action==="access-apply"||action==="high-contrast"){byId("desktop").classList.toggle("high-contrast",byId("highContrastSetting")?.checked??true);return}
@@ -304,7 +318,7 @@ function initControl(){
   byId("controlBack").addEventListener("click",()=>{if(historyIndex>0){historyIndex-=1;render(history[historyIndex])}})
   byId("controlForward").addEventListener("click",()=>{if(historyIndex<history.length-1){historyIndex+=1;render(history[historyIndex])}})
   window.addEventListener("win7:control-page",event=>render(event.detail,true))
-  restorePersonalization();try{const settings=JSON.parse(localStorage.getItem("eka.windows7.windowColor"));if(settings){byId("desktop").style.setProperty("--aero-accent",settings.color);byId("desktop").style.setProperty("--aero-intensity",`${settings.intensity}%`);byId("desktop").classList.toggle("opaque-aero",!settings.transparent)}}catch{}render()
+  restorePersonalization();try{const settings=JSON.parse(localStorage.getItem("eka.windows7.windowColor"));if(settings){applyAccent(settings.color);byId("desktop").style.setProperty("--aero-intensity",`${settings.intensity}%`);byId("desktop").classList.toggle("opaque-aero",!settings.transparent)}}catch{}render()
   byId("profilePrinter").addEventListener("dblclick",()=>window.dispatchEvent(new Event("win7:print-profile")))
 }
 
@@ -376,6 +390,7 @@ function openAccessory(name){
 export function initSystemApps(){
   initPaint();initWordPad();initSticky();initSnipping();initMedia();initControl();initTaskManager();initMinesweeper();initCharacterMap();initKeyboard();initHelp()
   document.addEventListener("click",event=>{const name=event.target.closest("[data-generic-app]")?.dataset.genericApp;if(name){byId("startMenu").classList.add("hidden");openAccessory(name)}if(event.target.closest("[data-accessory-close]"))closeWindow(byId("accessoryWindow"))})
+  window.addEventListener("win7:open-generic",event=>openAccessory(event.detail))
   byId("profilePrinter").addEventListener("click",()=>toast("EKA Profile Printer · Ready. Double-click to print."))
 }
 

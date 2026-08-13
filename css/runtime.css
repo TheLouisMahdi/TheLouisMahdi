@@ -181,3 +181,12 @@
 }
 
 .personalization-page>main{overflow:hidden}
+
+/* Windows 7 Pictures library thumbnails */
+.file-icon.file-thumbnail{width:68px;height:43px;padding:2px;border:1px solid #8da0ab;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.file-thumbnail img{display:block;width:100%;height:100%;object-fit:cover}
+.details-view .file-icon.file-thumbnail{width:32px;height:22px;margin:0}
+.theme-tile i,.wallpaper-thumb i,.personalization-link-icon.background-link{background-position:center!important;background-repeat:no-repeat!important;background-size:cover!important}
+.theme-tile:not(.basic-theme) i:before{background-image:var(--theme-preview-3)}
+.theme-tile:not(.basic-theme) i:after{background-image:var(--theme-preview-2)}
+@media(max-width:760px){.file-icon.file-thumbnail{width:54px;height:34px}}

@@ -70,7 +70,7 @@ function renderDrives(items){
 
 function renderFiles(items){
   if(!items.length)return `<div class="empty-folder">This folder is empty.</div>`
-  return `<div class="file-grid">${items.map((item,index)=>`<button class="file-item" data-item-index="${index}" data-key="${encodeURIComponent(itemKey(item))}"><span class="file-icon">${fileIcon(item)}</span><span class="file-name">${item.name}</span></button>`).join("")}</div>`
+  return `<div class="file-grid">${items.map((item,index)=>`<button class="file-item" data-item-index="${index}" data-key="${encodeURIComponent(itemKey(item))}">${item.type==="photo"&&item.image?`<span class="file-icon file-thumbnail"><img src="${item.thumbnail||item.image}" alt="" loading="lazy" draggable="false"></span>`:`<span class="file-icon">${fileIcon(item)}</span>`}<span class="file-name">${item.name}</span></button>`).join("")}</div>`
 }
 
 function render(){

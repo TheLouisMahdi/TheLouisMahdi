@@ -19,6 +19,9 @@
 .browser-window iframe{display:block;width:100%;height:calc(100% - 84px);border:0;background:#fff}
 .ie-status{height:23px;padding:5px 8px;border-top:1px solid #a7b4bc;background:linear-gradient(#f7f9fa,#e3e8eb);font-size:8px;color:#53636d}
 .empty-folder{padding:18px;font-size:10px;color:#777}
+.fake-cursor:after{content:"";position:absolute;left:-8px;top:-8px;width:20px;height:20px;border:2px solid rgba(255,255,255,.8);border-radius:50%;opacity:0;pointer-events:none}
+.fake-cursor.left-click:after{animation:leftClickPulse .25s ease-out}
+.fake-cursor.right-click:after{border-color:#ffd45a;animation:rightClickPulse .35s ease-out}
 @keyframes leftClickPulse{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(1.5)}}
 @keyframes rightClickPulse{0%{opacity:1;transform:scale(.4)}55%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.45)}}
 .printer{overflow:hidden}

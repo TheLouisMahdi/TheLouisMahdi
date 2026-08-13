@@ -37,7 +37,7 @@
 
 The profile header is a browser-based Windows 7 simulation with an EKA BIOS and boot sequence, Explorer and persistent virtual files, Notepad Save As, CMD and PowerShell, Python execution through WebAssembly, a Windows 7-style Paint ribbon with nine brush engines and brush-specific sizes, Control Panel Personalization with Aero/basic/high-contrast themes and wallpaper slideshows, working desktop gadgets, taskbar flyouts and shortcuts, responsive touch controls, and a smooth manually detachable thermal profile receipt.
 
-Four playable Windows 7 classics are included: **Solitaire**, **FreeCell**, **Minesweeper**, and **Chess Titans**. Launch them from Start, the taskbar after opening, Run, CMD, or PowerShell.
+Five playable Windows 7 games are included: **Solitaire**, **FreeCell**, **Minesweeper**, **Chess Titans**, and the **Purble Place: Comfy Cakes** recreation. The classics can be launched from Start, the taskbar after opening, Run, CMD, or PowerShell; Purble Place is available from Start and the taskbar.
 
 Try saving `Hello.py` on the virtual Desktop and running either `python Hello.py` or `py Hello.py` from Command Prompt.
 

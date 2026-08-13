@@ -244,7 +244,7 @@ export function initPointerCursor(){
   if(fine){
     screen.addEventListener("pointerenter",show)
     screen.addEventListener("pointerleave",()=>screen.classList.remove("pointer-active"))
-    screen.addEventListener("pointermove",place)
+    screen.addEventListener("pointermove",event=>{place(event);screen.classList.add("pointer-active")})
     screen.querySelectorAll("iframe").forEach(frame=>frame.addEventListener("pointerenter",()=>screen.classList.remove("pointer-active")))
   }
   screen.addEventListener("pointerdown",event=>{

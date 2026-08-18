@@ -57,5 +57,5 @@ jobs:
           git add js/ai-config.js
           if ! git diff --cached --quiet; then
             git commit -m "chore: configure deployed profile AI endpoint [skip ci]"
-            git push
+            git push origin HEAD:main
           fi

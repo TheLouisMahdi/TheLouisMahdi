@@ -28,6 +28,8 @@ const answers={
   fpga:"Digital hardware work includes Verilog RTL, FPGA architecture, testbenches, simulation and accelerator-oriented hardware/software co-design.",
   contact:"GitHub: TheLouisMahdi\nTelegram: @thelouis_mahdi",
   whoami:"Mahdi Ghahremani\nTheLouisMahdi / Eka\nEngineering × Software × AI × Hardware",
+  greeting:"Profile Assistant online. Ask me about education, skills, AI, embedded systems, FPGA, working style, or contact details.",
+  thanks:"You’re welcome.",
   help:"Commands: Get-Identity, Get-Story, Get-Focus, Get-Method, Get-Reason, Get-Contact, whoami, clear\nYou can also ask normal questions in English or Persian. Use ↑ / ↓ for command history and Ctrl+L to clear."
 }
 
@@ -37,13 +39,17 @@ const intents=[
   ["fpga",["fpga","verilog","rtl","digital hardware","hardware","سخت افزار","سخت‌افزار"]],
   ["embedded",["embedded","stm32","microcontroller","c++","linux","امبدد","میکروکنترلر"]],
   ["ai",["computer vision","vision","opencv","ai","artificial intelligence","هوش مصنوعی","بینایی ماشین"]],
+  ["focus",["skills","skill","focus","what does he do","what do you do","work on","مهارت","مهارت ها","مهارت‌ها","چه کار","کارش چیه"]],
   ["method",["method","approach","how does he work","workflow","روش کار","چطور کار"]],
   ["reason",["learn","learning","why","motivation","یادگیری","چرا"]],
   ["story",["story","about","tell me about","biography","داستان","درباره"]],
-  ["identity",["identity","who is","who are","engineer","کیه","کی هست","هویت"]]
+  ["whoami",["name","what is his name","what's his name","اسم","اسمش","نام"]],
+  ["identity",["identity","who is","who are","engineer","کیه","کی هست","هویت"]],
+  ["greeting",["hello","hi","hey","سلام","درود"]],
+  ["thanks",["thanks","thank you","thx","مرسی","ممنون"]]
 ]
 
-const commands={"get-identity":"identity","get-story":"story","get-focus":"focus","get-method":"method","get-reason":"reason","get-contact":"contact","whoami":"whoami","help":"help"}
+const commands={"get-identity":"identity","get-story":"story","get-focus":"focus","get-method":"method","get-reason":"reason","get-contact":"contact","whoami":"whoami","get-help":"help","help":"help"}
 const normalize=value=>value.toLocaleLowerCase().trim().replace(/[؟?!.,;:]+/g," ").replace(/\s+/g," ")
 
 function answerFor(raw){
@@ -51,7 +57,7 @@ function answerFor(raw){
   if(command)return answers[command]
   let best=null,score=0
   for(const [intent,keys]of intents){const hits=keys.reduce((sum,key)=>sum+(query.includes(key)?key.length:0),0);if(hits>score){score=hits;best=intent}}
-  return best?answers[best]:"I only know this profile. Ask about education, AI, computer vision, embedded systems, FPGA, how he works, or contact details. Type help for commands."
+  return best?answers[best]:"I only know this profile. Ask about education, skills, AI, computer vision, embedded systems, FPGA, how he works, or contact details. Type help for commands."
 }
 
 function addTurn(history,command,answer){

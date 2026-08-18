@@ -38,6 +38,8 @@
   .window.maximized{height:calc(100% - 32px)!important}
   .explorer-window,.console-window,.notepad-window,.browser-window{left:4px!important;top:4px!important;width:calc(100% - 8px)!important;height:calc(100% - 38px)!important}
   .calculator-window,.run-window{max-width:calc(100% - 8px)!important;max-height:calc(100% - 38px)!important}
+  .comfy-window{left:2px!important;top:2px!important;width:calc(100% - 4px)!important;height:calc(100% - 34px)!important;min-width:0!important;min-height:0!important}
+  .purble-dialog{max-height:94%!important;overflow:auto!important}
 
   .portfolio-liquid .ps-stage{min-height:0!important;padding:48px 8px 18px!important}
   .portfolio-liquid .ps-github{top:8px!important;right:8px!important;width:34px!important;height:34px!important}

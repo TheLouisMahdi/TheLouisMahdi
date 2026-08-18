@@ -10,8 +10,16 @@ try{
   const errors=[]
   page.on("pageerror",error=>errors.push(error.message))
   await page.goto(siteUrl,{waitUntil:"domcontentloaded"})
-  assert.equal(await page.locator("#bootScreen").evaluate(node=>!node.classList.contains("hidden")&&getComputedStyle(node).display!=="none"),true,"boot screen must cover the first painted desktop")
-  assert.equal(await page.locator("#bootScreen").evaluate(node=>getComputedStyle(node).backgroundColor),"rgb(2, 2, 2)","boot screen must be black at startup")
+  assert.equal(await page.locator("#powerOffScreen").evaluate(node=>getComputedStyle(node).display!=="none"),true,"simulator must start powered off")
+  assert.equal(await page.locator("#powerOffScreen").evaluate(node=>getComputedStyle(node).backgroundColor),"rgb(0, 0, 0)","cold-start screen must be fully black")
+  assert.equal(await page.locator("#bootScreen").evaluate(node=>getComputedStyle(node).display),"none","boot screen must not appear before the power button is pressed")
+  assert.equal(await page.evaluate(()=>document.documentElement.classList.contains("system-powered")),false,"cold load must not mark the simulator as powered")
+  await page.waitForTimeout(350)
+  assert.equal(await page.locator("#windowsBoot").evaluate(node=>node.classList.contains("hidden")),true,"Windows boot must not start by itself")
+  await page.locator("#laptopPower").click({force:true})
+  assert.equal(await page.evaluate(()=>document.documentElement.classList.contains("system-powered")),true,"power button did not enter powered state")
+  assert.equal(await page.locator("#bootScreen").evaluate(node=>!node.classList.contains("hidden")&&getComputedStyle(node).display!=="none"),true,"power button did not start the BIOS boot screen")
+  assert.equal(await page.locator("#bootScreen").evaluate(node=>getComputedStyle(node).backgroundColor),"rgb(2, 2, 2)","boot screen must be black during startup")
   await page.waitForTimeout(2100)
   assert.equal(await page.locator("#windowsBoot").evaluate(node=>!node.classList.contains("hidden")),true,"Windows boot stage did not follow BIOS")
   assert.equal(await page.locator("#welcomeScreen").evaluate(node=>node.classList.contains("hidden")),true,"Welcome appeared too early")
@@ -26,6 +34,7 @@ try{
   },injected)
   await page.reload({waitUntil:"domcontentloaded"})
   await page.waitForSelector("#browserWindow",{state:"attached"})
+  await page.locator("#laptopPower").click({force:true})
   await page.addStyleTag({content:".system-screen{display:none!important}"})
 
   // Taskbar: clicking a visible background window must activate it, not minimize it.

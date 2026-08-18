@@ -19,15 +19,19 @@ jobs:
 
       - name: Check Cloudflare credentials
         id: config
+        shell: bash
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
+          set -euo pipefail
+          ACCOUNT_ID="$(printf '%s' "${CLOUDFLARE_ACCOUNT_ID:-}" | tr -d '[:space:]')"
+          if [ -n "${CLOUDFLARE_API_TOKEN:-}" ] && [[ "$ACCOUNT_ID" =~ ^[0-9a-fA-F]{32}$ ]]; then
             echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "account_id=$ACCOUNT_ID" >> "$GITHUB_OUTPUT"
           else
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "Cloudflare secrets are not configured; deployment skipped."
+            echo "Cloudflare credentials are missing or the Account ID is invalid; deployment skipped."
           fi
 
       - name: Deploy Worker
@@ -36,9 +40,47 @@ jobs:
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          accountId: ${{ steps.config.outputs.account_id }}
           workingDirectory: ai-worker
           command: deploy
+
+      - name: Smoke test deployed AI
+        if: steps.config.outputs.ready == 'true'
+        shell: bash
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          set -euo pipefail
+          URL="$(printf '%s' "$DEPLOYMENT_URL" | awk '{print $1}')"
+          test -n "$URL"
+          case "$URL" in
+            http://*|https://*) ;;
+            *) URL="https://$URL" ;;
+          esac
+          BASE="${URL%/}"
+
+          health_status=""
+          for attempt in {1..15}; do
+            health_status="$(curl -sS -o /tmp/profile-ai-health.json -w '%{http_code}' "$BASE/health" || true)"
+            if [ "$health_status" = "200" ]; then break; fi
+            sleep 2
+          done
+          test "$health_status" = "200"
+          node -e 'const fs=require("fs");const x=JSON.parse(fs.readFileSync("/tmp/profile-ai-health.json","utf8"));if(!x.ok||x.build!=="profile-ai-v2"||x.model!=="@cf/meta/llama-3.1-8b-instruct-fast")process.exit(1);console.log(`health OK: ${x.build} · ${x.model}`)'
+
+          options_status="$(curl -sS -o /tmp/profile-ai-options.txt -w '%{http_code}' -X OPTIONS "$BASE/api/chat" \
+            -H 'Origin: https://thelouismahdi.github.io' \
+            -H 'Access-Control-Request-Method: POST' \
+            -H 'Access-Control-Request-Headers: content-type')"
+          test "$options_status" = "204"
+
+          chat_status="$(curl -sS -o /tmp/profile-ai-chat.json -w '%{http_code}' -X POST "$BASE/api/chat" \
+            -H 'Origin: https://thelouismahdi.github.io' \
+            -H 'Content-Type: application/json' \
+            --data '{"message":"What can you tell me about Mahdi’s FPGA work?","history":[]}')"
+          cat /tmp/profile-ai-chat.json
+          test "$chat_status" = "200"
+          node -e 'const fs=require("fs");const x=JSON.parse(fs.readFileSync("/tmp/profile-ai-chat.json","utf8"));if(typeof x.answer!=="string"||!x.answer.trim()||x.build!=="profile-ai-v2")process.exit(1);console.log("live chat OK")'
 
       - name: Configure frontend endpoint
         if: steps.config.outputs.ready == 'true'

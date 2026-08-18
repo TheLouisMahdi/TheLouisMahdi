@@ -5,6 +5,9 @@ body{margin:0;background:color-mix(in srgb,var(--site-accent) 7%,#e9e7e2);color:
 button,input,textarea{font:inherit}
 button,a{-webkit-tap-highlight-color:transparent}
 .hidden{display:none!important}
+html:not(.system-powered) .system-screen:not(#powerOffScreen){display:none!important}
+html:not(.system-powered) #powerOffScreen{position:absolute;inset:0;z-index:30000;display:block!important;background:#000!important;color:transparent!important}
+html:not(.system-powered) #powerOffScreen>*{visibility:hidden!important}
 .hero{min-height:100vh;padding:22px 20px 64px;background:radial-gradient(circle at 50% 0,#f8f7f3 0,color-mix(in srgb,var(--site-accent) 8%,#e9e7e2) 46%,color-mix(in srgb,var(--site-accent) 15%,#ddd9d1) 100%);transition:background .28s ease}
 .hero-bar{max-width:1200px;margin:0 auto 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .eka-link{font-size:15px;font-weight:800;color:var(--site-accent-dark);text-decoration:none;letter-spacing:.02em}

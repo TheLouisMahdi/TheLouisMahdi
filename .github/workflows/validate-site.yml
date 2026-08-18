@@ -82,15 +82,11 @@ jobs:
           curl -fsS http://127.0.0.1:4173/ > /dev/null
           node tests/browser.mjs
           node tests/browser-regression.mjs
-      - name: Commit verified Round 2 result
+      - name: Commit verified Round 2 source result
         shell: bash
-        env:
-          BASE_SHA: 453a0334e0548ab0f338d6323f21a7f23a230169
         run: |
           set -euo pipefail
           rm -rf .round2_payload
-          rm -f .github/workflows/apply-round2.yml
-          git checkout "$BASE_SHA" -- .github/workflows/validate-site.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A

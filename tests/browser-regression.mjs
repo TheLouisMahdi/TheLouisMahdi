@@ -28,10 +28,11 @@ try{
   await page.locator('[data-task="notepad"]').click({force:true})
   assert.equal(await page.locator("#notepadWindow").evaluate(node=>node.classList.contains("hidden")),true,"active taskbar window should minimize on second click")
 
-  await page.locator("#networkConnect").click({force:true})
+  await page.locator("#networkBtn").click({force:true})
+  await page.locator("#networkConnect").click()
   assert.equal((await page.locator("#networkStatus").textContent())?.trim(),"Not connected")
   assert.equal((await page.locator("#networkConnect").textContent())?.trim(),"Connect")
-  await page.locator("#networkConnect").click({force:true})
+  await page.locator("#networkConnect").click()
   assert.match((await page.locator("#networkStatus").textContent())||"",/Connected/)
 
   await page.waitForFunction(name=>[...document.querySelectorAll("#desktopIcons .desktop-label")].some(node=>node.textContent===name),injected)

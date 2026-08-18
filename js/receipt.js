@@ -35,6 +35,15 @@ function setStatus(text,state="READY"){
   if(state==="WAIT"||state==="TEAR"||!active)printer.classList.remove("printer-done")
 }
 
+function rememberTornReceipt(){
+  const stack=byId("tornStack")
+  const torn=document.createElement("div")
+  torn.className="torn-receipt"
+  torn.innerHTML=`<div class="torn-summary"><span>PROFILE #${String(serial).padStart(3,"0")}</span><span>@${PROFILE.user}</span></div><div>${PROFILE.name}</div><div>${nowText()}</div>`
+  stack.prepend(torn)
+  while(stack.children.length>3)stack.lastElementChild?.remove()
+}
+
 export function tearReceipt(silent=false){
   if(!active||tearing||printing)return false
   tearing=true
@@ -43,10 +52,11 @@ export function tearReceipt(silent=false){
   byId("tearZone").classList.add("hidden")
   setStatus("Tearing along perforation...","TEAR")
   setTimeout(()=>{
-    byId("tornStack").replaceChildren()
+    rememberTornReceipt()
     const stage=byId("printerZone").querySelector(".receipt-stage")
-    stage.classList.remove("has-torn","receipt-ready")
-    stage.style.height="0px"
+    stage.classList.remove("receipt-ready")
+    stage.classList.add("has-torn")
+    stage.style.height=""
     receipt.className="receipt hidden"
     receipt.style.transform=""
     active=false
@@ -56,6 +66,8 @@ export function tearReceipt(silent=false){
   },620)
   return true
 }
+
+function notifyReady(){window.dispatchEvent(new Event("win7:receipt-ready"))}
 
 function beginPrint(){
   if(printing)return
@@ -68,7 +80,7 @@ function beginPrint(){
   const controls=[zone.querySelector(".printer-actions"),zone.querySelector(".printer-status")]
   feedAnimations.forEach(animation=>animation.cancel())
   feedAnimations=[]
-  stage.classList.remove("receipt-ready")
+  stage.classList.remove("receipt-ready","has-torn")
   stage.style.height="0px"
   byId("tearZone").classList.add("hidden")
   receipt.className="receipt hidden"
@@ -88,7 +100,6 @@ function beginPrint(){
       receipt.animate([{transform:"translate3d(0,-100%,0)"},{transform:"translate3d(0,0,0)"}],timing),
       ...controls.map(node=>node.animate([{transform:`translate3d(0,-${targetHeight}px,0)`},{transform:"translate3d(0,0,0)"}],timing))
     ];else{receipt.style.transform="translate3d(0,0,0)";controls.forEach(node=>node.style.transform="")}
-    active=true
     setStatus("Feeding and printing profile...","PRINT")
   },520)
   setTimeout(()=>{
@@ -104,7 +115,9 @@ function beginPrint(){
     zone.classList.remove("printing-active")
     byId("tearZone").classList.remove("hidden")
     printing=false
+    active=true
     setStatus("Printed. Pull down or click the perforation.","READY")
+    notifyReady()
   },5200)
 }
 
@@ -157,6 +170,12 @@ function bindPull(target,clickTears=false){
   target.addEventListener("pointercancel",()=>{dragging=false;byId("receipt").style.transform=""})
 }
 
+function printPdfWhenReady(){
+  if(active&&!printing){window.print();return}
+  window.addEventListener("win7:receipt-ready",()=>window.print(),{once:true})
+  if(!printing)printReceipt()
+}
+
 export function initReceipt(){
   byId("printBtn").addEventListener("click",printReceipt)
   byId("txtBtn").addEventListener("click",()=>download("TheLouisMahdi-profile.txt",`${profileText()}\n${nowText()}\n`,"text/plain;charset=utf-8"))
@@ -164,7 +183,7 @@ export function initReceipt(){
     try{await navigator.clipboard.writeText(`${profileText()}\n${nowText()}`);setStatus("Profile copied to clipboard.","READY")}
     catch{setStatus("Clipboard permission was not available.","READY")}
   })
-  byId("pdfBtn").addEventListener("click",()=>{if(!active){printReceipt();setTimeout(()=>window.print(),5400)}else window.print()})
+  byId("pdfBtn").addEventListener("click",printPdfWhenReady)
   bindPull(byId("tearZone"),true)
   bindPull(byId("receipt"),false)
   window.addEventListener("win7:print-profile",printReceipt)

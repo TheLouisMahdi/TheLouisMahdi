@@ -1,23 +1,49 @@
 let topZ=30
-const states=new Map()
+const geometry=new Map()
 const desktopHidden=new Set()
+const closeGuards=new WeakMap()
 
 function screenBounds(){return document.querySelector("#desktop").getBoundingClientRect()}
+function taskButton(app){return app?document.querySelector(`[data-task="${app}"]`):null}
+
+export function visibleWindows(){
+  return [...document.querySelectorAll(".window:not(.hidden)")]
+    .sort((a,b)=>(Number(getComputedStyle(a).zIndex)||0)-(Number(getComputedStyle(b).zIndex)||0))
+}
+
+export function activeWindow(){return visibleWindows().at(-1)||null}
+export function isWindowActive(win){return Boolean(win)&&activeWindow()===win}
+
+function syncActiveTask(){
+  const active=activeWindow()?.dataset.app||null
+  document.querySelectorAll(".task-button").forEach(button=>button.classList.toggle("active",Boolean(active)&&button.dataset.task===active))
+}
 
 export function bringToFront(win){
+  if(!win)return
   topZ+=1
   win.style.zIndex=topZ
-  document.querySelectorAll(".task-button").forEach(button=>button.classList.toggle("active",button.dataset.task===win.dataset.app))
+  syncActiveTask()
 }
 
 function setTask(app,running){
-  const button=document.querySelector(`[data-task="${app}"]`)
+  const button=taskButton(app)
   if(button)button.classList.toggle("running",running)
 }
+
+export function setCloseGuard(winOrId,guard){
+  const win=typeof winOrId==="string"?document.getElementById(winOrId):winOrId
+  if(!win)return
+  if(typeof guard==="function")closeGuards.set(win,guard)
+  else closeGuards.delete(win)
+}
+
+export function clearCloseGuard(winOrId){setCloseGuard(winOrId,null)}
 
 export function openWindow(id){
   const win=document.getElementById(id)
   if(!win)return
+  desktopHidden.delete(win)
   win.classList.remove("hidden")
   setTask(win.dataset.app,true)
   bringToFront(win)
@@ -26,18 +52,48 @@ export function openWindow(id){
   window.dispatchEvent(new CustomEvent("win7:window-state",{detail:{id,state:"open"}}))
 }
 
-export function closeWindow(win){win.classList.add("hidden");setTask(win.dataset.app,false);window.dispatchEvent(new CustomEvent("win7:window-state",{detail:{id:win.id,state:"closed"}}))}
-export function minimizeWindow(win){win.classList.add("hidden");setTask(win.dataset.app,true);window.dispatchEvent(new CustomEvent("win7:window-state",{detail:{id:win.id,state:"minimized"}}))}
+async function mayClose(win,force){
+  if(force)return true
+  const guard=closeGuards.get(win)
+  if(!guard)return true
+  try{return (await guard())!==false}catch{return false}
+}
+
+function performClose(win){
+  desktopHidden.delete(win)
+  win.classList.add("hidden")
+  setTask(win.dataset.app,false)
+  taskButton(win.dataset.app)?.classList.remove("active")
+  syncActiveTask()
+  window.dispatchEvent(new CustomEvent("win7:window-state",{detail:{id:win.id,state:"closed"}}))
+}
+
+export async function closeWindow(win,{force=false}={}){
+  if(!win||!(await mayClose(win,force)))return false
+  performClose(win)
+  return true
+}
+
+export function minimizeWindow(win){
+  if(!win)return
+  win.classList.add("hidden")
+  setTask(win.dataset.app,true)
+  taskButton(win.dataset.app)?.classList.remove("active")
+  syncActiveTask()
+  window.dispatchEvent(new CustomEvent("win7:window-state",{detail:{id:win.id,state:"minimized"}}))
+}
 
 export function maximizeWindow(win){
   if(win.classList.contains("maximized")){
-    const saved=states.get(win)
+    const saved=geometry.get(win)
     win.classList.remove("maximized")
     if(saved){win.style.left=saved.left;win.style.top=saved.top;win.style.width=saved.width;win.style.height=saved.height}
+    bringToFront(win)
     return
   }
-  states.set(win,{left:win.style.left||`${win.offsetLeft}px`,top:win.style.top||`${win.offsetTop}px`,width:win.style.width||`${win.offsetWidth}px`,height:win.style.height||`${win.offsetHeight}px`})
+  geometry.set(win,{left:win.style.left||`${win.offsetLeft}px`,top:win.style.top||`${win.offsetTop}px`,width:win.style.width||`${win.offsetWidth}px`,height:win.style.height||`${win.offsetHeight}px`})
   win.classList.add("maximized")
+  bringToFront(win)
 }
 
 export function snapWindow(win,direction){
@@ -47,8 +103,8 @@ export function snapWindow(win,direction){
     if(win.classList.contains("maximized")){maximizeWindow(win);return}
     minimizeWindow(win);return
   }
-  const saved=states.get(win)||{left:win.style.left||`${win.offsetLeft}px`,top:win.style.top||`${win.offsetTop}px`,width:win.style.width||`${win.offsetWidth}px`,height:win.style.height||`${win.offsetHeight}px`}
-  states.set(win,saved)
+  const saved=geometry.get(win)||{left:win.style.left||`${win.offsetLeft}px`,top:win.style.top||`${win.offsetTop}px`,width:win.style.width||`${win.offsetWidth}px`,height:win.style.height||`${win.offsetHeight}px`}
+  geometry.set(win,saved)
   win.classList.remove("maximized")
   win.style.top="1px"
   win.style.left=direction==="left"?"1px":"50%"
@@ -62,7 +118,8 @@ export function minimizeOthers(active){
 }
 
 export function closeAllWindows(){
-  document.querySelectorAll(".window").forEach(win=>closeWindow(win))
+  document.querySelectorAll(".window").forEach(performClose)
+  desktopHidden.clear()
 }
 
 function dragWindow(win,handle){
@@ -138,7 +195,7 @@ export function initWindowManager(){
       button.addEventListener("click",event=>{
         event.stopPropagation()
         const action=button.dataset.windowAction
-        if(action==="close")closeWindow(win)
+        if(action==="close")void closeWindow(win)
         if(action==="min")minimizeWindow(win)
         if(action==="max")maximizeWindow(win)
       })
@@ -147,14 +204,20 @@ export function initWindowManager(){
 }
 
 export function showDesktop(){
-  if(desktopHidden.size){for(const win of desktopHidden)openWindow(win.id);desktopHidden.clear();return}
-  document.querySelectorAll(".window:not(.hidden)").forEach(win=>{desktopHidden.add(win);minimizeWindow(win)})
+  if(desktopHidden.size){
+    const restore=[...desktopHidden]
+    desktopHidden.clear()
+    restore.forEach(win=>openWindow(win.id))
+    return
+  }
+  visibleWindows().forEach(win=>{desktopHidden.add(win);minimizeWindow(win)})
   document.querySelectorAll(".task-button").forEach(button=>button.classList.remove("active"))
 }
 
 export function toggleAppWindow(app,id){
   const win=document.getElementById(id)
   if(!win)return
-  if(win.classList.contains("hidden"))openWindow(id)
-  else minimizeWindow(win)
+  if(win.classList.contains("hidden")){openWindow(id);return}
+  if(isWindowActive(win)){minimizeWindow(win);return}
+  bringToFront(win)
 }

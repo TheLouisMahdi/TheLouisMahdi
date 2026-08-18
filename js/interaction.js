@@ -1,4 +1,5 @@
-import{fileName,folderPath,getEntry,listVirtual,resolvePath,roots}from"./vfs.js"
+import{fileName,folderPath,getEntry,listVirtual,resolvePath,roots,validFileName}from"./vfs.js"
+import{escapeHtml}from"./html.js"
 
 let menu=null
 let activeSurface=null
@@ -24,7 +25,7 @@ export function showContextMenu(items,clientX,clientY){
   mountInteractionUi()
   const clean=(items||[]).filter(Boolean)
   if(!clean.length)return
-  menu.innerHTML=clean.map((item,index)=>item.separator?`<div class="context-separator"></div>`:`<button data-context-index="${index}" ${item.disabled?"disabled":""}>${item.label}</button>`).join("")
+  menu.innerHTML=clean.map((item,index)=>item.separator?`<div class="context-separator"></div>`:`<button data-context-index="${index}" ${item.disabled?"disabled":""}>${escapeHtml(item.label)}</button>`).join("")
   menu.classList.remove("hidden")
   const desktop=byId("desktop").getBoundingClientRect()
   const x=clientX-desktop.left
@@ -353,26 +354,35 @@ function runFileDialog(mode,options={}){
   const dialog=ensureFileDialog()
   const title=mode==="open"?"Open":options.title||"Save As"
   let location=options.location&&FILE_LOCATIONS[options.location]?options.location:"desktop"
+  let currentPath=FILE_LOCATIONS[location].path
   let selected=null
+  let pathHistory=[currentPath]
+  let historyIndex=0
   const nameInput=byId("fileDialogName")
   const typeSelect=byId("fileDialogType")
   const encodingLabel=byId("fileDialogEncodingLabel")
   const types=options.types||[{value:"text",label:"Text Documents (*.txt)"},{value:"all",label:"All Files (*.*)"}]
+
   byId("fileDialogTitle").textContent=title
   byId("fileDialogOk").textContent=mode==="open"?"Open":"Save"
-  typeSelect.innerHTML=types.map(type=>`<option value="${type.value}">${type.label}</option>`).join("")
+  typeSelect.innerHTML=types.map(type=>`<option value="${escapeHtml(type.value)}">${escapeHtml(type.label)}</option>`).join("")
   typeSelect.value=options.type||types[0].value
   byId("fileDialogEncoding").value=options.encoding||"UTF-8"
   encodingLabel.classList.toggle("hidden",mode==="open")
   nameInput.value=options.name||""
 
   const render=()=>{
-    const current=FILE_LOCATIONS[location]
-    byId("fileDialogAddress").textContent=`Libraries > ${current.label}`
-    dialog.querySelectorAll("[data-file-location]").forEach(button=>button.classList.toggle("active",button.dataset.fileLocation===location))
-    const files=listVirtual(location).filter(item=>item.type!=="folder"||mode==="open")
-    byId("fileDialogList").innerHTML=files.length?files.map(item=>`<button data-file-path="${encodeURIComponent(item.virtualPath)}" data-file-kind="${item.type}"><span>${item.type==="folder"?"📁":item.type==="python"?"🐍":item.type==="html"?"🌐":"📄"}</span><b>${fileName(item.virtualPath)}</b><small>${item.type==="folder"?"File folder":item.type.toUpperCase()+" file"}</small></button>`).join(""):`<p>This folder is empty.</p>`
+    byId("fileDialogAddress").textContent=currentPath
+    dialog.querySelectorAll("[data-file-location]").forEach(button=>button.classList.toggle("active",FILE_LOCATIONS[button.dataset.fileLocation]?.path.toLowerCase()===currentPath.toLowerCase()))
+    const files=listVirtual(currentPath)
+    byId("fileDialogList").innerHTML=files.length?files.map(item=>`<button data-file-path="${encodeURIComponent(item.virtualPath)}" data-file-kind="${item.type}"><span>${item.type==="folder"?"📁":item.type==="python"?"🐍":item.type==="html"?"🌐":"📄"}</span><b>${escapeHtml(fileName(item.virtualPath))}</b><small>${item.type==="folder"?"File folder":escapeHtml(item.type.toUpperCase())+" file"}</small></button>`).join(""):`<p>This folder is empty.</p>`
     selected=null
+  }
+
+  const goTo=(path,push=true)=>{
+    currentPath=path
+    if(push){pathHistory=pathHistory.slice(0,historyIndex+1);pathHistory.push(path);historyIndex=pathHistory.length-1}
+    render()
   }
 
   render()
@@ -387,12 +397,15 @@ function runFileDialog(mode,options={}){
       byId("fileDialogOk").onclick=null
       byId("fileDialogCancel").onclick=null
       byId("fileDialogClose").onclick=null
+      byId("fileDialogBack").onclick=null
       resolve(result)
     }
     const accept=async()=>{
+      if(mode==="open"&&selected&&getEntry(selected)?.kind==="folder"){goTo(selected);return}
       const name=appendExtension(nameInput.value,typeSelect.value)
       if(!name)return
-      const path=resolvePath(FILE_LOCATIONS[location].path,name)
+      if(!validFileName(name)){window.dispatchEvent(new CustomEvent("win7:toast",{detail:"The file name contains invalid Windows characters or a reserved device name."}));return}
+      const path=mode==="open"&&selected&&getEntry(selected)?.kind!=="folder"?selected:resolvePath(currentPath,name)
       if(mode==="open"){
         const entry=getEntry(path)
         if(entry&&entry.kind!=="folder")cleanup(path)
@@ -407,18 +420,19 @@ function runFileDialog(mode,options={}){
     }
     dialog.onclick=event=>{
       const locationButton=event.target.closest("[data-file-location]")
-      if(locationButton){location=locationButton.dataset.fileLocation;render();return}
+      if(locationButton){location=locationButton.dataset.fileLocation;goTo(FILE_LOCATIONS[location].path);return}
       const fileButton=event.target.closest("[data-file-path]")
       if(!fileButton)return
       byId("fileDialogList").querySelectorAll("button").forEach(button=>button.classList.toggle("selected",button===fileButton))
       selected=decodeURIComponent(fileButton.dataset.filePath)
-      nameInput.value=fileName(selected)
-      if(event.detail===2){if(fileButton.dataset.fileKind==="folder")return;accept()}
+      if(fileButton.dataset.fileKind!=="folder")nameInput.value=fileName(selected)
+      if(event.detail===2){if(fileButton.dataset.fileKind==="folder"){goTo(selected);return}void accept()}
     }
-    byId("fileDialogOk").onclick=()=>{if(mode==="open"&&selected)nameInput.value=fileName(selected);accept()}
+    byId("fileDialogBack").onclick=()=>{if(historyIndex<=0)return;historyIndex-=1;currentPath=pathHistory[historyIndex];render()}
+    byId("fileDialogOk").onclick=()=>void accept()
     byId("fileDialogCancel").onclick=()=>cleanup(null)
     byId("fileDialogClose").onclick=()=>cleanup(null)
-    nameInput.onkeydown=event=>{if(event.key==="Enter")accept();if(event.key==="Escape")cleanup(null)}
+    nameInput.onkeydown=event=>{if(event.key==="Enter")void accept();if(event.key==="Escape")cleanup(null)}
   })
 }
 

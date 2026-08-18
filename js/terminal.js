@@ -1,6 +1,6 @@
 import{FILE_SYSTEM,PROFILE,profileText}from"./data.js"
 import{navigate,resolveFolderFromPath}from"./explorer.js"
-import{openWindow}from"./window-manager.js"
+import{closeWindow,openWindow}from"./window-manager.js"
 import{copyPath,deletePath,fileName,getEntry,listVirtual,makeFolder,movePath,readFile,renamePath,resolvePath,roots,writeFile}from"./vfs.js"
 import{getPythonVersion,runPythonFile}from"./python.js"
 
@@ -304,7 +304,7 @@ async function runCmd(line){
   if(command==="telegram"){window.open(PROFILE.telegramUrl,"_blank","noopener,noreferrer");return}
   if(command==="projects"){navigate("projects");return}
   if(command==="profile"){append("cmdOutput",profileText());return}
-  if(command==="exit"){document.getElementById("cmdWindow").classList.add("hidden");return}
+  if(command==="exit"){void closeWindow(byId("cmdWindow"));return}
   append("cmdOutput",`'${commandRaw}' is not recognized as an internal or external command,\noperable program or batch file.`)
 }
 

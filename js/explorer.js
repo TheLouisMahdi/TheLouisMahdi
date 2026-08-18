@@ -1,9 +1,10 @@
 import{FILE_SYSTEM,PROFILE,profileText,repoText}from"./data.js"
 import{icon}from"./icons.js"
 import{openWindow}from"./window-manager.js"
-import{askText,bindSelectableSurface,refreshSurface,showContextMenu}from"./interaction.js"
-import{backgroundContextItems,deleteSelected,fileContextItems,openVirtual,renameSelected}from"./file-actions.js"
-import{fileName,folderPath,getEntry,isFolder,listVirtual,makeFolder,normalizePath,resolvePath,roots,uniquePath}from"./vfs.js"
+import{bindSelectableSurface,refreshSurface,showContextMenu}from"./interaction.js"
+import{backgroundContextItems,createItem,deleteSelected,fileContextItems,openVirtual,renameSelected}from"./file-actions.js"
+import{fileName,folderPath,getEntry,isFolder,listVirtual,normalizePath,resolvePath,roots}from"./vfs.js"
+import{escapeHtml}from"./html.js"
 
 let current="computer"
 let history=["computer"]
@@ -64,13 +65,13 @@ function renderDrives(items){
   return `<div class="drive-list">${items.map((item,index)=>{
     const free=item.total-item.used
     const width=Math.min(100,Math.round(item.used/item.total*100))
-    return `<button class="drive-row" data-item-index="${index}" data-key="${encodeURIComponent(itemKey(item))}"><span class="file-icon">${fileIcon(item)}</span><span><span class="drive-name">${item.name}</span><span class="drive-meter"><i style="width:${width}%"></i></span><span class="drive-meta">${free} GB free of ${item.total} GB</span></span></button>`
+    return `<button class="drive-row" data-item-index="${index}" data-key="${encodeURIComponent(itemKey(item))}"><span class="file-icon">${fileIcon(item)}</span><span><span class="drive-name">${escapeHtml(item.name)}</span><span class="drive-meter"><i style="width:${width}%"></i></span><span class="drive-meta">${free} GB free of ${item.total} GB</span></span></button>`
   }).join("")}</div>`
 }
 
 function renderFiles(items){
   if(!items.length)return `<div class="empty-folder">This folder is empty.</div>`
-  return `<div class="file-grid">${items.map((item,index)=>`<button class="file-item" data-item-index="${index}" data-key="${encodeURIComponent(itemKey(item))}">${item.type==="photo"&&item.image?`<span class="file-icon file-thumbnail"><img src="${item.thumbnail||item.image}" alt="" loading="lazy" draggable="false"></span>`:`<span class="file-icon">${fileIcon(item)}</span>`}<span class="file-name">${item.name}</span></button>`).join("")}</div>`
+  return `<div class="file-grid">${items.map((item,index)=>`<button class="file-item" data-item-index="${index}" data-key="${encodeURIComponent(itemKey(item))}">${item.type==="photo"&&item.image?`<span class="file-icon file-thumbnail"><img src="${item.thumbnail||item.image}" alt="" loading="lazy" draggable="false"></span>`:`<span class="file-icon">${fileIcon(item)}</span>`}<span class="file-name">${escapeHtml(item.name)}</span></button>`).join("")}</div>`
 }
 
 function render(){
@@ -110,12 +111,10 @@ export function resolveFolderFromPath(path){
 
 function backgroundTarget(){return current.startsWith("vfs:")?current:folderPath(current)?current:null}
 
-async function createFolder(){
+function createFolder(){
   const target=backgroundTarget()
-  const dir=target?.startsWith("vfs:")?target.slice(4):folderPath(target)
-  if(!dir){window.dispatchEvent(new CustomEvent("win7:toast",{detail:"A folder cannot be created in this system location."}));return}
-  const name=await askText("New Folder","Folder name:","New folder")
-  if(name)makeFolder(uniquePath(resolvePath(dir,name)))
+  if(!target){window.dispatchEvent(new CustomEvent("win7:toast",{detail:"A folder cannot be created in this system location."}));return}
+  return createItem(target,"folder")
 }
 
 function initSelection(){
@@ -128,7 +127,7 @@ function initSelection(){
     background:(_,helpers)=>{
       const target=backgroundTarget()
       if(!target)return [{label:"Refresh",action:render},{label:"Properties",action:()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:folderFor(current).path}))}]
-      return backgroundContextItems(target,{selectAll:helpers.selectAll,clear:helpers.clear,refresh:render})
+      return backgroundContextItems(target,{selectAll:helpers.selectAll,clear:helpers.clear,refresh:render,surface:"explorer",onNew:kind=>createItem(target,kind)})
     },
     deleteSelected,
     renameSelected,

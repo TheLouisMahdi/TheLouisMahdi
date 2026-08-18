@@ -1,5 +1,5 @@
 import{askConfirm,askText}from"./interaction.js"
-import{copyPath,deletePath,emptyRecycleBin,fileName,folderPath,getEntry,movePath,parentPath,readFile,renamePath,resolvePath,restorePath,roots,trashPath,uniquePath,writeFile,makeFolder}from"./vfs.js"
+import{copyPath,deletePath,deleteTree,emptyRecycleBin,fileName,folderPath,getEntry,makeFolder,movePath,readFile,renamePath,resolvePath,restorePath,roots,trashPath,uniquePath,validFileName,writeFile}from"./vfs.js"
 
 let clipboard={mode:null,paths:[]}
 
@@ -27,7 +27,7 @@ export async function renameVirtual(item){
   const name=await askText("Rename","Type a new name for this item:",fileName(path))
   if(!name||name===fileName(path))return
   const result=renamePath(path,name)
-  if(!result)toast("A file with that name already exists.")
+  if(!result)toast("A file or folder with that name already exists, or the destination is invalid.")
 }
 
 export async function deleteVirtual(items){
@@ -37,8 +37,8 @@ export async function deleteVirtual(items){
   const ok=await askConfirm(permanent?"Delete File":"Move to Recycle Bin",paths.length===1?`${permanent?"Permanently delete":"Move"} '${fileName(paths[0])}'${permanent?"?":" to the Recycle Bin?"}`:`${permanent?"Permanently delete":"Move to Recycle Bin"} these ${paths.length} items?`)
   if(!ok)return
   let failed=0
-  for(const path of paths)if(!(permanent?deletePath(path):trashPath(path)))failed+=1
-  if(failed)toast(`${failed} item(s) could not be deleted because a folder is not empty.`)
+  for(const path of paths)if(!(permanent?deleteTree(path):trashPath(path)))failed+=1
+  if(failed)toast(`${failed} item(s) could not be deleted.`)
 }
 
 function copySelection(items,mode){
@@ -51,25 +51,29 @@ export function canPaste(){return clipboard.paths.length>0}
 export function pasteInto(target){
   const dir=directoryFor(target)
   if(!dir||!clipboard.paths.length)return
-  const old=[...clipboard.paths]
+  const sourcePaths=[...clipboard.paths]
+  const moved=[]
   let done=0
-  for(const path of old){
+  for(const path of sourcePaths){
     const entry=getEntry(path)
-    if(!entry||entry.kind==="folder")continue
-    const destination=resolvePath(dir,fileName(path))
-    const result=clipboard.mode==="cut"?movePath(path,destination):copyPath(path,destination)
-    if(result)done+=1
+    if(!entry)continue
+    const result=clipboard.mode==="cut"?movePath(path,dir):copyPath(path,dir)
+    if(result){done+=1;if(clipboard.mode==="cut")moved.push(path)}
   }
-  if(clipboard.mode==="cut")clipboard={mode:null,paths:[]}
+  if(clipboard.mode==="cut"){
+    clipboard.paths=clipboard.paths.filter(path=>!moved.includes(path))
+    if(!clipboard.paths.length)clipboard={mode:null,paths:[]}
+  }
   toast(`${done} item(s) pasted.`)
 }
 
-async function newFile(target,kind){
+async function newItem(target,kind){
   const dir=directoryFor(target)
   if(!dir)return
   const defaults={text:"New Text Document.txt",python:"script.py",html:"page.html",folder:"New folder"}
   const name=await askText(kind==="folder"?"New Folder":"New File","Name:",defaults[kind])
   if(!name)return
+  if(!validFileName(name)){toast("The file name contains invalid Windows characters or a reserved device name.");return}
   const path=uniquePath(resolvePath(dir,name))
   if(kind==="folder"){makeFolder(path);return}
   const templates={
@@ -81,7 +85,8 @@ async function newFile(target,kind){
   window.dispatchEvent(new CustomEvent("win7:open-file",{detail:{path,forceNotepad:true}}))
 }
 
-export function createDesktopItem(kind){return newFile("desktop",kind)}
+export function createItem(target,kind){return newItem(target,kind)}
+export function createDesktopItem(kind){return newItem("desktop",kind)}
 
 function downloadVirtual(item){
   const path=pathOf(item)
@@ -99,8 +104,8 @@ function downloadVirtual(item){
 function properties(item){
   if(item.virtualPath){
     const entry=getEntry(item.virtualPath)
-    const size=new Blob([entry?.content||""]).size
-    toast(`${fileName(item.virtualPath)} · ${entry?.kind||item.type} · ${size} bytes · C:\\Users\\Eka`)
+    const size=entry?.kind==="folder"?0:new Blob([entry?.content||""]).size
+    toast(`${fileName(item.virtualPath)} · ${entry?.kind||item.type} · ${size} bytes · ${item.virtualPath}`)
     return
   }
   toast(`${item.name} · Windows item`)
@@ -129,26 +134,35 @@ export function fileContextItems(item,selected,{open}){
   return items.filter(Boolean)
 }
 
-export function backgroundContextItems(target,{selectAll,clear,refresh}){
+export function backgroundContextItems(target,{selectAll,clear,refresh,surface="desktop",onNew}={}){
   if(directoryFor(target)?.toLowerCase()===roots().recycle.toLowerCase())return [
     {label:"Empty Recycle Bin",action:async()=>{if(await askConfirm("Empty Recycle Bin","Are you sure you want to permanently delete these items?"))emptyRecycleBin()}},
     separator,
     {label:"Select All",action:selectAll},{label:"Refresh",action:refresh},{label:"Clear selection",action:clear}
   ]
-  return [
+
+  const items=[]
+  if(surface==="desktop")items.push(
     {label:"View  ›",action:()=>window.dispatchEvent(new CustomEvent("win7:desktop-menu",{detail:"view"}))},
-    {label:"Sort by  ›",action:()=>window.dispatchEvent(new CustomEvent("win7:desktop-menu",{detail:"sort"}))},
-    {label:"Refresh",action:refresh},
-    separator,
-    {label:"Paste",disabled:!canPaste(),action:()=>pasteInto(target)},
-    {label:"Paste shortcut",disabled:true,action:()=>{}},
-    separator,
-    {label:"New  ›",action:()=>window.dispatchEvent(new CustomEvent("win7:desktop-menu",{detail:"new"}))},
+    {label:"Sort by  ›",action:()=>window.dispatchEvent(new CustomEvent("win7:desktop-menu",{detail:"sort"}))}
+  )
+  items.push({label:"Refresh",action:refresh},separator,{label:"Paste",disabled:!canPaste(),action:()=>pasteInto(target)},{label:"Paste shortcut",disabled:true,action:()=>{}},separator)
+
+  if(surface==="desktop")items.push({label:"New  ›",action:()=>window.dispatchEvent(new CustomEvent("win7:desktop-menu",{detail:"new"}))})
+  else if(onNew)items.push(
+    {label:"New folder",action:()=>onNew("folder")},
+    {label:"New Text Document",action:()=>onNew("text")},
+    {label:"New Python File",action:()=>onNew("python")},
+    {label:"New HTML File",action:()=>onNew("html")}
+  )
+
+  if(surface==="desktop")items.push(
     separator,
     {label:"Screen resolution",action:()=>{window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"control"}));window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"display"}))}},
     {label:"Gadgets",action:()=>{window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"control"}));window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"desktop-gadgets"}))}},
     {label:"Personalize",action:()=>{window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"control"}));window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"personalization"}))}}
-  ]
+  )
+  return items
 }
 
 export function deleteSelected(items){return deleteVirtual(items.filter(item=>item.writable))}

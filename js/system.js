@@ -3,13 +3,20 @@ import{closeAllWindows}from"./window-manager.js"
 const byId=id=>document.getElementById(id)
 const timers=new Set()
 let state="off"
+let biosDefaultHtml=""
 
 function later(fn,delay){const timer=setTimeout(()=>{timers.delete(timer);fn()},delay);timers.add(timer);return timer}
 function clearTimers(){timers.forEach(clearTimeout);timers.clear()}
 function hideScreens(){document.querySelectorAll(".system-screen").forEach(node=>node.classList.add("hidden"))}
 function setState(next){state=next;window.dispatchEvent(new CustomEvent("win7:system-state",{detail:next}))}
-
 function show(id){hideScreens();byId(id)?.classList.remove("hidden")}
+
+function restoreBiosPanel(){
+  const panel=byId("biosPanel")
+  if(!panel)return
+  if(biosDefaultHtml)panel.innerHTML=biosDefaultHtml
+  panel.classList.remove("bios-setup")
+}
 
 function showWelcome(message="Welcome"){
   show("welcomeScreen")
@@ -20,6 +27,7 @@ function showWelcome(message="Welcome"){
 export function bootSystem(){
   if(state==="booting"||state==="running")return
   clearTimers()
+  restoreBiosPanel()
   setState("booting")
   show("bootScreen")
   byId("biosPanel")?.classList.remove("hidden")
@@ -135,6 +143,7 @@ function handlePower(action){
 export function systemState(){return state}
 
 export function initSystem(){
+  biosDefaultHtml=byId("biosPanel")?.innerHTML||""
   mountSecurityScreen()
   tickLock()
   setInterval(tickLock,1000)

@@ -1,6 +1,6 @@
 import{FILE_SYSTEM}from"./data.js"
 import{icon,paintIcons}from"./icons.js"
-import{closeWindow,initWindowManager,minimizeOthers,openWindow,showDesktop,snapWindow,toggleAppWindow}from"./window-manager.js"
+import{activeWindow,closeWindow,initWindowManager,minimizeOthers,openWindow,showDesktop,snapWindow,toggleAppWindow,visibleWindows}from"./window-manager.js"
 import{initExplorer,navigate}from"./explorer.js"
 import{initTerminals}from"./terminal.js"
 import{initReceipt,printReceipt}from"./receipt.js"
@@ -15,16 +15,17 @@ import{initSystem,lockSystem,showSecurityScreen,systemState}from"./system.js"
 import{bindSelectableSurface,initPointerCursor,mountInteractionUi,refreshSurface,showContextMenu}from"./interaction.js"
 import{backgroundContextItems,createDesktopItem,deleteSelected,fileContextItems,openVirtual,renameSelected}from"./file-actions.js"
 import{listVirtual}from"./vfs.js"
+import{APP_WINDOWS}from"./app-registry.js"
+import{escapeHtml}from"./html.js"
 
 const byId=id=>document.getElementById(id)
-const appWindows={explorer:"explorerWindow",cmd:"cmdWindow",powershell:"psWindow",notepad:"notepadWindow",calculator:"calculatorWindow",run:"runWindow",image:"imageWindow",browser:"browserWindow",paint:"paintWindow",wordpad:"wordpadWindow",sticky:"stickyWindow",snipping:"snippingWindow",media:"mediaWindow",control:"controlWindow",devices:"devicesWindow",taskmanager:"taskmanagerWindow",minesweeper:"minesweeperWindow",solitaire:"solitaireWindow",freecell:"freecellWindow",chess:"chessWindow",comfy:"comfyWindow",systeminfo:"systeminfoWindow",charmap:"charmapWindow",keyboard:"keyboardWindow",help:"helpWindow",accessory:"accessoryWindow"}
 let desktopItems=[]
 let mobileHintShown=false
 let desktopSort="name",desktopIconSize=""
 
 function openApp(app){
   if(app==="printprofile"){printReceipt();document.getElementById("printerZone")?.scrollIntoView({behavior:"smooth",block:"center"});return}
-  const id=appWindows[app]
+  const id=APP_WINDOWS[app]
   if(!id)return
   if(app==="explorer")navigate("computer")
   else openWindow(id)
@@ -59,8 +60,9 @@ function renderDesktop(){
   desktopItems=[...FILE_SYSTEM.desktop.items,...listVirtual("desktop")]
   if(desktopSort==="name")desktopItems.sort((a,b)=>a.name.localeCompare(b.name))
   if(desktopSort==="type")desktopItems.sort((a,b)=>String(a.type).localeCompare(String(b.type))||a.name.localeCompare(b.name))
-  if(desktopSort==="size")desktopItems.sort((a,b)=>String(a.content||"").length-String(b.content||"").length||a.name.localeCompare(b.name))
-  byId("desktopIcons").innerHTML=desktopItems.map((item,index)=>`<button class="desktop-icon" data-desktop-index="${index}" data-key="${encodeURIComponent(itemKey(item))}"><span class="desktop-svg">${icon(item.type)}</span><span class="desktop-label">${item.name}</span></button>`).join("")
+  if(desktopSort==="size")desktopItems.sort((a,b)=>(Number(a.size)||String(a.content||"").length)-(Number(b.size)||String(b.content||"").length)||a.name.localeCompare(b.name))
+  if(desktopSort==="date")desktopItems.sort((a,b)=>(Number(b.updated)||0)-(Number(a.updated)||0)||a.name.localeCompare(b.name))
+  byId("desktopIcons").innerHTML=desktopItems.map((item,index)=>`<button class="desktop-icon" data-desktop-index="${index}" data-key="${encodeURIComponent(itemKey(item))}"><span class="desktop-svg">${icon(item.type)}</span><span class="desktop-label">${escapeHtml(item.name)}</span></button>`).join("")
   refreshSurface(byId("desktop"))
 }
 
@@ -95,7 +97,6 @@ function initStart(){
   const controlRecords=[
     ["Control Panel","home"],["Personalization","personalization"],["Change the theme","personalization"],["Desktop Background","desktop-background"],["Window Color and Appearance","window-color"],["Network and Sharing Center","network-sharing"],["Programs and Features","programs-features"],["Power Options","power-options"],["Devices and Printers","devices"],["Taskbar and Start Menu","taskbar"]
   ]
-  const escapeHtml=value=>String(value).replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[char])
   const resetSearch=()=>{byId("searchBox").value="";byId("programList").classList.remove("hidden");byId("startSearchResults").classList.add("hidden");byId("startSearchResults").innerHTML=""}
   const closeStart=()=>{byId("startMenu").classList.add("hidden");byId("allProgramsPanel")?.classList.add("hidden");resetSearch()}
   const searchRecords=()=>{
@@ -150,8 +151,9 @@ function initTaskbar(){
     button.addEventListener("click",event=>{
       event.stopPropagation()
       const app=button.dataset.task
-      if(app==="explorer"&&document.getElementById("explorerWindow").classList.contains("hidden"))navigate("computer")
-      else toggleAppWindow(app,appWindows[app])
+      const win=document.getElementById(APP_WINDOWS[app])
+      if(app==="explorer"&&win?.classList.contains("hidden")&&!button.classList.contains("running"))navigate("computer")
+      else toggleAppWindow(app,APP_WINDOWS[app])
     })
   })
   const closeFlyouts=except=>document.querySelectorAll(".tray-flyout").forEach(node=>{if(node!==except)node.classList.add("hidden")})
@@ -166,7 +168,7 @@ function initTaskbar(){
   for(const [button,flyout]of Object.entries(trayMap))byId(button)?.addEventListener("click",event=>{event.stopPropagation();toggleFlyout(flyout)})
   byId("volumeSlider")?.addEventListener("input",event=>{byId("volumeValue").textContent=`${event.target.value}%`;byId("volumeBtn").classList.toggle("muted",event.target.value==="0")})
   byId("muteBtn")?.addEventListener("click",()=>{const slider=byId("volumeSlider");slider.value=slider.value==="0"?"70":"0";slider.dispatchEvent(new Event("input"))})
-  byId("networkConnect")?.addEventListener("click",()=>{byId("networkStatus").textContent="Connected · Internet access";byId("networkConnect").textContent="Disconnect"})
+  byId("networkConnect")?.addEventListener("click",()=>{const connected=byId("networkConnect").textContent==="Disconnect";byId("networkStatus").textContent=connected?"Not connected":"Connected · Internet access";byId("networkConnect").textContent=connected?"Connect":"Disconnect"})
   byId("actionCenterOpen")?.addEventListener("click",()=>{openApp("control");window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"action-center"}))})
   byId("powerPlanLink")?.addEventListener("click",()=>{openApp("control");window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"power-options"}))})
   byId("dateTimeLink")?.addEventListener("click",()=>{openApp("control");window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"date-time"}))})
@@ -193,7 +195,7 @@ function initTaskbar(){
       const app=taskButton.dataset.task
       const names={explorer:"Windows Explorer",cmd:"Command Prompt",powershell:"Windows PowerShell",notepad:"Notepad",browser:"Internet Explorer",paint:"Paint",control:"Control Panel"}
       const recent=app==="explorer"?[{label:"Documents",action:()=>navigate("documents")},{label:"Pictures",action:()=>navigate("pictures")},{label:"GitHub (G:)",action:()=>navigate("github")},]:app==="notepad"?[{label:"Eka Command Deck.txt",action:()=>window.dispatchEvent(new CustomEvent("win7:open-file",{detail:{path:"C:\\Users\\Eka\\Desktop\\Eka Command Deck.txt",forceNotepad:true}}))}]:[]
-      showContextMenu([...recent,...(recent.length?[{separator:true}]:[]),{label:`Open ${names[app]||app}`,action:()=>openApp(app)},{label:"Pin this program to taskbar ✓",action:()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:`${names[app]||app} is pinned to the taskbar.`}))},{label:"Close window",action:()=>{const win=byId(appWindows[app]);if(win)closeWindow(win)}}],event.clientX,event.clientY)
+      showContextMenu([...recent,...(recent.length?[{separator:true}]:[]),{label:`Open ${names[app]||app}`,action:()=>openApp(app)},{label:"Pin this program to taskbar ✓",action:()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:`${names[app]||app} is pinned to the taskbar.`}))},{label:"Close window",action:()=>{const win=byId(APP_WINDOWS[app]);if(win)void closeWindow(win)}}],event.clientX,event.clientY)
       return
     }
     showContextMenu([
@@ -242,12 +244,6 @@ function initAppEvents(){
   window.addEventListener("win7:vfs-changed",renderDesktop)
 }
 
-function visibleWindows(){
-  return [...document.querySelectorAll(".window:not(.hidden)")].sort((a,b)=>(Number(getComputedStyle(a).zIndex)||0)-(Number(getComputedStyle(b).zIndex)||0))
-}
-
-function activeWindow(){return visibleWindows().at(-1)||null}
-
 function cycleWindows(reverse=false){
   const wins=visibleWindows()
   if(wins.length<2)return
@@ -270,7 +266,7 @@ function initKeyboard(){
       event.preventDefault();byId("startMenu").classList.toggle("hidden");return
     }
     if(event.altKey&&event.key==="F4"){
-      const win=activeWindow();if(win){event.preventDefault();closeWindow(win)}return
+      const win=activeWindow();if(win){event.preventDefault();void closeWindow(win)}return
     }
     if(event.altKey&&event.key==="Tab"){
       event.preventDefault();cycleWindows(event.shiftKey);return

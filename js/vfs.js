@@ -54,6 +54,26 @@ function parent(path){
   return parts.join("\\")||value.slice(0,3)
 }
 
+function treeEntries(root){
+  const full=normalizePath(root)
+  const lower=full.toLowerCase(),prefix=`${lower}\\`
+  return Object.values(entries).filter(item=>item.path.toLowerCase()===lower||item.path.toLowerCase().startsWith(prefix))
+}
+
+function destinationPath(source,destination,cwd){
+  const src=resolvePath(cwd,source)
+  let dest=resolvePath(cwd,destination)
+  const lower=normalizePath(dest).toLowerCase()
+  const isContainer=Object.values(ROOTS).some(root=>root.toLowerCase()===lower)||isFolder(dest)
+  if(isContainer)dest=resolvePath(dest,basename(src))
+  return {src,dest}
+}
+
+function invalidTreeDestination(src,dest){
+  const source=normalizePath(src).toLowerCase(),target=normalizePath(dest).toLowerCase()
+  return target===source||target.startsWith(`${source}\\`)
+}
+
 export function normalizePath(path){
   let value=String(path||"").trim().replace(/^"|"$/g,"").replaceAll("/","\\")
   value=value.replace(/\\+/g,"\\")
@@ -85,6 +105,12 @@ function collapse(path){
   return `${drive}\\${out.join("\\")}`.replace(/\\+$/,out.length?"":"\\")
 }
 
+export function validFileName(name){
+  const value=String(name||"").trim()
+  if(!value||value==="."||value===".."||/[<>:"/\\|?*\x00-\x1f]/.test(value)||/[. ]$/.test(value))return false
+  return !/^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\..*)?$/i.test(value)
+}
+
 export function kindForName(name){
   const lower=basename(name).toLowerCase()
   if(!lower.includes("."))return "text"
@@ -114,6 +140,7 @@ export function listVirtual(targetOrPath){
       target:entry.kind==="folder"?`vfs:${entry.path}`:undefined,
       virtualPath:entry.path,
       writable:true,
+      size:entry.kind==="folder"?0:String(entry.content??"").length,
       updated:entry.updated
     }))
 }
@@ -129,6 +156,7 @@ export function readFile(path,cwd=ROOTS.desktop){
 
 export function writeFile(path,content,cwd=ROOTS.desktop,metadata={}){
   const full=resolvePath(cwd,path)
+  if(!validFileName(basename(full)))return null
   const key=keyOf(full)
   const old=entries[key]
   const now=Date.now()
@@ -142,7 +170,7 @@ export function trashPath(path,cwd=ROOTS.desktop){
   const entry=entries[keyOf(full)]
   if(!entry)return false
   const destination=uniquePath(resolvePath(ROOTS.recycle,basename(full)))
-  const affected=entry.kind==="folder"?Object.values(entries).filter(item=>item.path.toLowerCase()===full.toLowerCase()||item.path.toLowerCase().startsWith(`${full.toLowerCase()}\\`)):[entry]
+  const affected=entry.kind==="folder"?treeEntries(full):[entry]
   for(const item of affected)delete entries[keyOf(item.path)]
   for(const item of affected){
     const original=item.path
@@ -160,7 +188,7 @@ export function restorePath(path){
   const entry=entries[keyOf(full)]
   if(!entry||!entry.originalPath)return false
   const destination=uniquePath(entry.originalPath)
-  const affected=entry.kind==="folder"?Object.values(entries).filter(item=>item.path.toLowerCase()===full.toLowerCase()||item.path.toLowerCase().startsWith(`${full.toLowerCase()}\\`)):[entry]
+  const affected=entry.kind==="folder"?treeEntries(full):[entry]
   for(const item of affected)delete entries[keyOf(item.path)]
   for(const item of affected){
     const suffix=item.path.slice(full.length)
@@ -175,8 +203,8 @@ export function restorePath(path){
 }
 
 export function emptyRecycleBin(){
-  const prefix=`${ROOTS.recycle.toLowerCase()}\\`
-  const keys=Object.keys(entries).filter(key=>key.startsWith(prefix))
+  const root=ROOTS.recycle.toLowerCase(),prefix=`${root}\\`
+  const keys=Object.keys(entries).filter(key=>key===root||key.startsWith(prefix))
   keys.forEach(key=>delete entries[key])
   if(keys.length)save()
   return keys.length
@@ -184,6 +212,7 @@ export function emptyRecycleBin(){
 
 export function makeFolder(path,cwd=ROOTS.desktop){
   const full=resolvePath(cwd,path)
+  if(!validFileName(basename(full)))return false
   const key=keyOf(full)
   if(entries[key])return false
   const now=Date.now()
@@ -206,47 +235,74 @@ export function deletePath(path,cwd=ROOTS.desktop){
   return true
 }
 
+export function deleteTree(path,cwd=ROOTS.desktop){
+  const full=resolvePath(cwd,path)
+  const entry=entries[keyOf(full)]
+  if(!entry)return false
+  for(const item of(entry.kind==="folder"?treeEntries(full):[entry]))delete entries[keyOf(item.path)]
+  save()
+  return true
+}
+
 export function renamePath(path,newName,cwd=ROOTS.desktop){
   const full=resolvePath(cwd,path)
   const entry=entries[keyOf(full)]
-  if(!entry)return null
+  if(!entry||!validFileName(newName))return null
   const dest=resolvePath(parent(full),newName)
-  if(entries[keyOf(dest)])return null
-  delete entries[keyOf(full)]
-  entry.path=dest
-  entry.kind=entry.kind==="folder"?"folder":kindForName(dest)
-  entry.updated=Date.now()
-  entries[keyOf(dest)]=entry
-  if(entry.kind==="folder"){
-    const prefix=`${full.toLowerCase()}\\`
-    for(const item of Object.values(entries)){
-      if(item.path.toLowerCase().startsWith(prefix))item.path=`${dest}${item.path.slice(full.length)}`
-    }
-    entries=Object.fromEntries(Object.values(entries).map(item=>[keyOf(item.path),item]))
+  if(entries[keyOf(dest)]||invalidTreeDestination(full,dest))return null
+  const affected=entry.kind==="folder"?treeEntries(full):[entry]
+  for(const item of affected)delete entries[keyOf(item.path)]
+  const now=Date.now()
+  for(const item of affected){
+    const suffix=item.path.slice(full.length)
+    item.path=`${dest}${suffix}`
+    if(item===entry&&entry.kind!=="folder")item.kind=kindForName(dest)
+    item.updated=now
+    entries[keyOf(item.path)]=item
   }
   save()
-  return entry
+  return entries[keyOf(dest)]
 }
 
 export function copyPath(source,destination,cwd=ROOTS.desktop){
-  const src=resolvePath(cwd,source)
+  let{src,dest}=destinationPath(source,destination,cwd)
   const entry=entries[keyOf(src)]
-  if(!entry||entry.kind==="folder")return null
-  let dest=resolvePath(cwd,destination)
-  if(isFolder(dest))dest=resolvePath(dest,basename(src))
-  return writeFile(uniquePath(dest),entry.content)
+  if(!entry)return null
+  dest=uniquePath(dest)
+  if(normalizePath(dest).toLowerCase().startsWith(`${normalizePath(src).toLowerCase()}\\`))return null
+  const affected=entry.kind==="folder"?treeEntries(src):[entry]
+  const now=Date.now()
+  for(const item of affected){
+    const suffix=item.path.slice(src.length)
+    const path=`${dest}${suffix}`
+    const clone={...item,path,created:now,updated:now}
+    delete clone.deleted
+    delete clone.originalPath
+    entries[keyOf(path)]=clone
+  }
+  save()
+  return entries[keyOf(dest)]
 }
 
 export function movePath(source,destination,cwd=ROOTS.desktop){
-  const src=resolvePath(cwd,source)
+  let{src,dest}=destinationPath(source,destination,cwd)
   const entry=entries[keyOf(src)]
-  if(!entry||entry.kind==="folder")return null
-  let dest=resolvePath(cwd,destination)
-  if(isFolder(dest))dest=resolvePath(dest,basename(src))
-  const copied=writeFile(uniquePath(dest),entry.content)
-  delete entries[keyOf(src)]
+  if(!entry)return null
+  if(normalizePath(dest).toLowerCase()===normalizePath(src).toLowerCase())return entry
+  if(normalizePath(dest).toLowerCase().startsWith(`${normalizePath(src).toLowerCase()}\\`))return null
+  dest=uniquePath(dest)
+  const affected=entry.kind==="folder"?treeEntries(src):[entry]
+  for(const item of affected)delete entries[keyOf(item.path)]
+  const now=Date.now()
+  for(const item of affected){
+    const suffix=item.path.slice(src.length)
+    item.path=`${dest}${suffix}`
+    if(item===entry&&entry.kind!=="folder")item.kind=kindForName(dest)
+    item.updated=now
+    entries[keyOf(item.path)]=item
+  }
   save()
-  return copied
+  return entries[keyOf(dest)]
 }
 
 export function uniquePath(path){

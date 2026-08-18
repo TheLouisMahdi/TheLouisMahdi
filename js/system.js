@@ -11,6 +11,7 @@ function later(fn,delay){const timer=setTimeout(()=>{timers.delete(timer);fn()},
 function clearTimers(){timers.forEach(clearTimeout);timers.clear()}
 function hideScreens(){document.querySelectorAll(".system-screen").forEach(node=>node.classList.add("hidden"))}
 function setState(next){state=next;window.dispatchEvent(new CustomEvent("win7:system-state",{detail:next}))}
+function setPowered(powered){document.documentElement.classList.toggle("system-powered",powered)}
 function show(id){hideScreens();byId(id)?.classList.remove("hidden")}
 
 function restoreBiosPanel(){
@@ -30,6 +31,7 @@ export function bootSystem(){
   if(state==="booting"||state==="running")return
   clearTimers()
   restoreBiosPanel()
+  setPowered(true)
   setState("booting")
   show("bootScreen")
   byId("biosPanel")?.classList.remove("hidden")
@@ -72,6 +74,7 @@ export function powerOff(action="shutdown"){
   later(()=>{
     if(action==="restart"){setState("off");bootSystem();return}
     setState("off")
+    setPowered(false)
     show("powerOffScreen")
     byId("powerOffScreen").querySelector("small").textContent="Press the laptop power button to start"
   },BOOT_TIMING.shutdown)
@@ -168,5 +171,8 @@ export function initSystem(){
   })
   document.addEventListener("click",event=>{if(!event.target.closest(".start-power"))byId("powerMenu")?.classList.add("hidden")})
   window.addEventListener("win7:power",event=>handlePower(event.detail))
-  bootSystem()
+  clearTimers()
+  setPowered(false)
+  setState("off")
+  show("powerOffScreen")
 }

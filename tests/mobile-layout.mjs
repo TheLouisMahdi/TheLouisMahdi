@@ -9,7 +9,7 @@ try{
     const context=await browser.newContext({viewport,hasTouch:true,isMobile:true})
     const page=await context.newPage()
     await page.goto(siteUrl,{waitUntil:"domcontentloaded"})
-    await page.waitForSelector('link[data-mobile-fit]')
+    await page.waitForSelector('link[data-mobile-fit]',{state:"attached"})
     await page.waitForSelector("#about .ps-window")
 
     const geometry=await page.evaluate(()=>{

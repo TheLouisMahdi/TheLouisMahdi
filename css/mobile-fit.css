@@ -1,0 +1,68 @@
+@media(max-width:760px), (max-width:900px) and (max-height:520px) and (orientation:landscape){
+  html,body{max-width:100%;overflow-x:hidden}
+  .hero{min-height:0!important;padding:8px 0 22px!important}
+  .hero-bar{width:min(calc(100vw - 16px),560px);margin:0 auto 7px!important;padding:0!important}
+  .laptop{width:min(calc(100vw - 8px),132svh,560px)!important;margin:0 auto!important;filter:drop-shadow(0 12px 14px rgba(0,0,0,.24))}
+  .lid{padding:6px 6px 8px!important;border-radius:10px 10px 7px 7px!important}
+  .screen{width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:16/9!important}
+  .laptop-base{height:18px!important;margin:0 -4px!important;border-radius:2px 2px 18px 18px!important}
+  .trackpad{top:2px;width:92px;height:8px}
+
+  .desktop-icons{top:5px!important;left:4px!important;grid-template-rows:repeat(3,52px)!important;gap:1px 3px!important}
+  .desktop-icon{width:50px!important;height:50px!important;padding:2px 1px!important}
+  .desktop-svg{width:25px!important;height:25px!important;margin-bottom:1px!important}
+  .desktop-label{font-size:7px!important;line-height:8px!important}
+
+  .start-menu{left:2px!important;bottom:32px!important;width:calc(100% - 4px)!important;height:calc(100% - 34px)!important;grid-template-columns:61% 39%!important;border-radius:5px 5px 0 0!important}
+  .start-left{padding:4px 4px 25px!important;overflow:hidden}
+  .start-user{height:23px!important;padding:0 2px 2px!important;font-size:7px!important}
+  .user-tile{width:20px!important;height:20px!important;font-size:11px!important}
+  .program-list{height:calc(100% - 22px);padding-top:2px!important;overflow:auto}
+  .start-program{height:23px!important;gap:4px!important;padding:1px 3px!important;font-size:7px!important}
+  .start-program span{width:18px!important;height:18px!important}
+  .searchbox{left:4px!important;right:4px!important;bottom:4px!important;width:calc(100% - 8px)!important;height:20px!important;padding:2px 4px!important;font-size:7px!important}
+  .start-right{padding:34px 4px 4px!important;overflow:auto}
+  .start-avatar{top:4px!important;width:28px!important;height:28px!important;font-size:14px!important}
+  .start-link{min-height:20px!important;padding:4px!important;font-size:7px!important}
+
+  .taskbar{height:32px!important}
+  .start-orb{width:39px!important;height:37px!important;margin-bottom:-2px!important}
+  .start-orb svg{width:35px!important;height:35px!important}
+  .task-button{width:34px!important;height:28px!important;margin:1px 0!important}
+  .task-button span{width:21px!important;height:21px!important}
+  .tray{padding-left:2px!important;font-size:6px!important}
+  .tray-small,.tray-signal{padding:0 2px!important}
+  .clock{min-width:49px!important;height:31px!important;padding:1px 3px!important;font-size:6px!important}
+  .peek{height:32px!important}
+
+  .window.maximized{height:calc(100% - 32px)!important}
+  .explorer-window,.console-window,.notepad-window,.browser-window{left:4px!important;top:4px!important;width:calc(100% - 8px)!important;height:calc(100% - 38px)!important}
+  .calculator-window,.run-window{max-width:calc(100% - 8px)!important;max-height:calc(100% - 38px)!important}
+  .comfy-window{left:2px!important;top:2px!important;width:calc(100% - 4px)!important;height:calc(100% - 34px)!important;min-width:0!important;min-height:0!important}
+  .purble-dialog{max-height:94%!important;overflow:auto!important}
+
+  .portfolio-liquid .ps-stage{min-height:0!important;padding:48px 8px 18px!important}
+  .portfolio-liquid .ps-github{top:8px!important;right:8px!important;width:34px!important;height:34px!important}
+  .portfolio-liquid .ps-window{width:100%!important;margin:0!important}
+  .portfolio-liquid .ps-titlebar{height:27px!important;font-size:10px!important}
+  .portfolio-liquid .ps-controls i{width:30px!important}
+  .portfolio-liquid .ps-controls .ps-close{width:34px!important}
+  .portfolio-liquid .ps-console{height:min(56svh,460px)!important;min-height:0!important;padding:8px 8px 12px!important;font-size:11px!important;line-height:1.48!important;overscroll-behavior:contain}
+  .portfolio-liquid .ps-banner{margin-bottom:17px!important}
+  .portfolio-liquid .ps-turn{margin-bottom:16px!important}
+  .portfolio-liquid .ps-input-line{padding-bottom:8px!important}
+}
+
+@media(max-width:430px){
+  .hero{padding-top:5px!important}
+  .hero-bar{font-size:11px}
+  .portfolio-liquid .ps-stage{padding-top:44px!important}
+  .portfolio-liquid .ps-console{height:min(52svh,420px)!important;font-size:10.5px!important}
+}
+
+@media(max-width:900px) and (max-height:520px) and (orientation:landscape){
+  .hero{padding-bottom:10px!important}
+  .laptop{width:min(calc(100vw - 10px),132svh,620px)!important}
+  .portfolio-liquid .ps-stage{padding-top:42px!important}
+  .portfolio-liquid .ps-console{height:62svh!important}
+}

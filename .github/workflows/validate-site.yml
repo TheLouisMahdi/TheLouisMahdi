@@ -33,7 +33,9 @@ jobs:
           test -f index.html
           test -f EKA_COMMANDS.txt
           test -f css/runtime.css
+          test -f css/mobile-fit.css
           test -f js/app.js
+          test -f js/mobile-layout.js
           test -f js/interaction.js
           test -f js/vfs.js
           test -f js/python.js
@@ -80,3 +82,4 @@ jobs:
           curl -fsS http://127.0.0.1:4173/ > /dev/null
           node tests/browser.mjs
           node tests/browser-regression.mjs
+          node tests/mobile-layout.mjs

@@ -42,11 +42,19 @@ jobs:
           test -f js/receipt.js
           test -f js/system.js
           test -f js/system-apps.js
+          test -f js/app-registry.js
+          test -f js/html.js
+          test -f js/notepad.js
+          test -f js/calculator.js
+          test -f js/browser.js
+          test -f js/run.js
           grep -q 'type="module" src="js/app.js"' index.html
           grep -q 'loadPyodide' js/python-worker.js
           grep -q 'Eka Command Deck.txt' EKA_COMMANDS.txt
       - name: Run simulator smoke checks
         run: node tests/smoke.mjs
+      - name: Run core regression checks
+        run: node tests/core.mjs
       - name: Install browser test tooling
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0
@@ -66,3 +74,4 @@ jobs:
           done
           curl -fsS http://127.0.0.1:4173/ > /dev/null
           node tests/browser.mjs
+          node tests/browser-regression.mjs

@@ -9,6 +9,9 @@ const read=path=>readFileSync(resolve(root,path),"utf8")
 const index=read("index.html")
 const app=read("js/app.js")
 const apps=read("js/apps.js")
+const appRegistry=read("js/app-registry.js")
+const notepad=read("js/notepad.js")
+const calculator=read("js/calculator.js")
 const data=read("js/data.js")
 const explorer=read("js/explorer.js")
 const system=read("js/system.js")
@@ -40,14 +43,14 @@ for(const id of["bootScreen","welcomeScreen","lockScreen","shutdownScreen","powe
 }
 
 for(const appName of["paint","wordpad","sticky","snipping","media","control","devices","taskmanager","minesweeper","systeminfo","charmap","keyboard","help"]){
-  assert.match(app,new RegExp(`${appName}:`),`missing app mapping: ${appName}`)
+  assert.match(appRegistry,new RegExp(`${appName}:`),`missing app mapping: ${appName}`)
   assert.match(systemApps,new RegExp(`windowNode\\(["']${appName}["']`),`missing app window: ${appName}`)
 }
 for(const appName of["solitaire","freecell","chess"]){
-  assert.match(app,new RegExp(`${appName}:`),`missing game mapping: ${appName}`)
+  assert.match(appRegistry,new RegExp(`${appName}:`),`missing game mapping: ${appName}`)
   assert.match(games,new RegExp(`gameWindow\\(["']${appName}["']`),`missing game window: ${appName}`)
 }
-assert.match(app,/comfy:"comfyWindow"/,"missing Comfy Cakes app mapping")
+assert.match(appRegistry,/comfy:"comfyWindow"/,"missing Comfy Cakes app mapping")
 assert.ok(app.includes("mountComfyCakes()")&&app.includes("initComfyCakes()"),"Comfy Cakes must mount and initialize")
 assert.ok(comfy.includes('section.id="comfyWindow"')&&comfy.includes("Games · Purble Place"),"Purble Place window or Start entry is missing")
 assert.ok(comfy.includes("Select Difficulty")&&comfy.includes("Beginner")&&comfy.includes("Intermediate")&&comfy.includes("Advanced"),"Comfy Cakes difficulty dialog is incomplete")
@@ -71,8 +74,8 @@ for(const name of comfySounds){const sound=readFileSync(resolve(root,`games/comf
 const comfyManifest=JSON.parse(read("docs/comfy-cakes-original-resource-manifest.json"));assert.equal(comfyManifest.length,354,"original Comfy Cakes manifest must cover every matched resource")
 
 for(const shortcut of['key==="l"','key==="r"','key==="e"','"arrowleft"','event.key==="Pause"'])assert.ok(app.includes(shortcut),`missing shortcut ${shortcut}`)
-assert.ok(apps.includes("askSaveAs"),"Notepad must use the common Save As dialog")
-assert.ok(apps.includes("askOpenFile"),"Notepad must expose Open")
+assert.ok(notepad.includes("askSaveAs"),"Notepad must use the common Save As dialog")
+assert.ok(notepad.includes("askOpenFile"),"Notepad must expose Open")
 assert.ok(system.includes('setState("off")'),"power state machine is incomplete")
 assert.ok(receipt.includes("Tear the current receipt before printing another."),"manual tear guard is missing")
 assert.ok(!app.includes("setTimeout(printReceipt"),"receipt must not print on page load")
@@ -113,10 +116,17 @@ for(const appName of["Private Character Editor","Windows Journal","Windows Power
 for(const control of["windows-features","biometric","credential-manager","tablet-settings","windows-defender"])assert.ok(controlPages.includes(control),`missing documented Control Panel surface: ${control}`)
 for(const tab of["applications","processes","services","performance","networking","users"])assert.ok(taskManager.includes(`\"${tab}\"`),`Task Manager is missing ${tab}`)
 assert.ok(index.includes("Windows 7 Professional")&&systemApps.includes("32-bit Operating System")&&terminal.includes("6.1.7600 Build 7600"),"the locked Professional x86 RTM profile is inconsistent")
-assert.ok(apps.includes("Scientific")&&apps.includes("Programmer")&&apps.includes("Statistics"),"Calculator modes are incomplete")
+assert.ok(calculator.includes("Scientific")&&calculator.includes("Programmer")&&calculator.includes("Statistics"),"Calculator modes are incomplete")
 assert.ok(app.includes("pointerenter")&&app.includes("Connect to a Projector"),"Aero Peek or Win+P integration is incomplete")
 
 const ids=[...index.matchAll(/\sid=["']([^"']+)["']/g)].map(match=>match[1])
 assert.equal(new Set(ids).size,ids.length,"duplicate static DOM id")
 
 console.log("Windows 7 simulator smoke checks passed")
+
+assert.ok(appRegistry.includes("APP_WINDOWS"),"central app registry is missing")
+assert.ok(read("js/window-manager.js").includes("setCloseGuard")&&read("js/window-manager.js").includes("isWindowActive"),"window manager state/close guards are missing")
+assert.ok(read("js/html.js").includes("escapeHtml"),"HTML escaping helper is missing")
+
+assert.ok(read("index.html").includes('css/runtime.css" data-win7-runtime'),"runtime CSS must be render-blocking to prevent desktop flash before boot")
+assert.ok(read("js/app.js").indexOf("initSystem()")<read("js/app.js").indexOf("mountRuntimeWindows()"),"system boot must start before application initialization")

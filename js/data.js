@@ -69,7 +69,8 @@ export const FILE_SYSTEM={
     {name:"github.url",type:"github",external:PROFILE.github}
   ]},
   downloads:{title:"Downloads",path:"C:\\Users\\Eka\\Downloads",type:"folder",items:REPOSITORIES.slice(0,3).map(repo=>({name:`${repo.name}.zip`,type:"zip",external:zip(repo.name)}))},
-  users:{title:"Users",path:"C:\\Users",type:"folder",items:[{name:"Eka",type:"folder",target:"desktop"}]},
+  users:{title:"Users",path:"C:\\Users",type:"folder",items:[{name:"Eka",type:"folder",target:"userhome"}]},
+  userhome:{title:"Eka",path:"C:\\Users\\Eka",type:"folder",items:[{name:"Desktop",type:"folder",target:"desktop"},{name:"Documents",type:"folder",target:"documents"},{name:"Downloads",type:"folder",target:"downloads"},{name:"Pictures",type:"photo",target:"pictures"}]},
   programfiles:{title:"Program Files",path:"C:\\Program Files",type:"folder",items:[
     {name:"Windows PowerShell",type:"folder",target:"powershellFolder"},
     {name:"Internet Explorer",type:"folder",target:"ieFolder"},
@@ -78,7 +79,7 @@ export const FILE_SYSTEM={
   ]},
   powershellFolder:{title:"Windows PowerShell",path:"C:\\Program Files\\WindowsPowerShell",type:"folder",items:[{name:"v1.0",type:"folder",target:"psV1"}]},
   psV1:{title:"v1.0",path:"C:\\Program Files\\WindowsPowerShell\\v1.0",type:"folder",items:[{name:"powershell.exe",type:"powershell",app:"powershell"}]},
-  ieFolder:{title:"Internet Explorer",path:"C:\\Program Files\\Internet Explorer",type:"folder",items:[{name:"iexplore.exe",type:"link",external:PROFILE.github}]},
+  ieFolder:{title:"Internet Explorer",path:"C:\\Program Files\\Internet Explorer",type:"folder",items:[{name:"iexplore.exe",type:"link",app:"browser"}]},
   windows:{title:"Windows",path:"C:\\Windows",type:"folder",items:[
     {name:"System32",type:"folder",target:"system32"},
     {name:"explorer.exe",type:"computer",app:"explorer"},

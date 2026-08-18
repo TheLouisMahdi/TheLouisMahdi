@@ -2,14 +2,24 @@ import{closeAllWindows}from"./window-manager.js"
 
 const byId=id=>document.getElementById(id)
 const timers=new Set()
+const BOOT_TIMING={bios:1900,welcome:6500,desktop:8200,continueWelcome:4500,continueDesktop:6100,shutdown:3200}
 let state="off"
+let biosDefaultHtml=""
+let initialized=false
 
 function later(fn,delay){const timer=setTimeout(()=>{timers.delete(timer);fn()},delay);timers.add(timer);return timer}
 function clearTimers(){timers.forEach(clearTimeout);timers.clear()}
 function hideScreens(){document.querySelectorAll(".system-screen").forEach(node=>node.classList.add("hidden"))}
 function setState(next){state=next;window.dispatchEvent(new CustomEvent("win7:system-state",{detail:next}))}
-
+function setPowered(powered){document.documentElement.classList.toggle("system-powered",powered)}
 function show(id){hideScreens();byId(id)?.classList.remove("hidden")}
+
+function restoreBiosPanel(){
+  const panel=byId("biosPanel")
+  if(!panel)return
+  if(biosDefaultHtml)panel.innerHTML=biosDefaultHtml
+  panel.classList.remove("bios-setup")
+}
 
 function showWelcome(message="Welcome"){
   show("welcomeScreen")
@@ -20,13 +30,15 @@ function showWelcome(message="Welcome"){
 export function bootSystem(){
   if(state==="booting"||state==="running")return
   clearTimers()
+  restoreBiosPanel()
+  setPowered(true)
   setState("booting")
   show("bootScreen")
   byId("biosPanel")?.classList.remove("hidden")
   byId("windowsBoot")?.classList.add("hidden")
-  later(()=>{byId("biosPanel")?.classList.add("hidden");byId("windowsBoot")?.classList.remove("hidden")},1250)
-  later(()=>showWelcome("Welcome"),3850)
-  later(()=>{hideScreens();setState("running")},4850)
+  later(()=>{byId("biosPanel")?.classList.add("hidden");byId("windowsBoot")?.classList.remove("hidden")},BOOT_TIMING.bios)
+  later(()=>showWelcome("Welcome"),BOOT_TIMING.welcome)
+  later(()=>{hideScreens();setState("running")},BOOT_TIMING.desktop)
 }
 
 export function lockSystem(message="Locked · click to unlock"){
@@ -62,9 +74,10 @@ export function powerOff(action="shutdown"){
   later(()=>{
     if(action==="restart"){setState("off");bootSystem();return}
     setState("off")
+    setPowered(false)
     show("powerOffScreen")
     byId("powerOffScreen").querySelector("small").textContent="Press the laptop power button to start"
-  },1650)
+  },BOOT_TIMING.shutdown)
 }
 
 function mountSecurityScreen(){
@@ -113,8 +126,8 @@ function continueBoot(){
   panel?.classList.remove("bios-setup")
   panel?.classList.add("hidden")
   byId("windowsBoot")?.classList.remove("hidden")
-  later(()=>showWelcome("Welcome"),2100)
-  later(()=>{hideScreens();setState("running")},3000)
+  later(()=>showWelcome("Welcome"),BOOT_TIMING.continueWelcome)
+  later(()=>{hideScreens();setState("running")},BOOT_TIMING.continueDesktop)
 }
 
 function tickLock(){
@@ -135,6 +148,9 @@ function handlePower(action){
 export function systemState(){return state}
 
 export function initSystem(){
+  if(initialized)return
+  initialized=true
+  biosDefaultHtml=byId("biosPanel")?.innerHTML||""
   mountSecurityScreen()
   tickLock()
   setInterval(tickLock,1000)
@@ -155,5 +171,8 @@ export function initSystem(){
   })
   document.addEventListener("click",event=>{if(!event.target.closest(".start-power"))byId("powerMenu")?.classList.add("hidden")})
   window.addEventListener("win7:power",event=>handlePower(event.detail))
-  bootSystem()
+  clearTimers()
+  setPowered(false)
+  setState("off")
+  show("powerOffScreen")
 }

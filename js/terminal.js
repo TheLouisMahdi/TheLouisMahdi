@@ -1,6 +1,6 @@
 import{FILE_SYSTEM,PROFILE,profileText}from"./data.js"
 import{navigate,resolveFolderFromPath}from"./explorer.js"
-import{openWindow}from"./window-manager.js"
+import{closeWindow,openWindow}from"./window-manager.js"
 import{copyPath,deletePath,fileName,getEntry,listVirtual,makeFolder,movePath,readFile,renamePath,resolvePath,roots,writeFile}from"./vfs.js"
 import{getPythonVersion,runPythonFile}from"./python.js"
 
@@ -269,14 +269,14 @@ async function runCmd(line){
     if(!result)append("cmdOutput","The system cannot find the file specified or the destination already exists.")
     return
   }
-  if(command==="del"||command==="erase"){if(!parts.length||!deletePath(parts[0],cmdPath))append("cmdOutput","Could Not Find the specified file.");return}
+  if(command==="del"||command==="erase"){const target=parts.length?resolvePath(cmdPath,parts[0]):null,entry=target?getEntry(target):null;if(!entry||entry.kind==="folder"||!deletePath(target))append("cmdOutput","Could Not Find the specified file.");return}
   if(command==="mkdir"||command==="md"){if(!arg||!makeFolder(arg,cmdPath))append("cmdOutput","A subdirectory or file already exists.");return}
-  if(command==="rmdir"||command==="rd"){if(!arg||!deletePath(arg,cmdPath))append("cmdOutput","The directory is not empty or could not be found.");return}
+  if(command==="rmdir"||command==="rd"){const target=arg?resolvePath(cmdPath,arg):null,entry=target?getEntry(target):null;if(!entry||entry.kind!=="folder"||!deletePath(target))append("cmdOutput","The directory is not empty or could not be found.");return}
   if(command==="start"){if(!openTarget(arg,cmdPath))append("cmdOutput",`Windows cannot find '${arg}'.`);return}
   if(command==="explorer"){window.dispatchEvent(new CustomEvent("win7:explorer-path",{detail:arg||cmdPath}));return}
   if(command==="notepad"){
     const full=arg?resolvePath(cmdPath,arg):resolvePath(DESKTOP,"Untitled.txt")
-    if(arg&&readFile(full)===null)writeFile(full,"")
+    if(arg&&readFile(full)===null&&!writeFile(full,"")){append("cmdOutput","The system cannot find the path specified.");return}
     if(arg)window.dispatchEvent(new CustomEvent("win7:open-file",{detail:{path:full,forceNotepad:true}}));else openApp("notepad")
     return
   }
@@ -304,7 +304,7 @@ async function runCmd(line){
   if(command==="telegram"){window.open(PROFILE.telegramUrl,"_blank","noopener,noreferrer");return}
   if(command==="projects"){navigate("projects");return}
   if(command==="profile"){append("cmdOutput",profileText());return}
-  if(command==="exit"){document.getElementById("cmdWindow").classList.add("hidden");return}
+  if(command==="exit"){void closeWindow(byId("cmdWindow"));return}
   append("cmdOutput",`'${commandRaw}' is not recognized as an internal or external command,\noperable program or batch file.`)
 }
 
@@ -370,12 +370,13 @@ async function runPs(line){
   if(lower==="set-content"||lower==="add-content"){
     if(parts.length<2){append("psOutput",`${raw} : Missing an argument for parameter content.`);return}
     const path=parts[0],content=parts.slice(1).join(" "),old=lower==="add-content"?fileText(path,psPath)||"":""
-    writeFile(path,`${old}${old?"\n":""}${content}`,psPath);return
+    if(!writeFile(path,`${old}${old?"\n":""}${content}`,psPath))append("psOutput",`${raw} : Could not write to the specified path.`);return
   }
   if(lower==="new-item"){
     if(!parts.length){append("psOutput","New-Item : A path is required.");return}
     const isDir=parts.some(part=>part.toLowerCase()==="directory")||trimmed.toLowerCase().includes("-itemtype directory")
-    if(isDir)makeFolder(parts[0],psPath);else writeFile(parts[0],"",psPath)
+    const created=isDir?makeFolder(parts[0],psPath):writeFile(parts[0],"",psPath)
+    if(!created){append("psOutput",`New-Item : Could not create '${parts[0]}' in the specified path.`);return}
     append("psOutput",`    Directory: ${psPath}\n\nMode LastWriteTime Length Name\n---- ------------- ------ ----\n${isDir?"d----":"-a---"} ${new Date().toLocaleDateString()}      ${fileName(resolvePath(psPath,parts[0]))}`);return
   }
   if(lower==="remove-item"){if(!parts.length||!deletePath(parts[0],psPath))append("psOutput",`Remove-Item : Cannot find or remove '${arg}'.`);return}

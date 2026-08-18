@@ -1,0 +1,30 @@
+export const APP_WINDOWS=Object.freeze({
+  explorer:"explorerWindow",
+  cmd:"cmdWindow",
+  powershell:"psWindow",
+  notepad:"notepadWindow",
+  calculator:"calculatorWindow",
+  run:"runWindow",
+  image:"imageWindow",
+  browser:"browserWindow",
+  paint:"paintWindow",
+  wordpad:"wordpadWindow",
+  sticky:"stickyWindow",
+  snipping:"snippingWindow",
+  media:"mediaWindow",
+  control:"controlWindow",
+  devices:"devicesWindow",
+  taskmanager:"taskmanagerWindow",
+  minesweeper:"minesweeperWindow",
+  solitaire:"solitaireWindow",
+  freecell:"freecellWindow",
+  chess:"chessWindow",
+  comfy:"comfyWindow",
+  systeminfo:"systeminfoWindow",
+  charmap:"charmapWindow",
+  keyboard:"keyboardWindow",
+  help:"helpWindow",
+  accessory:"accessoryWindow"
+})
+
+export function windowIdForApp(app){return APP_WINDOWS[app]||null}

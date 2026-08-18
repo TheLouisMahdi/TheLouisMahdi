@@ -62,6 +62,42 @@ jobs:
         run: node tests/core.mjs
       - name: Run Workers AI regression check
         run: node tests/ai-worker.mjs
+      - name: Probe live Profile AI
+        shell: bash
+        run: |
+          set -u
+          BASE="https://eka-profile-ai.poimu80.workers.dev"
+
+          echo "=== HEALTH ==="
+          health_status="$(curl -sS -o /tmp/ai-health.json -D /tmp/ai-health.headers -w '%{http_code}' "$BASE/health" || true)"
+          cat /tmp/ai-health.headers 2>/dev/null || true
+          cat /tmp/ai-health.json 2>/dev/null || true
+          echo
+          echo "health_status=$health_status"
+
+          echo "=== CORS PREFLIGHT ==="
+          options_status="$(curl -sS -o /tmp/ai-options.txt -D /tmp/ai-options.headers -w '%{http_code}' -X OPTIONS "$BASE/api/chat" \
+            -H 'Origin: https://thelouismahdi.github.io' \
+            -H 'Access-Control-Request-Method: POST' \
+            -H 'Access-Control-Request-Headers: content-type' || true)"
+          cat /tmp/ai-options.headers 2>/dev/null || true
+          cat /tmp/ai-options.txt 2>/dev/null || true
+          echo
+          echo "options_status=$options_status"
+
+          echo "=== LIVE CHAT ==="
+          chat_status="$(curl -sS -o /tmp/ai-chat.json -D /tmp/ai-chat.headers -w '%{http_code}' -X POST "$BASE/api/chat" \
+            -H 'Origin: https://thelouismahdi.github.io' \
+            -H 'Content-Type: application/json' \
+            --data '{"message":"Reply briefly: what does Mahdi work on?","history":[]}' || true)"
+          cat /tmp/ai-chat.headers 2>/dev/null || true
+          cat /tmp/ai-chat.json 2>/dev/null || true
+          echo
+          echo "chat_status=$chat_status"
+
+          test "$health_status" = "200"
+          test "$options_status" = "204"
+          test "$chat_status" = "200"
       - name: Install browser test tooling
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0

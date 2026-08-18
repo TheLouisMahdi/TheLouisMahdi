@@ -11,6 +11,7 @@ Contact: GitHub TheLouisMahdi; Telegram @thelouis_mahdi.
 
 const json=(body,status=200,headers={})=>new Response(JSON.stringify(body),{status,headers:{"content-type":"application/json;charset=UTF-8","cache-control":"no-store",...headers}});
 const clean=value=>String(value??"").trim().slice(0,600);
+const modelText=result=>clean(result?.choices?.[0]?.message?.content??result?.choices?.[0]?.text??result?.response??result?.result?.response);
 
 function cors(request,env){
   const origin=request.headers.get("origin")||"";
@@ -45,13 +46,14 @@ export default{
     try{
       const result=await env.AI.run(env.MODEL||"@cf/zai-org/glm-4.7-flash",{
         messages:[{role:"system",content:system},...history,{role:"user",content:message}],
-        max_tokens:220,
+        max_completion_tokens:220,
         temperature:.35
       });
-      const answer=clean(result?.response);
+      const answer=modelText(result);
       if(!answer)throw new Error("empty_model_response");
       return json({answer,model:env.MODEL},200,headers);
-    }catch{
+    }catch(error){
+      console.error("Workers AI request failed",error);
       return json({error:"ai_unavailable"},503,headers);
     }
   }

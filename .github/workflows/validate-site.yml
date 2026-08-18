@@ -25,7 +25,7 @@ jobs:
           set -euo pipefail
           while IFS= read -r -d '' file; do
             node --check "$file"
-          done < <(find js ai-worker/src -type f -name '*.js' -print0)
+          done < <(find js ai-worker/src tests -type f \( -name '*.js' -o -name '*.mjs' \) -print0)
       - name: Check required site files
         shell: bash
         run: |
@@ -62,13 +62,13 @@ jobs:
         run: node tests/core.mjs
       - name: Run Workers AI regression check
         run: node tests/ai-worker.mjs
-      - name: Probe Workers AI REST directly
+      - name: Probe exact Workers AI payload
         shell: bash
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          set -u
+          set -euo pipefail
           if [ -z "${CLOUDFLARE_API_TOKEN:-}" ] || [ -z "${CLOUDFLARE_ACCOUNT_ID:-}" ]; then
             echo "Cloudflare secrets are unavailable to this workflow."
             exit 2
@@ -78,27 +78,53 @@ jobs:
           ACCOUNT_ID="$(printf '%s' "$CLOUDFLARE_ACCOUNT_ID" | tr -d '[:space:]')"
           clean_account_len="$(printf '%s' "$ACCOUNT_ID" | wc -c | tr -d ' ')"
           TOKEN="$(printf '%s' "$CLOUDFLARE_API_TOKEN" | tr -d '[:space:]')"
-          raw_token_len="$(printf '%s' "$CLOUDFLARE_API_TOKEN" | wc -c | tr -d ' ')"
-          clean_token_len="$(printf '%s' "$TOKEN" | wc -c | tr -d ' ')"
-
           echo "account_id_raw_length=$raw_account_len"
           echo "account_id_clean_length=$clean_account_len"
           echo "account_id_whitespace_removed=$([ "$raw_account_len" = "$clean_account_len" ] && echo no || echo yes)"
-          if [[ "$ACCOUNT_ID" =~ ^[0-9a-fA-F]{32}$ ]]; then echo "account_id_shape=valid"; else echo "account_id_shape=invalid"; fi
-          echo "api_token_raw_length=$raw_token_len"
-          echo "api_token_clean_length=$clean_token_len"
-          echo "api_token_whitespace_removed=$([ "$raw_token_len" = "$clean_token_len" ] && echo no || echo yes)"
+          [[ "$ACCOUNT_ID" =~ ^[0-9a-fA-F]{32}$ ]] && echo "account_id_shape=valid" || echo "account_id_shape=invalid"
 
-          status="$(curl -sS -o /tmp/cf-ai.json -D /tmp/cf-ai.headers -w '%{http_code}' \
-            "https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/ai/run/@cf/zai-org/glm-4.7-flash" \
-            -X POST \
-            -H "Authorization: Bearer ${TOKEN}" \
-            -H 'Content-Type: application/json' \
-            --data '{"messages":[{"role":"system","content":"Reply concisely."},{"role":"user","content":"Say profile AI direct test OK."}],"max_completion_tokens":40}' || true)"
-          cat /tmp/cf-ai.headers 2>/dev/null || true
-          cat /tmp/cf-ai.json 2>/dev/null || true
-          echo
-          echo "direct_ai_status=$status"
+          node tests/capture-ai-input.mjs
+          cp /tmp/current-ai-input.json /tmp/low-ai-input.json
+          cp /tmp/current-ai-input.json /tmp/low512-ai-input.json
+          node -e 'const fs=require("fs");const p="/tmp/low-ai-input.json";const x=JSON.parse(fs.readFileSync(p));x.reasoning_effort="low";fs.writeFileSync(p,JSON.stringify(x))'
+          node -e 'const fs=require("fs");const p="/tmp/low512-ai-input.json";const x=JSON.parse(fs.readFileSync(p));x.reasoning_effort="low";x.max_completion_tokens=512;fs.writeFileSync(p,JSON.stringify(x))'
+
+          run_case(){
+            label="$1"
+            payload="$2"
+            output="/tmp/${label}-response.json"
+            status="$(curl -sS -o "$output" -w '%{http_code}' \
+              "https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/ai/run/@cf/zai-org/glm-4.7-flash" \
+              -X POST \
+              -H "Authorization: Bearer ${TOKEN}" \
+              -H 'Content-Type: application/json' \
+              --data-binary "@${payload}" || true)"
+            echo "=== ${label}: HTTP ${status} ==="
+            node - "$output" <<'NODE'
+          const fs=require("fs")
+          const path=process.argv[2]
+          const data=JSON.parse(fs.readFileSync(path,"utf8"))
+          const result=data.result||data
+          const choice=result.choices?.[0]||{}
+          const message=choice.message||{}
+          const content=typeof message.content==="string"?message.content:""
+          const reasoning=typeof message.reasoning_content==="string"?message.reasoning_content:typeof message.reasoning==="string"?message.reasoning:""
+          console.log(JSON.stringify({
+            success:data.success,
+            errors:data.errors,
+            finish_reason:choice.finish_reason,
+            content_present:Boolean(content.trim()),
+            content:content||null,
+            reasoning_chars:reasoning.length,
+            completion_tokens:result.usage?.completion_tokens,
+            neurons:result.usage?.neurons
+          },null,2))
+          NODE
+          }
+
+          run_case current220 /tmp/current-ai-input.json
+          run_case low220 /tmp/low-ai-input.json
+          run_case low512 /tmp/low512-ai-input.json
       - name: Probe live Profile AI
         shell: bash
         run: |
@@ -107,7 +133,6 @@ jobs:
 
           echo "=== HEALTH ==="
           health_status="$(curl -sS -o /tmp/ai-health.json -D /tmp/ai-health.headers -w '%{http_code}' "$BASE/health" || true)"
-          cat /tmp/ai-health.headers 2>/dev/null || true
           cat /tmp/ai-health.json 2>/dev/null || true
           echo
           echo "health_status=$health_status"
@@ -117,9 +142,7 @@ jobs:
             -H 'Origin: https://thelouismahdi.github.io' \
             -H 'Access-Control-Request-Method: POST' \
             -H 'Access-Control-Request-Headers: content-type' || true)"
-          cat /tmp/ai-options.headers 2>/dev/null || true
-          cat /tmp/ai-options.txt 2>/dev/null || true
-          echo
+          grep -i '^access-control-' /tmp/ai-options.headers 2>/dev/null || true
           echo "options_status=$options_status"
 
           echo "=== LIVE CHAT ==="
@@ -127,7 +150,6 @@ jobs:
             -H 'Origin: https://thelouismahdi.github.io' \
             -H 'Content-Type: application/json' \
             --data '{"message":"Reply briefly: what does Mahdi work on?","history":[]}' || true)"
-          cat /tmp/ai-chat.headers 2>/dev/null || true
           cat /tmp/ai-chat.json 2>/dev/null || true
           echo
           echo "chat_status=$chat_status"

@@ -4,14 +4,34 @@ const snapModes=new WeakMap()
 const desktopHidden=new Map()
 const closeGuards=new WeakMap()
 
-function screenBounds(){return document.querySelector("#desktop").getBoundingClientRect()}
-function taskbarHeight(){return document.querySelector("#taskbar")?.getBoundingClientRect().height||39}
+function desktopSpace(){
+  const desktop=document.querySelector("#desktop"),rect=desktop.getBoundingClientRect()
+  const width=desktop.clientWidth,height=desktop.clientHeight
+  return{rect,width,height,scaleX:width/Math.max(1,rect.width),scaleY:height/Math.max(1,rect.height),taskbar:document.querySelector("#taskbar")?.offsetHeight||39}
+}
+function pointerPosition(event,space=desktopSpace()){return{x:(event.clientX-space.rect.left)*space.scaleX,y:(event.clientY-space.rect.top)*space.scaleY}}
+function taskbarHeight(){return document.querySelector("#taskbar")?.offsetHeight||39}
 function taskButton(app){return app?document.querySelector(`[data-task="${app}"]`):null}
 function currentGeometry(win){return{left:win.style.left||`${win.offsetLeft}px`,top:win.style.top||`${win.offsetTop}px`,width:win.style.width||`${win.offsetWidth}px`,height:win.style.height||`${win.offsetHeight}px`}}
 function applyGeometry(win,value){if(value)Object.assign(win.style,value)}
 function rememberNormal(win){if(!normalGeometry.has(win))normalGeometry.set(win,currentGeometry(win))}
 function setNormalFromCurrent(win){normalGeometry.set(win,currentGeometry(win))}
 function clearMode(win){win.classList.remove("maximized");snapModes.delete(win)}
+function constrainWindow(win,{resize=true}={}){
+  if(!win||win.classList.contains("hidden")||win.classList.contains("maximized")||snapModes.has(win))return
+  const space=desktopSpace(),maxWidth=Math.max(1,space.width),maxHeight=Math.max(1,space.height-space.taskbar)
+  if(resize&&win.offsetWidth>maxWidth)win.style.width=`${maxWidth}px`
+  if(resize&&win.offsetHeight>maxHeight)win.style.height=`${maxHeight}px`
+  const left=Math.max(0,Math.min(win.offsetLeft,Math.max(0,maxWidth-win.offsetWidth)))
+  const top=Math.max(0,Math.min(win.offsetTop,Math.max(0,maxHeight-win.offsetHeight)))
+  win.style.left=`${left}px`;win.style.top=`${top}px`
+}
+function focusConsoleInput(win,event){
+  if(!win.classList.contains("console-window")||event.target.closest("[data-drag-handle],.win-controls"))return
+  const selection=window.getSelection?.();if(selection&&!selection.isCollapsed)return
+  const input=win.querySelector(".console-input-row input");if(!input)return
+  input.focus({preventScroll:true});const end=input.value.length;input.setSelectionRange?.(end,end)
+}
 
 export function visibleWindows(){
   return [...document.querySelectorAll(".window:not(.hidden)")]
@@ -53,6 +73,7 @@ export function openWindow(id){
   if(!win)return
   desktopHidden.delete(win)
   win.classList.remove("hidden")
+  constrainWindow(win)
   setTask(win.dataset.app,true)
   bringToFront(win)
   const input=win.querySelector("input,textarea")
@@ -95,6 +116,8 @@ function restoreNormal(win,{activate=true}={}){
   if(!win)return
   clearMode(win)
   applyGeometry(win,normalGeometry.get(win))
+  constrainWindow(win)
+  setNormalFromCurrent(win)
   if(activate)bringToFront(win)
 }
 
@@ -128,12 +151,13 @@ export function snapWindow(win,direction){
 export function cascadeWindows(){
   const wins=visibleWindows()
   if(!wins.length)return
-  const bounds=screenBounds(),bottom=taskbarHeight(),step=24
-  const width=Math.max(280,Math.min(bounds.width*.72,bounds.width-step*Math.max(0,wins.length-1)-12))
-  const height=Math.max(180,Math.min((bounds.height-bottom)*.72,bounds.height-bottom-step*Math.max(0,wins.length-1)-12))
+  const space=desktopSpace(),bottom=space.taskbar,step=24
+  const width=Math.max(280,Math.min(space.width*.72,space.width-step*Math.max(0,wins.length-1)-12))
+  const height=Math.max(180,Math.min((space.height-bottom)*.72,space.height-bottom-step*Math.max(0,wins.length-1)-12))
   wins.forEach((win,index)=>{
     clearMode(win)
     Object.assign(win.style,{left:`${8+index*step}px`,top:`${8+index*step}px`,width:`${width}px`,height:`${height}px`})
+    constrainWindow(win)
     setNormalFromCurrent(win)
     bringToFront(win)
   })
@@ -158,50 +182,48 @@ function dragWindow(win,handle){
   let shakeStarted=0
   handle.addEventListener("pointerdown",event=>{
     if(event.target.closest(".win-controls"))return
-    const bounds=screenBounds()
-    const before=win.getBoundingClientRect()
-    const ratioX=Math.max(0,Math.min(1,(event.clientX-before.left)/Math.max(1,before.width)))
+    const space=desktopSpace(),point=pointerPosition(event,space)
+    const ratioX=Math.max(0,Math.min(1,(point.x-win.offsetLeft)/Math.max(1,win.offsetWidth)))
     const wasManaged=win.classList.contains("maximized")||snapModes.has(win)
     if(wasManaged){
       rememberNormal(win)
       restoreNormal(win,{activate:false})
-      const restored=win.getBoundingClientRect()
-      const left=Math.max(0,Math.min(event.clientX-bounds.left-restored.width*ratioX,bounds.width-restored.width))
-      const top=Math.max(0,Math.min(event.clientY-bounds.top-14,bounds.height-restored.height-taskbarHeight()))
+      const left=Math.max(0,Math.min(point.x-win.offsetWidth*ratioX,space.width-win.offsetWidth))
+      const top=Math.max(0,Math.min(point.y-14,space.height-win.offsetHeight-space.taskbar))
       win.style.left=`${left}px`
       win.style.top=`${top}px`
     }
     active=true
-    const rect=win.getBoundingClientRect()
-    offsetX=event.clientX-rect.left
-    offsetY=event.clientY-rect.top
-    lastX=event.clientX;lastDirection=0;reversals=0;shakeStarted=performance.now()
+    offsetX=point.x-win.offsetLeft
+    offsetY=point.y-win.offsetTop
+    lastX=point.x;lastDirection=0;reversals=0;shakeStarted=performance.now()
     handle.setPointerCapture(event.pointerId)
     bringToFront(win)
   })
   handle.addEventListener("pointermove",event=>{
     if(!active)return
-    const bounds=screenBounds()
-    const x=Math.max(0,Math.min(event.clientX-bounds.left-offsetX,bounds.width-win.offsetWidth))
-    const y=Math.max(0,Math.min(event.clientY-bounds.top-offsetY,bounds.height-win.offsetHeight-taskbarHeight()))
+    const space=desktopSpace(),point=pointerPosition(event,space)
+    const x=Math.max(0,Math.min(point.x-offsetX,space.width-win.offsetWidth))
+    const y=Math.max(0,Math.min(point.y-offsetY,space.height-win.offsetHeight-space.taskbar))
     win.style.left=`${x}px`
     win.style.top=`${y}px`
-    const delta=event.clientX-lastX,direction=Math.sign(delta)
+    const delta=point.x-lastX,direction=Math.sign(delta)
     if(Math.abs(delta)>10&&direction&&lastDirection&&direction!==lastDirection)reversals+=1
     if(Math.abs(delta)>10&&direction)lastDirection=direction
-    lastX=event.clientX
+    lastX=point.x
     if(reversals>=3&&performance.now()-shakeStarted<850){minimizeOthers(win);reversals=0;shakeStarted=performance.now()}
   })
   const stop=event=>{
     if(!active)return
     active=false
     if(event){
-      const bounds=screenBounds(),x=event.clientX-bounds.left,y=event.clientY-bounds.top
-      if(y<12){snapWindow(win,"up");return}
-      if(x<12){snapWindow(win,"left");return}
-      if(x>bounds.width-12){snapWindow(win,"right");return}
+      const space=desktopSpace(),point=pointerPosition(event,space)
+      if(point.y<12){snapWindow(win,"up");return}
+      if(point.x<12){snapWindow(win,"left");return}
+      if(point.x>space.width-12){snapWindow(win,"right");return}
     }
     clearMode(win)
+    constrainWindow(win)
     setNormalFromCurrent(win)
   }
   handle.addEventListener("pointerup",stop)
@@ -215,17 +237,18 @@ function resizeWindow(win){
     handle.addEventListener("pointerdown",event=>{
       if(win.classList.contains("maximized")||snapModes.has(win))return
       event.preventDefault();event.stopPropagation();bringToFront(win);handle.setPointerCapture(event.pointerId)
-      const bounds=screenBounds(),start=win.getBoundingClientRect(),origin={x:event.clientX,y:event.clientY}
+      const space=desktopSpace(),origin=pointerPosition(event,space)
+      const start={left:win.offsetLeft,top:win.offsetTop,width:win.offsetWidth,height:win.offsetHeight}
       const move=next=>{
-        const dx=next.clientX-origin.x,dy=next.clientY-origin.y,minWidth=Math.min(240,bounds.width-12),minHeight=140,bottom=taskbarHeight()
-        let left=start.left-bounds.left,top=start.top-bounds.top,width=start.width,height=start.height
-        if(edge.includes("e"))width=Math.max(minWidth,Math.min(bounds.width-left,start.width+dx))
-        if(edge.includes("s"))height=Math.max(minHeight,Math.min(bounds.height-top-bottom,start.height+dy))
+        const point=pointerPosition(next,space),dx=point.x-origin.x,dy=point.y-origin.y,minWidth=Math.min(240,space.width-12),minHeight=140,bottom=space.taskbar
+        let{left,top,width,height}=start
+        if(edge.includes("e"))width=Math.max(minWidth,Math.min(space.width-left,start.width+dx))
+        if(edge.includes("s"))height=Math.max(minHeight,Math.min(space.height-top-bottom,start.height+dy))
         if(edge.includes("w")){const candidate=Math.max(0,Math.min(left+dx,left+width-minWidth));width+=left-candidate;left=candidate}
         if(edge.includes("n")){const candidate=Math.max(0,Math.min(top+dy,top+height-minHeight));height+=top-candidate;top=candidate}
         Object.assign(win.style,{left:`${left}px`,top:`${top}px`,width:`${width}px`,height:`${height}px`})
       }
-      const stop=()=>{setNormalFromCurrent(win);handle.removeEventListener("pointermove",move);handle.removeEventListener("pointerup",stop);handle.removeEventListener("pointercancel",stop)}
+      const stop=()=>{constrainWindow(win);setNormalFromCurrent(win);handle.removeEventListener("pointermove",move);handle.removeEventListener("pointerup",stop);handle.removeEventListener("pointercancel",stop)}
       handle.addEventListener("pointermove",move);handle.addEventListener("pointerup",stop);handle.addEventListener("pointercancel",stop)
     })
     win.appendChild(handle)
@@ -235,6 +258,7 @@ function resizeWindow(win){
 export function initWindowManager(){
   document.querySelectorAll(".window").forEach(win=>{
     win.addEventListener("pointerdown",()=>bringToFront(win))
+    win.addEventListener("click",event=>focusConsoleInput(win,event))
     const handle=win.querySelector("[data-drag-handle]")
     if(handle)dragWindow(win,handle)
     resizeWindow(win)
@@ -248,6 +272,9 @@ export function initWindowManager(){
       })
     })
   })
+  const desktop=document.querySelector("#desktop")
+  if("ResizeObserver"in window)new ResizeObserver(()=>visibleWindows().forEach(win=>constrainWindow(win))).observe(desktop)
+  else window.addEventListener("resize",()=>visibleWindows().forEach(win=>constrainWindow(win)))
 }
 
 export function showDesktop(){
@@ -256,6 +283,7 @@ export function showDesktop(){
     desktopHidden.clear()
     for(const[win,z]of restore){
       win.classList.remove("hidden")
+      constrainWindow(win)
       setTask(win.dataset.app,true)
       win.style.zIndex=String(z)
       topZ=Math.max(topZ,z)

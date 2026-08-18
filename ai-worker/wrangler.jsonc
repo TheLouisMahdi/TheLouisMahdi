@@ -1,0 +1,14 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "eka-profile-ai",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-18",
+  "workers_dev": true,
+  "ai": {
+    "binding": "AI"
+  },
+  "vars": {
+    "MODEL": "@cf/zai-org/glm-4.7-flash",
+    "FRONTEND_ORIGIN": "https://thelouismahdi.github.io"
+  }
+}

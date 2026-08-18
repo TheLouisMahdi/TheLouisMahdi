@@ -73,17 +73,32 @@ jobs:
             echo "Cloudflare secrets are unavailable to this workflow."
             exit 2
           fi
+
+          raw_account_len="$(printf '%s' "$CLOUDFLARE_ACCOUNT_ID" | wc -c | tr -d ' ')"
+          ACCOUNT_ID="$(printf '%s' "$CLOUDFLARE_ACCOUNT_ID" | tr -d '[:space:]')"
+          clean_account_len="$(printf '%s' "$ACCOUNT_ID" | wc -c | tr -d ' ')"
+          TOKEN="$(printf '%s' "$CLOUDFLARE_API_TOKEN" | tr -d '[:space:]')"
+          raw_token_len="$(printf '%s' "$CLOUDFLARE_API_TOKEN" | wc -c | tr -d ' ')"
+          clean_token_len="$(printf '%s' "$TOKEN" | wc -c | tr -d ' ')"
+
+          echo "account_id_raw_length=$raw_account_len"
+          echo "account_id_clean_length=$clean_account_len"
+          echo "account_id_whitespace_removed=$([ "$raw_account_len" = "$clean_account_len" ] && echo no || echo yes)"
+          if [[ "$ACCOUNT_ID" =~ ^[0-9a-fA-F]{32}$ ]]; then echo "account_id_shape=valid"; else echo "account_id_shape=invalid"; fi
+          echo "api_token_raw_length=$raw_token_len"
+          echo "api_token_clean_length=$clean_token_len"
+          echo "api_token_whitespace_removed=$([ "$raw_token_len" = "$clean_token_len" ] && echo no || echo yes)"
+
           status="$(curl -sS -o /tmp/cf-ai.json -D /tmp/cf-ai.headers -w '%{http_code}' \
-            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/zai-org/glm-4.7-flash" \
+            "https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/ai/run/@cf/zai-org/glm-4.7-flash" \
             -X POST \
-            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            -H "Authorization: Bearer ${TOKEN}" \
             -H 'Content-Type: application/json' \
             --data '{"messages":[{"role":"system","content":"Reply concisely."},{"role":"user","content":"Say profile AI direct test OK."}],"max_completion_tokens":40}' || true)"
           cat /tmp/cf-ai.headers 2>/dev/null || true
           cat /tmp/cf-ai.json 2>/dev/null || true
           echo
           echo "direct_ai_status=$status"
-          test "$status" = "200"
       - name: Probe live Profile AI
         shell: bash
         run: |

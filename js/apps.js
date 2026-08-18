@@ -3,6 +3,7 @@ import{initCalculator}from"./calculator.js"
 import{initNotepad}from"./notepad.js"
 import{initRun}from"./run.js"
 import{initLiquidBiography}from"./portfolio-liquid.js"
+import{initMobileLayout}from"./mobile-layout.js"
 
 export function mountRuntimeWindows(){mountBrowserWindow()}
 
@@ -12,4 +13,5 @@ export function initApps(){
   initRun()
   initBrowser()
   initLiquidBiography()
+  initMobileLayout()
 }

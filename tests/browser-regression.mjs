@@ -32,6 +32,7 @@ try{
   await page.locator("#networkConnect").click()
   assert.equal((await page.locator("#networkStatus").textContent())?.trim(),"Not connected")
   assert.equal((await page.locator("#networkConnect").textContent())?.trim(),"Connect")
+  await page.locator("#networkBtn").click({force:true})
   await page.locator("#networkConnect").click()
   assert.match((await page.locator("#networkStatus").textContent())||"",/Connected/)
 

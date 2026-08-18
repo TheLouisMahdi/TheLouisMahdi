@@ -58,6 +58,8 @@ jobs:
         run: node tests/smoke.mjs
       - name: Run core regression checks
         run: node tests/core.mjs
+      - name: Run Workers AI regression check
+        run: node tests/ai-worker.mjs
       - name: Install browser test tooling
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0

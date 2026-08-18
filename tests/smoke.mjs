@@ -127,3 +127,6 @@ console.log("Windows 7 simulator smoke checks passed")
 assert.ok(appRegistry.includes("APP_WINDOWS"),"central app registry is missing")
 assert.ok(read("js/window-manager.js").includes("setCloseGuard")&&read("js/window-manager.js").includes("isWindowActive"),"window manager state/close guards are missing")
 assert.ok(read("js/html.js").includes("escapeHtml"),"HTML escaping helper is missing")
+
+assert.ok(read("index.html").includes('css/runtime.css" data-win7-runtime'),"runtime CSS must be render-blocking to prevent desktop flash before boot")
+assert.ok(read("js/app.js").indexOf("initSystem()")<read("js/app.js").indexOf("mountRuntimeWindows()"),"system boot must start before application initialization")

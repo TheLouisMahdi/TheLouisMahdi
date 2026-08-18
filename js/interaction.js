@@ -4,6 +4,8 @@ import{escapeHtml}from"./html.js"
 let menu=null
 let activeSurface=null
 const states=new WeakMap()
+let promptChain=Promise.resolve()
+let fileDialogChain=Promise.resolve()
 
 const byId=id=>document.getElementById(id)
 
@@ -63,6 +65,15 @@ export function selectAll(container){
   const state=states.get(container)
   if(!state)return
   state.selected=new Set([...container.querySelectorAll(state.selector)].map(node=>state.key(node)))
+  applySelection(container,state.selector,state)
+}
+
+export function invertSelection(container){
+  const state=states.get(container)
+  if(!state)return
+  const keys=[...container.querySelectorAll(state.selector)].map(node=>state.key(node))
+  state.selected=new Set(keys.filter(key=>!state.selected.has(key)))
+  state.anchor=-1
   applySelection(container,state.selector,state)
 }
 
@@ -280,7 +291,19 @@ function ensurePrompt(){
   return dialog
 }
 
-export function askText(title,label,value=""){
+function queuePrompt(factory){
+  const task=promptChain.then(factory,factory)
+  promptChain=task.catch(()=>{})
+  return task
+}
+
+function queueFileDialog(factory){
+  const task=fileDialogChain.then(factory,factory)
+  fileDialogChain=task.catch(()=>{})
+  return task
+}
+
+function askTextNow(title,label,value=""){
   const dialog=ensurePrompt()
   byId("winPromptTitle").textContent=title
   byId("winPromptLabel").textContent=label
@@ -304,7 +327,9 @@ export function askText(title,label,value=""){
   })
 }
 
-export function askConfirm(title,message){
+export function askText(title,label,value=""){return queuePrompt(()=>askTextNow(title,label,value))}
+
+function askConfirmNow(title,message){
   const dialog=ensurePrompt()
   byId("winPromptTitle").textContent=title
   byId("winPromptLabel").textContent=message
@@ -312,7 +337,9 @@ export function askConfirm(title,message){
   dialog.classList.add("confirm-only")
   dialog.classList.remove("hidden")
   return new Promise(resolve=>{
+    const keydown=event=>{if(event.key==="Enter"){event.preventDefault();finish(true)}if(event.key==="Escape"){event.preventDefault();finish(false)}}
     const finish=result=>{
+      document.removeEventListener("keydown",keydown,true)
       dialog.classList.add("hidden")
       dialog.classList.remove("confirm-only")
       byId("winPromptInput").classList.remove("hidden")
@@ -320,10 +347,13 @@ export function askConfirm(title,message){
       byId("winPromptCancel").onclick=null
       resolve(result)
     }
+    document.addEventListener("keydown",keydown,true)
     byId("winPromptOk").onclick=()=>finish(true)
     byId("winPromptCancel").onclick=()=>finish(false)
   })
 }
+
+export function askConfirm(title,message){return queuePrompt(()=>askConfirmNow(title,message))}
 
 const FILE_LOCATIONS={
   desktop:{label:"Desktop",path:roots().desktop},
@@ -350,7 +380,16 @@ function appendExtension(name,type){
   return clean
 }
 
-function runFileDialog(mode,options={}){
+function dialogTypeMatches(item,type){
+  if(item.type==="folder"||type==="all")return true
+  const name=fileName(item.virtualPath).toLowerCase()
+  if(type==="text")return name.endsWith(".txt")
+  if(type==="python")return name.endsWith(".py")
+  if(type==="html")return /\.html?$/.test(name)
+  return true
+}
+
+function runFileDialogNow(mode,options={}){
   const dialog=ensureFileDialog()
   const title=mode==="open"?"Open":options.title||"Save As"
   let location=options.location&&FILE_LOCATIONS[options.location]?options.location:"desktop"
@@ -374,10 +413,12 @@ function runFileDialog(mode,options={}){
   const render=()=>{
     byId("fileDialogAddress").textContent=currentPath
     dialog.querySelectorAll("[data-file-location]").forEach(button=>button.classList.toggle("active",FILE_LOCATIONS[button.dataset.fileLocation]?.path.toLowerCase()===currentPath.toLowerCase()))
-    const files=listVirtual(currentPath)
+    const files=listVirtual(currentPath).filter(item=>dialogTypeMatches(item,typeSelect.value))
     byId("fileDialogList").innerHTML=files.length?files.map(item=>`<button data-file-path="${encodeURIComponent(item.virtualPath)}" data-file-kind="${item.type}"><span>${item.type==="folder"?"📁":item.type==="python"?"🐍":item.type==="html"?"🌐":"📄"}</span><b>${escapeHtml(fileName(item.virtualPath))}</b><small>${item.type==="folder"?"File folder":escapeHtml(item.type.toUpperCase())+" file"}</small></button>`).join(""):`<p>This folder is empty.</p>`
     selected=null
   }
+
+  typeSelect.onchange=render
 
   const goTo=(path,push=true)=>{
     currentPath=path
@@ -398,6 +439,7 @@ function runFileDialog(mode,options={}){
       byId("fileDialogCancel").onclick=null
       byId("fileDialogClose").onclick=null
       byId("fileDialogBack").onclick=null
+      typeSelect.onchange=null
       resolve(result)
     }
     const accept=async()=>{
@@ -436,5 +478,5 @@ function runFileDialog(mode,options={}){
   })
 }
 
-export function askSaveAs(options={}){return runFileDialog("save",options)}
-export function askOpenFile(options={}){return runFileDialog("open",options)}
+export function askSaveAs(options={}){return queueFileDialog(()=>runFileDialogNow("save",options))}
+export function askOpenFile(options={}){return queueFileDialog(()=>runFileDialogNow("open",options))}

@@ -1,7 +1,7 @@
 import{FILE_SYSTEM,PROFILE,profileText,repoText}from"./data.js"
 import{icon}from"./icons.js"
 import{openWindow}from"./window-manager.js"
-import{bindSelectableSurface,refreshSurface,showContextMenu}from"./interaction.js"
+import{bindSelectableSurface,invertSelection,refreshSurface,showContextMenu}from"./interaction.js"
 import{backgroundContextItems,createItem,deleteSelected,fileContextItems,openVirtual,renameSelected}from"./file-actions.js"
 import{fileName,folderPath,getEntry,isFolder,listVirtual,normalizePath,resolvePath,roots}from"./vfs.js"
 import{escapeHtml}from"./html.js"
@@ -13,6 +13,20 @@ let visibleItems=[]
 
 const byId=id=>document.getElementById(id)
 const DESKTOP=roots().desktop
+const ADDRESS_PATHS={
+  computer:"Computer",cdrive:"C:\\",ddrive:"D:\\",github:roots().github,desktop:roots().desktop,documents:roots().documents,downloads:roots().downloads,
+  pictures:"C:\\Users\\Eka\\Pictures",music:"C:\\Users\\Eka\\Music",videos:"C:\\Users\\Eka\\Videos",users:"C:\\Users",userhome:"C:\\Users\\Eka",
+  programfiles:"C:\\Program Files",powershellFolder:"C:\\Program Files\\WindowsPowerShell",psV1:"C:\\Program Files\\WindowsPowerShell\\v1.0",ieFolder:"C:\\Program Files\\Internet Explorer",
+  windows:"C:\\Windows",system32:"C:\\Windows\\System32",projects:"G:\\Workspace\\Repositories",archives:"D:\\Archives",win7wallpapers:"C:\\Users\\Eka\\Pictures\\Windows 7 Wallpapers",recycle:roots().recycle,
+  homegroup:"Homegroup",network:"Network"
+}
+
+function canonicalPath(target){
+  if(target?.startsWith("vfs:"))return normalizePath(target.slice(4))
+  if(target?.startsWith("repo:"))return `G:\\Workspace\\Repositories\\${target.slice(5)}`
+  if(target?.startsWith("wallpapers:"))return `C:\\Users\\Eka\\Pictures\\Windows 7 Wallpapers\\${target.slice(11)}`
+  return ADDRESS_PATHS[target]||folderFor(target).path
+}
 
 function fileIcon(item){
   const map={computer:"computer",drive:"drive",folder:"folder",github:"github",telegram:"telegram",photo:"photo",zip:"zip",text:"text",python:"python",html:"html",recycle:"recycle",cmd:"cmd",powershell:"powershell",notepad:"notepad",calculator:"calculator",link:"link",paint:"paint",wordpad:"wordpad",sticky:"sticky",snipping:"snipping",media:"media",taskmanager:"taskmanager",printer:"printer"}
@@ -78,7 +92,7 @@ function render(){
   const folder=folderFor(current)
   const query=byId("explorerSearch").value.trim().toLowerCase()
   byId("explorerTitle").textContent=folder.title
-  byId("addressBar").textContent=folder.path
+  byId("addressBar").textContent=canonicalPath(current)
   byId("explorerSearch").placeholder=`Search ${folder.title}`
   visibleItems=folder.items.filter(item=>item.name.toLowerCase().includes(query))
   byId("fileArea").innerHTML=folder.type==="drives"?renderDrives(visibleItems):renderFiles(visibleItems)
@@ -90,7 +104,7 @@ export function navigate(target,push=true){
   if(!FILE_SYSTEM[target]&&!target?.startsWith("vfs:"))return
   if(target?.startsWith("vfs:")&&!isFolder(target.slice(4)))return
   current=target
-  if(push){history=history.slice(0,historyIndex+1);history.push(target);historyIndex=history.length-1}
+  if(push&&history[historyIndex]!==target){history=history.slice(0,historyIndex+1);history.push(target);historyIndex=history.length-1}
   render()
   openWindow("explorerWindow")
 }
@@ -99,11 +113,16 @@ export function resolveFolderFromPath(path){
   const value=normalizePath(String(path||"")).toLowerCase()
   const table={
     "c:\\":"cdrive","c:":"cdrive","d:\\":"ddrive","d:":"ddrive","g:\\":"github","g:":"github",
-    "c:\\users\\eka\\desktop":"desktop","c:\\users\\eka\\documents":"documents","c:\\users\\eka\\downloads":"downloads",
-    "g:\\workspace":"github",
-    "c:\\windows":"windows","c:\\windows\\system32":"system32","c:\\program files":"programfiles"
+    "c:\\users":"users","c:\\users\\eka":"userhome","c:\\users\\eka\\desktop":"desktop","c:\\users\\eka\\documents":"documents","c:\\users\\eka\\downloads":"downloads",
+    "c:\\users\\eka\\pictures":"pictures","c:\\users\\eka\\music":"music","c:\\users\\eka\\videos":"videos","c:\\$recycle.bin":"recycle",
+    "g:\\workspace":"github","g:\\workspace\\repositories":"projects","d:\\archives":"archives",
+    "c:\\windows":"windows","c:\\windows\\system32":"system32","c:\\program files":"programfiles","c:\\program files\\windows powershell":"powershellFolder","c:\\program files\\windows powershell\\v1.0":"psV1","c:\\program files\\internet explorer":"ieFolder"
   }
   if(table[value])return table[value]
+  const repoPrefix="g:\\workspace\\repositories\\"
+  if(value.startsWith(repoPrefix)){const target=`repo:${normalizePath(path).slice(repoPrefix.length)}`;if(FILE_SYSTEM[target])return target}
+  const wallpaperPrefix="c:\\users\\eka\\pictures\\windows 7 wallpapers\\"
+  if(value.startsWith(wallpaperPrefix)){const target=`wallpapers:${normalizePath(path).slice(wallpaperPrefix.length)}`;if(FILE_SYSTEM[target])return target}
   const entry=getEntry(value)
   if(entry?.kind==="folder")return `vfs:${entry.path}`
   return null
@@ -183,7 +202,7 @@ export function initExplorer(){
     const rect=button.getBoundingClientRect(),menu=button.textContent.trim()
     const menus={
       File:[{label:"New folder",action:createFolder},{separator:true},{label:"Close",action:()=>byId("explorerWindow").querySelector('[data-window-action="close"]').click()}],
-      Edit:[{label:"Select all",action:()=>byId("fileArea").dispatchEvent(new KeyboardEvent("keydown",{key:"a",ctrlKey:true,bubbles:true}))},{label:"Invert selection",action:()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Selection inverted."}))}],
+      Edit:[{label:"Select all",action:()=>byId("fileArea").dispatchEvent(new KeyboardEvent("keydown",{key:"a",ctrlKey:true,bubbles:true}))},{label:"Invert selection",action:()=>invertSelection(byId("fileArea"))}],
       View:[{label:"Large icons",action:()=>byId("fileArea").classList.remove("details-view")},{label:"Details",action:()=>byId("fileArea").classList.add("details-view")},{separator:true},{label:"Refresh",action:render}],
       Tools:[{label:"Map network drive...",action:()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:"GitHub workspace is mapped as G:."}))},{label:"Folder options...",action:()=>{window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"control"}));window.dispatchEvent(new CustomEvent("win7:control-page",{detail:"folder-options"}))}}],
       Help:[{label:"View Help",action:()=>window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"help"}))},{label:"About Windows",action:()=>window.dispatchEvent(new CustomEvent("win7:open-app",{detail:"systeminfo"}))}]

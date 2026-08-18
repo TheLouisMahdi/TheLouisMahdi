@@ -30,20 +30,52 @@ function homePage(){
 
 function browserHome(push=true){showPage(homePage(),push)}
 
+function localAssetUrl(dir,reference){
+  if(/^(?:https?:|data:|blob:|#|\/\/)/i.test(reference))return reference
+  const full=resolvePath(dir,reference),content=readFile(full)
+  if(content===null)return null
+  if(/^data:/i.test(content))return content
+  const lower=full.toLowerCase()
+  if(lower.endsWith(".svg"))return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(content)}`
+  return null
+}
+
+function inlineCssAssets(css,dir){
+  return String(css||"").replace(/url\(\s*(["']?)([^"')]+)\1\s*\)/gi,(tag,quote,reference)=>{
+    const asset=localAssetUrl(dir,reference.trim())
+    return asset?`url("${asset}")`:tag
+  })
+}
+
 function buildHtmlPreview(path,content){
   const dir=parentPath(path)
   let html=String(content||"")
   html=html.replace(/<link\b([^>]*?)href=["']([^"']+)["']([^>]*)>/gi,(tag,before,href)=>{
     if(/^(?:https?:|data:|blob:|#|\/\/)/i.test(href))return tag
-    const css=readFile(resolvePath(dir,href))
-    return css===null?tag:`<style data-eka-source="${escapeHtml(href)}">${css}</style>`
+    const full=resolvePath(dir,href),css=readFile(full)
+    return css===null?tag:`<style data-eka-source="${escapeHtml(href)}">${inlineCssAssets(css,parentPath(full))}</style>`
   })
   html=html.replace(/<script\b([^>]*?)src=["']([^"']+)["']([^>]*)><\/script>/gi,(tag,before,src)=>{
     if(/^(?:https?:|data:|blob:|\/\/)/i.test(src))return tag
     const js=readFile(resolvePath(dir,src))
     return js===null?tag:`<script data-eka-source="${escapeHtml(src)}">${js.replace(/<\/script/gi,"<\\/script")}</script>`
   })
-  return html
+  html=html.replace(/<(img|source)\b([^>]*?)src=["']([^"']+)["']([^>]*)>/gi,(tag,name,before,src,after)=>{
+    const asset=localAssetUrl(dir,src)
+    return asset?`<${name}${before}src="${escapeHtml(asset)}"${after}>`:tag
+  })
+  const base=`file:///${parentPath(path).replaceAll("\\","/")}/`
+  const bridge=`<base href="${escapeHtml(base)}"><script>document.addEventListener("click",function(event){var a=event.target.closest&&event.target.closest("a[href]");if(!a)return;var href=a.href||"";if(/^file:\/\//i.test(href)){event.preventDefault();parent.postMessage({type:"eka-browser-local-link",href:href},"*")}})</script>`
+  return html.replace(/<head([^>]*)>/i,`<head$1>${bridge}`).replace(/<\/script/gi,"<\/script")
+}
+
+function fileUrlToPath(url){
+  try{
+    const parsed=new URL(url)
+    let path=decodeURIComponent(parsed.pathname||"")
+    path=path.replace(/^\/([A-Za-z]:)/,"$1").replaceAll("/","\\")
+    return path
+  }catch{return null}
 }
 
 function openHtml(path,content){
@@ -59,7 +91,16 @@ function openHtml(path,content){
 function browse(value){
   const query=String(value||"").trim()
   if(!query||query==="about:home"){browserHome();return}
-  if(/^file:\/\//i.test(query))return
+  if(/^file:\/\//i.test(query)){
+    const path=fileUrlToPath(query),content=path?readFile(path):null
+    if(content===null){
+      showPage({title:"Cannot find page - Windows Internet Explorer",address:query,html:`<!doctype html><html><body style="font:14px Segoe UI;padding:36px"><h2>Internet Explorer cannot display this local file</h2><p>${escapeHtml(path||query)}</p></body></html>`,status:"Local file not found"})
+      return
+    }
+    if(/\.html?$/i.test(path)){openHtml(path,content);return}
+    showPage({title:`${path.split("\\").pop()} - Windows Internet Explorer`,address:query,html:`<!doctype html><html><body><pre style="white-space:pre-wrap;font:13px Consolas;padding:24px">${escapeHtml(content)}</pre></body></html>`,status:"Local file · Protected Mode: On"})
+    return
+  }
   if(/^https?:\/\//i.test(query)){
     const url=escapeHtml(query)
     showPage({
@@ -108,4 +149,5 @@ export function initBrowser(){
   byId("browserBack").addEventListener("click",goBack)
   window.addEventListener("win7:browse",event=>{browse(event.detail);openWindow("browserWindow")})
   window.addEventListener("win7:open-html",event=>openHtml(event.detail.path,event.detail.content))
+  window.addEventListener("message",event=>{if(event.data?.type==="eka-browser-local-link"&&typeof event.data.href==="string")browse(event.data.href)})
 }

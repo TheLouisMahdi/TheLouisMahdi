@@ -1,10 +1,17 @@
 let topZ=30
-const geometry=new Map()
-const desktopHidden=new Set()
+const normalGeometry=new Map()
+const snapModes=new WeakMap()
+const desktopHidden=new Map()
 const closeGuards=new WeakMap()
 
 function screenBounds(){return document.querySelector("#desktop").getBoundingClientRect()}
+function taskbarHeight(){return document.querySelector("#taskbar")?.getBoundingClientRect().height||39}
 function taskButton(app){return app?document.querySelector(`[data-task="${app}"]`):null}
+function currentGeometry(win){return{left:win.style.left||`${win.offsetLeft}px`,top:win.style.top||`${win.offsetTop}px`,width:win.style.width||`${win.offsetWidth}px`,height:win.style.height||`${win.offsetHeight}px`}}
+function applyGeometry(win,value){if(value)Object.assign(win.style,value)}
+function rememberNormal(win){if(!normalGeometry.has(win))normalGeometry.set(win,currentGeometry(win))}
+function setNormalFromCurrent(win){normalGeometry.set(win,currentGeometry(win))}
+function clearMode(win){win.classList.remove("maximized");snapModes.delete(win)}
 
 export function visibleWindows(){
   return [...document.querySelectorAll(".window:not(.hidden)")]
@@ -13,6 +20,7 @@ export function visibleWindows(){
 
 export function activeWindow(){return visibleWindows().at(-1)||null}
 export function isWindowActive(win){return Boolean(win)&&activeWindow()===win}
+export function windowMode(win){return win?.classList.contains("maximized")?"maximized":snapModes.get(win)||"normal"}
 
 function syncActiveTask(){
   const active=activeWindow()?.dataset.app||null
@@ -83,34 +91,52 @@ export function minimizeWindow(win){
   window.dispatchEvent(new CustomEvent("win7:window-state",{detail:{id:win.id,state:"minimized"}}))
 }
 
+function restoreNormal(win,{activate=true}={}){
+  if(!win)return
+  clearMode(win)
+  applyGeometry(win,normalGeometry.get(win))
+  if(activate)bringToFront(win)
+}
+
 export function maximizeWindow(win){
-  if(win.classList.contains("maximized")){
-    const saved=geometry.get(win)
-    win.classList.remove("maximized")
-    if(saved){win.style.left=saved.left;win.style.top=saved.top;win.style.width=saved.width;win.style.height=saved.height}
-    bringToFront(win)
-    return
-  }
-  geometry.set(win,{left:win.style.left||`${win.offsetLeft}px`,top:win.style.top||`${win.offsetTop}px`,width:win.style.width||`${win.offsetWidth}px`,height:win.style.height||`${win.offsetHeight}px`})
+  if(!win)return
+  if(win.classList.contains("maximized")){restoreNormal(win);return}
+  if(!snapModes.has(win))setNormalFromCurrent(win)
+  snapModes.delete(win)
   win.classList.add("maximized")
   bringToFront(win)
 }
 
 export function snapWindow(win,direction){
   if(!win)return
-  if(direction==="up"){if(!win.classList.contains("maximized"))maximizeWindow(win);return}
+  if(direction==="up"){maximizeWindow(win);return}
   if(direction==="down"){
-    if(win.classList.contains("maximized")){maximizeWindow(win);return}
+    if(win.classList.contains("maximized")||snapModes.has(win)){restoreNormal(win);return}
     minimizeWindow(win);return
   }
-  const saved=geometry.get(win)||{left:win.style.left||`${win.offsetLeft}px`,top:win.style.top||`${win.offsetTop}px`,width:win.style.width||`${win.offsetWidth}px`,height:win.style.height||`${win.offsetHeight}px`}
-  geometry.set(win,saved)
+  if(!["left","right"].includes(direction))return
+  if(!win.classList.contains("maximized")&&!snapModes.has(win))setNormalFromCurrent(win)
   win.classList.remove("maximized")
+  snapModes.set(win,direction)
   win.style.top="1px"
   win.style.left=direction==="left"?"1px":"50%"
   win.style.width="calc(50% - 1px)"
-  win.style.height="calc(100% - 40px)"
+  win.style.height=`calc(100% - ${taskbarHeight()+1}px)`
   bringToFront(win)
+}
+
+export function cascadeWindows(){
+  const wins=visibleWindows()
+  if(!wins.length)return
+  const bounds=screenBounds(),bottom=taskbarHeight(),step=24
+  const width=Math.max(280,Math.min(bounds.width*.72,bounds.width-step*Math.max(0,wins.length-1)-12))
+  const height=Math.max(180,Math.min((bounds.height-bottom)*.72,bounds.height-bottom-step*Math.max(0,wins.length-1)-12))
+  wins.forEach((win,index)=>{
+    clearMode(win)
+    Object.assign(win.style,{left:`${8+index*step}px`,top:`${8+index*step}px`,width:`${width}px`,height:`${height}px`})
+    setNormalFromCurrent(win)
+    bringToFront(win)
+  })
 }
 
 export function minimizeOthers(active){
@@ -131,7 +157,20 @@ function dragWindow(win,handle){
   let reversals=0
   let shakeStarted=0
   handle.addEventListener("pointerdown",event=>{
-    if(event.target.closest(".win-controls")||win.classList.contains("maximized"))return
+    if(event.target.closest(".win-controls"))return
+    const bounds=screenBounds()
+    const before=win.getBoundingClientRect()
+    const ratioX=Math.max(0,Math.min(1,(event.clientX-before.left)/Math.max(1,before.width)))
+    const wasManaged=win.classList.contains("maximized")||snapModes.has(win)
+    if(wasManaged){
+      rememberNormal(win)
+      restoreNormal(win,{activate:false})
+      const restored=win.getBoundingClientRect()
+      const left=Math.max(0,Math.min(event.clientX-bounds.left-restored.width*ratioX,bounds.width-restored.width))
+      const top=Math.max(0,Math.min(event.clientY-bounds.top-14,bounds.height-restored.height-taskbarHeight()))
+      win.style.left=`${left}px`
+      win.style.top=`${top}px`
+    }
     active=true
     const rect=win.getBoundingClientRect()
     offsetX=event.clientX-rect.left
@@ -144,7 +183,7 @@ function dragWindow(win,handle){
     if(!active)return
     const bounds=screenBounds()
     const x=Math.max(0,Math.min(event.clientX-bounds.left-offsetX,bounds.width-win.offsetWidth))
-    const y=Math.max(0,Math.min(event.clientY-bounds.top-offsetY,bounds.height-win.offsetHeight-39))
+    const y=Math.max(0,Math.min(event.clientY-bounds.top-offsetY,bounds.height-win.offsetHeight-taskbarHeight()))
     win.style.left=`${x}px`
     win.style.top=`${y}px`
     const delta=event.clientX-lastX,direction=Math.sign(delta)
@@ -154,8 +193,16 @@ function dragWindow(win,handle){
     if(reversals>=3&&performance.now()-shakeStarted<850){minimizeOthers(win);reversals=0;shakeStarted=performance.now()}
   })
   const stop=event=>{
-    if(active&&event){const bounds=screenBounds(),x=event.clientX-bounds.left,y=event.clientY-bounds.top;if(y<12)snapWindow(win,"up");else if(x<12)snapWindow(win,"left");else if(x>bounds.width-12)snapWindow(win,"right")}
+    if(!active)return
     active=false
+    if(event){
+      const bounds=screenBounds(),x=event.clientX-bounds.left,y=event.clientY-bounds.top
+      if(y<12){snapWindow(win,"up");return}
+      if(x<12){snapWindow(win,"left");return}
+      if(x>bounds.width-12){snapWindow(win,"right");return}
+    }
+    clearMode(win)
+    setNormalFromCurrent(win)
   }
   handle.addEventListener("pointerup",stop)
   handle.addEventListener("pointercancel",stop)
@@ -166,19 +213,19 @@ function resizeWindow(win){
   for(const edge of["n","e","s","w","ne","nw","se","sw"]){
     const handle=document.createElement("i");handle.className=`resize-handle resize-${edge}`
     handle.addEventListener("pointerdown",event=>{
-      if(win.classList.contains("maximized"))return
+      if(win.classList.contains("maximized")||snapModes.has(win))return
       event.preventDefault();event.stopPropagation();bringToFront(win);handle.setPointerCapture(event.pointerId)
       const bounds=screenBounds(),start=win.getBoundingClientRect(),origin={x:event.clientX,y:event.clientY}
       const move=next=>{
-        const dx=next.clientX-origin.x,dy=next.clientY-origin.y,minWidth=Math.min(240,bounds.width-12),minHeight=140
+        const dx=next.clientX-origin.x,dy=next.clientY-origin.y,minWidth=Math.min(240,bounds.width-12),minHeight=140,bottom=taskbarHeight()
         let left=start.left-bounds.left,top=start.top-bounds.top,width=start.width,height=start.height
         if(edge.includes("e"))width=Math.max(minWidth,Math.min(bounds.width-left,start.width+dx))
-        if(edge.includes("s"))height=Math.max(minHeight,Math.min(bounds.height-top-39,start.height+dy))
+        if(edge.includes("s"))height=Math.max(minHeight,Math.min(bounds.height-top-bottom,start.height+dy))
         if(edge.includes("w")){const candidate=Math.max(0,Math.min(left+dx,left+width-minWidth));width+=left-candidate;left=candidate}
         if(edge.includes("n")){const candidate=Math.max(0,Math.min(top+dy,top+height-minHeight));height+=top-candidate;top=candidate}
         Object.assign(win.style,{left:`${left}px`,top:`${top}px`,width:`${width}px`,height:`${height}px`})
       }
-      const stop=()=>{handle.removeEventListener("pointermove",move);handle.removeEventListener("pointerup",stop);handle.removeEventListener("pointercancel",stop)}
+      const stop=()=>{setNormalFromCurrent(win);handle.removeEventListener("pointermove",move);handle.removeEventListener("pointerup",stop);handle.removeEventListener("pointercancel",stop)}
       handle.addEventListener("pointermove",move);handle.addEventListener("pointerup",stop);handle.addEventListener("pointercancel",stop)
     })
     win.appendChild(handle)
@@ -205,12 +252,19 @@ export function initWindowManager(){
 
 export function showDesktop(){
   if(desktopHidden.size){
-    const restore=[...desktopHidden]
+    const restore=[...desktopHidden.entries()].sort((a,b)=>a[1]-b[1])
     desktopHidden.clear()
-    restore.forEach(win=>openWindow(win.id))
+    for(const[win,z]of restore){
+      win.classList.remove("hidden")
+      setTask(win.dataset.app,true)
+      win.style.zIndex=String(z)
+      topZ=Math.max(topZ,z)
+      window.dispatchEvent(new CustomEvent("win7:window-state",{detail:{id:win.id,state:"open"}}))
+    }
+    syncActiveTask()
     return
   }
-  visibleWindows().forEach(win=>{desktopHidden.add(win);minimizeWindow(win)})
+  visibleWindows().forEach(win=>{desktopHidden.set(win,Number(getComputedStyle(win).zIndex)||0);minimizeWindow(win)})
   document.querySelectorAll(".task-button").forEach(button=>button.classList.remove("active"))
 }
 

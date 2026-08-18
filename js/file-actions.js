@@ -70,18 +70,19 @@ export function pasteInto(target){
 async function newItem(target,kind){
   const dir=directoryFor(target)
   if(!dir)return
+  if(dir.toLowerCase()===roots().recycle.toLowerCase()){toast("You cannot create items in the Recycle Bin.");return}
   const defaults={text:"New Text Document.txt",python:"script.py",html:"page.html",folder:"New folder"}
   const name=await askText(kind==="folder"?"New Folder":"New File","Name:",defaults[kind])
   if(!name)return
   if(!validFileName(name)){toast("The file name contains invalid Windows characters or a reserved device name.");return}
   const path=uniquePath(resolvePath(dir,name))
-  if(kind==="folder"){makeFolder(path);return}
+  if(kind==="folder"){if(!makeFolder(path))toast("Windows could not create the folder in this location.");return}
   const templates={
     text:"",
     python:'print("Hello from Eka Windows 7")\n',
     html:'<!doctype html>\n<html>\n<head><meta charset="utf-8"><title>New page</title></head>\n<body>\n<h1>Hello from Notepad</h1>\n</body>\n</html>\n'
   }
-  writeFile(path,templates[kind]||"")
+  if(!writeFile(path,templates[kind]||"")){toast("Windows could not save the new file.");return}
   window.dispatchEvent(new CustomEvent("win7:open-file",{detail:{path,forceNotepad:true}}))
 }
 
@@ -101,6 +102,15 @@ function downloadVirtual(item){
   setTimeout(()=>URL.revokeObjectURL(url),1000)
 }
 
+
+function restoreVirtual(items){
+  const paths=items.map(pathOf).filter(path=>path?.toLowerCase().startsWith(roots().recycle.toLowerCase()))
+  if(!paths.length)return
+  let restored=0
+  for(const path of paths)if(restorePath(path))restored+=1
+  if(restored!==paths.length)toast(`${paths.length-restored} item(s) could not be restored.`)
+}
+
 function properties(item){
   if(item.virtualPath){
     const entry=getEntry(item.virtualPath)
@@ -118,7 +128,7 @@ export function fileContextItems(item,selected,{open}){
   const recycled=path?.toLowerCase().startsWith(roots().recycle.toLowerCase())
   const isEditable=path&&editable.test(path)
   const items=[
-    recycled?{label:"Restore",action:()=>restorePath(path)}:{label:"Open",action:()=>open(item)},
+    recycled?{label:"Restore",action:()=>restoreVirtual(selected)}:{label:"Open",action:()=>open(item)},
     isEditable?{label:"Open with Notepad",action:()=>openVirtual(item,true)}:null,
     item.type==="python"?{label:"Run with Python",action:()=>runPython(path)}:null,
     separator,

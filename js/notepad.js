@@ -38,7 +38,7 @@ async function saveAs(){
   const initial=notePath?fileName(notePath):noteStaticName&&noteStaticName.includes(".")?noteStaticName:"Untitled.txt"
   const result=await askSaveAs({name:initial,type:/\.txt$/i.test(initial)?"text":"all",encoding:noteEncoding})
   if(!result)return false
-  writeFile(result.path,byId("noteText").value,DESKTOP,{encoding:result.encoding})
+  if(!writeFile(result.path,byId("noteText").value,DESKTOP,{encoding:result.encoding})){window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Notepad could not save the file to the virtual disk."}));return false}
   notePath=result.path
   noteEncoding=result.encoding
   noteStaticName=null
@@ -50,10 +50,11 @@ async function saveAs(){
 
 function saveCurrent(){
   if(!notePath){void saveAs();return}
-  writeFile(notePath,byId("noteText").value,DESKTOP,{encoding:noteEncoding})
+  if(!writeFile(notePath,byId("noteText").value,DESKTOP,{encoding:noteEncoding})){window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Notepad could not save the file to the virtual disk."}));return false}
   noteDirty=false
   updateTitle()
   window.dispatchEvent(new CustomEvent("win7:toast",{detail:`Saved ${fileName(notePath)}`}))
+  return true
 }
 
 function openFile(path,forceNotepad=false){
@@ -104,7 +105,7 @@ export function initNotepad(){
   byId("noteSave").addEventListener("click",()=>void saveAs())
   byId("noteSaveCurrent").addEventListener("click",saveCurrent)
   byId("noteOpen").addEventListener("click",async()=>{const path=await askOpenFile();if(path)await openFileSafely(path,true)})
-  byId("notePrint").addEventListener("click",()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Notepad document queued to the simulated EKA printer."})))
+  byId("notePrint").addEventListener("click",()=>{window.dispatchEvent(new CustomEvent("win7:print-document",{detail:{name:currentName(),text:byId("noteText").value}}));document.getElementById("printerZone")?.scrollIntoView({behavior:"smooth",block:"center"})})
 
   const replaceSelection=value=>{const start=text.selectionStart,end=text.selectionEnd;text.setRangeText(value,start,end,"end");text.dispatchEvent(new Event("input",{bubbles:true}))}
   const findText=async()=>{const query=await askText("Find","Find what:","");if(!query)return;let index=text.value.toLowerCase().indexOf(query.toLowerCase(),text.selectionEnd);if(index<0)index=text.value.toLowerCase().indexOf(query.toLowerCase());if(index<0){window.dispatchEvent(new CustomEvent("win7:toast",{detail:`Cannot find '${query}'.`}));return}text.focus();text.setSelectionRange(index,index+query.length)}

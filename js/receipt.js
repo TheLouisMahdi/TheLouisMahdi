@@ -1,4 +1,5 @@
 import{PROFILE,REPOSITORIES,profileText}from"./data.js"
+import{escapeHtml}from"./html.js"
 
 const byId=id=>document.getElementById(id)
 let active=false
@@ -6,10 +7,12 @@ let serial=1
 let tearing=false
 let printing=false
 let feedAnimations=[]
+let currentJob={kind:"profile",name:"GitHub Profile",text:""}
 
 function nowText(){return new Intl.DateTimeFormat(undefined,{year:"numeric",month:"short",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"}).format(new Date())}
 
 function receiptHtml(){
+  if(currentJob.kind==="document")return `<div class="receipt-header"><div class="receipt-gh">TXT</div><strong>NOTEPAD PRINT JOB</strong><small>${escapeHtml(currentJob.name)}</small></div><div class="receipt-section"><pre style="white-space:pre-wrap;word-break:break-word;margin:0;font:10px/1.45 Consolas,monospace">${escapeHtml(currentJob.text)}</pre></div><div class="receipt-total">EKA LOCAL PRINTER · JOB #${String(serial).padStart(3,"0")}</div><div class="receipt-time">${nowText()}</div><div class="receipt-code">|| ||| | |||| || | |||</div>`
   return `<div class="receipt-header"><div class="receipt-gh">GH</div><strong>GITHUB PROFILE RECEIPT</strong><small>@${PROFILE.user}</small></div>
   <div class="receipt-section">
     <div class="receipt-row"><span>NAME</span><span>${PROFILE.name}</span></div>
@@ -39,7 +42,8 @@ function rememberTornReceipt(){
   const stack=byId("tornStack")
   const torn=document.createElement("div")
   torn.className="torn-receipt"
-  torn.innerHTML=`<div class="torn-summary"><span>PROFILE #${String(serial).padStart(3,"0")}</span><span>@${PROFILE.user}</span></div><div>${PROFILE.name}</div><div>${nowText()}</div>`
+  const label=currentJob.kind==="document"?escapeHtml(currentJob.name):`@${PROFILE.user}`
+  torn.innerHTML=`<div class="torn-summary"><span>${currentJob.kind==="document"?"PRINT JOB":"PROFILE"} #${String(serial).padStart(3,"0")}</span><span>${label}</span></div><div>${currentJob.kind==="document"?"Notepad document":PROFILE.name}</div><div>${nowText()}</div>`
   stack.prepend(torn)
   while(stack.children.length>3)stack.lastElementChild?.remove()
 }
@@ -122,12 +126,19 @@ function beginPrint(){
 }
 
 export function printReceipt(){
-  if(printing)return
-  if(active){
-    setStatus("Tear the current receipt before printing another.","WAIT")
-    return
-  }
+  if(printing)return false
+  if(active){setStatus("Tear the current receipt before printing another.","WAIT");return false}
+  currentJob={kind:"profile",name:"GitHub Profile",text:profileText()}
   beginPrint()
+  return true
+}
+
+export function printTextDocument(name,text){
+  if(printing)return false
+  if(active){setStatus("Tear the current receipt before printing another.","WAIT");return false}
+  currentJob={kind:"document",name:String(name||"Untitled.txt"),text:String(text||"")}
+  beginPrint()
+  return true
 }
 
 function download(name,content,type){
@@ -187,4 +198,5 @@ export function initReceipt(){
   bindPull(byId("tearZone"),true)
   bindPull(byId("receipt"),false)
   window.addEventListener("win7:print-profile",printReceipt)
+  window.addEventListener("win7:print-document",event=>printTextDocument(event.detail?.name,event.detail?.text))
 }

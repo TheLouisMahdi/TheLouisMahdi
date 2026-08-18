@@ -2,8 +2,10 @@ import{closeAllWindows}from"./window-manager.js"
 
 const byId=id=>document.getElementById(id)
 const timers=new Set()
+const BOOT_TIMING={bios:1900,welcome:6500,desktop:8200,continueWelcome:4500,continueDesktop:6100,shutdown:3200}
 let state="off"
 let biosDefaultHtml=""
+let initialized=false
 
 function later(fn,delay){const timer=setTimeout(()=>{timers.delete(timer);fn()},delay);timers.add(timer);return timer}
 function clearTimers(){timers.forEach(clearTimeout);timers.clear()}
@@ -32,9 +34,9 @@ export function bootSystem(){
   show("bootScreen")
   byId("biosPanel")?.classList.remove("hidden")
   byId("windowsBoot")?.classList.add("hidden")
-  later(()=>{byId("biosPanel")?.classList.add("hidden");byId("windowsBoot")?.classList.remove("hidden")},1250)
-  later(()=>showWelcome("Welcome"),3850)
-  later(()=>{hideScreens();setState("running")},4850)
+  later(()=>{byId("biosPanel")?.classList.add("hidden");byId("windowsBoot")?.classList.remove("hidden")},BOOT_TIMING.bios)
+  later(()=>showWelcome("Welcome"),BOOT_TIMING.welcome)
+  later(()=>{hideScreens();setState("running")},BOOT_TIMING.desktop)
 }
 
 export function lockSystem(message="Locked · click to unlock"){
@@ -72,7 +74,7 @@ export function powerOff(action="shutdown"){
     setState("off")
     show("powerOffScreen")
     byId("powerOffScreen").querySelector("small").textContent="Press the laptop power button to start"
-  },1650)
+  },BOOT_TIMING.shutdown)
 }
 
 function mountSecurityScreen(){
@@ -121,8 +123,8 @@ function continueBoot(){
   panel?.classList.remove("bios-setup")
   panel?.classList.add("hidden")
   byId("windowsBoot")?.classList.remove("hidden")
-  later(()=>showWelcome("Welcome"),2100)
-  later(()=>{hideScreens();setState("running")},3000)
+  later(()=>showWelcome("Welcome"),BOOT_TIMING.continueWelcome)
+  later(()=>{hideScreens();setState("running")},BOOT_TIMING.continueDesktop)
 }
 
 function tickLock(){
@@ -143,6 +145,8 @@ function handlePower(action){
 export function systemState(){return state}
 
 export function initSystem(){
+  if(initialized)return
+  initialized=true
   biosDefaultHtml=byId("biosPanel")?.innerHTML||""
   mountSecurityScreen()
   tickLock()

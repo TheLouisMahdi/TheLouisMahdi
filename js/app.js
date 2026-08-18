@@ -1,6 +1,6 @@
 import{FILE_SYSTEM}from"./data.js"
 import{icon,paintIcons}from"./icons.js"
-import{activeWindow,closeWindow,initWindowManager,minimizeOthers,openWindow,showDesktop,snapWindow,toggleAppWindow,visibleWindows}from"./window-manager.js"
+import{activeWindow,cascadeWindows,closeWindow,initWindowManager,minimizeOthers,openWindow,showDesktop,snapWindow,toggleAppWindow,visibleWindows}from"./window-manager.js"
 import{initExplorer,navigate}from"./explorer.js"
 import{initTerminals}from"./terminal.js"
 import{initReceipt,printReceipt}from"./receipt.js"
@@ -24,7 +24,7 @@ let mobileHintShown=false
 let desktopSort="name",desktopIconSize=""
 
 function openApp(app){
-  if(app==="printprofile"){printReceipt();document.getElementById("printerZone")?.scrollIntoView({behavior:"smooth",block:"center"});return}
+  if(app==="printprofile"){byId("startMenu")?.classList.add("hidden");byId("allProgramsPanel")?.classList.add("hidden");printReceipt();document.getElementById("printerZone")?.scrollIntoView({behavior:"smooth",block:"center"});return}
   const id=APP_WINDOWS[app]
   if(!id)return
   if(app==="explorer")navigate("computer")
@@ -201,7 +201,7 @@ function initTaskbar(){
     showContextMenu([
       {label:"Toolbars  ›  Desktop",action:()=>byId("desktopToolbarBtn").classList.toggle("hidden")},
       {separator:true},
-      {label:"Cascade windows",action:()=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:"Windows arranged in a cascade."}))},
+      {label:"Cascade windows",action:cascadeWindows},
       {label:"Show windows side by side",action:()=>{const wins=visibleWindows().slice(-2);if(wins[0])snapWindow(wins[0],"left");if(wins[1])snapWindow(wins[1],"right")}},
       {label:"Show the desktop",action:showDesktop},
       {separator:true},
@@ -242,6 +242,7 @@ function initAppEvents(){
   window.addEventListener("win7:open-app",event=>openApp(event.detail))
   window.addEventListener("win7:navigate",event=>navigate(event.detail))
   window.addEventListener("win7:vfs-changed",renderDesktop)
+  window.addEventListener("win7:vfs-error",event=>window.dispatchEvent(new CustomEvent("win7:toast",{detail:event.detail?.message||"Virtual disk changes could not be saved."})))
 }
 
 function cycleWindows(reverse=false){
@@ -335,6 +336,7 @@ function loadRuntimeCss(){
 
 function init(){
   loadRuntimeCss()
+  initSystem()
   mountInteractionUi()
   mountRuntimeWindows()
   mountSystemApps()
@@ -365,7 +367,6 @@ function init(){
   initToast()
   initAppEvents()
   initKeyboard()
-  initSystem()
 }
 
 init()

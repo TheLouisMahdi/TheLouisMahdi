@@ -72,13 +72,6 @@ html:not(.system-powered) #powerOffScreen>*{visibility:hidden!important}
 .screen{cursor:default}
 .fake-cursor{display:none!important}
 }
-@media print{body *{visibility:hidden!important}
-.printer-zone,.printer-zone *,.receipt,.receipt *{visibility:visible!important}
-.printer-zone{position:absolute!important;inset:0!important;margin:0!important;padding:0!important;background:#fff!important}
-.printer,.printer-actions,.printer-status,.tear-zone,.torn-stack{display:none!important}
-.receipt-stage{min-height:0!important}
-.receipt{display:block!important;position:static!important;transform:none!important;margin:0 auto!important;box-shadow:none!important;border:0!important}
-}
 @media(max-width:760px){
 body{overflow-x:hidden}
 .hero{padding-left:0;padding-right:0}

@@ -3,7 +3,6 @@ import{icon,paintIcons}from"./icons.js"
 import{activeWindow,cascadeWindows,closeWindow,initWindowManager,minimizeOthers,openWindow,showDesktop,snapWindow,toggleAppWindow,visibleWindows}from"./window-manager.js"
 import{initExplorer,navigate}from"./explorer.js"
 import{initTerminals}from"./terminal.js"
-import{initReceipt,printReceipt}from"./receipt.js"
 import{initApps,mountRuntimeWindows}from"./apps.js"
 import{initSystemApps,mountSystemApps}from"./system-apps.js"
 import{initFidelityApps,mountFidelityApps}from"./fidelity-apps.js"
@@ -24,7 +23,6 @@ let mobileHintShown=false
 let desktopSort="name",desktopIconSize=""
 
 function openApp(app){
-  if(app==="printprofile"){byId("startMenu")?.classList.add("hidden");byId("allProgramsPanel")?.classList.add("hidden");printReceipt();document.getElementById("printerZone")?.scrollIntoView({behavior:"smooth",block:"center"});return}
   const id=APP_WINDOWS[app]
   if(!id)return
   if(app==="explorer")navigate("computer")
@@ -358,7 +356,6 @@ function init(){
   initGames()
   initComfyCakes()
   initGadgets()
-  initReceipt()
   initDesktopInteraction()
   initStart()
   initTaskbar()

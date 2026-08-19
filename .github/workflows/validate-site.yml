@@ -34,6 +34,7 @@ jobs:
           test -f EKA_COMMANDS.txt
           test -f css/runtime.css
           test -f css/mobile-fit.css
+          test -f css/site-shell.css
           test -f js/app.js
           test -f js/mobile-layout.js
           test -f js/interaction.js
@@ -41,7 +42,6 @@ jobs:
           test -f js/python.js
           test -f js/python-worker.js
           test -f js/terminal.js
-          test -f js/receipt.js
           test -f js/system.js
           test -f js/system-apps.js
           test -f js/app-registry.js
@@ -54,6 +54,8 @@ jobs:
           test -f ai-worker/src/index.js
           test -f ai-worker/wrangler.jsonc
           grep -q 'type="module" src="js/app.js"' index.html
+          grep -q 'css/mobile-fit.css" data-mobile-fit' index.html
+          ! grep -q 'id="printerZone"' index.html
           grep -q 'loadPyodide' js/python-worker.js
           grep -q 'Eka Command Deck.txt' EKA_COMMANDS.txt
       - name: Run simulator smoke checks

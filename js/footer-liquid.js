@@ -5,9 +5,19 @@ if(canvas&&footer){
   const ctx=canvas.getContext("2d",{alpha:false})
   const motion=matchMedia("(prefers-reduced-motion: reduce)")
   const pointer={active:false,x:0,y:0,lastX:0,lastY:0}
+  const boatImage=new Image()
+  const boat={ready:false,x:0,y:0,vx:0,vy:0,angle:0,angularVelocity:0}
   let width=0,height=0,dpr=1,restY=0,points=[],raf=0,lastTime=0
 
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value))
+
+  boatImage.decoding="async"
+  boatImage.src="assets/footer-tugboat.webp"
+  boatImage.addEventListener("load",()=>{
+    boat.ready=true
+    resetBoat()
+    draw(performance.now())
+  })
 
   function buildPoints(){
     const count=Math.max(54,Math.ceil(width/13)+1)
@@ -16,6 +26,26 @@ if(canvas&&footer){
       y:restY,
       velocity:0
     }))
+  }
+
+  function boatSize(){
+    const responsive=width<600?width*.29:width*.19
+    const boatWidth=clamp(responsive,108,214)
+    const ratio=boatImage.naturalWidth?boatImage.naturalHeight/boatImage.naturalWidth:.75
+    return{width:boatWidth,height:boatWidth*ratio}
+  }
+
+  function boatHomeX(){
+    return width*(width<600?.29:.24)
+  }
+
+  function resetBoat(){
+    boat.x=boatHomeX()
+    boat.y=restY
+    boat.vx=0
+    boat.vy=0
+    boat.angle=0
+    boat.angularVelocity=0
   }
 
   function resize(){
@@ -30,6 +60,7 @@ if(canvas&&footer){
     ctx.setTransform(dpr,0,0,dpr,0,0)
     restY=height*.5
     buildPoints()
+    resetBoat()
     draw(0)
   }
 
@@ -72,6 +103,45 @@ if(canvas&&footer){
     impulse(pointer.x,direction*18,150)
   }
 
+  function surfaceYAt(x){
+    if(points.length<2)return restY
+    const sample=clamp(x,0,width)
+    const position=sample/Math.max(1,width)*(points.length-1)
+    const leftIndex=Math.floor(position)
+    const rightIndex=Math.min(points.length-1,leftIndex+1)
+    const mix=position-leftIndex
+    const left=points[leftIndex]
+    const right=points[rightIndex]
+    return left.y+(right.y-left.y)*mix
+  }
+
+  function updateBoat(dt){
+    if(!boat.ready||motion.matches)return
+    const size=boatSize()
+    const homeX=boatHomeX()
+    const horizontalRange=width*(width<600?.045:.032)
+    const probe=Math.max(22,size.width*.24)
+    const leftY=surfaceYAt(boat.x-probe)
+    const centerY=surfaceYAt(boat.x)
+    const rightY=surfaceYAt(boat.x+probe)
+    const targetY=(leftY+centerY*2+rightY)*.25
+    const targetAngle=clamp(Math.atan2(rightY-leftY,probe*2)*.92,-.19,.19)
+
+    const heaveForce=(targetY-boat.y)*.05
+    boat.vy=(boat.vy+heaveForce*dt)*Math.pow(.84,dt)
+    boat.y+=boat.vy*dt
+
+    const pitchForce=(targetAngle-boat.angle)*.042
+    boat.angularVelocity=(boat.angularVelocity+pitchForce*dt)*Math.pow(.8,dt)
+    boat.angle+=boat.angularVelocity*dt
+
+    const surgeFromSlope=clamp(-targetAngle*.055,-.012,.012)
+    const surgeForce=(homeX-boat.x)*.0022+surgeFromSlope
+    boat.vx=(boat.vx+surgeForce*dt)*Math.pow(.9,dt)
+    boat.x+=boat.vx*dt
+    boat.x=clamp(boat.x,homeX-horizontalRange,homeX+horizontalRange)
+  }
+
   function smoothSurface(){
     ctx.beginPath()
     ctx.moveTo(0,points[0].y)
@@ -84,6 +154,47 @@ if(canvas&&footer){
     }
     const last=points.at(-1)
     ctx.lineTo(last.x,last.y)
+  }
+
+  function drawBoat(){
+    if(!boat.ready)return
+    const size=boatSize()
+    const anchor=.72
+
+    ctx.save()
+    ctx.translate(boat.x,boat.y+4)
+    ctx.rotate(boat.angle)
+    ctx.fillStyle="rgba(0,49,113,.18)"
+    ctx.beginPath()
+    ctx.ellipse(0,0,size.width*.36,Math.max(5,size.width*.035),0,0,Math.PI*2)
+    ctx.fill()
+    ctx.restore()
+
+    ctx.save()
+    ctx.translate(boat.x,boat.y)
+    ctx.rotate(boat.angle)
+    ctx.beginPath()
+    ctx.rect(-size.width*.62,-size.height*1.2,size.width*1.24,size.height*1.21)
+    ctx.clip()
+    ctx.drawImage(boatImage,-size.width*.5,-size.height*anchor,size.width,size.height)
+    ctx.restore()
+
+    ctx.save()
+    ctx.translate(boat.x,boat.y+1)
+    ctx.rotate(boat.angle)
+    ctx.strokeStyle="rgba(255,255,255,.82)"
+    ctx.lineWidth=1.25
+    ctx.beginPath()
+    ctx.ellipse(-size.width*.3,0,size.width*.11,Math.max(2,size.width*.014),0,0,Math.PI*2)
+    ctx.ellipse(size.width*.28,1,size.width*.13,Math.max(2,size.width*.014),0,0,Math.PI*2)
+    ctx.stroke()
+    ctx.strokeStyle="rgba(132,220,255,.5)"
+    ctx.lineWidth=2.6
+    ctx.beginPath()
+    ctx.moveTo(-size.width*.43,3)
+    ctx.quadraticCurveTo(-size.width*.55,6,-size.width*.68,4)
+    ctx.stroke()
+    ctx.restore()
   }
 
   function draw(time){
@@ -120,6 +231,8 @@ if(canvas&&footer){
       ctx.fillStyle=glow
       ctx.fillRect(0,restY,width,height-restY)
     }
+
+    drawBoat()
   }
 
   function step(time){
@@ -152,6 +265,7 @@ if(canvas&&footer){
       point.y=clamp(point.y,restY-92,restY+92)
     }
 
+    updateBoat(dt)
     draw(time)
     raf=requestAnimationFrame(step)
   }
@@ -173,6 +287,7 @@ if(canvas&&footer){
     if(event.matches){
       pointer.active=false
       buildPoints()
+      resetBoat()
       draw(0)
     }else{
       lastTime=performance.now()

@@ -11,7 +11,7 @@ const PROFILE_HTML=`
         <div id="psHistory">
           <div class="ps-turn"><p class="ps-command"><b>${PROMPT}</b> Get-Story</p><div class="ps-answer">I like problems that cross layers. A project may begin as an image, a signal, or a hardware constraint and end as code, RTL, a test workflow, or a complete tool. The interesting part is connecting those layers until the system behaves as one thing.</div></div>
           <div class="ps-turn"><p class="ps-command"><b>${PROMPT}</b> Get-Focus</p><div class="ps-answer">Computer Vision  ·  Applied AI  ·  Embedded Systems  ·  FPGA / Verilog  ·  Engineering Automation</div></div>
-          <div class="ps-turn ps-system"><div class="ps-answer">Eka online. Ask about Mahdi, engineering, AI, hardware, or just talk normally. If the remote model is unavailable, profile commands still work locally. Type <span class="ps-key">help</span> for commands.</div></div>
+          <div class="ps-turn ps-system"><div class="ps-answer">Eka ready. Ask about Mahdi, engineering, AI, hardware, music, writing, or just talk normally. Type <span class="ps-key">help</span> for commands.</div></div>
         </div>
         <form class="ps-input-line" id="psForm" autocomplete="off"><b>${PROMPT}</b><input id="psInput" type="text" aria-label="PowerShell question" autocomplete="off" spellcheck="false" placeholder="ask anything or type a command"></form>
       </div>
@@ -19,20 +19,20 @@ const PROFILE_HTML=`
   </div>`
 
 const answers={
-  identity:"Mahdi Ghahremani — مهدی قهرمانی — is an Electrical Engineering student at the University of Zanjan, working where software, AI, embedded systems and digital hardware meet.",
+  identity:"Mahdi Ghahremani - مهدی قهرمانی - is an Electrical Engineering student at the University of Zanjan, working where software, AI, embedded systems and digital hardware meet.",
   story:"The work is usually cross-layer: understand the physical or technical constraint, build the smallest testable version, measure what fails, then connect software and hardware until the system behaves reliably.",
-  focus:"Computer Vision  ·  Applied AI  ·  Embedded C/C++  ·  Linux  ·  STM32  ·  FPGA  ·  Verilog RTL  ·  simulation, verification and engineering automation.",
+  focus:"Computer Vision  -  Applied AI  -  Embedded C/C++  -  Linux  -  STM32  -  FPGA  -  Verilog RTL  -  simulation, verification and engineering automation.",
   method:"Understand the real constraint. Build the smallest version that can be tested. Measure failures instead of guessing. Refine until the solution is simpler, repeatable and easier to continue developing.",
-  reason:"He learns by building. The enjoyable part is the distance between ‘this should work’ and ‘this works repeatedly’ — usually crossed with simulation, logs, edge cases and iteration.",
+  reason:"He learns by building. The enjoyable part is the distance between 'this should work' and 'this works repeatedly' - usually crossed with simulation, logs, edge cases and iteration.",
   education:"Electrical Engineering at the University of Zanjan, with a practical focus on electronics, embedded systems, digital hardware, computer vision and applied AI.",
   ai:"AI work is mostly practical and engineering-oriented: computer vision, image processing, classification, model evaluation and lightweight inference that can connect to real hardware.",
   embedded:"Embedded work centers on C/C++, Linux and microcontroller-facing systems such as STM32, including interfaces, test logic, data acquisition and hardware/software integration.",
   fpga:"Digital hardware work includes Verilog RTL, FPGA architecture, testbenches, simulation and accelerator-oriented hardware/software co-design.",
   contact:"GitHub: TheLouisMahdi\nTelegram: @thelouis_mahdi",
-  whoami:"Mahdi Ghahremani / مهدی قهرمانی\nTheLouisMahdi / Eka / poimu / Eka Francium\nEngineering × Software × AI × Hardware",
+  whoami:"Mahdi Ghahremani / مهدی قهرمانی\nTheLouisMahdi / Eka / poimu / Eka Francium\nEngineering x Software x AI x Hardware",
   greeting:"Eka online. You can ask about Mahdi or just have a normal conversation.",
-  thanks:"You’re welcome.",
-  help:"Commands: Get-Identity, Get-Story, Get-Focus, Get-Method, Get-Reason, Get-Contact, whoami, clear\nFree-form questions use the remote AI when available. Use ↑ / ↓ for history and Ctrl+L to clear."
+  thanks:"You're welcome.",
+  help:"Commands: Get-Identity, Get-Story, Get-Focus, Get-Method, Get-Reason, Get-Contact, whoami, clear\nFree-form questions use Eka AI. Use Up/Down for history and Ctrl+L to clear."
 }
 
 const intents=[
@@ -54,31 +54,57 @@ const intents=[
 const commands={"get-identity":"identity","get-story":"story","get-focus":"focus","get-method":"method","get-reason":"reason","get-contact":"contact","whoami":"whoami","get-help":"help","help":"help"}
 const normalize=value=>value.toLocaleLowerCase().trim().replace(/[؟?!.,;:]+/g," ").replace(/\s+/g," ")
 const hasPersian=value=>/[\u0600-\u06ff]/.test(value)
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms))
+
+function safeDisplayText(value){
+  return String(value??"")
+    .normalize("NFC")
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F\u200E\u200F\u202A-\u202E\u2066-\u2069\uFEFF\uFFFD]/g,"")
+    .replace(/^[ \t]*[•◦▪▫◆◇▶▷►▸▹➜➤★☆]+[ \t]*/gm,"- ")
+    .replace(/[→➜➤]/g,"->")
+    .replace(/←/g,"<-")
+    .replace(/⇒/g,"=>")
+    .replace(/\r\n?/g,"\n")
+    .replace(/[ \t]+\n/g,"\n")
+    .replace(/\n{3,}/g,"\n\n")
+    .trim()
+}
 
 function fallbackAnswer(raw){
   const query=normalize(raw)
   let best=null,score=0
   for(const [intent,keys]of intents){const hits=keys.reduce((sum,key)=>sum+(query.includes(key)?key.length:0),0);if(hits>score){score=hits;best=intent}}
   if(best)return answers[best]
-  return hasPersian(raw)?"مدل آنلاین فعلاً در دسترس نیست. حالت محلی فقط می‌تواند دربارهٔ مهدی قهرمانی و فرمان‌های PowerShell جواب بدهد.":"Remote AI is unavailable right now. Local mode can still answer profile questions and PowerShell commands."
+  return hasPersian(raw)?"ارتباط با Eka لحظه‌ای قطع شد. یک بار دیگر بفرست.":"Eka hit a connection hiccup. Try that once more."
+}
+
+async function requestAI(message,history,timeoutMs){
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeoutMs)
+  try{
+    const response=await fetch(AI_ENDPOINT,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({message,history:history.slice(-12)}),signal:controller.signal})
+    if(!response.ok)return{answer:null,retryable:[408,425,429,500,502,503,504].includes(response.status)}
+    const data=await response.json(),answer=typeof data.answer==="string"?safeDisplayText(data.answer):""
+    return{answer:answer||null,retryable:!answer}
+  }catch{return{answer:null,retryable:true}}finally{clearTimeout(timer)}
 }
 
 async function askAI(message,history){
   if(!AI_ENDPOINT)return null
-  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000)
-  try{
-    const response=await fetch(AI_ENDPOINT,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({message,history:history.slice(-12)}),signal:controller.signal})
-    if(!response.ok)return null
-    const data=await response.json()
-    return typeof data.answer==="string"&&data.answer.trim()?data.answer.trim():null
-  }catch{return null}finally{clearTimeout(timer)}
+  const attempts=[22000,10000]
+  for(let i=0;i<attempts.length;i++){
+    const result=await requestAI(message,history,attempts[i])
+    if(result.answer)return result.answer
+    if(!result.retryable||i===attempts.length-1)break
+    await sleep(350)
+  }
+  return null
 }
 
 function addTurn(history,command,answer){
   const turn=document.createElement("div"),line=document.createElement("p"),out=document.createElement("div"),prompt=document.createElement("b"),text=document.createElement("span")
-  turn.className="ps-turn";line.className="ps-command";out.className="ps-answer";prompt.textContent=PROMPT;text.textContent=command
+  turn.className="ps-turn";line.className="ps-command";out.className="ps-answer";prompt.textContent=PROMPT;text.textContent=safeDisplayText(command)
   prompt.dir="ltr";text.dir="auto";out.dir="auto"
-  line.append(prompt," ",text);out.textContent=answer;turn.append(line,out);history.append(turn);return out
+  line.append(prompt," ",text);out.textContent=safeDisplayText(answer);turn.append(line,out);history.append(turn);return out
 }
 
 function initConsole(root){
@@ -94,8 +120,9 @@ function initConsole(root){
     const out=addTurn(historyEl,command,local||"Thinking...");bottom("smooth")
     if(local)return
     input.disabled=true
-    const answer=await askAI(command,chat)||fallbackAnswer(command)
-    out.textContent=answer;chat.push({role:"user",content:command},{role:"assistant",content:answer});if(chat.length>18)chat.splice(0,chat.length-18)
+    const remote=await askAI(command,chat),answer=remote||fallbackAnswer(command)
+    out.textContent=safeDisplayText(answer)
+    if(remote){chat.push({role:"user",content:command},{role:"assistant",content:remote});if(chat.length>18)chat.splice(0,chat.length-18)}
     input.disabled=false;input.focus();bottom("smooth")
   })
   input.addEventListener("keydown",event=>{

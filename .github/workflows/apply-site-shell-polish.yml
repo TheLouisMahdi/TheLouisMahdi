@@ -22,7 +22,7 @@ jobs:
         with:
           ref: agent/site-shell-polish
           fetch-depth: 0
-      - name: Normalize Notepad print integration
+      - name: Normalize transformation for GitHub App permissions
         shell: bash
         run: |
           python3 - <<'PY'
@@ -39,9 +39,19 @@ jobs:
 
           transform_path=Path("tools/apply-site-shell-polish.py")
           transform=transform_path.read_text(encoding="utf-8")
+
           start=transform.index("# Notepad keeps Print")
           end=transform.index("# PowerShell biography",start)
           transform=transform[:start]+"# Notepad print integration was normalized by the workflow.\n\n"+transform[end:]
+
+          start=transform.index("# Validation workflow:")
+          end=transform.index("# Delete obsolete",start)
+          transform=transform[:start]+"# Validation workflow is updated through the GitHub connector after the production commit.\n\n"+transform[end:]
+
+          transform=transform.replace(
+              'for temporary in [ROOT / "tools/apply-site-shell-polish.py", ROOT / ".github/workflows/apply-site-shell-polish.yml"]:',
+              'for temporary in [ROOT / "tools/apply-site-shell-polish.py"]:'
+          )
           transform_path.write_text(transform,encoding="utf-8")
           PY
       - name: Apply production transformation
@@ -55,6 +65,10 @@ jobs:
           git diff --cached --stat
           if git diff --cached --quiet; then
             echo "No transformation changes produced"
+            exit 1
+          fi
+          if git diff --cached --name-only | grep -q '^.github/workflows/'; then
+            echo "Refusing to let the bot modify workflow files"
             exit 1
           fi
           git commit -m "refactor: polish portfolio shell and remove printer"

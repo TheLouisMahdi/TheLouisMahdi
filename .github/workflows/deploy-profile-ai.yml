@@ -66,7 +66,7 @@ jobs:
             sleep 2
           done
           test "$health_status" = "200"
-          node -e 'const fs=require("fs");const x=JSON.parse(fs.readFileSync("/tmp/profile-ai-health.json","utf8"));if(!x.ok||x.build!=="profile-ai-v2"||x.model!=="@cf/meta/llama-3.1-8b-instruct-fast")process.exit(1);console.log(`health OK: ${x.build} · ${x.model}`)'
+          node -e 'const fs=require("fs");const x=JSON.parse(fs.readFileSync("/tmp/profile-ai-health.json","utf8"));if(!x.ok||x.build!=="profile-ai-v4"||x.model!=="@cf/meta/llama-3.3-70b-instruct-fp8-fast")process.exit(1);console.log(`health OK: ${x.build} · ${x.model}`)'
 
           options_status="$(curl -sS -o /tmp/profile-ai-options.txt -w '%{http_code}' -X OPTIONS "$BASE/api/chat" \
             -H 'Origin: https://thelouismahdi.github.io' \
@@ -77,10 +77,10 @@ jobs:
           chat_status="$(curl -sS -o /tmp/profile-ai-chat.json -w '%{http_code}' -X POST "$BASE/api/chat" \
             -H 'Origin: https://thelouismahdi.github.io' \
             -H 'Content-Type: application/json' \
-            --data '{"message":"What can you tell me about Mahdi’s FPGA work?","history":[]}')"
+            --data '{"message":"اسم کامل مهدی چیست و روی FPGA چه کاری کرده؟","history":[]}')"
           cat /tmp/profile-ai-chat.json
           test "$chat_status" = "200"
-          node -e 'const fs=require("fs");const x=JSON.parse(fs.readFileSync("/tmp/profile-ai-chat.json","utf8"));if(typeof x.answer!=="string"||!x.answer.trim()||x.build!=="profile-ai-v2")process.exit(1);console.log("live chat OK")'
+          node -e 'const fs=require("fs");const x=JSON.parse(fs.readFileSync("/tmp/profile-ai-chat.json","utf8"));if(typeof x.answer!=="string"||!x.answer.trim()||x.build!=="profile-ai-v4")process.exit(1);if(!x.answer.includes("قهرمانی"))process.exit(1);console.log("live chat OK")'
 
       - name: Configure frontend endpoint
         if: steps.config.outputs.ready == 'true'

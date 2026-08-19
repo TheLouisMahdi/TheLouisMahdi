@@ -1,0 +1,37 @@
+name: Restore PowerShell Layout
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "tools/restore-powershell-layout.py"
+      - ".github/workflows/restore-powershell-layout.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v6
+        with:
+          ref: agent/powershell-ai-layout
+          fetch-depth: 0
+      - name: Restore PowerShell layout
+        run: python3 tools/restore-powershell-layout.py
+      - name: Commit production changes
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html tests/smoke.mjs
+          git diff --cached --stat
+          if git diff --cached --quiet; then
+            echo "No production changes produced"
+            exit 1
+          fi
+          git commit -m "refactor: restore PowerShell AI portfolio layout"
+          git push origin HEAD:agent/powershell-ai-layout

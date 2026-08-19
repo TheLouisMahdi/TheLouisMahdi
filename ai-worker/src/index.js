@@ -2,11 +2,30 @@ import{profileContext}from"./profile-data.js";
 import{telegramContext}from"./telegram-profile.js";
 
 const DEFAULT_MODEL="@cf/meta/llama-3.3-70b-instruct-fp8-fast";
+const BACKUP_MODEL="@cf/meta/llama-3.1-8b-instruct-fast";
 const BUILD="profile-ai-v4";
 
 const json=(body,status=200,headers={})=>new Response(JSON.stringify(body),{status,headers:{"content-type":"application/json;charset=UTF-8","cache-control":"no-store",...headers}});
 const clean=value=>String(value??"").trim().slice(0,1200);
-const modelText=result=>clean(result?.response??result?.choices?.[0]?.message?.content??result?.choices?.[0]?.text??result?.result?.response);
+const rawModelText=result=>clean(result?.response??result?.choices?.[0]?.message?.content??result?.choices?.[0]?.text??result?.result?.response);
+
+function safeTerminalText(value){
+  return String(value??"")
+    .normalize("NFC")
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F\u200E\u200F\u202A-\u202E\u2066-\u2069\uFEFF\uFFFD]/g,"")
+    .replace(/^[ \t]*[•◦▪▫◆◇▶▷►▸▹➜➤★☆]+[ \t]*/gm,"- ")
+    .replace(/[→➜➤]/g,"->")
+    .replace(/←/g,"<-")
+    .replace(/⇒/g,"=>")
+    .replace(/\r\n?/g,"\n")
+    .replace(/[ \t]+\n/g,"\n")
+    .replace(/\n{3,}/g,"\n\n")
+    .trim();
+}
+
+function modelText(result){
+  return safeTerminalText(rawModelText(result)).slice(0,1800);
+}
 
 function cors(request,env){
   const origin=request.headers.get("origin")||"";
@@ -14,11 +33,18 @@ function cors(request,env){
   return allowed?{"access-control-allow-origin":origin,"access-control-allow-methods":"POST,OPTIONS","access-control-allow-headers":"content-type","vary":"Origin"}:null;
 }
 
+async function runAI(env,model,messages){
+  const result=await env.AI.run(model,{messages,max_tokens:model===BACKUP_MODEL?320:380,temperature:model===BACKUP_MODEL?.56:.62,top_p:.92});
+  const answer=modelText(result);
+  if(!answer)throw new Error("empty_model_response");
+  return answer;
+}
+
 export default{
   async fetch(request,env){
     const url=new URL(request.url);
     const model=env.MODEL||DEFAULT_MODEL;
-    if(url.pathname==="/health")return json({ok:true,model,build:BUILD});
+    if(url.pathname==="/health")return json({ok:true,model,backup_model:BACKUP_MODEL,build:BUILD});
     if(url.pathname!=="/api/chat")return json({error:"not_found"},404);
 
     const headers=cors(request,env);
@@ -46,7 +72,7 @@ CONVERSATION STYLE
 - It is fine to be warm, curious, lightly witty, or ask one natural follow-up when that improves the conversation. Do not overdo personality.
 - Match the user's language. In Persian, write fluent Persian and preserve the exact name spelling "مهدی قهرمانی" whenever the Persian name is needed.
 - Prefer concise answers, usually 2-7 short sentences, but use more detail when the question genuinely needs it.
-- Plain text only, suitable for a Windows PowerShell console.
+- Output plain terminal text only. Do not use Markdown decoration, emoji, decorative bullets, arrows, box-drawing characters, bidi control characters, or unusual Unicode symbols. Use ordinary Persian/English letters, digits, normal punctuation, hyphens, and line breaks.
 
 KNOWLEDGE RULES
 - For general knowledge, answer normally from your model knowledge.
@@ -63,18 +89,20 @@ VERIFIED PUBLIC PROFILE:\n${profileContext()}
 
 USER-APPROVED PERSONAL CONTEXT:\n${telegramContext()}`;
 
+    const messages=[{role:"system",content:system},...history,{role:"user",content:message}];
     try{
-      const result=await env.AI.run(model,{
-        messages:[{role:"system",content:system},...history,{role:"user",content:message}],
-        max_tokens:380,
-        temperature:.62,
-        top_p:.92
-      });
-      const answer=modelText(result);
-      if(!answer)throw new Error("empty_model_response");
-      return json({answer,model,build:BUILD},200,headers);
-    }catch(error){
-      console.error("Workers AI request failed",error);
+      const answer=await runAI(env,model,messages);
+      return json({answer,model,build:BUILD,degraded:false},200,headers);
+    }catch(primaryError){
+      console.error("Primary Workers AI request failed",primaryError);
+      if(model!==BACKUP_MODEL){
+        try{
+          const answer=await runAI(env,BACKUP_MODEL,messages);
+          return json({answer,model:BACKUP_MODEL,primary_model:model,build:BUILD,degraded:true},200,headers);
+        }catch(backupError){
+          console.error("Backup Workers AI request failed",backupError);
+        }
+      }
       return json({error:"ai_unavailable",build:BUILD},503,headers);
     }
   }

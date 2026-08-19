@@ -19,7 +19,7 @@ const PROFILE_HTML=`
   </div>`
 
 const answers={
-  identity:"Electrical Engineering student at the University of Zanjan, working where software, AI, embedded systems and digital hardware meet.",
+  identity:"Mahdi Ghahremani — مهدی قهرمانی — is an Electrical Engineering student at the University of Zanjan, working where software, AI, embedded systems and digital hardware meet.",
   story:"The work is usually cross-layer: understand the physical or technical constraint, build the smallest testable version, measure what fails, then connect software and hardware until the system behaves reliably.",
   focus:"Computer Vision  ·  Applied AI  ·  Embedded C/C++  ·  Linux  ·  STM32  ·  FPGA  ·  Verilog RTL  ·  simulation, verification and engineering automation.",
   method:"Understand the real constraint. Build the smallest version that can be tested. Measure failures instead of guessing. Refine until the solution is simpler, repeatable and easier to continue developing.",
@@ -29,7 +29,7 @@ const answers={
   embedded:"Embedded work centers on C/C++, Linux and microcontroller-facing systems such as STM32, including interfaces, test logic, data acquisition and hardware/software integration.",
   fpga:"Digital hardware work includes Verilog RTL, FPGA architecture, testbenches, simulation and accelerator-oriented hardware/software co-design.",
   contact:"GitHub: TheLouisMahdi\nTelegram: @thelouis_mahdi",
-  whoami:"Mahdi Ghahremani\nTheLouisMahdi / Eka / poimu / Eka Francium\nEngineering × Software × AI × Hardware",
+  whoami:"Mahdi Ghahremani / مهدی قهرمانی\nTheLouisMahdi / Eka / poimu / Eka Francium\nEngineering × Software × AI × Hardware",
   greeting:"Eka online. You can ask about Mahdi or just have a normal conversation.",
   thanks:"You’re welcome.",
   help:"Commands: Get-Identity, Get-Story, Get-Focus, Get-Method, Get-Reason, Get-Contact, whoami, clear\nFree-form questions use the remote AI when available. Use ↑ / ↓ for history and Ctrl+L to clear."
@@ -53,19 +53,21 @@ const intents=[
 
 const commands={"get-identity":"identity","get-story":"story","get-focus":"focus","get-method":"method","get-reason":"reason","get-contact":"contact","whoami":"whoami","get-help":"help","help":"help"}
 const normalize=value=>value.toLocaleLowerCase().trim().replace(/[؟?!.,;:]+/g," ").replace(/\s+/g," ")
+const hasPersian=value=>/[\u0600-\u06ff]/.test(value)
 
 function fallbackAnswer(raw){
   const query=normalize(raw)
   let best=null,score=0
   for(const [intent,keys]of intents){const hits=keys.reduce((sum,key)=>sum+(query.includes(key)?key.length:0),0);if(hits>score){score=hits;best=intent}}
-  return best?answers[best]:"Remote AI is unavailable right now. Local mode can still answer profile questions and PowerShell commands."
+  if(best)return answers[best]
+  return hasPersian(raw)?"مدل آنلاین فعلاً در دسترس نیست. حالت محلی فقط می‌تواند دربارهٔ مهدی قهرمانی و فرمان‌های PowerShell جواب بدهد.":"Remote AI is unavailable right now. Local mode can still answer profile questions and PowerShell commands."
 }
 
 async function askAI(message,history){
   if(!AI_ENDPOINT)return null
-  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000)
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000)
   try{
-    const response=await fetch(AI_ENDPOINT,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({message,history:history.slice(-10)}),signal:controller.signal})
+    const response=await fetch(AI_ENDPOINT,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({message,history:history.slice(-12)}),signal:controller.signal})
     if(!response.ok)return null
     const data=await response.json()
     return typeof data.answer==="string"&&data.answer.trim()?data.answer.trim():null
@@ -93,7 +95,7 @@ function initConsole(root){
     if(local)return
     input.disabled=true
     const answer=await askAI(command,chat)||fallbackAnswer(command)
-    out.textContent=answer;chat.push({role:"user",content:command},{role:"assistant",content:answer});if(chat.length>14)chat.splice(0,chat.length-14)
+    out.textContent=answer;chat.push({role:"user",content:command},{role:"assistant",content:answer});if(chat.length>18)chat.splice(0,chat.length-18)
     input.disabled=false;input.focus();bottom("smooth")
   })
   input.addEventListener("keydown",event=>{

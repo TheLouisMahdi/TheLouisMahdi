@@ -22,6 +22,28 @@ jobs:
         with:
           ref: agent/site-shell-polish
           fetch-depth: 0
+      - name: Normalize Notepad print integration
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          notepad_path=Path("js/notepad.js")
+          source=notepad_path.read_text(encoding="utf-8")
+          lines=source.splitlines()
+          matches=[i for i,line in enumerate(lines) if 'byId("notePrint").addEventListener' in line]
+          if len(matches)!=1:
+              raise SystemExit(f"expected one Notepad print handler, found {len(matches)}")
+          lines[matches[0]]='  byId("notePrint").addEventListener("click",()=>window.print())'
+          notepad_path.write_text("\n".join(lines)+("\n" if source.endswith("\n") else ""),encoding="utf-8")
+
+          transform_path=Path("tools/apply-site-shell-polish.py")
+          transform=transform_path.read_text(encoding="utf-8")
+          start=transform.index("# Notepad keeps Print")
+          end=transform.index("# PowerShell biography",start)
+          transform=transform[:start]+"# Notepad print integration was normalized by the workflow.\n\n"+transform[end:]
+          transform_path.write_text(transform,encoding="utf-8")
+          PY
       - name: Apply production transformation
         run: python3 tools/apply-site-shell-polish.py
       - name: Commit transformed site

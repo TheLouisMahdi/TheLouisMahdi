@@ -7,17 +7,39 @@ if(canvas&&footer){
   const pointer={active:false,x:0,y:0,lastX:0,lastY:0}
   const boatImage=new Image()
   const boat={ready:false,x:0,y:0,vx:0,vy:0,angle:0,angularVelocity:0}
+  const BOAT_PARTS=["assets/tugboat/part0.txt","assets/tugboat/part1.txt","assets/tugboat/part2.txt"]
+  const BOAT_BASE64_LENGTH=21948
+  const BOAT_NATURAL_WIDTH=220
+  const BOAT_NATURAL_HEIGHT=210
   let width=0,height=0,dpr=1,restY=0,points=[],raf=0,lastTime=0
 
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value))
 
   boatImage.decoding="async"
-  boatImage.src="assets/footer-tugboat.webp"
+  boatImage.dataset.footerTugboat="true"
   boatImage.addEventListener("load",()=>{
+    if(boatImage.naturalWidth!==BOAT_NATURAL_WIDTH||boatImage.naturalHeight!==BOAT_NATURAL_HEIGHT){
+      console.error("Footer tugboat dimensions are invalid",boatImage.naturalWidth,boatImage.naturalHeight)
+      return
+    }
     boat.ready=true
     resetBoat()
     draw(performance.now())
   })
+  boatImage.addEventListener("error",()=>console.error("Footer tugboat image failed to decode"))
+
+  async function loadBoatImage(){
+    const parts=await Promise.all(BOAT_PARTS.map(async path=>{
+      const response=await fetch(path,{cache:"force-cache"})
+      if(!response.ok)throw new Error(`tugboat_part_${response.status}`)
+      return(await response.text()).trim()
+    }))
+    const encoded=parts.join("")
+    if(encoded.length!==BOAT_BASE64_LENGTH)throw new Error(`tugboat_asset_incomplete_${encoded.length}`)
+    boatImage.src=`data:image/webp;base64,${encoded}`
+  }
+
+  loadBoatImage().catch(error=>console.error("Footer tugboat asset failed",error))
 
   function buildPoints(){
     const count=Math.max(54,Math.ceil(width/13)+1)
@@ -31,7 +53,7 @@ if(canvas&&footer){
   function boatSize(){
     const responsive=width<600?width*.29:width*.19
     const boatWidth=clamp(responsive,108,214)
-    const ratio=boatImage.naturalWidth?boatImage.naturalHeight/boatImage.naturalWidth:.75
+    const ratio=boatImage.naturalWidth?boatImage.naturalHeight/boatImage.naturalWidth:BOAT_NATURAL_HEIGHT/BOAT_NATURAL_WIDTH
     return{width:boatWidth,height:boatWidth*ratio}
   }
 
@@ -159,7 +181,9 @@ if(canvas&&footer){
   function drawBoat(){
     if(!boat.ready)return
     const size=boatSize()
-    const anchor=.72
+    const anchor=.82
+    const imageX=-size.width*.5
+    const imageY=-size.height*anchor
 
     ctx.save()
     ctx.translate(boat.x,boat.y+4)
@@ -170,19 +194,31 @@ if(canvas&&footer){
     ctx.fill()
     ctx.restore()
 
+    // The lower hull remains faintly visible below the live waterline.
     ctx.save()
     ctx.translate(boat.x,boat.y)
     ctx.rotate(boat.angle)
     ctx.beginPath()
-    ctx.rect(-size.width*.62,-size.height*1.2,size.width*1.24,size.height*1.21)
+    ctx.rect(-size.width*.62,0,size.width*1.24,size.height*.32)
     ctx.clip()
-    ctx.drawImage(boatImage,-size.width*.5,-size.height*anchor,size.width,size.height)
+    ctx.globalAlpha=.3
+    ctx.drawImage(boatImage,imageX,imageY,size.width,size.height)
+    ctx.restore()
+
+    // The dry part of the toy stays crisp above the same sampled surface.
+    ctx.save()
+    ctx.translate(boat.x,boat.y)
+    ctx.rotate(boat.angle)
+    ctx.beginPath()
+    ctx.rect(-size.width*.62,-size.height*1.2,size.width*1.24,size.height*1.205)
+    ctx.clip()
+    ctx.drawImage(boatImage,imageX,imageY,size.width,size.height)
     ctx.restore()
 
     ctx.save()
     ctx.translate(boat.x,boat.y+1)
     ctx.rotate(boat.angle)
-    ctx.strokeStyle="rgba(255,255,255,.82)"
+    ctx.strokeStyle="rgba(255,255,255,.84)"
     ctx.lineWidth=1.25
     ctx.beginPath()
     ctx.ellipse(-size.width*.3,0,size.width*.11,Math.max(2,size.width*.014),0,0,Math.PI*2)

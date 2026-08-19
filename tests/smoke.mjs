@@ -64,6 +64,9 @@ assert.ok(index.includes('id="footerLiquid"')&&index.includes('js/footer-liquid.
 assert.ok(footerLiquid.includes('pointermove')&&footerLiquid.includes('pointerdown')&&footerLiquid.includes('requestAnimationFrame'),"liquid footer pointer physics are incomplete")
 assert.ok(siteShell.includes('.footer-liquid')&&siteShell.includes('linear-gradient(180deg,#fff 0 48%'),"footer must fall back to a white-over-blue liquid split")
 assert.ok(!index.includes('site-intro-kicker')&&!index.includes('site-intro-tags')&&!index.includes('Software, applied AI, embedded systems'),"hero must contain only Engineering across layers")
+assert.ok(index.includes('id="about" aria-label="PowerShell profile assistant"')&&index.includes('js/profile-assistant.js'),"PowerShell profile assistant mount is missing")
+assert.ok(!index.includes("Selected Projects")&&!index.includes("Tech Stack &amp; Tools")&&!index.includes("Current Roles"),"legacy long README content must not be rendered")
+assert.ok(index.indexOf('class="laptop"')<index.indexOf('id="about"')&&index.indexOf('id="about"')<index.indexOf('class="site-footer"'),"page order must be simulator, PowerShell assistant, liquid footer")
 const bootBlock=index.match(/<div class="windows-boot[\s\S]*?<\/div>\s*<\/section>/)?.[0]||""
 assert.ok(bootBlock&&!bootBlock.includes("Windows 7 Professional"),"Starting Windows screen must not overlap edition branding")
 assert.ok(interaction.includes('querySelectorAll("iframe")')&&interaction.includes('classList.remove("pointer-active")'),"the parent cursor must yield to iframe cursors")

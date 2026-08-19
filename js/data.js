@@ -26,7 +26,6 @@ export const FILE_SYSTEM={
   desktop:{title:"Desktop",path:"C:\\Users\\Eka\\Desktop",type:"folder",items:[
     {name:"Computer",type:"computer",target:"computer"},
     {name:"GitHub Projects",type:"folder",target:"projects"},
-    {name:"Print Profile",type:"printer",app:"printprofile"},
     {name:"Pictures",type:"photo",target:"pictures"},
     {name:"Recycle Bin",type:"recycle",target:"recycle"},
     {name:"Telegram",type:"telegram",external:PROFILE.telegramUrl}

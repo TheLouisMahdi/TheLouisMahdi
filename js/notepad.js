@@ -105,7 +105,7 @@ export function initNotepad(){
   byId("noteSave").addEventListener("click",()=>void saveAs())
   byId("noteSaveCurrent").addEventListener("click",saveCurrent)
   byId("noteOpen").addEventListener("click",async()=>{const path=await askOpenFile();if(path)await openFileSafely(path,true)})
-  byId("notePrint").addEventListener("click",()=>{window.dispatchEvent(new CustomEvent("win7:print-document",{detail:{name:currentName(),text:byId("noteText").value}}));document.getElementById("printerZone")?.scrollIntoView({behavior:"smooth",block:"center"})})
+  byId("notePrint").addEventListener("click",()=>window.print())
 
   const replaceSelection=value=>{const start=text.selectionStart,end=text.selectionEnd;text.setRangeText(value,start,end,"end");text.dispatchEvent(new Event("input",{bubbles:true}))}
   const findText=async()=>{const query=await askText("Find","Find what:","");if(!query)return;let index=text.value.toLowerCase().indexOf(query.toLowerCase(),text.selectionEnd);if(index<0)index=text.value.toLowerCase().indexOf(query.toLowerCase());if(index<0){window.dispatchEvent(new CustomEvent("win7:toast",{detail:`Cannot find '${query}'.`}));return}text.focus();text.setSelectionRange(index,index+query.length)}

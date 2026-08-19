@@ -15,16 +15,25 @@ try{
     const geometry=await page.evaluate(()=>{
       const screen=document.getElementById("screen").getBoundingClientRect()
       const consoleBox=document.getElementById("psConsole").getBoundingClientRect()
+      const hero=document.querySelector(".hero").getBoundingClientRect()
       return{
         innerWidth,
         scrollWidth:document.documentElement.scrollWidth,
         screenWidth:screen.width,
         screenHeight:screen.height,
-        consoleHeight:consoleBox.height
+        consoleHeight:consoleBox.height,
+        heroHeight:hero.height,
+        hasPrinter:Boolean(document.getElementById("printerZone")),
+        hasFooter:Boolean(document.querySelector(".site-footer")),
+        mobileCssLoaded:[...document.styleSheets].some(sheet=>sheet.href?.includes("/css/mobile-fit.css"))
       }
     })
 
     assert.ok(geometry.scrollWidth<=geometry.innerWidth+1,"mobile layout has horizontal page overflow")
+    assert.ok(geometry.mobileCssLoaded,"mobile-fit stylesheet is not loaded")
+    assert.equal(geometry.hasPrinter,false,"printer UI still exists on mobile")
+    assert.equal(geometry.hasFooter,true,"site footer is missing on mobile")
+    if(viewport.width<viewport.height)assert.ok(geometry.heroHeight<viewport.height*.82,"mobile hero leaves too much vertical space")
     const ratio=geometry.screenWidth/geometry.screenHeight
     assert.ok(ratio>1.72&&ratio<1.83,`simulator screen is distorted: ${ratio}`)
     assert.ok(geometry.screenHeight<viewport.height*.8,"simulator screen is vertically stretched")

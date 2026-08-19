@@ -1,0 +1,265 @@
+:root{
+  --shell-ink:#0b1220;
+  --shell-muted:#5d6877;
+  --shell-line:rgba(26,42,65,.12);
+  --shell-blue:#3aa7ff;
+  --shell-violet:#8b5cf6;
+  --shell-cyan:#48e5c2;
+}
+body{background:#eef2f6;color:var(--shell-ink)}
+main{overflow:clip}
+.hero{
+  position:relative;
+  min-height:0;
+  padding:34px 20px 46px;
+  overflow:hidden;
+  background:
+    radial-gradient(900px 430px at 8% -8%,rgba(72,229,194,.18),transparent 62%),
+    radial-gradient(850px 440px at 94% 4%,rgba(139,92,246,.14),transparent 62%),
+    linear-gradient(180deg,#f9fbfd 0%,#eef2f6 68%,#e9eef4 100%);
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:linear-gradient(rgba(14,28,48,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(14,28,48,.025) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:linear-gradient(to bottom,#000,transparent 78%);
+}
+.site-intro{
+  position:relative;
+  z-index:2;
+  width:min(1040px,100%);
+  margin:0 auto 26px;
+  text-align:center;
+}
+.site-intro-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:12px;
+  color:#66758a;
+  font:700 11px/1.2 "Segoe UI",Inter,Arial,sans-serif;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.site-intro-kicker:before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--shell-cyan);
+  box-shadow:0 0 0 5px rgba(72,229,194,.12),0 0 18px rgba(72,229,194,.55);
+}
+.site-intro h1{
+  margin:0;
+  color:#09111f;
+  font:750 clamp(38px,6vw,76px)/.98 "Segoe UI",Inter,Arial,sans-serif;
+  letter-spacing:-.055em;
+}
+.site-intro h1 span{
+  background:linear-gradient(100deg,#0e6fbd 5%,#6d4ed6 52%,#168d78 96%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.site-intro p{
+  max-width:700px;
+  margin:15px auto 0;
+  color:var(--shell-muted);
+  font:500 clamp(13px,1.7vw,16px)/1.6 "Segoe UI",Inter,Arial,sans-serif;
+  letter-spacing:.01em;
+}
+.site-intro-tags{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:7px;
+  margin-top:16px;
+}
+.site-intro-tags span{
+  padding:6px 10px;
+  border:1px solid rgba(27,56,85,.1);
+  border-radius:999px;
+  background:rgba(255,255,255,.64);
+  box-shadow:inset 0 1px rgba(255,255,255,.85),0 4px 15px rgba(35,61,90,.05);
+  color:#425168;
+  font:650 10px/1 "Segoe UI",Inter,Arial,sans-serif;
+  backdrop-filter:blur(8px);
+}
+.laptop{position:relative;z-index:1;width:min(1120px,96vw);filter:drop-shadow(0 24px 28px rgba(24,37,52,.24))}
+
+/* The biography should feel like a section, not a second full-height page. */
+.portfolio-liquid{border-top:1px solid rgba(255,255,255,.08)}
+
+.site-footer{
+  position:relative;
+  overflow:hidden;
+  padding:58px 20px 26px;
+  background:
+    radial-gradient(620px 300px at 16% 22%,rgba(58,167,255,.18),transparent 68%),
+    radial-gradient(620px 320px at 88% 20%,rgba(139,92,246,.2),transparent 68%),
+    linear-gradient(145deg,#07111f,#0b1829 58%,#09131f);
+  color:#eef7ff;
+  border-top:1px solid rgba(255,255,255,.1);
+  box-shadow:inset 0 1px rgba(255,255,255,.05);
+}
+.site-footer:before,.site-footer:after{
+  content:"";
+  position:absolute;
+  width:240px;
+  height:240px;
+  border-radius:42% 58% 64% 36%/45% 40% 60% 55%;
+  filter:blur(3px);
+  opacity:.18;
+  pointer-events:none;
+}
+.site-footer:before{left:-90px;top:-115px;background:linear-gradient(135deg,#48e5c2,#3aa7ff);transform:rotate(22deg)}
+.site-footer:after{right:-80px;bottom:-140px;background:linear-gradient(135deg,#8b5cf6,#3aa7ff);transform:rotate(-18deg)}
+.site-footer-inner{
+  position:relative;
+  z-index:2;
+  width:min(1080px,100%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);
+  gap:36px;
+  align-items:center;
+}
+.footer-eyebrow{
+  margin:0 0 8px;
+  color:#7dd8ff;
+  font:700 10px/1.2 "Segoe UI",Inter,Arial,sans-serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.footer-identity h2{
+  margin:0;
+  font:750 clamp(27px,4vw,42px)/1.05 "Segoe UI",Inter,Arial,sans-serif;
+  letter-spacing:-.035em;
+}
+.footer-identity>p{
+  max-width:620px;
+  margin:12px 0 18px;
+  color:#aebdd0;
+  font:400 13px/1.65 "Segoe UI",Inter,Arial,sans-serif;
+}
+.footer-aliases{display:flex;flex-wrap:wrap;gap:8px}
+.footer-aliases span{
+  padding:7px 11px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  background:rgba(255,255,255,.045);
+  color:#d8e5f4;
+  font:650 11px/1 "Segoe UI",Inter,Arial,sans-serif;
+}
+.footer-actions{display:grid;gap:11px}
+.liquid-telegram{
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  min-height:64px;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  overflow:hidden;
+  padding:13px 16px 13px 19px;
+  border:1px solid rgba(255,255,255,.26);
+  border-radius:22px;
+  background:linear-gradient(135deg,rgba(62,177,255,.22),rgba(116,88,255,.14));
+  color:#fff;
+  text-decoration:none;
+  box-shadow:inset 0 1px rgba(255,255,255,.34),inset 0 -1px rgba(255,255,255,.08),0 18px 40px rgba(0,0,0,.23),0 0 0 1px rgba(82,193,255,.05);
+  backdrop-filter:blur(18px) saturate(145%);
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.liquid-telegram:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:120px;
+  height:95px;
+  left:-18px;
+  top:-30px;
+  border-radius:48% 52% 58% 42%;
+  background:radial-gradient(circle at 60% 60%,rgba(111,237,255,.56),rgba(44,153,255,.05) 68%,transparent 70%);
+  transform:rotate(-16deg);
+}
+.liquid-telegram:after{
+  content:"";
+  position:absolute;
+  inset:1px 18% auto 10%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
+  opacity:.65;
+}
+.liquid-telegram:hover,.liquid-telegram:focus-visible{
+  transform:translateY(-2px);
+  border-color:rgba(125,216,255,.48);
+  box-shadow:inset 0 1px rgba(255,255,255,.42),0 22px 46px rgba(0,0,0,.29),0 0 30px rgba(58,167,255,.12);
+}
+.liquid-telegram strong{display:block;font:730 15px/1.15 "Segoe UI",Inter,Arial,sans-serif}
+.liquid-telegram small{display:block;margin-top:4px;color:#b9d6eb;font:500 10px/1.2 "Segoe UI",Inter,Arial,sans-serif}
+.liquid-telegram b{
+  display:grid;
+  flex:0 0 auto;
+  width:37px;
+  height:37px;
+  place-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.14);
+  box-shadow:inset 0 1px rgba(255,255,255,.28);
+  font-size:17px;
+}
+.footer-github{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:11px 14px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  background:rgba(255,255,255,.035);
+  color:#c7d5e6;
+  text-decoration:none;
+  font:600 11px/1.3 "Segoe UI",Inter,Arial,sans-serif;
+  transition:background .18s ease,border-color .18s ease;
+}
+.footer-github:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+.footer-bottom{
+  position:relative;
+  z-index:2;
+  width:min(1080px,100%);
+  margin:35px auto 0;
+  padding-top:17px;
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  border-top:1px solid rgba(255,255,255,.08);
+  color:#76879b;
+  font:500 9px/1.4 "Segoe UI",Inter,Arial,sans-serif;
+  letter-spacing:.04em;
+}
+@media(max-width:760px){
+  .hero{padding:20px 0 25px}
+  .site-intro{width:calc(100% - 28px);margin-bottom:17px}
+  .site-intro-kicker{margin-bottom:9px;font-size:8px;letter-spacing:.13em}
+  .site-intro h1{font-size:clamp(31px,10vw,48px);letter-spacing:-.045em}
+  .site-intro p{margin-top:10px;font-size:12px;line-height:1.5}
+  .site-intro-tags{margin-top:12px;gap:5px}
+  .site-intro-tags span{padding:5px 8px;font-size:8px}
+  .site-footer{padding:38px 16px 20px}
+  .site-footer-inner{grid-template-columns:1fr;gap:25px}
+  .footer-identity h2{font-size:29px}
+  .footer-identity>p{margin-bottom:14px;font-size:12px}
+  .liquid-telegram{min-height:59px;border-radius:19px}
+  .footer-bottom{margin-top:27px;flex-direction:column;gap:5px}
+}
+@media(max-width:420px){
+  .site-intro-tags span:nth-child(n+4){display:none}
+  .footer-aliases{gap:6px}
+  .footer-aliases span{font-size:10px;padding:6px 9px}
+}
+@media(prefers-reduced-motion:reduce){.liquid-telegram{transition:none}}

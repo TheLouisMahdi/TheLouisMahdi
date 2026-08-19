@@ -6,6 +6,8 @@ on:
     paths:
       - "tools/apply-site-shell-polish.py"
       - ".github/workflows/apply-site-shell-polish.yml"
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: write

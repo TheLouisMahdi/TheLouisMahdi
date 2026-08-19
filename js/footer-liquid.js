@@ -144,6 +144,15 @@ if(canvas&&footer){
 
   function processPointerSample(event){
     const next=localPointer(event)
+    if(!pointer.active&&!boat.grabbed){
+      pointer.x=next.x
+      pointer.y=next.y
+      pointer.lastX=next.x
+      pointer.lastY=next.y
+      pointer.active=true
+      return
+    }
+
     const dx=next.x-pointer.x
     const dy=next.y-pointer.y
     pointer.lastX=pointer.x
@@ -188,7 +197,6 @@ if(canvas&&footer){
       boat.grabbed=true
       boat.grabOffsetX=boat.x-next.x
       boat.vx*=.45
-      try{footer.setPointerCapture(event.pointerId)}catch{}
     }
 
     const direction=pointer.y<surfaceYAt(pointer.x)?1:-1
@@ -197,9 +205,6 @@ if(canvas&&footer){
 
   function releasePointer(event){
     if(pointer.id!==null&&event.pointerId!==undefined&&event.pointerId!==pointer.id)return
-    if(pointer.id!==null){
-      try{footer.releasePointerCapture(pointer.id)}catch{}
-    }
     boat.grabbed=false
     pointer.id=null
     pointer.active=false
@@ -227,17 +232,14 @@ if(canvas&&footer){
     const targetY=(leftY+centerY*2+rightY)*.25
     const targetAngle=clamp(Math.atan2(rightY-leftY,probe*2)*1.05,-.23,.23)
 
-    // Heave: always follows the live water surface, even while horizontally grabbed.
     const heaveForce=(targetY-boat.y)*.055
     boat.vy=(boat.vy+heaveForce*dt)*Math.pow(.835,dt)
     boat.y+=boat.vy*dt
 
-    // Pitch: follows the slope beneath the hull with a damped rotational spring.
     const pitchForce=(targetAngle-boat.angle)*.048
     boat.angularVelocity=(boat.angularVelocity+pitchForce*dt)*Math.pow(.79,dt)
     boat.angle+=boat.angularVelocity*dt
 
-    // Surge: slope, pointer-driven surface flow and direct horizontal dragging all add momentum.
     const homeForce=(boatHomeX()-boat.x)*(boat.grabbed?0:.00065)
     const slopeForce=clamp(-targetAngle*.075,-.018,.018)
     const surgeForce=homeForce+slopeForce+boat.flowX+boat.userForceX
@@ -256,7 +258,6 @@ if(canvas&&footer){
       if(boat.vx>0)boat.vx*=-.32
     }
 
-    // Keep the sampled waterline centered through the lower hull.
     const maxWaterOffset=Math.max(16,size.height*.14)
     boat.y=clamp(boat.y,restY-92-maxWaterOffset,restY+92+maxWaterOffset)
   }
@@ -318,7 +319,6 @@ if(canvas&&footer){
     ctx.save()
     fillWaterPath()
     const water=ctx.createLinearGradient(0,restY-24,0,height)
-    // Slight translucency at the crest lets the hull read as submerged; deeper water stays opaque.
     water.addColorStop(0,"rgba(21,152,255,.87)")
     water.addColorStop(.1,"rgba(15,139,247,.95)")
     water.addColorStop(.48,"#0878ef")
@@ -393,21 +393,17 @@ if(canvas&&footer){
   function draw(time){
     ctx.clearRect(0,0,width,height)
 
-    // Layer 1: the white upper liquid/background stays behind the toy.
     ctx.fillStyle="#ffffff"
     ctx.fillRect(0,0,width,height)
 
-    // A restrained pale crest sits behind the boat and preserves the existing clean footer aesthetic.
     smoothSurface()
     ctx.strokeStyle="rgba(112,204,255,.18)"
     ctx.lineWidth=10
     ctx.stroke()
 
-    // Layer 2: full boat in front of the white region.
     drawBoatShadow()
     drawBoat()
 
-    // Layer 3: live blue liquid is drawn after the boat, therefore the lower hull is physically occluded by water.
     drawFrontWater()
     drawWaterGlow()
     drawWake()
@@ -453,10 +449,9 @@ if(canvas&&footer){
   footer.addEventListener("pointerdown",onPointerDown,{passive:true})
   footer.addEventListener("pointerup",releasePointer,{passive:true})
   footer.addEventListener("pointercancel",releasePointer,{passive:true})
-  footer.addEventListener("lostpointercapture",()=>{boat.grabbed=false;pointer.id=null;pointer.active=false})
-  footer.addEventListener("pointerleave",event=>{
-    if(!boat.grabbed){pointer.active=false;pointer.id=event.buttons?pointer.id:null}
-  })
+  footer.addEventListener("pointerleave",()=>{pointer.active=false})
+  window.addEventListener("pointerup",releasePointer,{passive:true})
+  window.addEventListener("pointercancel",releasePointer,{passive:true})
 
   const observer=new ResizeObserver(resize)
   observer.observe(footer)

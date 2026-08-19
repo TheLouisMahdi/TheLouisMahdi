@@ -17,18 +17,29 @@ try{
     await page.addInitScript(()=>{
       const original=CanvasRenderingContext2D.prototype.drawImage
       CanvasRenderingContext2D.prototype.drawImage=function(image,...args){
-        if(image instanceof HTMLImageElement&&image.src.includes("footer-tugboat.webp"))window.__footerTugboatDrawn=(window.__footerTugboatDrawn||0)+1
+        if(image instanceof HTMLImageElement&&image.dataset.footerTugboat==="true"){
+          window.__footerTugboatDrawn=(window.__footerTugboatDrawn||0)+1
+          window.__footerTugboatDims=[image.naturalWidth,image.naturalHeight]
+        }
         return original.call(this,image,...args)
       }
     })
     await page.goto(siteUrl,{waitUntil:"domcontentloaded"})
 
     await page.waitForFunction(()=>window.__footerTugboatDrawn>0,{timeout:10000})
-    const boatAssetOk=await page.evaluate(async()=>{
-      const response=await fetch("assets/footer-tugboat.webp",{cache:"no-store"})
-      return response.ok&&Number(response.headers.get("content-length")||1)>0
-    })
-    assert.equal(boatAssetOk,true,profile.name+" tugboat asset did not load")
+    const boatDims=await page.evaluate(()=>window.__footerTugboatDims)
+    assert.deepEqual(boatDims,[220,210],profile.name+" reconstructed tugboat dimensions are invalid")
+    const chunkSizes=await page.evaluate(async()=>Promise.all([
+      "assets/tugboat/part0.txt",
+      "assets/tugboat/part1.txt",
+      "assets/tugboat/part2.txt"
+    ].map(async path=>{
+      const response=await fetch(path,{cache:"no-store"})
+      if(!response.ok)return-1
+      return(await response.text()).trim().length
+    })))
+    assert.deepEqual(chunkSizes,[7500,7500,6948],profile.name+" tugboat source chunks are incomplete")
+
     await page.locator(".site-footer").scrollIntoViewIfNeeded()
     const footerBox=await page.locator(".site-footer").boundingBox()
     assert.ok(footerBox,profile.name+" footer is missing")
@@ -95,4 +106,4 @@ try{
   await browser.close()
 }
 
-console.log("Footer tugboat + Comfy Cakes browser checks passed")
+console.log("Verified tugboat + Comfy Cakes browser checks passed")

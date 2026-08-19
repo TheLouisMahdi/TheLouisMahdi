@@ -14,7 +14,37 @@ try{
     const page=await context.newPage()
     const errors=[]
     page.on("pageerror",error=>errors.push(error.message))
+    await page.addInitScript(()=>{
+      const original=CanvasRenderingContext2D.prototype.drawImage
+      CanvasRenderingContext2D.prototype.drawImage=function(image,...args){
+        if(image instanceof HTMLImageElement&&image.src.includes("footer-tugboat.webp"))window.__footerTugboatDrawn=(window.__footerTugboatDrawn||0)+1
+        return original.call(this,image,...args)
+      }
+    })
     await page.goto(siteUrl,{waitUntil:"domcontentloaded"})
+
+    await page.waitForFunction(()=>window.__footerTugboatDrawn>0,{timeout:10000})
+    const boatAssetOk=await page.evaluate(async()=>{
+      const response=await fetch("assets/footer-tugboat.webp",{cache:"no-store"})
+      return response.ok&&Number(response.headers.get("content-length")||1)>0
+    })
+    assert.equal(boatAssetOk,true,profile.name+" tugboat asset did not load")
+    await page.locator(".site-footer").scrollIntoViewIfNeeded()
+    const footerBox=await page.locator(".site-footer").boundingBox()
+    assert.ok(footerBox,profile.name+" footer is missing")
+    const drawsBefore=await page.evaluate(()=>window.__footerTugboatDrawn||0)
+    if(profile.hasTouch){
+      await page.touchscreen.tap(footerBox.x+footerBox.width*.28,footerBox.y+footerBox.height*.48)
+    }else{
+      await page.mouse.move(footerBox.x+footerBox.width*.12,footerBox.y+footerBox.height*.42)
+      await page.mouse.move(footerBox.x+footerBox.width*.34,footerBox.y+footerBox.height*.57,{steps:5})
+      await page.mouse.down()
+      await page.mouse.up()
+    }
+    await page.waitForTimeout(300)
+    const drawsAfter=await page.evaluate(()=>window.__footerTugboatDrawn||0)
+    assert.ok(drawsAfter>drawsBefore,profile.name+" tugboat stopped rendering after liquid interaction")
+
     await page.waitForSelector("#comfyWindow",{state:"attached"})
     await page.locator("#laptopPower").click({force:true})
     await page.addStyleTag({content:".system-screen{display:none!important}"})
@@ -65,4 +95,4 @@ try{
   await browser.close()
 }
 
-console.log("Comfy Cakes browser checks passed")
+console.log("Footer tugboat + Comfy Cakes browser checks passed")

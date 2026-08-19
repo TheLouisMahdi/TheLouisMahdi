@@ -58,7 +58,6 @@ try{
       await page.touchscreen.tap(footerBox.x+footerBox.width*.28,footerBox.y+footerBox.height*.48)
       await page.waitForTimeout(350)
     }else{
-      // Grab the visible upper hull: horizontal input moves X while Y remains wave-driven.
       const grabX=footerBox.x+initialBoat.x
       const grabY=footerBox.y+initialBoat.y-48
       await page.mouse.move(grabX,grabY)
@@ -71,9 +70,9 @@ try{
       await page.mouse.up()
       await page.waitForTimeout(180)
       const afterDrag=await readBoat()
+      assert.equal(afterDrag.grabbed,"0","desktop tugboat did not release pointer capture after drag")
       assert.ok(afterDrag.x-initialBoat.x>14,"desktop tugboat did not move horizontally with pointer momentum")
 
-      // Disturb the live surface beside the new hull position and require heave or pitch response.
       await page.mouse.move(footerBox.x+afterDrag.x+70,footerBox.y+afterDrag.y-34)
       await page.mouse.move(footerBox.x+afterDrag.x+35,footerBox.y+afterDrag.y+58,{steps:7})
       await page.waitForTimeout(260)
@@ -117,6 +116,7 @@ try{
       const iframeBox=await page.locator("#comfyFrame").boundingBox()
       const menuBox=await page.locator(".purble-menubar").boundingBox()
       assert.ok(iframeBox&&menuBox,"cursor test surfaces are missing")
+      await page.mouse.move(2,2)
       await page.mouse.move(iframeBox.x+iframeBox.width/2,iframeBox.y+iframeBox.height/2)
       await page.mouse.move(menuBox.x+menuBox.width/2,menuBox.y+menuBox.height/2)
       await page.waitForFunction(()=>document.getElementById("screen").classList.contains("pointer-active"))

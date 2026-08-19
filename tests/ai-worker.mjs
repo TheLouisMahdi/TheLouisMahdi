@@ -3,6 +3,8 @@ import worker from"../ai-worker/src/index.js"
 import{profileContext}from"../ai-worker/src/profile-data.js"
 import{telegramContext}from"../ai-worker/src/telegram-profile.js"
 
+const PRIMARY="@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+const BACKUP="@cf/meta/llama-3.1-8b-instruct-fast"
 const request=(message,history=[])=>new Request("https://worker.test/api/chat",{
   method:"POST",
   headers:{"content-type":"application/json","origin":"https://thelouismahdi.github.io"},
@@ -12,7 +14,7 @@ const request=(message,history=[])=>new Request("https://worker.test/api/chat",{
 let call
 const env={
   FRONTEND_ORIGIN:"https://thelouismahdi.github.io",
-  MODEL:"@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+  MODEL:PRIMARY,
   AI:{run:async(model,input)=>{
     call={model,input}
     return{response:"Cloudflare AI response OK"}
@@ -21,13 +23,14 @@ const env={
 
 const response=await worker.fetch(request("Tell me about Mahdi's FPGA work",[
   {role:"user",content:"hello"},
-  {role:"assistant",content:"Hey — what are you working on?"}
+  {role:"assistant",content:"Hey - what are you working on?"}
 ]),env)
 assert.equal(response.status,200)
 const body=await response.json()
 assert.equal(body.answer,"Cloudflare AI response OK")
 assert.equal(body.model,env.MODEL)
 assert.equal(body.build,"profile-ai-v4")
+assert.equal(body.degraded,false)
 assert.equal(call.model,env.MODEL)
 assert.equal(call.input.max_tokens,380)
 assert.equal(call.input.max_completion_tokens,undefined)
@@ -35,6 +38,7 @@ assert.equal(call.input.temperature,.62)
 assert.equal(call.input.top_p,.92)
 assert.match(call.input.messages[0].content,/not like a customer-support bot/)
 assert.match(call.input.messages[0].content,/Do not begin with disclaimers/)
+assert.match(call.input.messages[0].content,/Do not use Markdown decoration, emoji, decorative bullets, arrows/)
 assert.match(call.input.messages[0].content,/USER-APPROVED PERSONAL CONTEXT/)
 assert.match(call.input.messages[0].content,/8 July 2003/)
 assert.match(call.input.messages[0].content,/Persistent Original Intelligent Maker, Unstoppable/)
@@ -49,7 +53,36 @@ assert.match(call.input.messages[0].content,/Lights Out GF\(2\) Solver/)
 assert.match(call.input.messages[0].content,/BTC Adaptive Directional Breakout Trader/)
 assert.match(call.input.messages[0].content,/NPVT Terminal Converter/)
 assert.equal(call.input.messages.at(-1).content,"Tell me about Mahdi's FPGA work")
-assert.ok(call.input.messages.some(item=>item.content==="Hey — what are you working on?"),"conversation history must reach the model")
+assert.ok(call.input.messages.some(item=>item.content==="Hey - what are you working on?"),"conversation history must reach the model")
+
+let backupCall
+const backupEnv={
+  FRONTEND_ORIGIN:"https://thelouismahdi.github.io",
+  MODEL:PRIMARY,
+  AI:{run:async(model,input)=>{
+    if(model===PRIMARY)throw new Error("primary unavailable")
+    backupCall={model,input}
+    return{response:"\u202Eپاسخ → سالم\uFFFD"}
+  }}
+}
+const backupResponse=await worker.fetch(request("سلام"),backupEnv)
+assert.equal(backupResponse.status,200)
+const backupBody=await backupResponse.json()
+assert.equal(backupBody.answer,"پاسخ -> سالم")
+assert.equal(backupBody.model,BACKUP)
+assert.equal(backupBody.primary_model,PRIMARY)
+assert.equal(backupBody.degraded,true)
+assert.equal(backupCall.model,BACKUP)
+assert.equal(backupCall.input.max_tokens,320)
+assert.equal(backupCall.input.temperature,.56)
+
+const failedResponse=await worker.fetch(request("سلام"),{
+  FRONTEND_ORIGIN:"https://thelouismahdi.github.io",
+  MODEL:PRIMARY,
+  AI:{run:async()=>{throw new Error("all unavailable")}}
+})
+assert.equal(failedResponse.status,503)
+assert.equal((await failedResponse.json()).error,"ai_unavailable")
 
 const context=profileContext()
 assert.match(context,/Exact Persian name spelling: مهدی قهرمانی/)
@@ -82,6 +115,7 @@ const health=await worker.fetch(new Request("https://worker.test/health"),env)
 assert.equal(health.status,200)
 const healthBody=await health.json()
 assert.equal(healthBody.model,env.MODEL)
+assert.equal(healthBody.backup_model,BACKUP)
 assert.equal(healthBody.build,"profile-ai-v4")
 
-console.log("Workers AI Eka v4 conversation/profile contract: PASS")
+console.log("Workers AI Eka v4 resilience/profile contract: PASS")

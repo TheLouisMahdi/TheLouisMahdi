@@ -70,7 +70,7 @@ try{
       await page.mouse.up()
       await page.waitForTimeout(180)
       const afterDrag=await readBoat()
-      assert.equal(afterDrag.grabbed,"0","desktop tugboat did not release pointer capture after drag")
+      assert.equal(afterDrag.grabbed,"0","desktop tugboat did not release after drag")
       assert.ok(afterDrag.x-initialBoat.x>14,"desktop tugboat did not move horizontally with pointer momentum")
 
       await page.mouse.move(footerBox.x+afterDrag.x+70,footerBox.y+afterDrag.y-34)
@@ -113,13 +113,15 @@ try{
     assert.deepEqual(stats,{played:1,wins:1,losses:0},profile.name+" counted a result more than once")
 
     if(!profile.hasTouch){
-      const iframeBox=await page.locator("#comfyFrame").boundingBox()
+      await page.locator("#screen").scrollIntoViewIfNeeded()
       const menuBox=await page.locator(".purble-menubar").boundingBox()
-      assert.ok(iframeBox&&menuBox,"cursor test surfaces are missing")
-      await page.mouse.move(2,2)
-      await page.mouse.move(iframeBox.x+iframeBox.width/2,iframeBox.y+iframeBox.height/2)
-      await page.mouse.move(menuBox.x+menuBox.width/2,menuBox.y+menuBox.height/2)
+      assert.ok(menuBox,"cursor test surface is missing")
+      const cursorX=menuBox.x+Math.min(24,menuBox.width*.15)
+      const cursorY=menuBox.y+menuBox.height*.5
+      await page.mouse.move(cursorX,cursorY)
+      await page.mouse.down()
       await page.waitForFunction(()=>document.getElementById("screen").classList.contains("pointer-active"))
+      await page.mouse.up()
     }
 
     await page.locator('#comfyWindow [data-window-action="close"]').click({force:true})

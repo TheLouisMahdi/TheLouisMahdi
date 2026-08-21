@@ -17,28 +17,24 @@ try{
     await page.addInitScript(()=>{
       const original=CanvasRenderingContext2D.prototype.drawImage
       CanvasRenderingContext2D.prototype.drawImage=function(image,...args){
-        if(image instanceof HTMLImageElement&&image.dataset.footerTugboat==="true"){
-          window.__footerTugboatDrawn=(window.__footerTugboatDrawn||0)+1
-          window.__footerTugboatDims=[image.naturalWidth,image.naturalHeight]
+        if(image instanceof HTMLImageElement&&image.dataset.footerShip==="true"){
+          window.__footerShipDrawn=(window.__footerShipDrawn||0)+1
+          window.__footerShipDims=[image.naturalWidth,image.naturalHeight]
         }
         return original.call(this,image,...args)
       }
     })
     await page.goto(siteUrl,{waitUntil:"domcontentloaded"})
 
-    await page.waitForFunction(()=>window.__footerTugboatDrawn>0,{timeout:10000})
-    const boatDims=await page.evaluate(()=>window.__footerTugboatDims)
-    assert.deepEqual(boatDims,[220,210],profile.name+" reconstructed tugboat dimensions are invalid")
-    const chunkSizes=await page.evaluate(async()=>Promise.all([
-      "assets/tugboat/part0.txt",
-      "assets/tugboat/part1.txt",
-      "assets/tugboat/part2.txt"
-    ].map(async path=>{
-      const response=await fetch(path,{cache:"no-store"})
+    await page.waitForFunction(()=>window.__footerShipDrawn>0,{timeout:10000})
+    const boatDims=await page.evaluate(()=>window.__footerShipDims)
+    assert.deepEqual(boatDims,[180,120],profile.name+" pirate ship dimensions are invalid")
+    const assetLength=await page.evaluate(async()=>{
+      const response=await fetch("assets/pirate-ship.txt",{cache:"no-store"})
       if(!response.ok)return-1
       return(await response.text()).trim().length
-    })))
-    assert.deepEqual(chunkSizes,[7500,7500,6948],profile.name+" tugboat source chunks are incomplete")
+    })
+    assert.equal(assetLength,17376,profile.name+" pirate ship source asset is incomplete")
 
     await page.locator(".site-footer").scrollIntoViewIfNeeded()
     const footerBox=await page.locator(".site-footer").boundingBox()
@@ -53,7 +49,7 @@ try{
     const initialBoat=await readBoat()
     assert.ok(Number.isFinite(initialBoat.x)&&Number.isFinite(initialBoat.y),profile.name+" boat physics state is unavailable")
 
-    const drawsBefore=await page.evaluate(()=>window.__footerTugboatDrawn||0)
+    const drawsBefore=await page.evaluate(()=>window.__footerShipDrawn||0)
     if(profile.hasTouch){
       await page.touchscreen.tap(footerBox.x+footerBox.width*.28,footerBox.y+footerBox.height*.48)
       await page.waitForTimeout(350)
@@ -64,14 +60,14 @@ try{
       await page.mouse.down()
       await page.waitForTimeout(40)
       const grabbed=await readBoat()
-      assert.equal(grabbed.grabbed,"1","desktop tugboat did not enter horizontal grab mode")
+      assert.equal(grabbed.grabbed,"1","desktop pirate ship did not enter horizontal grab mode")
       await page.mouse.move(grabX+150,grabY,{steps:9})
       await page.waitForTimeout(100)
       await page.mouse.up()
       await page.waitForTimeout(180)
       const afterDrag=await readBoat()
-      assert.equal(afterDrag.grabbed,"0","desktop tugboat did not release after drag")
-      assert.ok(afterDrag.x-initialBoat.x>14,"desktop tugboat did not move horizontally with pointer momentum")
+      assert.equal(afterDrag.grabbed,"0","desktop pirate ship did not release after drag")
+      assert.ok(afterDrag.x-initialBoat.x>14,"desktop pirate ship did not move horizontally with pointer momentum")
 
       await page.mouse.move(footerBox.x+afterDrag.x+70,footerBox.y+afterDrag.y-34)
       await page.mouse.move(footerBox.x+afterDrag.x+35,footerBox.y+afterDrag.y+58,{steps:7})
@@ -79,10 +75,10 @@ try{
       const afterWave=await readBoat()
       const verticalResponse=Math.abs(afterWave.y-afterDrag.y)
       const angularResponse=Math.abs(afterWave.angle-afterDrag.angle)
-      assert.ok(verticalResponse>.35||angularResponse>.0015,"desktop tugboat did not react vertically/rotationally to the liquid wave")
+      assert.ok(verticalResponse>.35||angularResponse>.0015,"desktop pirate ship did not react vertically/rotationally to the liquid wave")
     }
-    const drawsAfter=await page.evaluate(()=>window.__footerTugboatDrawn||0)
-    assert.ok(drawsAfter>drawsBefore,profile.name+" tugboat stopped rendering after liquid interaction")
+    const drawsAfter=await page.evaluate(()=>window.__footerShipDrawn||0)
+    assert.ok(drawsAfter>drawsBefore,profile.name+" pirate ship stopped rendering after liquid interaction")
 
     await page.waitForSelector("#comfyWindow",{state:"attached"})
     await page.locator("#laptopPower").click({force:true})
@@ -137,4 +133,4 @@ try{
   await browser.close()
 }
 
-console.log("Interactive layered tugboat + Comfy Cakes browser checks passed")
+console.log("Interactive layered pirate ship + Comfy Cakes browser checks passed")

@@ -13,40 +13,37 @@ if(canvas&&footer){
     grabbed:false,grabOffsetX:0,
     userForceX:0,flowX:0
   }
-  const BOAT_PARTS=["assets/tugboat/part0.txt","assets/tugboat/part1.txt","assets/tugboat/part2.txt"]
-  const BOAT_BASE64_LENGTH=21948
-  const BOAT_NATURAL_WIDTH=220
-  const BOAT_NATURAL_HEIGHT=210
+  const BOAT_ASSET="assets/pirate-ship.txt"
+  const BOAT_BASE64_LENGTH=17376
+  const BOAT_NATURAL_WIDTH=180
+  const BOAT_NATURAL_HEIGHT=120
   let width=0,height=0,dpr=1,restY=0,points=[],raf=0,lastTime=0
 
   const clamp=(value,min,max)=>Math.max(min,Math.min(max,value))
 
   footer.style.touchAction="pan-y"
   boatImage.decoding="async"
-  boatImage.dataset.footerTugboat="true"
+  boatImage.dataset.footerShip="true"
   boatImage.addEventListener("load",()=>{
     if(boatImage.naturalWidth!==BOAT_NATURAL_WIDTH||boatImage.naturalHeight!==BOAT_NATURAL_HEIGHT){
-      console.error("Footer tugboat dimensions are invalid",boatImage.naturalWidth,boatImage.naturalHeight)
+      console.error("Footer pirate ship dimensions are invalid",boatImage.naturalWidth,boatImage.naturalHeight)
       return
     }
     boat.ready=true
     resetBoat()
     draw(performance.now())
   })
-  boatImage.addEventListener("error",()=>console.error("Footer tugboat image failed to decode"))
+  boatImage.addEventListener("error",()=>console.error("Footer pirate ship image failed to decode"))
 
   async function loadBoatImage(){
-    const parts=await Promise.all(BOAT_PARTS.map(async path=>{
-      const response=await fetch(path,{cache:"force-cache"})
-      if(!response.ok)throw new Error(`tugboat_part_${response.status}`)
-      return(await response.text()).trim()
-    }))
-    const encoded=parts.join("")
-    if(encoded.length!==BOAT_BASE64_LENGTH)throw new Error(`tugboat_asset_incomplete_${encoded.length}`)
+    const response=await fetch(BOAT_ASSET,{cache:"force-cache"})
+    if(!response.ok)throw new Error(`pirate_ship_asset_${response.status}`)
+    const encoded=(await response.text()).trim()
+    if(encoded.length!==BOAT_BASE64_LENGTH)throw new Error(`pirate_ship_asset_incomplete_${encoded.length}`)
     boatImage.src=`data:image/webp;base64,${encoded}`
   }
 
-  loadBoatImage().catch(error=>console.error("Footer tugboat asset failed",error))
+  loadBoatImage().catch(error=>console.error("Footer pirate ship asset failed",error))
 
   function buildPoints(){
     const count=Math.max(54,Math.ceil(width/13)+1)
@@ -58,8 +55,8 @@ if(canvas&&footer){
   }
 
   function boatSize(){
-    const responsive=width<600?width*.32:width*.2
-    const boatWidth=clamp(responsive,width<600?96:118,width<600?150:232)
+    const responsive=width<600?width*.28:width*.17
+    const boatWidth=clamp(responsive,width<600?88:108,width<600?136:198)
     const ratio=boatImage.naturalWidth?boatImage.naturalHeight/boatImage.naturalWidth:BOAT_NATURAL_HEIGHT/BOAT_NATURAL_WIDTH
     return{width:boatWidth,height:boatWidth*ratio}
   }
@@ -240,9 +237,8 @@ if(canvas&&footer){
     boat.angularVelocity=(boat.angularVelocity+pitchForce*dt)*Math.pow(.79,dt)
     boat.angle+=boat.angularVelocity*dt
 
-    const homeForce=(boatHomeX()-boat.x)*(boat.grabbed?0:.00065)
     const slopeForce=clamp(-targetAngle*.075,-.018,.018)
-    const surgeForce=homeForce+slopeForce+boat.flowX+boat.userForceX
+    const surgeForce=slopeForce+boat.flowX+boat.userForceX
     boat.vx=(boat.vx+surgeForce*dt)*Math.pow(boat.grabbed?.88:.94,dt)
     boat.x+=boat.vx*dt
 

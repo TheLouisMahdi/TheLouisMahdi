@@ -7,7 +7,7 @@
 
 # Mahdi Ghahremani (TheLouisMahdi)
 
-### Electrical Engineering Student at University of Zanjan · AI Vision · Embedded & Digital Hardware Systems
+### Electrical Engineering Student, University of Zanjan | Embedded Software at Fartak Control | FPGA & Computer Vision
 
 ### [Open the interactive EKA Windows 7 portfolio](https://thelouismahdi.github.io/TheLouisMahdi/)
 
@@ -25,6 +25,7 @@
 <img src="https://img.shields.io/badge/AI%20%2B%20Computer%20Vision-00E5FF?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Electronics%20%2B%20Hardware-00C853?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Embedded%20Systems-39FF88?style=for-the-badge" />
+<img src="https://img.shields.io/badge/STM32%20%2B%20FreeRTOS-176B46?style=for-the-badge" />
 <img src="https://img.shields.io/badge/FPGA%20%2B%20Verilog-FFB000?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Local--First%20Tools-39FF88?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Digital%20Systems-FFB000?style=for-the-badge" />
@@ -45,17 +46,23 @@ Try saving `Hello.py` on the virtual Desktop and running either `python Hello.py
 
 ## 👨‍💻 About Me
 
-I'm **Mahdi Ghahremani**, known online as **TheLouisMahdi**. I am an **Electrical Engineering student at the University of Zanjan**, focused on practical work across **computer vision**, **FPGA and Verilog RTL**, **embedded systems**, **applied AI**, and **hardware–software co-design**.
+I'm **Mahdi Ghahremani** (**TheLouisMahdi**), an **Electrical Engineering student at the University of Zanjan** working in **embedded software and engineering tools at Fartak Control**. My main interests are **STM32 and FreeRTOS**, **C/C++**, **FPGA acceleration**, **computer vision**, and **hardware-software co-design**.
 
-I build practical systems at the intersection of **engineering**, **software**, **AI**, and **hardware**. My work usually starts from a technical problem and ends as a usable tool, prototype, or intelligent workflow.
+My work connects real devices to reliable software: embedded debugging, industrial communications, memory and resource analysis, and Windows engineering applications for electrical protection equipment. I also build practical software tools and experiment with hardware-accelerated AI.
 
-Other online names I have used include **poimu**, **eka**, and **Eka Francium**. The name **Eka Francium** represents how I like to build: experimental, slightly unstable in the creative sense, and always trying to move one step beyond the obvious.
+For my bachelor's project, I'm developing an **INT8 CNN inference pipeline for a Zynq-7020 SoC**, combining ARM Cortex-A9 software with FPGA programmable logic. Live-camera integration and on-board inference are still **under development and verification**.
 
-Some applied projects stay private because of technical, team, or company-related limitations.
+I have also used the names **poimu**, **eka**, and **Eka Francium** online. Some industrial projects cannot be shared publicly because they involve company-owned code or hardware.
 
 ---
 
-## 🧭 Current Roles
+## 🧭 Professional Work & Collaborations
+
+### ⚙️ Fartak Control | Embedded Software & Engineering Tools
+
+I work on software for **power-distribution automation equipment**, including **FC22 reclosers and sectionalizers**. My work involves STM32-based systems, FreeRTOS, C/C++, communication troubleshooting, device configuration, and desktop tools for measurements, protection settings, event decoding, and signal inspection.
+
+Other team work mentioned in this portfolio:
 
 <table>
 <tr>
@@ -63,18 +70,32 @@ Some applied projects stay private because of technical, team, or company-relate
 
 ### 🏝️ Three Islands Team
 
-Technical Lead, focused on engineering decisions, system design, and technical coordination.
+Technical leadership, system design, and engineering coordination.
 
 </td>
 <td width="50%">
 
 ### 👁️ Rast Eye
 
-Technical, Software, and AI Engineer working on applied computer vision and intelligent systems.
+Applied computer vision, software, and AI engineering.
 
 </td>
 </tr>
 </table>
+
+---
+
+## 🎓 Bachelor's Project | Zynq FPGA Inference
+
+**Target:** ALINX AX7Z020B (Xilinx Zynq-7020 / XC7Z020)
+
+- **Goal:** Camera-based vigilance and fatigue-state classification.
+- **Compute:** ARM Cortex-A9 (bare-metal) and FPGA programmable logic with an INT8 CNN accelerator.
+- **Interfaces:** AXI DMA, AXI4-Lite, AXI-Stream, and a Python host application.
+- **Tools:** Vivado, Vitis, Vitis HLS 2023.2, C/C++, Python, and hardware simulation.
+- **Status:** Hardware and software integration is in progress; successful inference on the physical board has **not yet been verified**.
+
+The public [FPGA CNN Fatigue Monitoring](https://github.com/TheLouisMahdi/fpga-cnn-fatigue-monitoring) repository is an **earlier Python/Verilog feature-extraction prototype**, not a claim of completed deployment of this newer Zynq system.
 
 ---
 
@@ -108,24 +129,24 @@ Technical, Software, and AI Engineer working on applied computer vision and inte
 <tr>
 <td width="50%">
 
-### 🌱 Smart Engineering Systems
+### 🔧 Embedded & Industrial Systems
 
-- Smart irrigation intelligence
-- Environmental and sensor data analysis
-- Decision-support systems
-- Resource optimization
-- Signal and time-series analysis
+- STM32 firmware and FreeRTOS
+- Memory diagnostics and leak tracing
+- Device communication and debugging
+- Industrial measurement and control
+- Electrical protection engineering tools
 
 </td>
 <td width="50%">
 
-### ⚙️ Hardware + Digital Systems
+### ⚙️ FPGA & Digital Systems
 
-- Electronics and circuit design
-- Digital logic and FPGA concepts
-- Embedded systems concepts
+- Zynq SoC and ARM/FPGA partitioning
+- Verilog RTL and HLS development
+- AXI DMA and streaming interfaces
 - Hardware/software integration
-- Real-world engineering automation
+- Verification and performance debugging
 
 </td>
 </tr>
@@ -141,20 +162,20 @@ Technical, Software, and AI Engineer working on applied computer vision and inte
 
 ### 🔌 Embedded Hardware
 
-- STM32, Arduino, and ESP32 prototyping
-- Microcontroller-based control logic
-- Sensor interfacing and data acquisition
-- Embedded C for hardware-level systems
+- STM32H7 and STM32F1 development
+- FreeRTOS tasks, memory, and scheduling
+- Embedded C/C++ and ST-LINK debugging
+- Sensors and device communications
 
 </td>
 <td width="33%">
 
 ### 🧠 Digital Logic + FPGA
 
-- Verilog RTL design
-- FPGA architecture concepts
-- Testbenches and simulation workflows
-- ModelSim-based verification
+- Zynq-7020 and Cortex-A9 co-design
+- Verilog RTL and HLS accelerators
+- AXI4, AXI DMA, and AXI-Stream
+- Vivado, Vitis, and hardware verification
 
 </td>
 <td width="33%">
@@ -175,6 +196,22 @@ Technical, Software, and AI Engineer working on applied computer vision and inte
 ## 🧩 Selected Projects
 
 <table>
+<tr>
+<td width="50%">
+
+### ⚡ <a href="https://github.com/TheLouisMahdi/devolf">DEVolf</a>
+
+A Windows engineering console for Fartak Control FC22 reclosers and sectionalizers, covering live measurements, protection settings, events, signal analysis, and diagnostic reports.
+
+</td>
+<td width="50%">
+
+### 🧠 Zynq-7020 INT8 CNN (ongoing)
+
+Bachelor's project integrating ARM Cortex-A9, FPGA acceleration, AXI DMA, and a Python camera host. Board-level integration is still in progress.
+
+</td>
+</tr>
 <tr>
 <td width="50%">
 
@@ -236,7 +273,11 @@ A Python HTTP CONNECT proxy validator that measures tunnel latency and HTTPS tra
 <img src="https://img.shields.io/badge/C%23-512BD4?style=for-the-badge&logo=csharp&logoColor=white" />
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
 <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" />
+<img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" />
+<img src="https://img.shields.io/badge/FreeRTOS-248232?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Verilog-RTL%20Design-BD1E24?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Zynq--7000-ED1C24?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Vivado%20%2B%20Vitis-FF8C00?style=for-the-badge" />
 <img src="https://img.shields.io/badge/STM32-03234B?style=for-the-badge&logo=stmicroelectronics&logoColor=white" />
 <img src="https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white" />
 <img src="https://img.shields.io/badge/ESP32-E7352C?style=for-the-badge&logo=espressif&logoColor=white" />
@@ -256,15 +297,13 @@ A Python HTTP CONNECT proxy validator that measures tunnel latency and HTTPS tra
 
 ## 🎯 How I Build
 
-```txt
-Practical AI        ██████████  100%
-Engineering         █████████░   90%
-Computer Vision     █████████░   90%
-Creative Systems    ████████░░   80%
-Hardware Thinking   ████████░░   80%
+I prefer an engineering workflow that is **measurable and reproducible**:
+
+```text
+Understand -> Isolate -> Implement -> Test -> Verify
 ```
 
-I like projects that are **useful**, **clean**, **experimental**, and connected to real-world problems. A small tool built carefully is often more valuable than a large unfinished idea.
+I favor minimal changes, small modules, hardware-aware debugging, and testing on the actual target before claiming a system works. I care more about correctness, resource usage, and maintainability than inflated skill percentages or feature counts.
 
 ---
 

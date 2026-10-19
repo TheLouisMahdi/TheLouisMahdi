@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#edf3fa">
+  <meta name="description" content="Pannello personale di monitoraggio follower GitHub di TheLouisMahdi, senza azioni automatiche.">
+  <title>Osservatorio GitHub | TheLouisMahdi</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <a class="brand" href="../"><span class="brand-mark">M<span>.</span></span><span><strong>THELOUISMAHDI</strong><small>WORKSPACE / 01</small></span></a>
+    <div class="side-caption">STRUMENTI</div>
+    <nav class="side-nav" aria-label="Navigazione">
+      <a class="active" href="#panoramica"><span class="nav-icon">◫</span> Panoramica</a>
+      <a href="#persone"><span class="nav-icon">◎</span> Persone</a>
+      <a href="#cronologia"><span class="nav-icon">◷</span> Cronologia</a>
+      <a href="#protetti"><span class="nav-icon">◇</span> Profili protetti</a>
+    </nav>
+    <div class="side-note">
+      <span class="status-dot"></span> MONITORAGGIO IN SOLA LETTURA
+      <p>Nessun follow o unfollow viene eseguito automaticamente.</p>
+    </div>
+    <a class="side-bottom" href="../">← Torna al portfolio</a>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><span class="eyebrow">GITHUB / COMMUNITY</span><h1>Osservatorio <em>follower.</em></h1><p>Le connessioni cambiano. Tu mantieni il controllo.</p></div>
+      <div class="top-actions">
+        <button type="button" id="refreshBtn" class="button ghost">↻ Aggiorna vista</button>
+        <a class="button primary" href="https://github.com/TheLouisMahdi" target="_blank" rel="noopener noreferrer">Apri GitHub ↗</a>
+      </div>
+    </header>
+
+    <section id="panoramica" class="overview" aria-labelledby="overviewTitle">
+      <div class="section-heading"><div><span class="eyebrow">01 / PANORAMICA</span><h2 id="overviewTitle">La tua rete, in sintesi</h2></div><span id="updatedAt" class="timestamp">Dati non ancora disponibili</span></div>
+      <div id="notice" class="notice" role="status" aria-live="polite">Caricamento dei dati pubblici...</div>
+      <div class="metrics">
+        <div class="metric"><span>Follower</span><strong id="countFollowers">-</strong><small>Ti seguono</small><i class="metric-icon">↙</i></div>
+        <div class="metric"><span>Following</span><strong id="countFollowing">-</strong><small>Profili che segui</small><i class="metric-icon">↗</i></div>
+        <div class="metric"><span>Reciproci</span><strong id="countMutual">-</strong><small>Seguitevi a vicenda</small><i class="metric-icon">↔</i></div>
+        <div class="metric"><span>Follower persi</span><strong id="countLost">-</strong><small>Eventi registrati</small><i class="metric-icon">↘</i></div>
+      </div>
+    </section>
+
+    <div class="columns">
+      <section id="persone" class="panel directory" aria-labelledby="peopleTitle">
+        <div class="panel-header">
+          <div><span class="eyebrow">02 / RETE</span><h2 id="peopleTitle">Profili e relazioni</h2></div>
+          <span id="resultCount" class="counter">0 profili</span>
+        </div>
+        <div class="toolbar">
+          <label class="search"><span aria-hidden="true">⌕</span><input type="search" id="search" placeholder="Cerca un nome utente" aria-label="Cerca profili"></label>
+          <div class="filters" role="group" aria-label="Filtra i profili">
+            <button class="selected" data-filter="tutti" type="button">Tutti</button>
+            <button data-filter="follower" type="button">Follower</button>
+            <button data-filter="seguiti" type="button">Following</button>
+            <button data-filter="da-ricambiare" type="button">Da ricambiare</button>
+            <button data-filter="non-ricambiati" type="button">Non reciproci</button>
+            <button data-filter="protetti" type="button">Protetti</button>
+          </div>
+        </div>
+        <div id="peopleList" class="people-list" aria-live="polite"></div>
+      </section>
+
+      <div class="stack">
+        <section id="cronologia" class="panel activity" aria-labelledby="historyTitle">
+          <div class="panel-header"><div><span class="eyebrow">03 / MOVIMENTI</span><h2 id="historyTitle">Ultimi cambiamenti</h2></div><span class="subtle">Fino a 80 eventi</span></div>
+          <div id="eventList" class="event-list"></div>
+        </section>
+        <section id="protetti" class="panel protected" aria-labelledby="protectedTitle">
+          <div class="panel-header"><div><span class="eyebrow">04 / PREFERITI</span><h2 id="protectedTitle">Profili protetti</h2></div><span class="shield">◇</span></div>
+          <p class="helper">Un elenco personale per distinguere i profili che vuoi mantenere. Salvato solo in questo browser; nessuna azione automatica.</p>
+          <form id="protectedForm" class="protected-form"><label for="protectedInput">Nome utente GitHub</label><div class="form-line"><input id="protectedInput" autocomplete="off" spellcheck="false" placeholder="es. octocat" maxlength="39" required><button class="button primary" type="submit">Aggiungi</button></div></form>
+          <div id="protectedList" class="protected-list"></div>
+        </section>
+      </div>
+    </div>
+    <footer class="footer"><span>Progetto personale · <a href="https://github.com/TheLouisMahdi" target="_blank" rel="noopener noreferrer">@TheLouisMahdi</a></span><span>API ufficiale GitHub · Consultazione oraria · Nessun token nel browser</span></footer>
+  </main>
+</div>
+</body>
+</html>

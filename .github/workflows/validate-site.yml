@@ -64,6 +64,10 @@ jobs:
           ! grep -q 'id="printerZone"' index.html
           grep -q 'loadPyodide' js/python-worker.js
           grep -q 'Eka Command Deck.txt' EKA_COMMANDS.txt
+      - name: Verifica il monitor follower
+        run: |
+          node --check follower-monitor/app.js
+          python3 -m unittest discover -s tests -p 'test_followers.py' -v
       - name: Run simulator smoke checks
         run: node tests/smoke.mjs
       - name: Run core regression checks

@@ -1,7 +1,365 @@
 {
   "version": 1,
-  "updated_at": null,
-  "followers": [],
-  "following": [],
+  "updated_at": "2026-10-19T21:00:30Z",
+  "followers": [
+    {
+      "id": 79897291,
+      "login": "0vm"
+    },
+    {
+      "id": 157505360,
+      "login": "Ali-hey-0"
+    },
+    {
+      "id": 297359489,
+      "login": "amirreza91-13"
+    },
+    {
+      "id": 309271662,
+      "login": "arpitrajjj"
+    },
+    {
+      "id": 85585962,
+      "login": "AsadiAhmad"
+    },
+    {
+      "id": 201331839,
+      "login": "ashnafi1426"
+    },
+    {
+      "id": 83650878,
+      "login": "bahattinyunus"
+    },
+    {
+      "id": 244135779,
+      "login": "bariewakjira-coder"
+    },
+    {
+      "id": 181463493,
+      "login": "cleonaia"
+    },
+    {
+      "id": 16355486,
+      "login": "dbunt1tled"
+    },
+    {
+      "id": 222750165,
+      "login": "Deathburgerz013"
+    },
+    {
+      "id": 20823832,
+      "login": "djvelimir"
+    },
+    {
+      "id": 93768870,
+      "login": "EhsanShahbazii"
+    },
+    {
+      "id": 277070735,
+      "login": "EimanTahir027"
+    },
+    {
+      "id": 6509565,
+      "login": "gamemann"
+    },
+    {
+      "id": 87198156,
+      "login": "gaur-avvv"
+    },
+    {
+      "id": 316719557,
+      "login": "hamidohgaming-dotcom"
+    },
+    {
+      "id": 121404750,
+      "login": "Hamidooh"
+    },
+    {
+      "id": 196166826,
+      "login": "HeavenlyDesires"
+    },
+    {
+      "id": 18186995,
+      "login": "IDouble"
+    },
+    {
+      "id": 72663882,
+      "login": "JohnMwendwa"
+    },
+    {
+      "id": 219104815,
+      "login": "Krishnasaini0001"
+    },
+    {
+      "id": 87592753,
+      "login": "Kuroshg3"
+    },
+    {
+      "id": 314552004,
+      "login": "MahdiKordian"
+    },
+    {
+      "id": 67516307,
+      "login": "md-abu-kayser"
+    },
+    {
+      "id": 234746944,
+      "login": "meharma-arif-developer"
+    },
+    {
+      "id": 143934238,
+      "login": "Mftrferdinand"
+    },
+    {
+      "id": 182089390,
+      "login": "mwakidenis"
+    },
+    {
+      "id": 87106526,
+      "login": "NazmusSayad"
+    },
+    {
+      "id": 344532635,
+      "login": "oo612"
+    },
+    {
+      "id": 119727688,
+      "login": "rahuloraj"
+    },
+    {
+      "id": 129738392,
+      "login": "rasidi3112"
+    },
+    {
+      "id": 290047901,
+      "login": "raviwijerathna1"
+    },
+    {
+      "id": 144074554,
+      "login": "rian-fuzinelli"
+    },
+    {
+      "id": 328856308,
+      "login": "s4ntrx"
+    },
+    {
+      "id": 271632164,
+      "login": "salikhussain71-code"
+    },
+    {
+      "id": 6965893,
+      "login": "seehiong"
+    },
+    {
+      "id": 142095198,
+      "login": "shamim-akrami"
+    },
+    {
+      "id": 43516554,
+      "login": "standardgalactic"
+    },
+    {
+      "id": 26924670,
+      "login": "sungeer"
+    },
+    {
+      "id": 180283757,
+      "login": "Sunil56224972"
+    },
+    {
+      "id": 162008169,
+      "login": "thegeekstar"
+    },
+    {
+      "id": 287250064,
+      "login": "themakerGlitch"
+    },
+    {
+      "id": 83549174,
+      "login": "vitor1914"
+    },
+    {
+      "id": 176666407,
+      "login": "WmFx-as"
+    }
+  ],
+  "following": [
+    {
+      "id": 79897291,
+      "login": "0vm"
+    },
+    {
+      "id": 207613108,
+      "login": "abrilohd"
+    },
+    {
+      "id": 157505360,
+      "login": "Ali-hey-0"
+    },
+    {
+      "id": 297359489,
+      "login": "amirreza91-13"
+    },
+    {
+      "id": 309271662,
+      "login": "arpitrajjj"
+    },
+    {
+      "id": 85585962,
+      "login": "AsadiAhmad"
+    },
+    {
+      "id": 201331839,
+      "login": "ashnafi1426"
+    },
+    {
+      "id": 83650878,
+      "login": "bahattinyunus"
+    },
+    {
+      "id": 244135779,
+      "login": "bariewakjira-coder"
+    },
+    {
+      "id": 181463493,
+      "login": "cleonaia"
+    },
+    {
+      "id": 16355486,
+      "login": "dbunt1tled"
+    },
+    {
+      "id": 222750165,
+      "login": "Deathburgerz013"
+    },
+    {
+      "id": 93768870,
+      "login": "EhsanShahbazii"
+    },
+    {
+      "id": 277070735,
+      "login": "EimanTahir027"
+    },
+    {
+      "id": 6509565,
+      "login": "gamemann"
+    },
+    {
+      "id": 87198156,
+      "login": "gaur-avvv"
+    },
+    {
+      "id": 316719557,
+      "login": "hamidohgaming-dotcom"
+    },
+    {
+      "id": 121404750,
+      "login": "Hamidooh"
+    },
+    {
+      "id": 18186995,
+      "login": "IDouble"
+    },
+    {
+      "id": 72663882,
+      "login": "JohnMwendwa"
+    },
+    {
+      "id": 219104815,
+      "login": "Krishnasaini0001"
+    },
+    {
+      "id": 87592753,
+      "login": "Kuroshg3"
+    },
+    {
+      "id": 314552004,
+      "login": "MahdiKordian"
+    },
+    {
+      "id": 22871148,
+      "login": "majidnow"
+    },
+    {
+      "id": 67516307,
+      "login": "md-abu-kayser"
+    },
+    {
+      "id": 234746944,
+      "login": "meharma-arif-developer"
+    },
+    {
+      "id": 143934238,
+      "login": "Mftrferdinand"
+    },
+    {
+      "id": 182089390,
+      "login": "mwakidenis"
+    },
+    {
+      "id": 87106526,
+      "login": "NazmusSayad"
+    },
+    {
+      "id": 344532635,
+      "login": "oo612"
+    },
+    {
+      "id": 119727688,
+      "login": "rahuloraj"
+    },
+    {
+      "id": 129738392,
+      "login": "rasidi3112"
+    },
+    {
+      "id": 290047901,
+      "login": "raviwijerathna1"
+    },
+    {
+      "id": 144074554,
+      "login": "rian-fuzinelli"
+    },
+    {
+      "id": 328856308,
+      "login": "s4ntrx"
+    },
+    {
+      "id": 271632164,
+      "login": "salikhussain71-code"
+    },
+    {
+      "id": 6965893,
+      "login": "seehiong"
+    },
+    {
+      "id": 142095198,
+      "login": "shamim-akrami"
+    },
+    {
+      "id": 43516554,
+      "login": "standardgalactic"
+    },
+    {
+      "id": 26924670,
+      "login": "sungeer"
+    },
+    {
+      "id": 180283757,
+      "login": "Sunil56224972"
+    },
+    {
+      "id": 162008169,
+      "login": "thegeekstar"
+    },
+    {
+      "id": 83549174,
+      "login": "vitor1914"
+    },
+    {
+      "id": 176666407,
+      "login": "WmFx-as"
+    }
+  ],
   "events": []
 }

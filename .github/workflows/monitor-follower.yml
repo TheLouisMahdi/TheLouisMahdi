@@ -1,0 +1,40 @@
+name: Monitor follower di @TheLouisMahdi
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitor-follower
+  cancel-in-progress: false
+
+jobs:
+  monitora:
+    if: github.repository == 'TheLouisMahdi/TheLouisMahdi'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Scarica il repository
+        uses: actions/checkout@v6
+
+      - name: Verifica il codice
+        run: python3 -m unittest discover -s tests -p 'test_followers.py' -v
+
+      - name: Leggi follower e seguiti
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/follower_monitor.py
+
+      - name: Pubblica solo le variazioni
+        run: |
+          git add -- follower-monitor/data.json
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' \
+                -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+                commit -m 'Aggiorna monitor follower'
+            git push
+          fi

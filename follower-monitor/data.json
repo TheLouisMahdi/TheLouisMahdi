@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-20T20:37:23Z",
+  "updated_at": "2026-10-21T10:12:07Z",
   "followers": [
     {
       "id": 79897291,
@@ -111,6 +111,10 @@
       "login": "Mftrferdinand"
     },
     {
+      "id": 160643822,
+      "login": "mohamedelmougy"
+    },
+    {
       "id": 182089390,
       "login": "mwakidenis"
     },
@@ -181,6 +185,10 @@
     {
       "id": 287250064,
       "login": "themakerGlitch"
+    },
+    {
+      "id": 35431524,
+      "login": "valentynkit"
     },
     {
       "id": 83549174,
@@ -301,6 +309,10 @@
       "login": "Mftrferdinand"
     },
     {
+      "id": 160643822,
+      "login": "mohamedelmougy"
+    },
+    {
       "id": 182089390,
       "login": "mwakidenis"
     },
@@ -378,6 +390,18 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 160643822,
+      "login": "mohamedelmougy",
+      "at": "2026-10-21T10:12:07Z"
+    },
+    {
+      "kind": "nuovo",
+      "id": 35431524,
+      "login": "valentynkit",
+      "at": "2026-10-21T10:12:07Z"
+    },
     {
       "kind": "nuovo",
       "id": 339617459,

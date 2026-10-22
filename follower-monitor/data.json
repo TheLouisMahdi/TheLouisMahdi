@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-21T20:11:28Z",
+  "updated_at": "2026-10-22T20:08:52Z",
   "followers": [
     {
       "id": 79897291,
@@ -157,6 +157,10 @@
     {
       "id": 6965893,
       "login": "seehiong"
+    },
+    {
+      "id": 242987063,
+      "login": "shahidazam2020-oss"
     },
     {
       "id": 142095198,
@@ -402,6 +406,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 242987063,
+      "login": "shahidazam2020-oss",
+      "at": "2026-10-22T20:08:52Z"
+    },
     {
       "kind": "nuovo",
       "id": 161616901,

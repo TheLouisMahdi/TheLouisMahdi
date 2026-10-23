@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-22T23:24:33Z",
+  "updated_at": "2026-10-23T15:06:31Z",
   "followers": [
     {
       "id": 79897291,
@@ -77,6 +77,10 @@
     {
       "id": 121404750,
       "login": "Hamidooh"
+    },
+    {
+      "id": 75696486,
+      "login": "HawkForge"
     },
     {
       "id": 196166826,
@@ -369,6 +373,10 @@
       "login": "seehiong"
     },
     {
+      "id": 242987063,
+      "login": "shahidazam2020-oss"
+    },
+    {
       "id": 142095198,
       "login": "shamim-akrami"
     },
@@ -397,6 +405,10 @@
       "login": "thegeekstar"
     },
     {
+      "id": 260784420,
+      "login": "TizioQualunquee"
+    },
+    {
       "id": 35431524,
       "login": "valentynkit"
     },
@@ -410,6 +422,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 75696486,
+      "login": "HawkForge",
+      "at": "2026-10-23T15:06:31Z"
+    },
     {
       "kind": "nuovo",
       "id": 260784420,

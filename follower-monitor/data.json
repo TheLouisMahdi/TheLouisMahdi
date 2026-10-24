@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-23T19:15:52Z",
+  "updated_at": "2026-10-24T07:19:23Z",
   "followers": [
     {
       "id": 79897291,
@@ -301,12 +301,20 @@
       "login": "Hamidooh"
     },
     {
+      "id": 75696486,
+      "login": "HawkForge"
+    },
+    {
       "id": 18186995,
       "login": "IDouble"
     },
     {
       "id": 72663882,
       "login": "JohnMwendwa"
+    },
+    {
+      "id": 2605401,
+      "login": "kenjinote"
     },
     {
       "id": 219104815,
@@ -367,6 +375,10 @@
     {
       "id": 144074554,
       "login": "rian-fuzinelli"
+    },
+    {
+      "id": 5612024,
+      "login": "rich-iannone"
     },
     {
       "id": 328856308,

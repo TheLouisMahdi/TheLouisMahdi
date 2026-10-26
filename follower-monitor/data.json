@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-26T14:17:59Z",
+  "updated_at": "2026-10-26T20:30:35Z",
   "followers": [
     {
       "id": 79897291,
@@ -179,6 +179,10 @@
       "login": "shamim-akrami"
     },
     {
+      "id": 260784420,
+      "login": "Spacecatd3v"
+    },
+    {
       "id": 339617459,
       "login": "sphinxprodev"
     },
@@ -205,10 +209,6 @@
     {
       "id": 287250064,
       "login": "themakerGlitch"
-    },
-    {
-      "id": 260784420,
-      "login": "TizioQualunquee"
     },
     {
       "id": 35431524,
@@ -397,6 +397,10 @@
       "login": "shamim-akrami"
     },
     {
+      "id": 260784420,
+      "login": "Spacecatd3v"
+    },
+    {
       "id": 339617459,
       "login": "sphinxprodev"
     },
@@ -419,10 +423,6 @@
     {
       "id": 162008169,
       "login": "thegeekstar"
-    },
-    {
-      "id": 260784420,
-      "login": "TizioQualunquee"
     },
     {
       "id": 35431524,

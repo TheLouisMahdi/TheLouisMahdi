@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-26T20:30:35Z",
+  "updated_at": "2026-10-27T06:18:39Z",
   "followers": [
     {
       "id": 79897291,
@@ -125,6 +125,10 @@
     {
       "id": 160643822,
       "login": "mohamedelmougy"
+    },
+    {
+      "id": 309018155,
+      "login": "MrAbdulSamadDEV"
     },
     {
       "id": 182089390,
@@ -438,6 +442,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 309018155,
+      "login": "MrAbdulSamadDEV",
+      "at": "2026-10-27T06:18:39Z"
+    },
     {
       "kind": "perso",
       "id": 93768870,

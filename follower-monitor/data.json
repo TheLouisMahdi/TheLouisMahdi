@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-27T13:14:24Z",
+  "updated_at": "2026-10-28T09:42:46Z",
   "followers": [
     {
       "id": 79897291,
@@ -95,6 +95,10 @@
       "login": "kenjinote"
     },
     {
+      "id": 113049901,
+      "login": "kredensir"
+    },
+    {
       "id": 219104815,
       "login": "Krishnasaini0001"
     },
@@ -169,6 +173,10 @@
     {
       "id": 271632164,
       "login": "salikhussain71-code"
+    },
+    {
+      "id": 345766647,
+      "login": "sanjayadanushka712"
     },
     {
       "id": 6965893,
@@ -317,6 +325,10 @@
       "login": "kenjinote"
     },
     {
+      "id": 113049901,
+      "login": "kredensir"
+    },
+    {
       "id": 219104815,
       "login": "Krishnasaini0001"
     },
@@ -397,6 +409,10 @@
       "login": "salikhussain71-code"
     },
     {
+      "id": 345766647,
+      "login": "sanjayadanushka712"
+    },
+    {
       "id": 6965893,
       "login": "seehiong"
     },
@@ -450,6 +466,18 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 113049901,
+      "login": "kredensir",
+      "at": "2026-10-28T09:42:46Z"
+    },
+    {
+      "kind": "nuovo",
+      "id": 345766647,
+      "login": "sanjayadanushka712",
+      "at": "2026-10-28T09:42:46Z"
+    },
     {
       "kind": "nuovo",
       "id": 309018155,

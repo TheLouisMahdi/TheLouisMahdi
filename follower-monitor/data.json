@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-28T16:39:35Z",
+  "updated_at": "2026-10-29T08:31:26Z",
   "followers": [
     {
       "id": 79897291,
@@ -435,6 +435,10 @@
     {
       "id": 142095198,
       "login": "shamim-akrami"
+    },
+    {
+      "id": 259080666,
+      "login": "sinajr2011-prog"
     },
     {
       "id": 260784420,

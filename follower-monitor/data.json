@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-31T17:45:19Z",
+  "updated_at": "2026-10-31T21:37:25Z",
   "followers": [
     {
       "id": 79897291,
@@ -49,6 +49,10 @@
     {
       "id": 181463493,
       "login": "cleonaia"
+    },
+    {
+      "id": 183567756,
+      "login": "datasifaw"
     },
     {
       "id": 16355486,
@@ -506,6 +510,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 183567756,
+      "login": "datasifaw",
+      "at": "2026-10-31T21:37:25Z"
+    },
     {
       "kind": "perso",
       "id": 111867946,

@@ -1,10 +1,14 @@
 {
   "version": 1,
-  "updated_at": "2026-10-30T14:11:52Z",
+  "updated_at": "2026-10-31T12:35:36Z",
   "followers": [
     {
       "id": 79897291,
       "login": "0vm"
+    },
+    {
+      "id": 111867946,
+      "login": "0xdefimaster"
     },
     {
       "id": 161616901,
@@ -506,6 +510,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 111867946,
+      "login": "0xdefimaster",
+      "at": "2026-10-31T12:35:36Z"
+    },
     {
       "kind": "nuovo",
       "id": 23277273,

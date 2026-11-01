@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-31T21:37:25Z",
+  "updated_at": "2026-11-01T15:13:13Z",
   "followers": [
     {
       "id": 79897291,
@@ -25,6 +25,10 @@
     {
       "id": 227850795,
       "login": "amwhoi"
+    },
+    {
+      "id": 255503177,
+      "login": "AnkitSaini491"
     },
     {
       "id": 309271662,
@@ -309,6 +313,10 @@
       "login": "cleonaia"
     },
     {
+      "id": 183567756,
+      "login": "datasifaw"
+    },
+    {
       "id": 16355486,
       "login": "dbunt1tled"
     },
@@ -510,6 +518,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 255503177,
+      "login": "AnkitSaini491",
+      "at": "2026-11-01T15:13:13Z"
+    },
     {
       "kind": "nuovo",
       "id": 183567756,

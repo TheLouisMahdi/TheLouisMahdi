@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-02T23:33:23Z",
+  "updated_at": "2026-11-03T06:51:41Z",
   "followers": [
     {
       "id": 79897291,
@@ -9,6 +9,10 @@
     {
       "id": 161616901,
       "login": "aasimansari1"
+    },
+    {
+      "id": 76421360,
+      "login": "AhmadJeddi"
     },
     {
       "id": 157505360,
@@ -41,6 +45,10 @@
     {
       "id": 201331839,
       "login": "ashnafi1426"
+    },
+    {
+      "id": 63417797,
+      "login": "aza-ali"
     },
     {
       "id": 83650878,
@@ -145,10 +153,6 @@
     {
       "id": 143934238,
       "login": "Mftrferdinand"
-    },
-    {
-      "id": 213227825,
-      "login": "mfurqaniftikhar"
     },
     {
       "id": 309018155,
@@ -530,6 +534,24 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 76421360,
+      "login": "AhmadJeddi",
+      "at": "2026-11-03T06:51:41Z"
+    },
+    {
+      "kind": "nuovo",
+      "id": 63417797,
+      "login": "aza-ali",
+      "at": "2026-11-03T06:51:41Z"
+    },
+    {
+      "kind": "perso",
+      "id": 213227825,
+      "login": "mfurqaniftikhar",
+      "at": "2026-11-03T06:51:41Z"
+    },
     {
       "kind": "perso",
       "id": 336862857,

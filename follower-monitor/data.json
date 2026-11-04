@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-04T09:16:50Z",
+  "updated_at": "2026-11-04T17:21:44Z",
   "followers": [
     {
       "id": 79897291,
@@ -61,10 +61,6 @@
     {
       "id": 244135779,
       "login": "bariewakjira-coder"
-    },
-    {
-      "id": 181463493,
-      "login": "cleonaia"
     },
     {
       "id": 183567756,
@@ -345,10 +341,6 @@
       "login": "bariewakjira-coder"
     },
     {
-      "id": 181463493,
-      "login": "cleonaia"
-    },
-    {
       "id": 183567756,
       "login": "datasifaw"
     },
@@ -566,6 +558,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "perso",
+      "id": 181463493,
+      "login": "cleonaia",
+      "at": "2026-11-04T17:21:44Z"
+    },
     {
       "kind": "nuovo",
       "id": 217843780,

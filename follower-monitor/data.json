@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-06T10:56:03Z",
+  "updated_at": "2026-11-06T17:59:21Z",
   "followers": [
     {
       "id": 79897291,
@@ -17,6 +17,10 @@
     {
       "id": 76421360,
       "login": "AhmadJeddi"
+    },
+    {
+      "id": 168165668,
+      "login": "akarsh11111111"
     },
     {
       "id": 157505360,
@@ -173,10 +177,6 @@
     {
       "id": 160643822,
       "login": "mohamedelmougy"
-    },
-    {
-      "id": 309018155,
-      "login": "MrAbdulSamadDEV"
     },
     {
       "id": 182089390,
@@ -453,10 +453,6 @@
       "login": "mohamedelmougy"
     },
     {
-      "id": 309018155,
-      "login": "MrAbdulSamadDEV"
-    },
-    {
       "id": 182089390,
       "login": "mwakidenis"
     },
@@ -558,6 +554,18 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 168165668,
+      "login": "akarsh11111111",
+      "at": "2026-11-06T17:59:21Z"
+    },
+    {
+      "kind": "perso",
+      "id": 309018155,
+      "login": "MrAbdulSamadDEV",
+      "at": "2026-11-06T17:59:21Z"
+    },
     {
       "kind": "nuovo",
       "id": 311752106,

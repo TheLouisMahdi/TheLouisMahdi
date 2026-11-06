@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-06T17:59:21Z",
+  "updated_at": "2026-11-06T23:11:31Z",
   "followers": [
     {
       "id": 79897291,
@@ -133,6 +133,10 @@
     {
       "id": 72663882,
       "login": "JohnMwendwa"
+    },
+    {
+      "id": 331837338,
+      "login": "josejairobaltazargallegos29-a11y"
     },
     {
       "id": 2605401,
@@ -293,8 +297,16 @@
       "login": "aasimansari1"
     },
     {
+      "id": 311752106,
+      "login": "adityalenova"
+    },
+    {
       "id": 76421360,
       "login": "AhmadJeddi"
+    },
+    {
+      "id": 168165668,
+      "login": "akarsh11111111"
     },
     {
       "id": 157505360,
@@ -554,6 +566,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 331837338,
+      "login": "josejairobaltazargallegos29-a11y",
+      "at": "2026-11-06T23:11:31Z"
+    },
     {
       "kind": "nuovo",
       "id": 168165668,

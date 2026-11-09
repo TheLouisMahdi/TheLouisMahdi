@@ -1,11 +1,7 @@
 {
   "version": 1,
-  "updated_at": "2026-11-09T06:35:42Z",
+  "updated_at": "2026-11-09T17:32:01Z",
   "followers": [
-    {
-      "id": 79897291,
-      "login": "0vm"
-    },
     {
       "id": 161616901,
       "login": "aasimansari1"
@@ -297,10 +293,6 @@
   ],
   "following": [
     {
-      "id": 79897291,
-      "login": "0vm"
-    },
-    {
       "id": 161616901,
       "login": "aasimansari1"
     },
@@ -586,6 +578,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "perso",
+      "id": 79897291,
+      "login": "0vm",
+      "at": "2026-11-09T17:32:01Z"
+    },
     {
       "kind": "nuovo",
       "id": 5612024,

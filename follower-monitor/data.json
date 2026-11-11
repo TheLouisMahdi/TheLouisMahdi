@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-11T15:15:07Z",
+  "updated_at": "2026-11-11T22:05:28Z",
   "followers": [
     {
       "id": 161616901,
@@ -33,10 +33,6 @@
     {
       "id": 227850795,
       "login": "amwhoi"
-    },
-    {
-      "id": 255503177,
-      "login": "AnkitSaini491"
     },
     {
       "id": 217843780,
@@ -582,6 +578,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "perso",
+      "id": 255503177,
+      "login": "AnkitSaini491",
+      "at": "2026-11-11T22:05:28Z"
+    },
     {
       "kind": "nuovo",
       "id": 89330158,

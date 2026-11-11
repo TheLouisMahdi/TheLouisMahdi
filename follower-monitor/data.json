@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-09T17:32:01Z",
+  "updated_at": "2026-11-11T15:15:07Z",
   "followers": [
     {
       "id": 161616901,
@@ -85,6 +85,10 @@
     {
       "id": 277070735,
       "login": "EimanTahir027"
+    },
+    {
+      "id": 89330158,
+      "login": "fatemeh-mohseni"
     },
     {
       "id": 6509565,
@@ -578,6 +582,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 89330158,
+      "login": "fatemeh-mohseni",
+      "at": "2026-11-11T15:15:07Z"
+    },
     {
       "kind": "perso",
       "id": 79897291,

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-12T11:16:09Z",
+  "updated_at": "2026-11-13T00:28:06Z",
   "followers": [
     {
       "id": 161616901,
@@ -213,10 +213,6 @@
     {
       "id": 144074554,
       "login": "rian-fuzinelli"
-    },
-    {
-      "id": 5612024,
-      "login": "rich-iannone"
     },
     {
       "id": 328856308,
@@ -578,6 +574,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "perso",
+      "id": 5612024,
+      "login": "rich-iannone",
+      "at": "2026-11-13T00:28:06Z"
+    },
     {
       "kind": "perso",
       "id": 255503177,

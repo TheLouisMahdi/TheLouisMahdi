@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-13T16:27:30Z",
+  "updated_at": "2026-11-15T17:43:49Z",
   "followers": [
     {
       "id": 161616901,
@@ -119,6 +119,14 @@
       "login": "HeavenlyDesires"
     },
     {
+      "id": 234062852,
+      "login": "henry8k"
+    },
+    {
+      "id": 237669530,
+      "login": "hina-kura49"
+    },
+    {
       "id": 18186995,
       "login": "IDouble"
     },
@@ -177,10 +185,6 @@
     {
       "id": 143934238,
       "login": "Mftrferdinand"
-    },
-    {
-      "id": 160643822,
-      "login": "mohamedelmougy"
     },
     {
       "id": 182089390,
@@ -401,6 +405,10 @@
       "login": "HawkForge"
     },
     {
+      "id": 237669530,
+      "login": "hina-kura49"
+    },
+    {
       "id": 18186995,
       "login": "IDouble"
     },
@@ -574,6 +582,24 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 234062852,
+      "login": "henry8k",
+      "at": "2026-11-15T17:43:49Z"
+    },
+    {
+      "kind": "nuovo",
+      "id": 237669530,
+      "login": "hina-kura49",
+      "at": "2026-11-15T17:43:49Z"
+    },
+    {
+      "kind": "perso",
+      "id": 160643822,
+      "login": "mohamedelmougy",
+      "at": "2026-11-15T17:43:49Z"
+    },
     {
       "kind": "perso",
       "id": 5612024,

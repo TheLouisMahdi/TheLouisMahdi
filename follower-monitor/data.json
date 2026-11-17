@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-17T04:29:59Z",
+  "updated_at": "2026-11-17T14:27:34Z",
   "followers": [
     {
       "id": 161616901,
@@ -129,10 +129,6 @@
     {
       "id": 18186995,
       "login": "IDouble"
-    },
-    {
-      "id": 318884262,
-      "login": "iramaltaf94"
     },
     {
       "id": 174388386,
@@ -425,6 +421,10 @@
       "login": "IDouble"
     },
     {
+      "id": 318884262,
+      "login": "iramaltaf94"
+    },
+    {
       "id": 174388386,
       "login": "jkdevcode"
     },
@@ -598,6 +598,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "perso",
+      "id": 318884262,
+      "login": "iramaltaf94",
+      "at": "2026-11-17T14:27:34Z"
+    },
     {
       "kind": "nuovo",
       "id": 318884262,

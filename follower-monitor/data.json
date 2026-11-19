@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-17T14:27:34Z",
+  "updated_at": "2026-11-19T13:12:29Z",
   "followers": [
     {
       "id": 161616901,
@@ -117,10 +117,6 @@
     {
       "id": 196166826,
       "login": "HeavenlyDesires"
-    },
-    {
-      "id": 234062852,
-      "login": "henry8k"
     },
     {
       "id": 237669530,
@@ -269,6 +265,10 @@
     {
       "id": 180283757,
       "login": "Sunil56224972"
+    },
+    {
+      "id": 26717838,
+      "login": "TaroYamada08"
     },
     {
       "id": 211563967,
@@ -421,10 +421,6 @@
       "login": "IDouble"
     },
     {
-      "id": 318884262,
-      "login": "iramaltaf94"
-    },
-    {
       "id": 174388386,
       "login": "jkdevcode"
     },
@@ -489,10 +485,6 @@
       "login": "Mftrferdinand"
     },
     {
-      "id": 160643822,
-      "login": "mohamedelmougy"
-    },
-    {
       "id": 182089390,
       "login": "mwakidenis"
     },
@@ -523,10 +515,6 @@
     {
       "id": 144074554,
       "login": "rian-fuzinelli"
-    },
-    {
-      "id": 5612024,
-      "login": "rich-iannone"
     },
     {
       "id": 328856308,
@@ -598,6 +586,18 @@
     }
   ],
   "events": [
+    {
+      "kind": "perso",
+      "id": 234062852,
+      "login": "henry8k",
+      "at": "2026-11-19T13:12:29Z"
+    },
+    {
+      "kind": "nuovo",
+      "id": 26717838,
+      "login": "TaroYamada08",
+      "at": "2026-11-19T13:12:29Z"
+    },
     {
       "kind": "perso",
       "id": 318884262,

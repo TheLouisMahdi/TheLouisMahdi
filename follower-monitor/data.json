@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-21T11:06:49Z",
+  "updated_at": "2026-11-21T17:58:51Z",
   "followers": [
     {
       "id": 161616901,
@@ -289,6 +289,10 @@
     {
       "id": 287250064,
       "login": "themakerGlitch"
+    },
+    {
+      "id": 9716194,
+      "login": "user0506kjg"
     },
     {
       "id": 35431524,
@@ -606,6 +610,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 9716194,
+      "login": "user0506kjg",
+      "at": "2026-11-21T17:58:51Z"
+    },
     {
       "kind": "nuovo",
       "id": 150862746,

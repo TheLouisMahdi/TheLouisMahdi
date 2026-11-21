@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-21T17:58:51Z",
+  "updated_at": "2026-11-21T23:19:45Z",
   "followers": [
     {
       "id": 161616901,
@@ -201,10 +201,6 @@
     {
       "id": 150862746,
       "login": "Neegueba10"
-    },
-    {
-      "id": 23277273,
-      "login": "NotAFlightRisk"
     },
     {
       "id": 344532635,
@@ -610,6 +606,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "perso",
+      "id": 23277273,
+      "login": "NotAFlightRisk",
+      "at": "2026-11-21T23:19:45Z"
+    },
     {
       "kind": "nuovo",
       "id": 9716194,

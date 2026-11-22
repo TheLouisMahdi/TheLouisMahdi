@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-22T06:52:26Z",
+  "updated_at": "2026-11-22T21:47:23Z",
   "followers": [
     {
       "id": 161616901,
@@ -189,10 +189,6 @@
     {
       "id": 234746944,
       "login": "meharma-arif-developer"
-    },
-    {
-      "id": 143934238,
-      "login": "Mftrferdinand"
     },
     {
       "id": 182089390,
@@ -497,10 +493,6 @@
       "login": "meharma-arif-developer"
     },
     {
-      "id": 143934238,
-      "login": "Mftrferdinand"
-    },
-    {
       "id": 182089390,
       "login": "mwakidenis"
     },
@@ -610,6 +602,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "perso",
+      "id": 143934238,
+      "login": "Mftrferdinand",
+      "at": "2026-11-22T21:47:23Z"
+    },
     {
       "kind": "nuovo",
       "id": 191013310,

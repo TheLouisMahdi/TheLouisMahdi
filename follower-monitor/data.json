@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-22T21:47:23Z",
+  "updated_at": "2026-11-23T02:47:44Z",
   "followers": [
     {
       "id": 161616901,
@@ -245,6 +245,10 @@
     {
       "id": 142095198,
       "login": "shamim-akrami"
+    },
+    {
+      "id": 307791440,
+      "login": "shinobi-coder701"
     },
     {
       "id": 259080666,
@@ -602,6 +606,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 307791440,
+      "login": "shinobi-coder701",
+      "at": "2026-11-23T02:47:44Z"
+    },
     {
       "kind": "perso",
       "id": 143934238,

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-23T12:49:13Z",
+  "updated_at": "2026-11-24T00:53:40Z",
   "followers": [
     {
       "id": 161616901,
@@ -165,10 +165,6 @@
     {
       "id": 314552004,
       "login": "MahdiKordian"
-    },
-    {
-      "id": 191013310,
-      "login": "Malaybhai11"
     },
     {
       "id": 139536444,
@@ -602,6 +598,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "perso",
+      "id": 191013310,
+      "login": "Malaybhai11",
+      "at": "2026-11-24T00:53:40Z"
+    },
     {
       "kind": "perso",
       "id": 26717838,

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-24T10:57:25Z",
+  "updated_at": "2026-11-24T21:13:44Z",
   "followers": [
     {
       "id": 161616901,
@@ -173,6 +173,10 @@
     {
       "id": 139536444,
       "login": "MAMIDI-LIKHITHA"
+    },
+    {
+      "id": 7023566,
+      "login": "manman4"
     },
     {
       "id": 174292624,
@@ -602,6 +606,12 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 7023566,
+      "login": "manman4",
+      "at": "2026-11-24T21:13:44Z"
+    },
     {
       "kind": "nuovo",
       "id": 170179971,

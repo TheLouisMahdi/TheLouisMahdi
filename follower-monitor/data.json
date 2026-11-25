@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-25T14:35:30Z",
+  "updated_at": "2026-11-25T23:38:56Z",
   "followers": [
     {
       "id": 161616901,
@@ -61,6 +61,10 @@
     {
       "id": 244135779,
       "login": "bariewakjira-coder"
+    },
+    {
+      "id": 288683121,
+      "login": "Coretech001"
     },
     {
       "id": 183567756,
@@ -217,6 +221,10 @@
     {
       "id": 344532635,
       "login": "oo612"
+    },
+    {
+      "id": 239605457,
+      "login": "PaulKabyn"
     },
     {
       "id": 119727688,
@@ -630,6 +638,18 @@
     }
   ],
   "events": [
+    {
+      "kind": "nuovo",
+      "id": 288683121,
+      "login": "Coretech001",
+      "at": "2026-11-25T23:38:56Z"
+    },
+    {
+      "kind": "nuovo",
+      "id": 239605457,
+      "login": "PaulKabyn",
+      "at": "2026-11-25T23:38:56Z"
+    },
     {
       "kind": "nuovo",
       "id": 184673010,

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-27T10:54:39Z",
+  "updated_at": "2026-11-27T19:58:36Z",
   "followers": [
     {
       "id": 161616901,
@@ -13,10 +13,6 @@
     {
       "id": 76421360,
       "login": "AhmadJeddi"
-    },
-    {
-      "id": 168165668,
-      "login": "akarsh11111111"
     },
     {
       "id": 157505360,
@@ -95,6 +91,10 @@
       "login": "EimanTahir027"
     },
     {
+      "id": 136590233,
+      "login": "engrshuvodas"
+    },
+    {
       "id": 89330158,
       "login": "fereshteh2001"
     },
@@ -117,10 +117,6 @@
     {
       "id": 350019139,
       "login": "harryfisher18"
-    },
-    {
-      "id": 184673010,
-      "login": "HarshAnand143"
     },
     {
       "id": 75696486,
@@ -628,6 +624,24 @@
   "events": [
     {
       "kind": "perso",
+      "id": 168165668,
+      "login": "akarsh11111111",
+      "at": "2026-11-27T19:58:36Z"
+    },
+    {
+      "kind": "nuovo",
+      "id": 136590233,
+      "login": "engrshuvodas",
+      "at": "2026-11-27T19:58:36Z"
+    },
+    {
+      "kind": "perso",
+      "id": 184673010,
+      "login": "HarshAnand143",
+      "at": "2026-11-27T19:58:36Z"
+    },
+    {
+      "kind": "perso",
       "id": 309251726,
       "login": "Git-FED",
       "at": "2026-11-27T10:54:39Z"
@@ -1086,12 +1100,6 @@
       "kind": "nuovo",
       "id": 339617459,
       "login": "sphinxprodev",
-      "at": "2026-10-20T11:41:12Z"
-    },
-    {
-      "kind": "nuovo",
-      "id": 211563967,
-      "login": "tester4school",
       "at": "2026-10-20T11:41:12Z"
     }
   ]
